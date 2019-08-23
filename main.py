@@ -2,10 +2,15 @@ from flask import Flask
 from flask import render_template
 from flask import request
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='')
 
 
-@app.route('/', methods=['POST', 'GET'])
+@app.route('/')
+def home():
+    return render_template('index.html')
+
+
+@app.route('/form', methods=['POST', 'GET'])
 def process_form():
     if request.method == 'POST':
         absentee_first_name = request.form['name__first']
@@ -59,9 +64,9 @@ def process_form():
         absentee_signature_date = request.form['signature__date']
         absentee_signature = request.form['signature__signed']
 
-        return render_template('index.html', ssn=absentee_ssn)
+        return render_template('form.html', ssn=absentee_ssn)
     else:
-        return render_template('index.html')
+        return render_template('form.html')
 
 
 if __name__ == '__main__':
