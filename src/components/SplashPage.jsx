@@ -5,7 +5,7 @@ class SplashPage extends Component {
       render() {
             return (
                   <body>
-                        <a href='/form'></a>
+                        <a href='/form'>Temporary</a>
                   </body>
             );
       }
