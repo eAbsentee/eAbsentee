@@ -1,0 +1,374 @@
+// Core variables and mixins
+@import "bootstrap";
+
+
+////////////////////////////////////////////////
+//
+// Bootstrap adjustments go here
+// Avoid editing Bootstrap SASS directly so it can be easily updated
+//
+////////////////////////////////////////////////
+
+
+// Extra small screen / phone
+$screen-xs:             480px;
+
+// // Small screen / tablet
+// $screen-sm:          768px;
+
+// // Medium screen / desktop
+// $screen-md:          992px;
+
+// // Large screen / wide desktop
+// $screen-lg:          1200px;
+
+
+// adjust Bootstrap's native extra-small breakpoint
+// grid only applies to > 480px
+
+@mixin make-xs-column($columns, $gutter: $grid-gutter-width) {
+    @media (min-width: $screen-xs) {
+        position: relative;
+        float: left;
+        padding-left:  ($gutter / 2);
+        padding-right: ($gutter / 2);
+        width: percentage(($columns / $grid-columns));
+        min-height: 1px;
+    }
+}
+@mixin make-xs-column-offset($columns) {
+    @media (min-width: $screen-xs) {
+        margin-left: percentage(($columns / $grid-columns));
+    }
+}
+@mixin make-xs-column-push($columns) {
+    @media (min-width: $screen-xs) {
+        left: percentage(($columns / $grid-columns));
+    }
+}
+@mixin make-xs-column-pull($columns) {
+    @media (min-width: $screen-xs) {
+        right: percentage(($columns / $grid-columns));
+    }
+}
+
+
+// Generate the small columns
+@mixin make-sm-column($columns, $gutter: $grid-gutter-width) {
+
+    @media (min-width: $screen-sm-min) {
+        position: relative;
+        min-height: 1px;
+        padding-left:  ($gutter / 2);
+        padding-right: ($gutter / 2);
+        float: left;
+        width: percentage(($columns / $grid-columns));
+    }
+}
+
+// Creates a wrapper for a series of columns
+@mixin make-row($gutter: $grid-gutter-width) {
+    @media (min-width: $screen-xs) {
+        margin-left:  ($gutter / -2);
+        margin-right: ($gutter / -2);
+        @include clearfix;
+    }
+}
+
+
+////////////////////////////////////////////////
+//
+// non-Bootstrap variables
+//
+////////////////////////////////////////////////
+
+$gray-border:           #ccc;
+
+%form-block {
+    float: none;
+    display: inline-block;
+}
+
+
+@mixin clear-grid {
+    position: relative;
+    float: none;
+    width: auto;
+    min-height: none;
+}
+
+
+/* Using local fonts? Check out Font Squirrel's webfont generator: http://www.fontsquirrel.com/tools/webfont-generator */
+
+/* We like off-black for text. */
+body, select, input, textarea {color: #333;}
+
+a {color: #03f;}
+a:hover {color: #69f;}
+
+/* Custom text-selection colors (remove any text shadows: http://twitter.com/miketaylr/status/12228805301) */
+::-moz-selection{background: #fcd700; color: #fff; text-shadow: none;}
+::selection {background: #fcd700; color: #fff; text-shadow: none;} 
+
+/*  j.mp/webkit-tap-highlight-color */
+a:link {-webkit-tap-highlight-color: #fcd700;} 
+
+ins {background-color: #fcd700; color: #000; text-decoration: none;}
+mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: bold;}
+
+/* Mozilla dosen't style place holders by default */
+input:-moz-placeholder { color:#a9a9a9; }
+textarea:-moz-placeholder { color:#a9a9a9; }
+
+
+body {
+    font-family: "Helvetica Neue", Helvetica, Helmet, Freesans, sans-serif;
+    // font-size: 16px;
+    // line-height: 1.5em;
+    margin: 0 auto;
+    max-width: 800px;
+    background-color: #f6f6f6;
+}
+
+section#absentee-form {
+    @include container-fixed();
+    max-width: $screen-sm;
+    background: #fff;
+    border: 1px solid $gray-border;
+}
+
+h1 {
+    font-weight: 300;
+    text-align: center;
+    margin: 2em 0 1em;
+}
+
+h3 {
+    font-size: 1.33em;
+    font-weight: 300;
+    margin-bottom: 1em;
+    @include make-row();
+
+    &:first-child {
+        margin-top: 0;
+    }
+}
+
+fieldset {
+    margin: 0 ($grid-gutter-width/2 * -1);
+    padding: 2em 3em;
+    border-bottom: 1px solid $gray-border;
+
+    &:last-child {
+        border: 0;
+    }
+}
+
+.form-group {
+    @include make-row();
+
+    & > label {
+        @include make-xs-column(3);
+    }
+
+    & > input, & > select {
+        @include make-xs-column(9);
+    }
+
+    span {
+        color: $gray-border;
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.radio-group {
+    margin-bottom: $form-group-margin-bottom;
+}
+
+input.form-control.address {
+    @include make-sm-column(5);
+}
+
+label.control-label.apt, input.form-control.apt,
+label.control-label.zip, input.form-control.zip {
+    @include make-sm-column(2);
+}
+
+input.form-control.apt, input.form-control.zip  {
+    max-width: 10em;
+
+    @media screen and (min-width: $screen-xs) and (max-width: $screen-sm) {
+        margin-top: $form-group-margin-bottom;
+    }
+}
+
+select.form-control.state {
+    @include make-sm-column(5);
+}
+
+// section 1: name + ssn
+#first_middle, #last_suffix {
+    input {
+        @include make-xs-column(9);
+        @include make-sm-column(3);
+    }
+}
+
+.form-inline {
+    label {
+        display: block;
+    }
+}
+
+// section 2: election
+#election {
+    
+    #election__type {
+        @include make-xs-column(6);
+        @include make-sm-column(4);
+    }
+    
+    #election__date {
+        @include make-xs-column(6);
+        @include make-sm-column(8);
+
+        label {
+            @include make-sm-column(5);
+        }
+
+        .form-control {
+            width: auto;
+            display: inline-block;
+            margin-right: 0.5em;
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+
+    #election__locality {
+        label {
+            width: auto;
+        }
+
+        select {
+            @include make-sm-column(6);
+        }
+    }
+}
+
+// section 3: reason
+#reason {
+
+    .col {
+        @include make-xs-column(6);
+    }
+
+    .radio {
+        margin-bottom: 0.5em;
+    }
+}
+
+#more_info__birth_year {
+    select {
+        width: auto;
+    }
+}
+
+#more_info__telephone, #fax {
+    input {
+        @extend %form-block;
+    }
+}
+
+#email {
+    input {
+        @include make-sm-column(7);
+    }
+}
+
+#change__date_moved {
+
+    .form-control {
+        width: auto;
+        display: inline-block;
+        margin-right: 0.5em;
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}
+
+#reason__documentation {
+    display: none;
+
+    & > label {
+        // @include make-xs-column(12);
+        @include clear-grid;
+        text-align: left;
+        display: block;
+        margin-bottom: $form-group-margin-bottom;
+    }
+
+    & > textarea {
+        @include clear-grid;
+        width: 100%;
+        min-height: 4.85em;
+
+        @media screen and (min-width: $screen-xs) {
+            margin-left: 15px;
+            width: calc(100% - 15px);
+        }
+    }
+}
+
+
+#result {
+    margin-top: 2em;
+    @include container-fixed();
+    max-width: $screen-sm;
+    background: #ccc;
+    padding: 2em;
+    text-overflow: wrap;
+}
+
+footer {
+    margin: 2em 0;
+    text-align: center;
+}
+
+
+/* Media queries
+-------------------------------------------------------------------------------*/
+
+@media screen and (max-width: $screen-sm) {
+
+    h3 {
+        margin-left: -15px;
+    }
+    
+    #first_middle, #last_suffix {
+        input:first-of-type {
+            margin-bottom: $form-group-margin-bottom;
+        }
+    }
+
+
+    label.control-label.apt, label.control-label.zip {
+        margin-top: $form-group-margin-bottom;
+    }
+        
+}
+
+
+
+/* Print styles
+-------------------------------------------------------------------------------*/
+@media print {
+
+
+
+}
