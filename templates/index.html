@@ -12,14 +12,16 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
-	<link rel="stylesheet" href="css/main.css" />
+
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}" />
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
 </head>
 
 <body class="is-preload">
 
 	<!-- Header -->
 	<header id="header">
-		<a class="logo" href="index.html">eAbsentee Voting</a>
+		<a class="logo" href="/">eAbsentee Voting</a>
 		<nav>
 			<a href="#menu">Menu</a>
 		</nav>
@@ -28,7 +30,8 @@
 	<!-- Nav -->
 	<nav id="menu">
 		<ul class="links">
-			<li><a href="index.html">Home</a></li>
+			<li><a href="/">Home</a></li>
+			<li><a href="/form">Register</a></li>
 		</ul>
 	</nav>
 
@@ -38,78 +41,12 @@
 			<h1>Absentee Ballot Voting</h1>
 			<p>Update this with video once filmed. Video should explain eAbsentee.</p>
 			<ul class="actions fit">
-				<li><a href="/form" class="button primary fit small">Register for Absentee Ballot</a></li>
+				<li><a href="./form" class="button primary fit small">Register for Absentee Ballot</a></li>
 				<li><a href="#faq" class="button fit small">F.A.Q.</a></li>
 			</ul>
 		</div>
 		<!-- <video autoplay loop muted playsinline src="images/banner.mp4"></video> -->
 	</section>
-
-	<!-- Highlights
-	<section class="wrapper">
-		<div class="inner">
-			<header class="special">
-				<h2>Sem turpis amet semper</h2>
-				<p>In arcu accumsan arcu adipiscing accumsan orci ac. Felis id enim aliquet. Accumsan ac integer lobortis commodo ornare aliquet accumsan erat tempus amet porttitor.</p>
-			</header>
-			<div class="highlights">
-				<section>
-					<div class="content">
-						<header>
-							<a href="#" class="icon fa-vcard-o"><span class="label">Icon</span></a>
-							<h3>Feugiat consequat</h3>
-						</header>
-						<p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
-					</div>
-				</section>
-				<section>
-					<div class="content">
-						<header>
-							<a href="#" class="icon fa-files-o"><span class="label">Icon</span></a>
-							<h3>Ante sem integer</h3>
-						</header>
-						<p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
-					</div>
-				</section>
-				<section>
-					<div class="content">
-						<header>
-							<a href="#" class="icon fa-floppy-o"><span class="label">Icon</span></a>
-							<h3>Ipsum consequat</h3>
-						</header>
-						<p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
-					</div>
-				</section>
-				<section>
-					<div class="content">
-						<header>
-							<a href="#" class="icon fa-line-chart"><span class="label">Icon</span></a>
-							<h3>Interdum gravida</h3>
-						</header>
-						<p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
-					</div>
-				</section>
-				<section>
-					<div class="content">
-						<header>
-							<a href="#" class="icon fa-paper-plane-o"><span class="label">Icon</span></a>
-							<h3>Faucibus consequat</h3>
-						</header>
-						<p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
-					</div>
-				</section>
-				<section>
-					<div class="content">
-						<header>
-							<a href="#" class="icon fa-qrcode"><span class="label">Icon</span></a>
-							<h3>Accumsan viverra</h3>
-						</header>
-						<p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
-					</div>
-				</section>
-			</div>
-		</div>
-	</section> -->
 
 	<!-- Main -->
 	<section id="faq" class="wrapper">
@@ -124,8 +61,11 @@
 					where it will be processed. They will send you an absentee ballot which you can fill out to cast your
 					vote.</p>
 				<hr />
-				<p><b> More Questions</b> <br>
-					More Answers.</p>
+				<p>
+					<b> More Questions</b>
+					<br>
+					More Answers.
+				</p>
 				<hr />
 			</div>
 		</div>
@@ -228,11 +168,12 @@
 	</footer>
 
 	<!-- Scripts -->
-	<script src="js/jquery.min.js"></script>
-	<script src="js/browser.min.js"></script>
-	<script src="js/breakpoints.min.js"></script>
-	<script src="js/util.js"></script>
-	<script src="js/main.js"></script>
+
+	<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/browser.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/breakpoints.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/util.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/main.js') }}"></script>
 
 </body>
 

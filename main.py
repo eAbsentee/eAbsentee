@@ -4,7 +4,7 @@ from flask import request
 from flask import redirect
 from functions import buildJSON
 
-app = Flask(__name__, static_url_path='')
+app = Flask(__name__)
 
 
 @app.route('/')
@@ -12,13 +12,18 @@ def home():
     return render_template('index.html')
 
 
-@app.route('/form', methods=['POST', 'GET'])
+@app.route('/form/', methods=['POST', 'GET'])
 def process_form():
     if request.method == 'POST':
         buildJSON(request)
-        return redirect('confirmation.html')
+        return redirect('/confirmation/')
     else:
         return render_template('form.html')
+
+
+@app.route('/confirmation/', methods=['GET'])
+def confirmation():
+    return render_template('confirmation.html')
 
 
 if __name__ == '__main__':

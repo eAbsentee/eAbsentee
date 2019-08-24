@@ -15,9 +15,9 @@ def buildJSON(request):
     absentee_reason = request.form['reason__code']
     absentee_reason_documentation = request.form['reason__documentation']
 
-    absentee_birth_year = request.form['birth_year']
-    absentee_telephone = request.form['more_info__telephone']
-    absentee_email = request.form['more_info__email_fax']
+    absentee_birth_year = request.form.get('more_info__birth_year')
+    absentee_telephone = request.form.get('more_info__telephone')
+    absentee_email = request.form.get('more_info__email_fax')
 
     absentee_street_address = request.form['address__street']
     absentee_unit = request.form['address__unit']
@@ -25,29 +25,29 @@ def buildJSON(request):
     absentee_state = request.form['address__state']
     absentee_zip = request.form['address__zip']
 
-    ballot_delivery_destination = request.form['delivery__to']
-    delivery_street_address = request.form['delivery__street']
-    delivery_unit = request.form['delivery__unit']
-    delivery_city = request.form['delivery__city']
-    delivery_country = request.form['country']
-    delivery_state = request.form['deliv-state']
-    delivery_zip = request.form['delivery__zip']
-    # delivery_state_country = request.form['delivery__state_or_country']
+    delivery_destination = request.form.get('delivery__to')
+    ballot_delivery_street_address = request.form.get('delivery__street')
+    delivery_unit = request.form.get('delivery__unit')
+    delivery_city = request.form.get('delivery__city')
+    delivery_country = request.form.get('country')
+    delivery_state = request.form.get('deliv-state')
+    delivery_zip = request.form.get('delivery__zip')
+    # delivery_state_country = request.form.get('delivery__state_or_country')
 
-    absentee_former_name = request.form['change__former_name']
-    absentee_former_address = request.form['change__former_address']
-    absentee_date_moved = request.form['change__date_moved']
+    absentee_former_name = request.form.get('change__former_name')
+    absentee_former_address = request.form.get('change__former_address')
+    absentee_date_moved = request.form.get('change__date_moved')
 
-    absentee_assistance = request.form['assistance__assistance']
+    absentee_assistance = request.form.get('assistance__assistance')
 
-    assistant_signed = request.form['assistant__signed']
-    assistant_name = request.form['assistant__name']
-    assistant_street_address = request.form['assistant__street']
-    assistant_unit = request.form['assistant__unit']
-    assistant_city = request.form['assistant__city']
-    assistant_state = request.form['assistant__state']
-    assistant_zip = request.form['assistant__zip']
-    assistant_signature = request.form['assistant__sig']
+    assistant_signed = request.form.get('assistant__signed')
+    assistant_name = request.form.get('assistant__name')
+    assistant_street_address = request.form.get('assistant__street')
+    assistant_unit = request.form.get('assistant__unit')
+    assistant_city = request.form.get('assistant__city')
+    assistant_state = request.form.get('assistant__state')
+    assistant_zip = request.form.get('assistant__zip')
+    assistant_signature = request.form.get('assistant__sig')
 
     absentee_agreement = request.form['checkbox']
     absentee_signature_date = request.form['signature__date']
