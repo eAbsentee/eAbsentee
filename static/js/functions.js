@@ -2,10 +2,10 @@
 // http://rog.ie/post/9089341529/html5boilerplatejs
 
 // var b = document.documentElement;
-// b.setAttribute('data-useragent',  navigator.userAgent);
-// b.setAttribute('data-platform', navigator.platform);
+// b.setAttribute("data-useragent",  navigator.userAgent);
+// b.setAttribute("data-platform", navigator.platform);
 
-// sample CSS: html[data-useragent*='Chrome/13.0'] { ... }
+// sample CSS: html[data-useragent*="Chrome/13.0"] { ... }
 
 
 // remap jQuery to $
@@ -20,7 +20,7 @@
     return size;
   }
 
-  // return an object's first value
+  // return an object"s first value
   var firstValue = function(obj) {
     for (var key in obj) return obj[key];
   }
@@ -38,20 +38,20 @@
       $.each(a, function() {
 
         // input names follow the format "[fieldset id]_[n]"
-        var n = this.name.split('__')[1];
+        var n = this.name.split("__")[1];
 
-        if (n && this.value !== "") { // ignore the field if it doesn't follow the above format
+        if (n && this.value !== "") { // ignore the field if it doesn"t follow the above format
           if (f[n] !== undefined) {
             if (!f[n].push) {
               f[n] = [f[n]];
             }
-            f[n].push(this.value || '');
+            f[n].push(this.value || "");
           } else {
-            // make sure booleans aren't expressed as strings
+            // make sure booleans aren"t expressed as strings
             if (this.value == "true")
               f[n] = true;
             else
-              f[n] = this.value || '';
+              f[n] = this.value || "";
           }
         }
       });
@@ -61,13 +61,13 @@
         if (!o[fieldset].push) {
           o[fieldset] = [o[fieldset]];
         }
-        o[fieldset].push(f || '');
-      } else if (size(f) === 0) { // skip the fieldset if it's blank
+        o[fieldset].push(f || "");
+      } else if (size(f) === 0) { // skip the fieldset if it"s blank
         return;
-      } else if (size(f) === 1 && fieldset === "assistant") { // don't make a new object for assistant field
-        o[fieldset] = firstValue(f) || '';
+      } else if (size(f) === 1 && fieldset === "assistant") { // don"t make a new object for assistant field
+        o[fieldset] = firstValue(f) || "";
       } else {
-        o[fieldset] = f || '';
+        o[fieldset] = f || "";
       }
     });
 
@@ -78,10 +78,10 @@
   $(document).ready(function() {
 
     // hide our dialog boxes
-    $('#modal-success').modal({
+    $("#modal-success").modal({
       show: false
     })
-    $('#modal-failure').modal({
+    $("#modal-failure").modal({
       show: false
     })
 
@@ -89,13 +89,14 @@
     $("#delivery_email").hide();
 
     // update locality hidden field with locality_gnis select value
-    $("select[name='election__locality_gnis']").change(function() {
+    $("select[name=\"election__locality_gnis\"]").change(function() {
       var val = $(this).find("option:selected").text();
-      $("input[name='election__locality']").val(val);
+      $("input[name="
+        election__locality "]").val(val);
     });
 
     // require a reasonable explanation and permit email ballot delivery for some reasons
-    $("input[name='reason__code']").change(function() {
+    $("input[name=\"reason__code \"]").change(function() {
 
       var label = "";
       var doc_field = $("#reason__documentation");
@@ -147,38 +148,39 @@
         case "4A":
         case "5A":
         case "8A":
-          $("#reason__documentation_field").prop('required', false);
+          $("#reason__documentation_field").prop("required", false);
           doc_field.hide();
           break;
       }
 
-      if (label != '') {
-        $("label[for='reason__documentation_field']").text(label);
-        $("#reason__documentation_field").prop('required', true);
+      if (label != "") {
+        $("label[for="
+          reason__documentation_field "]").text(label);
+        $("#reason__documentation_field").prop("required", true);
       }
     });
 
-    // Only display the delivery-to address fields if it's necessary
+    // Only display the delivery-to address fields if it"s necessary
     $("#delivery_address").hide();
-    $("input[name='delivery__to']").change(function() {
-      if ($(this).val() == 'mailing address') {
+    $("input[name=\"delivery__to\"]").change(function() {
+      if ($(this).val() == "mailing address") {
         $("#delivery_address").show();
       } else {
         $("#delivery_address").hide();
 
-        // Require an email address, if that's the selected delivery method
-        if ($(this).val() == 'email') {
-          $("#more_info__email_fax").prop('required', true);
+        // Require an email address, if that"s the selected delivery method
+        if ($(this).val() == "email") {
+          $("#more_info__email_fax").prop("required", true);
         } else {
-          $("#more_info__email_fax").prop('required', false);
+          $("#more_info__email_fax").prop("required", false);
         }
 
       }
     });
 
-    // Only display the assistant-info section if it's necessary
+    // Only display the assistant-info section if it"s necessary
     $("#assistant").hide();
-    $("input[name='assistance__assistance']").change(function() {
+    $("input[name=\"assistance__assistance\"]").change(function() {
       if (this.checked) {
         $("#assistant").show();
       } else {
@@ -187,29 +189,29 @@
     });
 
     // If an assistant has signed the form, note that in the applicant signature field.
-    $("input[name='assistant__signed']").change(function() {
+    $("input[name=\"assistant__signed\"]").change(function() {
       if (this.checked) {
-        $("input[name='signature__signed']").val('Applicant Unable to Sign');
+        $("input[name=\"signature__signed\"]").val("Applicant Unable to Sign");
       } else {
-        $("input[name='signature__signed']").val('');
+        $("input[name=\"signature__signed\"]").val("");
       }
     });
 
     // change state_or_country to state if a state
-    $("select[name='deliv-state']").change(function() {
+    $("select[name=\"deliv - state\"]").change(function() {
       var val = $(this).find("option:selected").val();
-      $("input[name='delivery__state_or_country']").val(val);
+      $("input[name=\"delivery__state_or_country\"]").val(val);
     });
 
     // change state_or_country to country if a country other than US,
     // and remove state/ZIP fields
-    $("select[name='country']").change(function() {
+    $("select[name=\"country\"]").change(function() {
       var val = $(this).find("option:selected").val();
       if (val != "United States") {
-        $("input[name='delivery__state_or_country']").val(val);
+        $("input[name=\"delivery__state_or_country\"]").val(val);
         $("#delivery__statezip").hide();
       } else {
-        $("input[name='delivery__state_or_country']").val($("select[name='deliv-state'] option:selected").val());
+        $("input[name=\"delivery__state_or_country\"]").val($("select[name=\"deliv - state \"] option:selected").val());
         $("#delivery__statezip").show();
       }
     });
@@ -217,29 +219,29 @@
     // generate the signature date, which we have to do manually to avoid the inclusion of
     // microseconds
     var d = new Date();
-    var formattedDate = d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2) + 'T' + ('0' + d.getHours()).slice(-2) + ':' + ('0' + d.getMinutes()).slice(-2) + ':' + ('0' + d.getSeconds()).slice(-2) + 'Z';
-    $("input[name='signature__date']").val(formattedDate);
+    var formattedDate = d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2) + "T" + ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2) + ":" + ("0" + d.getSeconds()).slice(-2) + "Z";
+    $("input[name=\"signature__date \"]").val(formattedDate);
 
-    // $('form').submit(function(e) {
+    // $("form").submit(function(e) {
     //
     //   e.preventDefault();
     //
     //   // disable the submit button to prevent repeat submissions
-    //   $('input:submit').attr('disabled', true);
+    //   $("input:submit").attr("disabled", true);
     //
-    //   console.log($('form').serializeObject());
+    //   console.log($("form").serializeObject());
     //
     //   $.post(
     //       "https://www.democraticabsentee.com/api/submit/",
-    //       JSON.stringify($('form').serializeObject())
+    //       JSON.stringify($("form").serializeObject())
     //     )
     //
     //     // on success, display an acknowledgement
     //     .done(function(json, textStatus, ErrorThrown) {
     //
     //       // prohibit resubmissions of the form
-    //       $(this).attr('disabled', 'disabled');
-    //       $(this).parents('form').submit();
+    //       $(this).attr("disabled", "disabled");
+    //       $(this).parents("form").submit();
     //
     //       // assemble the text of the acknowledgement screen
     //       var response = jQuery.parseJSON(json);
@@ -253,7 +255,7 @@
     //       $("#success-message").html(successText);
     //
     //       // replace the body content with the success message
-    //       $('section').replaceWith($("div#success-message").html());
+    //       $("section").replaceWith($("div#success-message").html());
     //
     //     })
     //
@@ -261,23 +263,23 @@
     //     .fail(function(json, textStatus, ErrorThrown) {
     //
     //       // reenable the submit button
-    //       $('input:submit').attr('disabled', false);
+    //       $("input:submit").attr("disabled", false);
     //
     //       var response = jQuery.parseJSON(json.responseText);
-    //       var errorList = '<ul>';
+    //       var errorList = "<ul>";
     //       var errors = response.errors;
     //       $.each(errors, function(type, details) {
-    //         errorList = errorList + '<li><strong>' + type + ':</strong> ' + details + '</li>';
+    //         errorList = errorList + "<li><strong>" + type + ":</strong> " + details + "</li>";
     //       });
-    //       errorList = errorList + '</ul>';
+    //       errorList = errorList + "</ul>";
     //
     //       var errorText = $("#failure-message").html();
     //       errorText = errorText.replace("{{ERROR}}", errorList);
     //       $("#failure-message").html(errorText);
-    //       $('div#failure-message').toggleClass('hidden');
-    //       $('html,body').animate({
+    //       $("div#failure-message").toggleClass("hidden");
+    //       $("html,body").animate({
     //         scrollTop: $("#failure-message").offset().top
-    //       }, 'slow');
+    //       }, "slow");
     //
     //     });
     //
