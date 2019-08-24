@@ -2,8 +2,9 @@ from flask import Flask
 from flask import render_template
 from flask import request
 from flask import redirect
-from functions import parse_data
+from functions import parse_data, build_pdf, email_registrar
 from os import getenv
+
 
 app = Flask(__name__)
 
@@ -16,7 +17,7 @@ def home():
 @app.route('/form/', methods=['POST', 'GET'])
 def process_form():
     if request.method == 'POST':
-        parse_data(request)
+        email_registrar(build_pdf(parse_data(request)))
         return redirect('/confirmation/')
     else:
         return render_template('form.html')
