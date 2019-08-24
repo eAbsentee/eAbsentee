@@ -13,9 +13,8 @@
 
   // length of an object
   var size = function(obj) {
-    var size = 0,
-      key;
-    for (key in obj) {
+    var size = 0;
+    for (var key in obj) {
       if (obj.hasOwnProperty(key)) size++;
     }
     return size;
@@ -63,9 +62,9 @@
           o[fieldset] = [o[fieldset]];
         }
         o[fieldset].push(f || '');
-      } else if (size(f) == 0) { // skip the fieldset if it's blank
+      } else if (size(f) === 0) { // skip the fieldset if it's blank
         return;
-      } else if (size(f) == 1 && fieldset == "assistant") { // don't make a new object for assistant field
+      } else if (size(f) === 1 && fieldset === "assistant") { // don't make a new object for assistant field
         o[fieldset] = firstValue(f) || '';
       } else {
         o[fieldset] = f || '';
