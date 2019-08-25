@@ -4,7 +4,7 @@ from flask import request
 import hashlib
 import yagmail
 from keys import GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD
-import localities_and_reasons
+import localities_info
 from build_pdf import write_fillable_pdf
 
 
@@ -18,7 +18,7 @@ def parse_data(request: request):
     election_type: str = request.form['election__type']
     election_date: str = datetime.strftime(datetime.strptime(
         request.form['election__date'], '%Y-%m-%d'), '%m %d %y')
-    election_locality: str = localities_and_reasons.localities[
+    election_locality: str = localities_info.localities[
         request.form['election__locality_gnis']]['locality']
 
     absentee_reason_code: str = request.form['reason__code']
@@ -112,7 +112,7 @@ def parse_data(request: request):
         "absentee_signature_date": absentee_signature_date,
         "absentee_signature": absentee_signature
     }
-    registrar_address: str = localities_and_reasons.localities[request.form[
+    registrar_address: str = localities_info.localities[request.form[
         'election__locality_gnis']]['email']
     return data, registrar_address
 
