@@ -123,6 +123,7 @@ def build_pdf(data: Dict[str, str], registrar_address: str):
         ' ' + data['absentee_middle_name'] + \
         ' ' + data['absentee_last_name'] + \
         ', ' + data['absentee_suffix']
+    print(data)
     write_fillable_pdf(data, id)
     return id, registrar_address, name
 
@@ -131,7 +132,7 @@ def email_registrar(id: str, registrar_address: str, absentee_name: str):
     # TODO: test
     # TODO: Way to keep one server open to minimize SMTP connections over and over again?
     yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
-        to='sumanthratna@gmail.com',
+        to='raunakdaga@gmail.com',
         # to=registrar_address,
         subject=f'Absentee Ballot Request from {absentee_name}',
         contents='Please find attached an absentee ballot request submitted '

@@ -63,42 +63,45 @@ data: Dict[str, str] = {
 def convert_data(data: Dict[str, str]):
     """Rename the keys in the dictionary to match the fields in the PDF. """
     data_dict = {
+        # Data that is 1:1 transposable, no formatting required
         'firstName': data['absentee_first_name'],
         'middleName': data['absentee_middle_name'],
         'lastName': data['absentee_last_name'],
         'suffix': data['absentee_suffix'],
         'ssn': data['absentee_ssn'],
-        # 'dateOfElectionMonth': data[''],
-        # 'dateOfElectionDay': data[''],
-        # 'dateOfElectionYear': data[''],
-        'reasonCode': data['absentee_reason_code'],
+        'reasonCode': data['absentee_reason'],
         'supporting': data['absentee_reason_documentation'],
         'birthYear': data['absentee_birth_year'],
-        # 'firstThreeTelephone': data[''],
-        # 'secondThreeTelephone': data[''],
-        # 'lastFourTelephone': data[''],
         'email': data['absentee_email'],
         'address': data['absentee_street_address'],
         'apt': data['absentee_unit'],
         'city': data['absentee_city'],
         'zipCode': data['absentee_zip'],
+        'ballotDeliveryAddress': data['absentee_former_address'],
+        'formerFullName': data['absentee_former_name'],
+        'formerAddress': data['absentee_former_address'],
+        'signature': data['absentee_signature'],
+
+        # Data where formatting is required
+        # 'dateOfElectionMonth': data[''],
+        # 'dateOfElectionDay': data[''],
+        # 'dateOfElectionYear': data[''],
+        # 'todaysDateMonth': data[''],
+        # 'todaysDateDay': data[''],
+        # 'todaysDateYear': data['']
+        'firstThreeTelephone': data['absentee_telephone'][0:3],
+        'secondThreeTelephone': data['absentee_telephone'][3:6],
+        'lastFourTelephone': data['absentee_telephone'][6:10],
         # 'deliverResidence': data[''],
         # 'deliverMailing': data[''],
         # 'deliverEmail': data[''],
         # 'deliverFax': data[''],
-        'ballotDeliveryAddress': data['absentee_former_address'],
         # 'ballotDeliveryApt': data[''],
         # 'ballotDeliveryCity': data[''],
         # 'ballotDeliveryZip': data[''],
-        'formerFullName': data['absentee_former_name'],
         # 'dateMovedMonth': data[''],
         # 'dateMovedDay': data[''],
         # 'dateMovedYear': data[''],
-        'formerAddress': data['absentee_former_address'],
-        'signature': data['absentee_signature'],
-        # 'todaysDateMonth': data[''],
-        # 'todaysDateDay': data[''],
-        # 'todaysDateYear': data['']
     }
     return data_dict
 
