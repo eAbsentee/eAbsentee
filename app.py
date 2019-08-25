@@ -3,7 +3,6 @@ from flask import render_template
 from flask import request
 from flask import redirect
 from functions import parse_data, build_pdf, email_registrar
-from os import getenv
 import os
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
@@ -18,7 +17,10 @@ def home():
 @app.route('/form/', methods=['POST', 'GET'])
 def process_form():
     if request.method == 'POST':
-        email_registrar(build_pdf(parse_data(request)))
+        email_registrar(
+            # Asterisk unpacks tuple returned by function into arguments.
+            *build_pdf(
+                *parse_data(request)))
         return redirect('/confirmation/')
     else:
         return render_template('form.html')
@@ -35,4 +37,4 @@ def page_not_found(e):
 
 
 if __name__ == '__main__':
-    app.run(debug=(getenv("DEBUG", "FALSE").upper() == "TRUE"))
+    app.run()

@@ -1,18 +1,19 @@
+#!/usr/bin/env pipenv run python
 import pdfrw
 import os
 from typing import Dict
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
-ANNOT_KEY = '/Annots'
-ANNOT_FIELD_KEY = '/T'
-ANNOT_VAL_KEY = '/V'
-ANNOT_RECT_KEY = '/Rect'
-SUBTYPE_KEY = '/Subtype'
-WIDGET_SUBTYPE_KEY = '/Widget'
+ANNOT_KEY: str = '/Annots'
+ANNOT_FIELD_KEY: str = '/T'
+ANNOT_VAL_KEY: str = '/V'
+ANNOT_RECT_KEY: str = '/Rect'
+SUBTYPE_KEY: str = '/Subtype'
+WIDGET_SUBTYPE_KEY: str = '/Widget'
 
-input_pdf_path = 'static/blankAppFillable.pdf'
-output_pdf_path = 'static/tempOutput.pdf'
+input_pdf_path: str = 'static/blankAppFillable.pdf'
+# output_pdf_path: str = 'static/tempOutput.pdf'
 
 
 data: Dict[str, str] = {
@@ -59,7 +60,8 @@ data: Dict[str, str] = {
 }
 
 
-def convertData(data):
+def convert_data(data: Dict[str, str]):
+    """Rename the keys in the dictionary to match the fields in the PDF. """
     data_dict = {
         'firstName': data['absentee_first_name'],
         'middleName': data['absentee_middle_name'],
@@ -69,7 +71,7 @@ def convertData(data):
         # 'dateOfElectionMonth': data[''],
         # 'dateOfElectionDay': data[''],
         # 'dateOfElectionYear': data[''],
-        'reasonCode': data['absentee_reason'],
+        'reasonCode': data['absentee_reason_code'],
         'supporting': data['absentee_reason_documentation'],
         'birthYear': data['absentee_birth_year'],
         # 'firstThreeTelephone': data[''],
@@ -101,11 +103,12 @@ def convertData(data):
     return data_dict
 
 
-def write_fillable_pdf(data, outputID):
-    data_dict = convertData(data)
-    template_pdf = pdfrw.PdfReader(input_pdf_path)
-    template_pdf.Root.AcroForm.update(pdfrw.PdfDict(NeedAppearances=pdfrw.PdfObject('true')))
-    annotations = template_pdf.pages[0][ANNOT_KEY]
+def write_fillable_pdf(data: Dict[str, str], outputID: str):
+    data_dict: Dict[str, str] = convert_data(data)
+    template_pdf: pdfrw.PdfReader = pdfrw.PdfReader(input_pdf_path)
+    template_pdf.Root.AcroForm.update(pdfrw.PdfDict(
+        NeedAppearances=pdfrw.PdfObject('true')))
+    annotations: pdfrw.PdfArray = template_pdf.pages[0][ANNOT_KEY]
     for annotation in annotations:
         if annotation[SUBTYPE_KEY] == WIDGET_SUBTYPE_KEY:
             if annotation[ANNOT_FIELD_KEY]:
@@ -114,7 +117,8 @@ def write_fillable_pdf(data, outputID):
                     annotation.update(
                         pdfrw.PdfDict(V='{}'.format(data_dict[key]))
                     )
-    pdfrw.PdfWriter().write('applications/{outputID}.pdf', template_pdf)
+    pdfrw.PdfWriter().write(os.path.dirname(os.path.realpath(__file__))
+                            + f'/applications/{outputID}.pdf', template_pdf)
 
 
 # write_fillable_pdf(input_pdf_path, output_pdf_path, data_dict)

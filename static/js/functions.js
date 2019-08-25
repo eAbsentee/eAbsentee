@@ -20,7 +20,7 @@
     return size;
   }
 
-  // return an object"s first value
+  // return an object's first value
   var firstValue = function(obj) {
     for (var key in obj) return obj[key];
   }
@@ -40,14 +40,14 @@
         // input names follow the format "[fieldset id]_[n]"
         var n = this.name.split("__")[1];
 
-        if (n && this.value !== "") { // ignore the field if it doesn"t follow the above format
+        if (n && this.value !== "") { // ignore the field if it doesn't follow the above format
           if (f[n] !== undefined) {
             if (!f[n].push) {
               f[n] = [f[n]];
             }
             f[n].push(this.value || "");
           } else {
-            // make sure booleans aren"t expressed as strings
+            // make sure booleans aren't expressed as strings
             if (this.value == "true")
               f[n] = true;
             else
@@ -62,9 +62,9 @@
           o[fieldset] = [o[fieldset]];
         }
         o[fieldset].push(f || "");
-      } else if (size(f) === 0) { // skip the fieldset if it"s blank
+      } else if (size(f) === 0) { // skip the fieldset if it's blank
         return;
-      } else if (size(f) === 1 && fieldset === "assistant") { // don"t make a new object for assistant field
+      } else if (size(f) === 1 && fieldset === "assistant") { // don't make a new object for assistant field
         o[fieldset] = firstValue(f) || "";
       } else {
         o[fieldset] = f || "";
@@ -91,12 +91,11 @@
     // update locality hidden field with locality_gnis select value
     $("select[name=\"election__locality_gnis\"]").change(function() {
       var val = $(this).find("option:selected").text();
-      $("input[name="
-        election__locality "]").val(val);
+      $("input[name=\"election__locality\"]").val(val);
     });
 
     // require a reasonable explanation and permit email ballot delivery for some reasons
-    $("input[name=\"reason__code \"]").change(function() {
+    $("input[name=\"reason__code\"]").change(function() {
 
       var label = "";
       var doc_field = $("#reason__documentation");
@@ -154,13 +153,12 @@
       }
 
       if (label != "") {
-        $("label[for="
-          reason__documentation_field "]").text(label);
+        $("label[for=\"reason__documentation_field\"]").text(label);
         $("#reason__documentation_field").prop("required", true);
       }
     });
 
-    // Only display the delivery-to address fields if it"s necessary
+    // Only display the delivery-to address fields if it's necessary
     $("#delivery_address").hide();
     $("input[name=\"delivery__to\"]").change(function() {
       if ($(this).val() == "mailing address") {
@@ -168,7 +166,7 @@
       } else {
         $("#delivery_address").hide();
 
-        // Require an email address, if that"s the selected delivery method
+        // Require an email address, if that's the selected delivery method
         if ($(this).val() == "email") {
           $("#more_info__email_fax").prop("required", true);
         } else {
@@ -178,7 +176,7 @@
       }
     });
 
-    // Only display the assistant-info section if it"s necessary
+    // Only display the assistant-info section if it's necessary
     $("#assistant").hide();
     $("input[name=\"assistance__assistance\"]").change(function() {
       if (this.checked) {
@@ -198,7 +196,7 @@
     });
 
     // change state_or_country to state if a state
-    $("select[name=\"deliv - state\"]").change(function() {
+    $("select[name=\"deliv-state\"]").change(function() {
       var val = $(this).find("option:selected").val();
       $("input[name=\"delivery__state_or_country\"]").val(val);
     });
@@ -220,7 +218,7 @@
     // microseconds
     var d = new Date();
     var formattedDate = d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2) + "T" + ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2) + ":" + ("0" + d.getSeconds()).slice(-2) + "Z";
-    $("input[name=\"signature__date \"]").val(formattedDate);
+    $("input[name=\"signature__date\"]").val(formattedDate);
 
     // $("form").submit(function(e) {
     //

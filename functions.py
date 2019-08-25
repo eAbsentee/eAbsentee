@@ -4,8 +4,8 @@ from flask import request
 import hashlib
 import yagmail
 from keys import GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD
-import localitiesAndReasons
-from buildPDF import write_fillable_pdf
+import localities_and_reasons
+from build_pdf import write_fillable_pdf
 
 
 def parse_data(request: request):
@@ -17,14 +17,16 @@ def parse_data(request: request):
 
     election_type: str = request.form['election__type']
     election_date: str = datetime.strftime(datetime.strptime(
-        request.form['election__date'], '%d-%m-%y'), '%m %d %y')
-    election_locality: str = localitiesAndReasons.localities[request.form['election__locality_gnis']]['locality']
+        request.form['election__date'], '%Y-%m-%d'), '%m %d %y')
+    election_locality: str = localities_and_reasons.localities[
+        request.form['election__locality_gnis']]['locality']
 
-    absentee_reason: str = localitiesAndReasons.reasons[request.form['reason__code']]
+    absentee_reason_code: str = request.form['reason__code']
     absentee_reason_documentation: str = request.form['reason__documentation']
 
-    absentee_birth_year: str = datetime.strftime(datetime.strptime(
-        request.form.get('more_info__birth_year'), '%y'), '%y')
+    absentee_birth_year: str = (datetime.strftime(datetime.strptime(
+        request.form.get('more_info__birth_year'), '%Y'), '%y')
+        if request.form.get('more_info__birth_year') else "")
     absentee_telephone: str = request.form.get('more_info__telephone').replace(
         '-', '').replace('(', '').replace(')', '').replace(' ', '')
     absentee_telephone: str = absentee_telephone[:3] + ' ' + \
@@ -49,7 +51,7 @@ def parse_data(request: request):
     absentee_former_name: str = request.form.get('change__former_name')
     absentee_former_address: str = request.form.get('change__former_address')
     absentee_date_moved: str = (datetime.strftime(datetime.strptime(request.form.get(
-        'change__date_moved'), '%d-%m-%y'), '%m %d %y')
+        'change__date_moved'), '%Y-%m-%d'), '%m %d %y')
         if request.form.get('change__date_moved') else "")
     absentee_assistance: str = request.form.get('assistance__assistance')
 
@@ -64,7 +66,7 @@ def parse_data(request: request):
 
     absentee_agreement: str = request.form['checkbox']  # make it bool instead?
     absentee_signature_date: str = datetime.strftime(datetime.strptime(
-        request.form['signature__date'], '%d-%m-%y'), '%m %d %y')
+        request.form['signature__date'], '%Y-%m-%dT%H:%M:%SZ'), '%m %d %y')
     absentee_signature: str = request.form['signature__signed']
 
     data: Dict[str, str] = {
@@ -76,7 +78,7 @@ def parse_data(request: request):
         "election_type": election_type,
         "election_date": election_date,
         "election_locality": election_locality,
-        "absentee_reason": absentee_reason,
+        "absentee_reason": absentee_reason_code,
         "absentee_reason_documentation": absentee_reason_documentation,
         "absentee_birth_year": absentee_birth_year,
         "absentee_telephone": absentee_telephone,
@@ -110,15 +112,17 @@ def parse_data(request: request):
         "absentee_signature_date": absentee_signature_date,
         "absentee_signature": absentee_signature
     }
-    registrar_address: str = localitiesAndReasons.localities[request.form[
+    registrar_address: str = localities_and_reasons.localities[request.form[
         'election__locality_gnis']]['email']
     return data, registrar_address
 
 
 def build_pdf(data: Dict[str, str], registrar_address: str):
-    id: str = hashlib.md5(data).hexdigest()[:10]
-    name: str = data['absentee_first_name'] + ' ' + data['absentee_middle_name'] + \
-        ' ' + data['absentee_last_name'] + ', ' + data['absentee_suffix']
+    id: str = hashlib.md5(repr(data).encode('utf-8')).hexdigest()[:10]
+    name: str = data['absentee_first_name'] + \
+        ' ' + data['absentee_middle_name'] + \
+        ' ' + data['absentee_last_name'] + \
+        ', ' + data['absentee_suffix']
     write_fillable_pdf(data, id)
     return id, registrar_address, name
 
@@ -127,10 +131,11 @@ def email_registrar(id: str, registrar_address: str, absentee_name: str):
     # TODO: test
     # TODO: Way to keep one server open to minimize SMTP connections over and over again?
     yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
-        to=registrar_address,
+        to='sumanthratna@gmail.com',
+        # to=registrar_address,
         subject=f'Absentee Ballot Request from {absentee_name}',
         contents='Please find attached an absentee ballot request submitted '
         + f'on behalf of {absentee_name}.',
         attachments=f'applications/{id}.pdf',
-        headers="X-AB-ID"
+        # headers="X-AB-ID"
     )
