@@ -131,20 +131,29 @@ def parse_data(request: request):
 
 
 def build_pdf(data: Dict[str, str], registrar_address: str):
-    id: str = hashlib.md5(repr(data).encode('utf-8')).hexdigest()[:10]
-    name: str = data['absentee_first_name'] + ' ' + data['absentee_middle_name'] + ' ' + \
-        data['absentee_last_name'] + (', ' + data['absentee_suffix']
-                                      if data['absentee_suffix'].strip() else '')
-    session['name'] = name
-    session['output_file'] = f'applications/{id}.pdf'
+    set_session_keys(data, registrar_address)
     write_fillable_pdf(data)
     return registrar_address
+
+
+def set_session_keys(data: Dict[str, str], registrar_address: str):
+    # id is first 10 characters of MD5 hash of dictionary
+    id: str = hashlib.md5(repr(data).encode('utf-8')).hexdigest()[:10]
+    name: str = data['absentee_first_name'] + \
+        ' ' + data['absentee_middle_name'] + \
+        ' ' + data['absentee_last_name'] + \
+        (', ' + data['absentee_suffix']
+         if data['absentee_suffix'].strip() else '')
+    session['name'] = name
+    session['output_file'] = f'applications/{id}.pdf'
+    session['registrar_locality'] = data['election_locality']
+    session['registrar_email'] = registrar_address
 
 
 def email_registrar(registrar_address: str):
     # TODO: keep one server open to minimize SMTP connections
     yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
-        to='raunakdaga@gmail.com',
+        to='sumanthratna@gmail.com',
         # to=registrar_address,
         subject=f'Absentee Ballot Request from {session["name"]}',
         contents='Please find attached an absentee ballot request submitted '

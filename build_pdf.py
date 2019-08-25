@@ -25,7 +25,7 @@ def convert_data(data: Dict[str, str]):
         'lastName': data['absentee_last_name'],
         'suffix': data['absentee_suffix'],
         'ssn': data['absentee_ssn'],
-        'reasonCode': data['absentee_reason'],
+        'reasonCode': data['absentee_reason_code'],
         'supporting': data['absentee_reason_documentation'],
         'birthYear': data['absentee_birth_year'],
         'email': data['absentee_email'],
@@ -63,8 +63,6 @@ def convert_data(data: Dict[str, str]):
         'todaysDateDay': data['absentee_signature_date'][3:5],
         'todaysDateYear': data['absentee_signature_date'][6:8],
     }
-
-    # print(data_dict)
     return data_dict
 
 
