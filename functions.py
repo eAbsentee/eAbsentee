@@ -16,8 +16,10 @@ def parse_data(request: request):
     absentee_ssn: str = request.form['name__ssn']
 
     election_type: str = request.form['election__type']
-    election_date: str = datetime.strftime(datetime.strptime(
+    election_date: str = (datetime.strftime(datetime.strptime(
         request.form['election__date'], '%Y-%m-%d'), '%m %d %y')
+        if request.form.get('election_date') else "")
+
     election_locality: str = localities_info.localities[
         request.form['election__locality_gnis']]['locality']
 
@@ -65,8 +67,11 @@ def parse_data(request: request):
     assistant_signature: str = request.form.get('assistant__sig')
 
     absentee_agreement: str = request.form['checkbox']  # make it bool instead?
-    absentee_signature_date: str = datetime.strftime(datetime.strptime(
+
+    absentee_signature_date: str = (datetime.strftime(datetime.strptime(
         request.form['signature__date'], '%Y-%m-%dT%H:%M:%SZ'), '%m %d %y')
+        if request.form.get('signature_date') else "")
+
     absentee_signature: str = request.form['signature__signed']
 
     data: Dict[str, str] = {
@@ -88,7 +93,6 @@ def parse_data(request: request):
         "absentee_city": absentee_city,
         "absentee_state": absentee_state,
         "absentee_zip": absentee_zip,
-        # "delivery_state_country": delivery_state_country,
         "delivery_destination": delivery_destination,
         "delivery_street_address": delivery_street_address,
         "delivery_unit": delivery_unit,
@@ -119,10 +123,8 @@ def parse_data(request: request):
 
 def build_pdf(data: Dict[str, str], registrar_address: str):
     id: str = hashlib.md5(repr(data).encode('utf-8')).hexdigest()[:10]
-    name: str = data['absentee_first_name'] + \
-        ' ' + data['absentee_middle_name'] + \
-        ' ' + data['absentee_last_name'] + \
-        ', ' + data['absentee_suffix']
+    name: str = data['absentee_first_name'] + ' ' + data['absentee_middle_name'] + \
+        ' ' + data['absentee_last_name'] + ', ' + data['absentee_suffix']
     print(data)
     write_fillable_pdf(data, id)
     return id, registrar_address, name
