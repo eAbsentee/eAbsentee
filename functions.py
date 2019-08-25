@@ -1,6 +1,6 @@
 from typing import Dict
 from datetime import datetime
-from flask import request
+from flask import request, session
 import hashlib
 import yagmail
 from keys import GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD
@@ -16,19 +16,24 @@ def parse_data(request: request):
     absentee_ssn: str = request.form['name__ssn']
 
     election_type: str = request.form['election__type']
-    election_date: str = (datetime.strftime(datetime.strptime(
-        request.form['election__date'], '%Y-%m-%d'), '%m %d %y')
-        if request.form.get('election_date') else "")
+    election_date: str = (datetime.strftime(
+        datetime.strptime(
+            request.form['election__date'],
+            '%Y-%m-%d'),
+        '%m %d %y') if request.form.get('election_date') else "")
 
     election_locality: str = localities_info.localities[
-        request.form['election__locality_gnis']]['locality']
+        request.form['election__locality_gnis']
+    ]['locality']
 
     absentee_reason_code: str = request.form['reason__code']
     absentee_reason_documentation: str = request.form['reason__documentation']
 
-    absentee_birth_year: str = (datetime.strftime(datetime.strptime(
-        request.form.get('more_info__birth_year'), '%Y'), '%y')
-        if request.form.get('more_info__birth_year') else "")
+    absentee_birth_year: str = (datetime.strftime(
+        datetime.strptime(
+            request.form.get('more_info__birth_year'),
+            '%Y'),
+        '%y') if request.form.get('more_info__birth_year') else "")
     absentee_telephone: str = request.form.get('more_info__telephone').replace(
         '-', '').replace('(', '').replace(')', '').replace(' ', '')
     absentee_telephone: str = absentee_telephone[:3] + ' ' + \
@@ -48,13 +53,16 @@ def parse_data(request: request):
     delivery_country: str = request.form.get('country')
     delivery_state: str = request.form.get('deliv-state')
     delivery_zip: str = request.form.get('delivery__zip').replace('-', '')
-    # delivery_state_country: str = request.form.get('delivery__state_or_country')
+    # delivery_state_country = request.form.get('delivery__state_or_country')
 
     absentee_former_name: str = request.form.get('change__former_name')
     absentee_former_address: str = request.form.get('change__former_address')
-    absentee_date_moved: str = (datetime.strftime(datetime.strptime(request.form.get(
-        'change__date_moved'), '%Y-%m-%d'), '%m %d %y')
-        if request.form.get('change__date_moved') else "")
+    absentee_date_moved: str = (datetime.strftime(
+        datetime.strptime(
+            request.form.get(
+                'change__date_moved'),
+            '%Y-%m-%d'),
+        '%m %d %y') if request.form.get('change__date_moved') else "")
     absentee_assistance: str = request.form.get('assistance__assistance')
 
     assistant_signed: str = request.form.get('assistant__signed')
@@ -68,10 +76,20 @@ def parse_data(request: request):
 
     absentee_agreement: str = request.form['checkbox']  # make it bool instead?
 
+
+<< << << < HEAD
+
     absentee_signature_date: str = (datetime.strftime(datetime.strptime(
         request.form['signature__date'], '%Y-%m-%dT%H:%M:%SZ'), '%m %d %y')
         if request.form.get('signature_date') else "")
 
+== == == =
+    absentee_signature_date: str = datetime.strftime(
+        datetime.strptime(
+            request.form['signature__date'],
+            '%Y-%m-%dT%H:%M:%SZ'),
+        '%m %d %y')
+>> >>>> > 3c808d25f52e802ff82a6f8e371a95cd0512c6ab
     absentee_signature: str = request.form['signature__signed']
 
     data: Dict[str, str] = {
@@ -83,7 +101,7 @@ def parse_data(request: request):
         "election_type": election_type,
         "election_date": election_date,
         "election_locality": election_locality,
-        "absentee_reason": absentee_reason_code,
+        "absentee_reason_code": absentee_reason_code,
         "absentee_reason_documentation": absentee_reason_documentation,
         "absentee_birth_year": absentee_birth_year,
         "absentee_telephone": absentee_telephone,
@@ -123,22 +141,35 @@ def parse_data(request: request):
 
 def build_pdf(data: Dict[str, str], registrar_address: str):
     id: str = hashlib.md5(repr(data).encode('utf-8')).hexdigest()[:10]
-    name: str = data['absentee_first_name'] + ' ' + data['absentee_middle_name'] + \
-        ' ' + data['absentee_last_name'] + ', ' + data['absentee_suffix']
+
+
+<< << << < HEAD
+   name: str = data['absentee_first_name'] + ' ' + data['absentee_middle_name'] +
+       ' ' + data['absentee_last_name'] + ', ' + data['absentee_suffix']
     print(data)
     write_fillable_pdf(data, id)
     return id, registrar_address, name
+== == == =
+   name: str=data['absentee_first_name'] +
+       ' ' + data['absentee_middle_name'] +
+        ' ' + data['absentee_last_name'] +
+        (', ' + data['absentee_suffix']
+         if data['absentee_suffix'].strip() else '')
+    session['name']=name
+    session['output_file']=f'applications/{id}.pdf'
+    write_fillable_pdf(data)
+    return registrar_address
+>> >>>> > 3c808d25f52e802ff82a6f8e371a95cd0512c6ab
 
 
-def email_registrar(id: str, registrar_address: str, absentee_name: str):
-    # TODO: test
-    # TODO: Way to keep one server open to minimize SMTP connections over and over again?
+def email_registrar(registrar_address: str):
+    # TODO: keep one server open to minimize SMTP connections
     yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
         to='raunakdaga@gmail.com',
         # to=registrar_address,
-        subject=f'Absentee Ballot Request from {absentee_name}',
+        subject=f'Absentee Ballot Request from {session["name"]}',
         contents='Please find attached an absentee ballot request submitted '
-        + f'on behalf of {absentee_name}.',
-        attachments=f'applications/{id}.pdf',
+        + f'on behalf of {session["name"]}.',
+        attachments=session['output_file'],
         # headers="X-AB-ID"
     )
