@@ -16,11 +16,7 @@ def parse_data(request: request):
     absentee_ssn: str = request.form['name__ssn']
 
     election_type: str = request.form['election__type']
-    election_date: str = (datetime.strftime(
-        datetime.strptime(
-            request.form['election__date'],
-            '%Y-%m-%d'),
-        '%m %d %y') if request.form.get('election__date') else "")
+    election_date: str = request.form.get('election__date')
 
     election_locality: str = localities_info.localities[
         request.form['election__locality_gnis']
@@ -29,11 +25,11 @@ def parse_data(request: request):
     absentee_reason_code: str = request.form['reason__code']
     absentee_reason_documentation: str = request.form['reason__documentation']
 
-    absentee_birth_year: str = (datetime.strftime(
-        datetime.strptime(
-            request.form.get('more_info__birth_year'),
-            '%Y'),
-        '%y') if request.form.get('more_info__birth_year') else "")
+    if request.form.get('more_info__birth_year'):
+        absentee_birth_year: str = request.form.get('more_info__birth_year')
+    else:
+        absentee_birth_year: str = ""
+
     absentee_telephone: str = request.form.get('more_info__telephone').replace(
         '-', '').replace('(', '').replace(')', '').replace(' ', '')
     absentee_telephone: str = absentee_telephone[:3] + ' ' + \
@@ -57,12 +53,12 @@ def parse_data(request: request):
 
     absentee_former_name: str = request.form.get('change__former_name')
     absentee_former_address: str = request.form.get('change__former_address')
-    absentee_date_moved: str = (datetime.strftime(
-        datetime.strptime(
-            request.form.get(
-                'change__date_moved'),
-            '%Y-%m-%d'),
-        '%m %d %y') if request.form.get('change__date_moved') else "")
+
+    if request.form.get('change__date_moved'):
+        absentee_date_moved: str = request.form.get('change__date_moved')
+    else:
+        absentee_date_moved: str = ''
+
     absentee_assistance: str = request.form.get('assistance__assistance')
 
     assistant_signed: str = request.form.get('assistant__signed')
@@ -76,11 +72,8 @@ def parse_data(request: request):
 
     absentee_agreement: str = request.form['checkbox']  # make it bool instead?
 
-    absentee_signature_date: str = datetime.strftime(
-        datetime.strptime(
-            request.form['signature__date'],
-            '%Y-%m-%dT%H:%M:%SZ'),
-        '%m %d %y')
+    absentee_signature_date: str = request.form.get('signature__date')
+
     absentee_signature: str = request.form['signature__signed']
 
     data: Dict[str, str] = {
@@ -153,7 +146,7 @@ def set_session_keys(data: Dict[str, str], registrar_address: str):
 def email_registrar(registrar_address: str):
     # TODO: keep one server open to minimize SMTP connections
     yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
-        to='sumanthratna@gmail.com',
+        to='raunakdaga@gmail.com',
         # to=registrar_address,
         subject=f'Absentee Ballot Request from {session["name"]}',
         contents='Please find attached an absentee ballot request submitted '
