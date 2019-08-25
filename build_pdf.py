@@ -26,6 +26,7 @@ def convert_data(data: Dict[str, str]):
         'suffix': data['absentee_suffix'],
         'ssn': data['absentee_ssn'],
         'reasonCode': data['absentee_reason'],
+        'registeredToVote': data['election_locality'],
         'supporting': data['absentee_reason_documentation'],
         'birthYear': data['absentee_birth_year'],
         'email': data['absentee_email'],
