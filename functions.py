@@ -76,11 +76,11 @@ def parse_data(request: request):
 
     absentee_agreement: str = request.form['checkbox']  # make it bool instead?
 
-    absentee_signature_date: str = datetime.strftime(
-        datetime.strptime(
-            request.form['signature__date'],
-            '%Y-%m-%dT%H:%M:%SZ'),
-        '%m %d %y')
+    # absentee_signature_date: str = datetime.strftime(
+    #     datetime.strptime(
+    #         request.form['signature__date'],
+    #         '%Y-%m-%dT%H:%M:%SZ'),
+    #     '%m %d %y')
     absentee_signature: str = request.form['signature__signed']
 
     data: Dict[str, str] = {
@@ -122,7 +122,7 @@ def parse_data(request: request):
         "assistant_zip": assistant_zip,
         "assistant_signature": assistant_signature,
         "absentee_agreement": absentee_agreement,
-        "absentee_signature_date": absentee_signature_date,
+        # "absentee_signature_date": absentee_signature_date,
         "absentee_signature": absentee_signature
     }
     registrar_address: str = localities_info.localities[request.form[
