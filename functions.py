@@ -76,20 +76,11 @@ def parse_data(request: request):
 
     absentee_agreement: str = request.form['checkbox']  # make it bool instead?
 
-
-<< << << < HEAD
-
-    absentee_signature_date: str = (datetime.strftime(datetime.strptime(
-        request.form['signature__date'], '%Y-%m-%dT%H:%M:%SZ'), '%m %d %y')
-        if request.form.get('signature_date') else "")
-
-== == == =
     absentee_signature_date: str = datetime.strftime(
         datetime.strptime(
             request.form['signature__date'],
             '%Y-%m-%dT%H:%M:%SZ'),
         '%m %d %y')
->> >>>> > 3c808d25f52e802ff82a6f8e371a95cd0512c6ab
     absentee_signature: str = request.form['signature__signed']
 
     data: Dict[str, str] = {
@@ -141,25 +132,13 @@ def parse_data(request: request):
 
 def build_pdf(data: Dict[str, str], registrar_address: str):
     id: str = hashlib.md5(repr(data).encode('utf-8')).hexdigest()[:10]
-
-
-<< << << < HEAD
-   name: str = data['absentee_first_name'] + ' ' + data['absentee_middle_name'] +
-       ' ' + data['absentee_last_name'] + ', ' + data['absentee_suffix']
-    print(data)
-    write_fillable_pdf(data, id)
-    return id, registrar_address, name
-== == == =
-   name: str=data['absentee_first_name'] +
-       ' ' + data['absentee_middle_name'] +
-        ' ' + data['absentee_last_name'] +
-        (', ' + data['absentee_suffix']
-         if data['absentee_suffix'].strip() else '')
-    session['name']=name
-    session['output_file']=f'applications/{id}.pdf'
+    name: str = data['absentee_first_name'] + ' ' + data['absentee_middle_name'] + ' ' + \
+        data['absentee_last_name'] + (', ' + data['absentee_suffix']
+                                      if data['absentee_suffix'].strip() else '')
+    session['name'] = name
+    session['output_file'] = f'applications/{id}.pdf'
     write_fillable_pdf(data)
     return registrar_address
->> >>>> > 3c808d25f52e802ff82a6f8e371a95cd0512c6ab
 
 
 def email_registrar(registrar_address: str):

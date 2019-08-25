@@ -16,53 +16,6 @@ WIDGET_SUBTYPE_KEY: str = '/Widget'
 input_pdf_path: str = 'static/blankAppFillable.pdf'
 
 
-<<<<<<< HEAD
-=======
-data: Dict[str, str] = {
-    "absentee_first_name": "Timothy",
-    "absentee_middle_name": "Marcus",
-    "absentee_last_name": "Jones",
-    "absentee_suffix": "Ph.D.",
-    "absentee_ssn": "8934",
-    "election_type": "Democratic Primary",
-    "election_date": "09 04 19",
-    "election_locality": "Arlington County",
-    "absentee_reason_code": "2B",
-    "absentee_reason_documentation": "Mother",
-    "absentee_birth_year": "1983",
-    "absentee_telephone": "703 123 4567",
-    "absentee_email": "tmjones@edu.edu",
-    "absentee_street_address": "1234 Fake Rd",
-    "absentee_unit": "",
-    "absentee_city": "Alexandria",
-    "absentee_state": "Virginia",
-    "absentee_zip": "20171",
-    "delivery_destination": "residence address",
-    "delivery_street_address": "",
-    "delivery_unit": "",
-    "delivery_city": "",
-    "delivery_country": "",
-    "delivery_state": "",
-    "delivery_zip": "",
-    "absentee_former_name": "",
-    "absentee_former_address": "",
-    "absentee_date_moved": "",
-    "absentee_assistance": "",
-    "assistant_signed": "",
-    "assistant_name": "",
-    "assistant_street_address": "",
-    "assistant_unit": "",
-    "assistant_city": "",
-    "assistant_state": "",
-    "assistant_zip": "",
-    "assistant_signature": "",
-    "absentee_agreement": "true",
-    "absentee_signature_date": "08 24 19",
-    "absentee_signature": "Timothy M. Jones"
-}
-
-
->>>>>>> 3c808d25f52e802ff82a6f8e371a95cd0512c6ab
 def convert_data(data: Dict[str, str]):
     """Rename the keys in the dictionary to match the fields in the PDF. """
 
