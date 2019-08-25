@@ -20,7 +20,7 @@ def parse_data(request: request):
         datetime.strptime(
             request.form['election__date'],
             '%Y-%m-%d'),
-        '%m %d %y') if request.form.get('election_date') else "")
+        '%m %d %y') if request.form.get('election__date') else "")
 
     election_locality: str = localities_info.localities[
         request.form['election__locality_gnis']
