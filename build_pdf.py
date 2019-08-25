@@ -60,9 +60,9 @@ def convert_data(data: Dict[str, str]):
         'dateOfElectionMonth': data['election_date'][0:2],
         'dateOfElectionDay': data['election_date'][3:5],
         'dateOfElectionYear': data['election_date'][6:8],
-        # 'todaysDateMonth': data['absentee_signature_date'][0:2],
-        # 'todaysDateDay': data['absentee_signature_date'][3:5],
-        # 'todaysDateYear': data['absentee_signature_date'][6:8],
+        'todaysDateMonth': data['absentee_signature_date'][0:2],
+        'todaysDateDay': data['absentee_signature_date'][3:5],
+        'todaysDateYear': data['absentee_signature_date'][6:8],
     }
     return data_dict
 
