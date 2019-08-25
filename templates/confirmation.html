@@ -13,7 +13,8 @@
 
 <body>
   <h1> Registration Confirmed </h1>
-  <p> Thank you for registering for an absentee ballot! </p>
+  <p>Thank you for registering for an absentee ballot, {{session['name']}}!</p>
+  <p>You can download your application file <a href="../{{ session['output_file'] }}">here</a>.</p>
 </body>
 
 </html>

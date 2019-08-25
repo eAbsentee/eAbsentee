@@ -1,12 +1,11 @@
-from flask import Flask
-from flask import render_template
-from flask import request
-from flask import redirect
+from flask import Flask, render_template, request, redirect, session, send_file
 from functions import parse_data, build_pdf, email_registrar
+from keys import SECRET_KEY
 import os
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 app = Flask(__name__)
+app.secret_key = SECRET_KEY
 
 
 @app.route('/')
@@ -18,8 +17,8 @@ def home():
 def process_form():
     if request.method == 'POST':
         email_registrar(
-            # Asterisk unpacks tuple returned by function into arguments.
-            *build_pdf(
+            build_pdf(
+                # Asterisk unpacks tuple returned by function into arguments.
                 *parse_data(request)))
         return redirect('/confirmation/')
     else:
@@ -29,6 +28,14 @@ def process_form():
 @app.route('/confirmation/', methods=['GET'])
 def confirmation():
     return render_template('confirmation.html')
+
+
+@app.route('/applications/<id>.pdf')
+def render_pdf(id: str):
+    return send_file(
+        open(session['output_file'], 'rb'),
+        attachment_filename=session['output_file']
+    )
 
 
 @app.errorhandler(404)
