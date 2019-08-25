@@ -13,7 +13,9 @@ WIDGET_SUBTYPE_KEY = '/Widget'
 
 input_pdf_path = 'static/blankAppFillable.pdf'
 output_pdf_path = 'static/tempOutput.pdf'
-{
+
+
+data: Dict[str, str] = {
     "absentee_first_name": "Timothy",
     "absentee_middle_name": "Marcus",
     "absentee_last_name": "Jones",
@@ -56,29 +58,51 @@ output_pdf_path = 'static/tempOutput.pdf'
     "absentee_signature": "Timothy M. Jones"
 }
 
-data_dict = {
-    'reasonCode': 'A4',
-    'lastName': 'Daga',
-    'firstName': 'Raunak',
-    'middleName': 'Bobana',
-    'suffix': '',
-    'ssn': '8888',
-    'genSpecCheck': 'X',
-    'demPrimCheck': 'X',
-    'repPrimCheck': 'X',
-    'countyCheck': 'X',
-    'cityCheck': 'X',
-    'dateOfElectionMonth': '05',
-    'dateOfElectionDay': '05',
-    'dateOfElectionYear': '05',
-    'reasonCod': 'A4',
-    'supporting': 'none',
-    'birthYear': '2000',
-    'email': 'raunakdaga@gmail.com'
-}
+
+def convertData(data):
+    data_dict = {
+        'firstName': data['absentee_first_name'],
+        'middleName': data['absentee_middle_name'],
+        'lastName': data['absentee_last_name'],
+        'suffix': data['absentee_suffix'],
+        'ssn': data['absentee_ssn'],
+        # 'dateOfElectionMonth': data[''],
+        # 'dateOfElectionDay': data[''],
+        # 'dateOfElectionYear': data[''],
+        'reasonCode': data['absentee_reason'],
+        'supporting': data['absentee_reason_documentation'],
+        'birthYear': data['absentee_birth_year'],
+        # 'firstThreeTelephone': data[''],
+        # 'secondThreeTelephone': data[''],
+        # 'lastFourTelephone': data[''],
+        'email': data['absentee_email'],
+        'address': data['absentee_street_address'],
+        'apt': data['absentee_unit'],
+        'city': data['absentee_city'],
+        'zipCode': data['absentee_zip'],
+        # 'deliverResidence': data[''],
+        # 'deliverMailing': data[''],
+        # 'deliverEmail': data[''],
+        # 'deliverFax': data[''],
+        'ballotDeliveryAddress': data['absentee_former_address'],
+        # 'ballotDeliveryApt': data[''],
+        # 'ballotDeliveryCity': data[''],
+        # 'ballotDeliveryZip': data[''],
+        'formerFullName': data['absentee_former_name'],
+        # 'dateMovedMonth': data[''],
+        # 'dateMovedDay': data[''],
+        # 'dateMovedYear': data[''],
+        'formerAddress': data['absentee_former_address'],
+        'signature': data['absentee_signature'],
+        # 'todaysDateMonth': data[''],
+        # 'todaysDateDay': data[''],
+        # 'todaysDateYear': data['']
+    }
+    return data_dict
 
 
-def write_fillable_pdf(input_pdf_path, output_pdf_path, data_dict):
+def write_fillable_pdf(data, outputID):
+    data_dict = convertData(data)
     template_pdf = pdfrw.PdfReader(input_pdf_path)
     template_pdf.Root.AcroForm.update(pdfrw.PdfDict(NeedAppearances=pdfrw.PdfObject('true')))
     annotations = template_pdf.pages[0][ANNOT_KEY]
@@ -90,7 +114,7 @@ def write_fillable_pdf(input_pdf_path, output_pdf_path, data_dict):
                     annotation.update(
                         pdfrw.PdfDict(V='{}'.format(data_dict[key]))
                     )
-    pdfrw.PdfWriter().write(output_pdf_path, template_pdf)
+    pdfrw.PdfWriter().write('applications/{outputID}.pdf', template_pdf)
 
 
-write_fillable_pdf(input_pdf_path, output_pdf_path, data_dict)
+# write_fillable_pdf(input_pdf_path, output_pdf_path, data_dict)
