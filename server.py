@@ -4,7 +4,8 @@ from flask import request
 from flask import redirect
 from functions import parse_data, build_pdf, email_registrar
 from os import getenv
-
+import os
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 app = Flask(__name__)
 
