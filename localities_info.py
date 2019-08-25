@@ -800,25 +800,3 @@ localities: Dict[str, Dict[str, str]] = {
         # "fax": "757-890-3449"
     }
 }
-
-reasons: Dict[str, str] = {
-    '1A': 'Student attending college or university outside of locality of residence in Virginia',
-    '1B': 'Spouse of student attending college or university outside locality of residence in Virginia',
-    '1C': 'Business outside County/City of residence on election day',
-    '1D': 'Personal business or vacation outside County/City of residence on election day',
-    '1E': 'I am working and commuting to/from home for 11 or more hours between 6:00 AM and 7:00 PM on election day',
-    '1F': 'I am a first responder (member of law enforcement, fire fighter, emergency technician, search and rescue)',
-    '2A': 'My disability or illness',
-    '2B': 'I am primarily and personally responsible for the care of a disabled/ill family member confined at home',
-    '2C': 'My pregnancy',
-    '3A': 'Confined, awaiting trial',
-    '3B': 'Confined, convicted of a misdemeanor',
-    '4A': 'An electoral board member, registrar, officer of election, or custodian of voting equipment',
-    '5A': 'I have a religious obligation',
-    '6A': 'Active Duty Merchant Marine or Armed Forces',
-    '6B': 'Spouse or dependent living with a member of the Armed Forces or Active Duty Merchant Marine',
-    '6C': 'Temporarily residing outside of US',
-    '6D': 'Temporarily residing outside of US for employment or spouse or dependent residing with employee',
-    '7A': 'Requesting a ballot for presidential and vice-presidential electors only (Ballots for other offices/issues will not be sent)',
-    '8A': 'Authorized representative of candidate or party serving inside the polling place'
-}

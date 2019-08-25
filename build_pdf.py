@@ -13,7 +13,6 @@ SUBTYPE_KEY: str = '/Subtype'
 WIDGET_SUBTYPE_KEY: str = '/Widget'
 
 input_pdf_path: str = 'static/blankAppFillable.pdf'
-# output_pdf_path: str = 'static/tempOutput.pdf'
 
 
 data: Dict[str, str] = {
@@ -28,7 +27,7 @@ data: Dict[str, str] = {
     "absentee_reason": "I am primarily and personally responsible for the care of a disabled/ill family member confined at home",
     "absentee_reason_documentation": "Mother",
     "absentee_birth_year": "1983",
-    "absentee_telephone": "703123456",
+    "absentee_telephone": "703 123 4567",
     "absentee_email": "tmjones@edu.edu",
     "absentee_street_address": "1234 Fake Rd",
     "absentee_unit": "",
