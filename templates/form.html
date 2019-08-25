@@ -1048,7 +1048,9 @@
 
           </div>
 
-          <div style="text-align: center; margin-top: 2em;"><input type="submit" value="Submit Application" class="btn-lg btn-default" /></div>
+          <div style="text-align: center; margin-top: 2em;">
+            <input type="submit" value="Submit Application" class="btn-lg btn-default" onclick="var e=this;setTimeout(function(){e.disabled=true;},0);return true;" />
+          </div>
         </fieldset>
       </form>
     </section>
