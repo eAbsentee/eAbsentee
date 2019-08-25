@@ -9,4 +9,5 @@
 ```python
 GMAIL_SENDER_ADDRESS = 'eAbsentee@gmail.com'
 GMAIL_SENDER_PASSWORD = '<PASSWORD>'
+SECRET_KEY = '<SECRET KEY>'
 ```

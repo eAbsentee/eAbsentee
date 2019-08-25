@@ -27,11 +27,12 @@ def process_form():
 
 @app.route('/confirmation/', methods=['GET'])
 def confirmation():
-    if session.get('output_pdf') is not None:
-        return render_template('confirmation.html')
-    else:
-        # TODO: redirect to more appropriate error page (like 403 forbidden)
-        return redirect('/404/')
+    return render_template('confirmation.html')
+    # if session.get('output_pdf') is not None:
+    #     return render_template('confirmation.html')
+    # else:
+    #     # TODO: redirect to more appropriate error page (like 403 forbidden)
+    #     return redirect('/404/')
 
 
 @app.route('/applications/<id>.pdf')
