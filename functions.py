@@ -236,7 +236,7 @@ def set_session_keys(data: Dict[str, str], registrar_address: str):
 def email_registrar(registrar_address: str):
     # TODO: keep one server open to minimize SMTP connections
     yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
-        to='raunakdaga@gmail.com',
+        to='sumanthratna@gmail.com',
         # to=registrar_address,
         subject=f'Absentee Ballot Request from {session["name"]}',
         contents='Please find attached an absentee ballot request submitted '
