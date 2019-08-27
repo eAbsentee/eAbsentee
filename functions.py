@@ -1,5 +1,5 @@
 '''
-TO-DO:
+TO-DO VERSION1:
 List of written FAQ's
 Draft video
 Reporting in excel worksheet
@@ -24,6 +24,13 @@ colect which canvasser/district they're in | race of interest | after submitted
 on confirmation page | 3 letter initial code
 
 add mr surovell, mr rouvelas onto report emails
+change mail address to please mail to another address
+ip address for report https://stackoverflow.com/questions/3759981/get-ip-address-of-visitors-using-flask-for-python
+
+on form page have an option to print out and send but comment it out because we may need for future
+
+TO-DO VERSION2:
+Turn off ability to submit
 '''
 
 import hashlib
