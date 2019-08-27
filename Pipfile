@@ -9,6 +9,7 @@ verify_ssl = true
 flask = "*"
 yagmail = "*"
 pdfrw = "*"
+xlwt = "*"
 
 [requires]
 python_version = "3.6"

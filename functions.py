@@ -1,7 +1,37 @@
+'''
+TO-DO:
+List of written FAQ's
+Draft video
+Reporting in excel worksheet
+
+DESIGN:
+Example websites
+
+In form, general electin prechecked, date 5th of november for all
+Move email telephone, birth year below address
+Do you want emailed to you? Ask before email
+Only pop up email/fax if 6A-6D selected on reason
+May gray out different mailing address and email/fax and change name/address
+Telephone - why registrar has questions
+/s automatically applied - check if is required
+Designing help
+
+Person who's canvassing
+Administrative optional info collection below signature - what district the race is
+house senate statewide
+
+colect which canvasser/district they're in | race of interest | after submitted
+on confirmation page | 3 letter initial code
+
+add mr surovell, mr rouvelas onto report emails
+'''
+
 import hashlib
 import yagmail
 import pdfrw
 import os
+import xlwt
+import json
 from typing import Dict
 from flask import request, session
 from datetime import date
@@ -77,7 +107,9 @@ def convert_data(data: Dict[str, str]):
         'todaysDateYear': todayDate[4:6]
     }
 
-    print(data['election_type'])
+    # print(data['election_type'])
+    with open('data.json', 'w', encoding='utf-8') as f:
+        json.dump(data_dict, f, ensure_ascii=False, indent=4)
     return data_dict
 
 
@@ -236,7 +268,7 @@ def set_session_keys(data: Dict[str, str], registrar_address: str):
 def email_registrar(registrar_address: str):
     # TODO: keep one server open to minimize SMTP connections
     yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
-        to='raunakdaga@gmail.com',
+        to='raunakdaga@gmail.com',  # Change when testing, change back when deploying
         # to=registrar_address,
         subject=f'Absentee Ballot Request from {session["name"]}',
         contents='Please find attached an absentee ballot request submitted '
@@ -244,3 +276,6 @@ def email_registrar(registrar_address: str):
         attachments=session['output_file'],
         # headers="X-AB-ID"
     )
+
+
+# def reports(data: Dict[str, str]):
