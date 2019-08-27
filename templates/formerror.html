@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>Error</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <meta name="description" content="" />
+  <meta name="keywords" content="" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+</head>
+
+<body>
+  <h1>We're Sorry</h1>
+  <p> We were unable to email your application to the <a href="mailto:{{ session['registrar_email'] }}">{{ session['registrar_locality'] }} registrar</a>. You can download your application file <a href="../{{ session['output_file'] }}">here</a>.
+    Please resubmit the form later. </p>
+</body>
+
+</html>

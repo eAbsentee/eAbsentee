@@ -16,17 +16,25 @@ def home():
 @app.route('/form/', methods=['POST', 'GET'])
 def process_form():
     if request.method == 'POST':
-        email_registrar(
-            build_pdf(
-                # Asterisk unpacks tuple returned by function into arguments.
-                *parse_data(request)))
+        try:
+            email_registrar(
+                build_pdf(
+                    # * unpacks tuple returned by function into arguments.
+                    *parse_data(request)))
+        except(Exception):
+            return redirect('/error/')
         return redirect('/confirmation/')
     else:
         return render_template('form.html')
 
 
+@app.route('/error/', methods=['GET'])
+def error_page():
+    return render_template('formerror.html')
+
+
 @app.route('/confirmation/', methods=['GET'])
-def confirmation():
+def confirmation_page():
     return render_template('confirmation.html')
     # if session.get('output_pdf') is not None:
     #     return render_template('confirmation.html')
