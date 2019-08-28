@@ -16,13 +16,13 @@ def home():
 @app.route('/form/', methods=['POST', 'GET'])
 def process_form():
     if request.method == 'POST':
-        try:
-            email_registrar(
-                build_pdf(
-                    # * unpacks tuple returned by function into arguments.
-                    *parse_data(request)))
-        except(Exception):
-            return redirect('/error/')
+        # try:
+        email_registrar(
+            build_pdf(
+                # * unpacks tuple returned by function into arguments.
+                *parse_data(request)))
+        # except(Exception):
+        #     return redirect('/error/')
         return redirect('/confirmation/')
     else:
         return render_template('form.html')
