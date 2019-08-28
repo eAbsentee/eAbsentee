@@ -26,7 +26,7 @@ on confirmation page | 3 letter initial code
 
 add mr surovell, mr rouvelas onto report emails
 change mail address to please mail to another address
-ip address for report https://stackoverflow.com/questions/3759981/get-ip-address-of-visitors-using-flask-for-python
+ip address for report // DONE, CHECK IF THIS WORKS ON THE EXCEL WORKSHEET
 
 on form page have an option to print out and send but comment it out because we may need for future
 
@@ -38,9 +38,11 @@ import hashlib
 import yagmail
 import pdfrw
 import os
-import xlwt
+import openpyxl
+from openpyxl import load_workbook
 from typing import Dict
 from flask import request, session
+import datetime
 from datetime import date
 from keys import GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD
 import localities_info
@@ -135,13 +137,39 @@ def parse_data(request: request):
     return data_dict, registrar_address
 
 
+''' build_pdf() takes in an input of the data dictionary,
+along with the email address of the respective registrar.
+it calls set_session_keys, and then write_fillable_pdf,
+and then appends the data to the report, and then
+sends the registrar address to email_registar'''
+
+
 def build_pdf(data: Dict[str, str], registrar_address: str):
-    set_session_keys(data, registrar_address)
+    today = date.today()
+    set_session_keys(data, registrar_address, today)
     write_fillable_pdf(data)
+
+    today_date = today.strftime("%m-%d-%y")
+    report_path = 'reports/' + today_date + '.xlsx'
+
+    data_for_report = [
+        session['name'],
+        str(datetime.datetime.now().time()),
+        data['ssn'],
+        data['reasonCode'],
+        data['supporting'],
+        data['registeredToVote'],
+        data['email'],
+        data['firstThreeTelephone'] + data['secondThreeTelephone'] + data['lastFourTelephone'],
+        data['address'] + data['apt'] + ', ' + data['city'] + ', ' + data['zipCode'],
+        data['application_ip']
+    ]
+
+    append_to_report(report_path, data_for_report)
     return registrar_address
 
 
-def set_session_keys(data: Dict[str, str], registrar_address: str):
+def set_session_keys(data: Dict[str, str], registrar_address: str, today):
     # id is first 10 characters of MD5 hash of dictionary
     id: str = hashlib.md5(repr(data).encode('utf-8')).hexdigest()[:10]
     name: str = data['firstName'] + \
@@ -153,6 +181,9 @@ def set_session_keys(data: Dict[str, str], registrar_address: str):
     session['output_file'] = f'applications/{id}.pdf'
     session['registrar_locality'] = data['registeredToVote']
     session['registrar_email'] = registrar_address
+
+    today_date = today.strftime("%m-%d-%y")
+    session['report_file'] = 'reports/' + today_date + '.xlsx'
 
 
 def write_fillable_pdf(data: Dict[str, str]):
@@ -187,38 +218,34 @@ def email_registrar(registrar_address: str):
     )
 
 
-''' A report is written daily at {} to be sent to Mr. Surovell, and Mr. rouvelas
-Later, update to send report to anyone'''
+''' Call this daily at 5 am somehow, then save the filename for the day.
+It is honestly not needed to save because it is just {thedate}.xls basically.'''
 
 
-def write_report(filename, sheet, list1, list2, x, y, z):
-    book = xlwt.Workbook()
-    # sh = book.add_sheet(sheet)
-    #
-    # variables = [x, y, z]
-    # x_desc = 'Display'
-    # y_desc = 'Dominance'
-    # z_desc = 'Test'
-    # desc = [x_desc, y_desc, z_desc]
-    #
-    # col1_name = 'Stimulus Time'
-    # col2_name = 'Reaction Time'
-    #
-    # # You may need to group the variables together
-    # # for n, (v_desc, v) in enumerate(zip(desc, variables)):
-    # for n, v_desc, v in enumerate(zip(desc, variables)):
-    #     sh.write(n, 0, v_desc)
-    #     sh.write(n, 1, v)
-    #
-    # n += 1
-    #
-    # sh.write(n, 0, col1_name)
-    # sh.write(n, 1, col2_name)
-    #
-    # for m, e1 in enumerate(list1, n+1):
-    #     sh.write(m, 0, e1)
-    #
-    # for m, e2 in enumerate(list2, n+1):
-    #     sh.write(m, 1, e2)
-    #
-    book.save(filename)
+def create_report():
+    today = date.today()
+    today_date = today.strftime("%m-%d-%y")
+
+    report = openpyxl.Workbook()
+    sh = report.active
+    sh['A1'] = 'Applicant Name'
+    sh['B1'] = 'Time Submitted'
+    sh['C1'] = 'SSN'
+    sh['D1'] = 'Reason Code'
+    sh['E1'] = 'Supporting Information'
+    sh['F1'] = 'Registered to Vote Where'
+    sh['G1'] = 'Email'
+    sh['H1'] = 'Telephone Number'
+    sh['I1'] = 'Address'
+    sh['J1'] = 'IP Submitted From'
+    report_path = 'reports/' + today_date + '.xlsx'
+
+    report.save(report_path)
+    return report_path
+
+
+def append_to_report(report_path, data):
+    report = load_workbook(report_path)
+    worksheet = report.active
+    worksheet.append(data)
+    report.save(report_path)
