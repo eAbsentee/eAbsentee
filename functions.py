@@ -1,37 +1,21 @@
 '''
 TO-DO VERSION1:
-List of written FAQ's
 Draft video
-Reporting in excel worksheet
 
-DESIGN:
-Example websites
+Move from keys.py to environemnt variables when deploying
 
-In form, general electin prechecked, date 5th of november for all
-Move email telephone, birth year below address
 Do you want emailed to you? Ask before email
 Only pop up email/fax if 6A-6D selected on reason
 May gray out different mailing address and email/fax and change name/address
-Telephone - why registrar has questions
 /s automatically applied - check if is required
-Designing help
 5 digit zip code only
+
+TO-DO VERSION2:
+Turn off ability to submit
 
 Person who's canvassing
 Administrative optional info collection below signature - what district the race is
 house senate statewide
-
-colect which canvasser/district they're in | race of interest | after submitted
-on confirmation page | 3 letter initial code
-
-add mr surovell, mr rouvelas onto report emails
-change mail address to please mail to another address
-ip address for report // DONE, CHECK IF THIS WORKS ON THE EXCEL WORKSHEET
-
-on form page have an option to print out and send but comment it out because we may need for future
-
-TO-DO VERSION2:
-Turn off ability to submit
 '''
 
 import hashlib
@@ -62,7 +46,8 @@ WIDGET_SUBTYPE_KEY: str = '/Widget'
 input_pdf_path: str = 'static/blankAppFillable.pdf'
 
 
-''' First, data is parsed from the form. @sumanth, i combined the two data parsing and converting functions'''
+''' First, data is parsed from the form, and converted into a dict format
+to allow it to be passed to the pdf filler. '''
 
 
 def parse_data(request: request):
@@ -129,7 +114,8 @@ def parse_data(request: request):
         'todaysDateMonth': todayDate[0:2],
         'todaysDateDay': todayDate[2:4],
         'todaysDateYear': todayDate[4:6],
-        'application_ip': request.remote_addr
+        'canvasserId': request.form.get('canvasser_id'),
+        'applicationIP': request.remote_addr
     }
 
     registrar_address: str = localities_info.localities[request.form[
@@ -141,7 +127,7 @@ def parse_data(request: request):
 along with the email address of the respective registrar.
 it calls set_session_keys, and then write_fillable_pdf,
 and then appends the data to the report, and then
-sends the registrar address to email_registar'''
+sends the registrar address to email_registrar'''
 
 
 def build_pdf(data: Dict[str, str], registrar_address: str):
@@ -162,7 +148,8 @@ def build_pdf(data: Dict[str, str], registrar_address: str):
         data['email'],
         data['firstThreeTelephone'] + data['secondThreeTelephone'] + data['lastFourTelephone'],
         data['address'] + data['apt'] + ', ' + data['city'] + ', ' + data['zipCode'],
-        data['application_ip']
+        data['applicationIP'],
+        data['canvasserId']
     ]
 
     append_to_report(report_path, data_for_report)
@@ -238,6 +225,7 @@ def create_report():
     sh['H1'] = 'Telephone Number'
     sh['I1'] = 'Address'
     sh['J1'] = 'IP Submitted From'
+    sh['K1'] = 'Canvasser ID'
     report_path = 'reports/' + today_date + '.xlsx'
 
     report.save(report_path)
@@ -249,3 +237,14 @@ def append_to_report(report_path, data):
     worksheet = report.active
     worksheet.append(data)
     report.save(report_path)
+
+
+def email_report():
+    today = date.today()
+    today_date = today.strftime("%m-%d-%y")
+    yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
+        to=['raunakdaga@gmail.com'],  # Add mr surovell, mr rouvelas onto report emails
+        subject=f'Daily Absentee Ballot Application Report - {today_date} ',
+        contents='Please find attached the daily report of absentee ballot applications.',
+        attachments='reports/{today_date}.xlsx'
+    )

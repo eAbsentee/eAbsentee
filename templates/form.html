@@ -58,9 +58,10 @@
 
             <section id="instructions">
                   <p>You can apply to vote absentee as early as one year before the election. Ballots are available 45 days before most elections. The deadline for receipt of your application to vote absentee by mail is 5:00 PM one week before the
-                        election. You can contact the State Board of Elections at <a href="tel:+18005529745">800-552-9745</a> or <a href="mailto:info@sbe.virginia.gov">info@sbe.virginia.gov</a>.</p>
+                        election. You can contact the State Board of Elections at <a href="tel:+18005529745">800-552-9745</a> or <a href="mailto:info@sbe.virginia.gov">info@sbe.virginia.gov</a>.
+                        <!-- If you'd like to print out and mail your application yourself, you can do so <a href="/printform">here</a> -->
+                  </p>
             </section>
-
             <div id="failure-message" role="alert" class="hidden panel panel-danger">
                   <div class="panel-heading">
                         <h3 class="panel-title">&nbsp;Error</h3>
@@ -105,34 +106,34 @@
                               <h3>Election</h3>
                               <div class="form-group">
                                     <div id="election__type" class="radio-group">
-                                          <p>I am applying to vote in:</p>
+                                          <!-- <p>I am applying to vote in:</p> -->
 
                                           <div class="radio">
                                                 <label>
-                                                      <input name="election__type" type="radio" value="General or Special Election" required />
+                                                      <input name="election__type" type="radio" checked="checked" value="General or Special Election" required />
                                                       General or Special Election
                                                 </label>
                                           </div>
 
-                                          <div class="radio">
+                                          <!-- <div class="radio">
                                                 <label>
                                                       <input name="election__type" type="radio" value="Democratic Primary" required />
                                                       Democratic Primary
                                                 </label>
-                                          </div>
+                                          </div> -->
 
-                                          <div class="radio">
+                                          <!-- <div class="radio">
                                                 <label>
                                                       <input name="election__type" type="radio" value="Republican Primary" required />
                                                       Republican Primary
                                                 </label>
-                                          </div>
+                                          </div> -->
                                     </div>
 
                                     <div id="election__date" class="form-inline date">
                                           <label class="control-label">Date of Election</label>
 
-                                          <input type="date" name="election__date" placeholder="MM/DD/YY" required />
+                                          <input type="date" name="election__date" placeholder="MM/DD/YY" value="2019-11-05" required readonly />
 
                                     </div>
                               </div>
@@ -396,32 +397,6 @@
                         </fieldset>
 
 
-                        <!-- Section 4: More Info -->
-                        <fieldset id="more_info">
-                              <h3>More Info (Optional)</h3>
-
-                              <div id="birth_year" class="form-group form-inline">
-                                    <label for="more_info__birth_year" class="control-label">Birth Year</label>
-
-                                    <input type="number" name="more_info__birth_year" id="more_info__birth_year" class="form-control" minlength="4" maxlength="14" pattern="^$|(19|20)(\d{2})$" digit />
-                              </div>
-
-                              <div id="more_info__telephone" class="form-group form-inline phone">
-                                    <label for="more_info__telephone_field" class="control-label optional">Telephone</label>
-                                    <input type="tel" name="more_info__telephone" id="more_info__telephone_field" class="form-control" minlength="10" maxlength="14" pattern="^(.{10,14})$" />
-                              </div>
-
-                              <div id="email" class="form-group">
-                                    <label for="more_info__email_fax" class="control-label">Email</label>
-                                    <input name="more_info__email_fax" id="more_info__email_fax" type="email" class="form-control" />
-                              </div>
-
-                              <!--<div id="fax" class="form-group form-inline phone">
-                    <label for="fax" class="control-label optional">Fax</label>
-                    <input type="tel" name="more_info__email_fax" class="form-control" minlength="10" maxlength="14" />
-                </div>-->
-
-                        </fieldset>
 
 
                         <!-- Section 5: Residence Address -->
@@ -529,7 +504,7 @@
                                           <div class="radio">
                                                 <label>
                                                       <input name="delivery__to" type="radio" value="mailing address" />
-                                                      Mailing Address
+                                                      Different Mailing Address
                                                 </label>
                                           </div>
 
@@ -1027,8 +1002,47 @@
                               </div>
                         </fieldset>
 
+                        <!-- Section 4: More Info -->
+                        <fieldset id="more_info">
+                              <h3>More Info (Optional)</h3>
+                              <p> Your email, birth year, and telephone are optional. The telephone number and email are collected
+                                    in case of problems with you application. </p>
+                              <div id="birth_year" class="form-group form-inline">
+                                    <label for="more_info__birth_year" class="control-label">Birth Year</label>
 
-                        <!-- Section 10: Applicant Signature -->
+                                    <input type="number" name="more_info__birth_year" id="more_info__birth_year" class="form-control" minlength="4" maxlength="14" pattern="^$|(19|20)(\d{2})$" digit />
+                              </div>
+
+                              <div id="more_info__telephone" class="form-group form-inline phone">
+                                    <label for="more_info__telephone_field" class="control-label optional">Telephone</label>
+                                    <input type="tel" name="more_info__telephone" id="more_info__telephone_field" class="form-control" minlength="10" maxlength="14" pattern="^(.{10,14})$" />
+                              </div>
+
+                              <div id="email" class="form-group">
+                                    <label for="more_info__email_fax" class="control-label">Email</label>
+                                    <input name="more_info__email_fax" id="more_info__email_fax" type="email" class="form-control" />
+                              </div>
+
+                              <!--<div id="fax" class="form-group form-inline phone">
+                                <label for="fax" class="control-label optional">Fax</label>
+                                <input type="tel" name="more_info__email_fax" class="form-control" minlength="10" maxlength="14" />
+                            </div>-->
+
+                        </fieldset>
+
+                        <!-- Section 10: Administrative Information -->
+                        <fieldset id="administrative">
+                              <h3>Administrative Information</h3>
+                              <p> This section requires information from volunteer canvassers. Please disregard if you are filling out the form. </p>
+
+                              <div class="form-group">
+                                    <input name="canvasser_id" id="canvasser_id" type="text" placeholder="Canvasser Code" class="form-control" />
+
+                              </div>
+
+                        </fieldset>
+
+                        <!-- Section 11: Applicant Signature -->
                         <fieldset id="signature">
                               <h3>Applicant Signature</h3>
 
@@ -1052,6 +1066,8 @@
                                     <input type="submit" value="Submit Application" class="btn-lg btn-default" onclick="var e=this;setTimeout(function(){e.disabled=true;},0);return true;" />
                               </div>
                         </fieldset>
+
+
                   </form>
             </section>
 

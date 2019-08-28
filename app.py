@@ -51,6 +51,12 @@ def render_pdf(id: str):
     )
 
 
+@app.route('/printform')
+def render_printform_pdf():
+    with open('static/blankAppFillable.pdf', 'rb') as form:
+        return send_file(form, attachment_filename='blankAppFillable.pdf')
+
+
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
