@@ -1,18 +1,13 @@
 '''
 TO-DO VERSION1:
-Draft video
 
 Move from keys.py to environemnt variables when deploying
-
-Do you want emailed to you? Ask before email
+Do you want emailed to you? Ask before email section on form with checkbox.
 Only pop up email/fax if 6A-6D selected on reason
-May gray out different mailing address and email/fax and change name/address
 /s automatically applied - check if is required
-5 digit zip code only
 
 TO-DO VERSION2:
 Turn off ability to submit
-
 Person who's canvassing
 Administrative optional info collection below signature - what district the race is
 house senate statewide
