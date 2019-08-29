@@ -152,7 +152,7 @@
           break;
       }
 
-      if (label != "") {
+      if (label !== "") {
         $("label[for=\"reason__documentation_field\"]").text(label);
         $("#reason__documentation_field").prop("required", true);
       }

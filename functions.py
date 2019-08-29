@@ -41,11 +41,9 @@ WIDGET_SUBTYPE_KEY: str = '/Widget'
 input_pdf_path: str = 'static/blankAppFillable.pdf'
 
 
-''' First, data is parsed from the form, and converted into a dict format
-to allow it to be passed to the pdf filler. '''
-
-
 def parse_data(request: request):
+    ''' Parse data from the form and convert into a dict format
+    to allow it to be passed to the pdf filler. '''
     today = date.today()
     todayDate = today.strftime("%m%d%y")
 
@@ -118,16 +116,14 @@ def parse_data(request: request):
     return data_dict, registrar_address
 
 
-''' build_pdf() takes in an input of the data dictionary,
-along with the email address of the respective registrar.
-it calls set_session_keys, and then write_fillable_pdf,
-and then appends the data to the report, and then
-sends the registrar address to email_registrar'''
-
-
 def build_pdf(data: Dict[str, str], registrar_address: str):
+    '''Takes in an input of the data dictionary,
+    along with the email address of the respective registrar.
+    It calls set_session_keys, and then write_fillable_pdf,
+    and then appends the data to the report, and then
+    sends the registrar address to email_registrar.'''
     today = date.today()
-    set_session_keys(data, registrar_address, today)
+    set_session_keys(data, registrar_address)
     write_fillable_pdf(data)
 
     today_date = today.strftime("%m-%d-%y")
@@ -144,6 +140,7 @@ def build_pdf(data: Dict[str, str], registrar_address: str):
         data['firstThreeTelephone'] + data['secondThreeTelephone'] + data['lastFourTelephone'],
         data['address'] + data['apt'] + ', ' + data['city'] + ', ' + data['zipCode'],
         data['applicationIP'],
+        session['application_id']
         data['canvasserId']
     ]
 
@@ -151,7 +148,7 @@ def build_pdf(data: Dict[str, str], registrar_address: str):
     return registrar_address
 
 
-def set_session_keys(data: Dict[str, str], registrar_address: str, today):
+def set_session_keys(data: Dict[str, str], registrar_address: str):
     # id is first 10 characters of MD5 hash of dictionary
     id: str = hashlib.md5(repr(data).encode('utf-8')).hexdigest()[:10]
     name: str = data['firstName'] + \
@@ -160,11 +157,12 @@ def set_session_keys(data: Dict[str, str], registrar_address: str, today):
         (', ' + data['suffix']
          if data['suffix'].strip() else '')
     session['name'] = name
+    session['application_id'] = id
     session['output_file'] = f'applications/{id}.pdf'
     session['registrar_locality'] = data['registeredToVote']
     session['registrar_email'] = registrar_address
 
-    today_date = today.strftime("%m-%d-%y")
+    today_date = date.today().strftime("%m-%d-%y")
     session['report_file'] = 'reports/' + today_date + '.xlsx'
 
 
@@ -184,10 +182,8 @@ def write_fillable_pdf(data: Dict[str, str]):
     pdfrw.PdfWriter().write(session['output_file'], template_pdf)
 
 
-'''Emailing the registrar is the very last thing to be done in the workflow.'''
-
-
 def email_registrar(registrar_address: str):
+    '''Emailing the registrar is the very last thing to be done in the workflow.'''
     # TODO: keep one server open to minimize SMTP connections
     yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
         to='raunakdaga@gmail.com',  # Change when testing, change back when deploying
@@ -200,11 +196,10 @@ def email_registrar(registrar_address: str):
     )
 
 
-''' Call this daily at 5 am somehow, then save the filename for the day.
-It is honestly not needed to save because it is just {thedate}.xls basically.'''
-
-
 def create_report():
+    ''' Call this daily at 5 am somehow, then save the filename for the day.
+    It is honestly not needed to save because it is just {thedate}.xls basically.'''
+
     today = date.today()
     today_date = today.strftime("%m-%d-%y")
 
@@ -220,7 +215,8 @@ def create_report():
     sh['H1'] = 'Telephone Number'
     sh['I1'] = 'Address'
     sh['J1'] = 'IP Submitted From'
-    sh['K1'] = 'Canvasser ID'
+    sh['K1'] = 'Form ID'
+    sh['L1'] = 'Canvasser ID'
     report_path = 'reports/' + today_date + '.xlsx'
 
     report.save(report_path)
@@ -240,6 +236,6 @@ def email_report():
     yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
         to=['raunakdaga@gmail.com'],  # Add mr surovell, mr rouvelas onto report emails
         subject=f'Daily Absentee Ballot Application Report - {today_date} ',
-        contents='Please find attached the daily report of absentee ballot applications.',
+        contents=f'Please find attached the daily report of absentee ballot applications for {today_date}.',
         attachments='reports/{today_date}.xlsx'
     )
