@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, session, send_file
 from functions import parse_data, build_pdf, email_registrar
 from keys import SECRET_KEY
 import os
+
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 app = Flask(__name__)
