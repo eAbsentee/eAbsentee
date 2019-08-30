@@ -27,7 +27,7 @@ from datetime import date
 from keys import GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD
 import localities_info
 
-# Change current working directory (needed for Atom development)
+# Change current working directory, only needed
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 # Subtypes of pdfrw
@@ -45,7 +45,6 @@ input_pdf_path: str = 'static/blankAppFillable.pdf'
 def parse_data(request: request) -> Tuple[Dict[str, str], str]:
     """ Parse data from the form and convert into a dict format
     to allow it to be passed to the PDF filler. """
-
     todayDate: str = date.today().strftime("%m%d%y")
 
     absentee_telephone: str = request.form.get('more_info__telephone').replace(
