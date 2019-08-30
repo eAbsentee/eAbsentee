@@ -2,7 +2,7 @@
 TO-DO VERSION1:
 
 Move from keys.py to environemnt variables when deploying
-Do you want emailed to you? Ask before email section on form with checkbox.
+Change confirmation page to index style
 Only pop up email/fax if 6A-6D selected on reason
 /s automatically applied - check if is required
 
@@ -17,6 +17,7 @@ import hashlib
 import yagmail
 import pdfrw
 import os
+import json
 import openpyxl
 from openpyxl import load_workbook
 from typing import Dict
