@@ -75,7 +75,8 @@ def parse_data(request: request) -> Tuple[Dict[str, str], str]:
         'ballotDeliveryState': request.form.get('deliv-state'),
         'formerFullName': request.form.get('change__former_name'),
         'formerAddress': request.form.get('change__former_address'),
-        'signature': request.form['signature__signed'],
+        'signature': '/S/ ' + request.form[
+            'signature__signed'].replace('/S/', '', 1).strip(),
         'firstThreeTelephone': absentee_telephone[0:3],
         'secondThreeTelephone': absentee_telephone[3:6],
         'lastFourTelephone': absentee_telephone[6:10],
