@@ -19,7 +19,7 @@ def process_form():
         # try:
         email_registrar(
             build_pdf(
-                # * unpacks tuple returned by function into arguments.
+                # * unpacks tuple returned by function into arguments
                 *parse_data(request)))
         # except(Exception):
         #     return redirect('/error/')
@@ -51,10 +51,20 @@ def render_pdf(id: str):
     )
 
 
+@app.route('/fillableform')
+def render_fillableform_pdf():
+    return send_file(
+        open('static/blankAppFillable.pdf', 'rb'),
+        attachment_filename='blankAppFillable.pdf'
+    )
+
+
 @app.route('/printform')
 def render_printform_pdf():
-    with open('static/blankAppFillable.pdf', 'rb') as form:
-        return send_file(form, attachment_filename='blankAppFillable.pdf')
+    return send_file(
+        open('static/blankApp.pdf', 'rb'),
+        attachment_filename='blankApp.pdf'
+    )
 
 
 @app.errorhandler(404)
