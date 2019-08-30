@@ -1,4 +1,4 @@
-'''
+"""
 TO-DO VERSION1:
 
 Move from keys.py to environemnt variables when deploying
@@ -11,7 +11,7 @@ Turn off ability to submit
 Person who's canvassing
 Administrative optional info collection below signature - what district the race is
 house senate statewide
-'''
+"""
 
 import hashlib
 import yagmail
@@ -20,14 +20,14 @@ import os
 import json
 import openpyxl
 from openpyxl import load_workbook
-from typing import Dict
+from typing import Dict, List, Tuple
 from flask import request, session
 import datetime
 from datetime import date
 from keys import GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD
 import localities_info
 
-# Change current working directory (needed for Atom development; I wish I knew how to make Atom work)
+# Change current working directory (needed for Atom development)
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 # Subtypes of pdfrw
@@ -42,13 +42,11 @@ WIDGET_SUBTYPE_KEY: str = '/Widget'
 input_pdf_path: str = 'static/blankAppFillable.pdf'
 
 
-''' First, data is parsed from the form, and converted into a dict format
-to allow it to be passed to the pdf filler. '''
+def parse_data(request: request) -> Tuple[Dict[str, str], str]:
+    """ Parse data from the form and convert into a dict format
+    to allow it to be passed to the PDF filler. """
 
-
-def parse_data(request: request):
-    today = date.today()
-    todayDate = today.strftime("%m%d%y")
+    todayDate: str = date.today().strftime("%m%d%y")
 
     absentee_telephone: str = request.form.get('more_info__telephone').replace(
         '-', '').replace('(', '').replace(')', '').replace(' ', '')
@@ -73,15 +71,18 @@ def parse_data(request: request):
         'ballotDeliveryAddress': request.form.get('delivery__street'),
         'ballotDeliveryCity': request.form.get('delivery__city'),
         'ballotDeliveryApt': request.form.get('delivery__unit'),
-        'ballotDeliveryZip': request.form.get('delivery__zip').replace('-', ''),
+        'ballotDeliveryZip': request.form.get(
+            'delivery__zip').replace('-', ''),
         'ballotDeliveryState': request.form.get('deliv-state'),
         'formerFullName': request.form.get('change__former_name'),
         'formerAddress': request.form.get('change__former_address'),
-        'signature': request.form['signature__signed'],
+        'signature': '/S/ ' + request.form[
+            'signature__signed'].replace('/S/', '', 1).strip(),
         'firstThreeTelephone': absentee_telephone[0:3],
         'secondThreeTelephone': absentee_telephone[3:6],
         'lastFourTelephone': absentee_telephone[6:10],
-        'assistantCheck': 'X' if request.form.get('assistance__assistance') == 'true' else '',
+        'assistantCheck': 'X' if request.form.get(
+            'assistance__assistance') == 'true' else '',
         'assistantFullName': request.form.get('assistant__name'),
         'assistantAddress': request.form.get('assistant__street'),
         'assistantSignature': request.form.get('assistant__sig'),
@@ -89,12 +90,18 @@ def parse_data(request: request):
         'assistantCity': request.form.get('assistant__city'),
         'assistantState': request.form.get('assistant__state'),
         'assistantZip': request.form.get('assistant__zip').replace('-', ''),
-        'deliverResidence': 'X' if request.form.get('delivery__to') == 'residence address' else '',
-        'deliverMailing': 'X' if request.form.get('delivery__to') == 'mailing address' else '',
-        'deliverEmail': 'X' if request.form.get('delivery__to') == 'email' else '',
-        'genSpecCheck': 'X' if request.form['election__type'] == 'General or Special Election' else '',
-        'demPrimCheck': 'X' if request.form['election__type'] == 'Democratic Primary' else '',
-        'repPrimCheck': 'X' if request.form['election__type'] == 'Republican Primary' else '',
+        'deliverResidence': 'X' if request.form.get(
+            'delivery__to') == 'residence address' else '',
+        'deliverMailing': 'X' if request.form.get(
+            'delivery__to') == 'mailing address' else '',
+        'deliverEmail': 'X' if request.form.get(
+            'delivery__to') == 'email' else '',
+        'genSpecCheck': 'X' if request.form[
+            'election__type'] == 'General or Special Election' else '',
+        'demPrimCheck': 'X' if request.form[
+            'election__type'] == 'Democratic Primary' else '',
+        'repPrimCheck': 'X' if request.form[
+            'election__type'] == 'Republican Primary' else '',
         'countyCheck': 'X' if 'County' in localities_info.localities[
             request.form['election__locality_gnis']
         ]['locality'] else '',
@@ -119,22 +126,20 @@ def parse_data(request: request):
     return data_dict, registrar_address
 
 
-''' build_pdf() takes in an input of the data dictionary,
-along with the email address of the respective registrar.
-it calls set_session_keys, and then write_fillable_pdf,
-and then appends the data to the report, and then
-sends the registrar address to email_registrar'''
+def build_pdf(data: Dict[str, str], registrar_address: str) -> str:
+    """Takes in an input of the data dictionary,
+    along with the email address of the respective registrar.
+    It calls set_session_keys, and then write_fillable_pdf,
+    and then appends the data to the report, and then
+    sends the registrar address to email_registrar."""
 
-
-def build_pdf(data: Dict[str, str], registrar_address: str):
-    today = date.today()
-    set_session_keys(data, registrar_address, today)
+    set_session_keys(data, registrar_address)
     write_fillable_pdf(data)
 
-    today_date = today.strftime("%m-%d-%y")
-    report_path = 'reports/' + today_date + '.xlsx'
+    today_date: str = date.today().strftime("%m-%d-%y")
+    report_path: str = f'reports/{today_date}.xlsx'
 
-    data_for_report = [
+    data_for_report: List[str] = [
         session['name'],
         str(datetime.datetime.now().time()),
         data['ssn'],
@@ -142,9 +147,12 @@ def build_pdf(data: Dict[str, str], registrar_address: str):
         data['supporting'],
         data['registeredToVote'],
         data['email'],
-        data['firstThreeTelephone'] + data['secondThreeTelephone'] + data['lastFourTelephone'],
-        data['address'] + data['apt'] + ', ' + data['city'] + ', ' + data['zipCode'],
+        data['firstThreeTelephone']
+        + data['secondThreeTelephone'] + data['lastFourTelephone'],
+        data['address'] + data['apt'] + ', '
+        + data['city'] + ', ' + data['zipCode'],
         data['applicationIP'],
+        session['application_id'],
         data['canvasserId']
     ]
 
@@ -152,7 +160,7 @@ def build_pdf(data: Dict[str, str], registrar_address: str):
     return registrar_address
 
 
-def set_session_keys(data: Dict[str, str], registrar_address: str, today):
+def set_session_keys(data: Dict[str, str], registrar_address: str) -> None:
     # id is first 10 characters of MD5 hash of dictionary
     id: str = hashlib.md5(repr(data).encode('utf-8')).hexdigest()[:10]
     name: str = data['firstName'] + \
@@ -161,15 +169,16 @@ def set_session_keys(data: Dict[str, str], registrar_address: str, today):
         (', ' + data['suffix']
          if data['suffix'].strip() else '')
     session['name'] = name
+    session['application_id'] = id
     session['output_file'] = f'applications/{id}.pdf'
     session['registrar_locality'] = data['registeredToVote']
     session['registrar_email'] = registrar_address
 
-    today_date = today.strftime("%m-%d-%y")
-    session['report_file'] = 'reports/' + today_date + '.xlsx'
+    today_date: str = date.today().strftime("%m-%d-%y")
+    session['report_file'] = f'reports/{today_date}.xlsx'
 
 
-def write_fillable_pdf(data: Dict[str, str]):
+def write_fillable_pdf(data: Dict[str, str]) -> None:
     template_pdf: pdfrw.PdfReader = pdfrw.PdfReader(input_pdf_path)
     template_pdf.Root.AcroForm.update(pdfrw.PdfDict(
         NeedAppearances=pdfrw.PdfObject('true')))
@@ -185,32 +194,26 @@ def write_fillable_pdf(data: Dict[str, str]):
     pdfrw.PdfWriter().write(session['output_file'], template_pdf)
 
 
-'''Emailing the registrar is the very last thing to be done in the workflow.'''
-
-
-def email_registrar(registrar_address: str):
+def email_registrar(registrar_address: str) -> None:
     # TODO: keep one server open to minimize SMTP connections
     yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
-        to='raunakdaga@gmail.com',  # Change when testing, change back when deploying
+        to='raunakdaga@gmail.com',
         # to=registrar_address,
         subject=f'Absentee Ballot Request from {session["name"]}',
-        contents='Please find attached an absentee ballot request submitted ' + \
-        f'on behalf of {session["name"]}.',
-        attachments=session['output_file'],
-        # headers="X-AB-ID"
+        contents='Please find attached an absentee ballot request ' + \
+        f'submitted on behalf of {session["name"]}.',
+        attachments=session['output_file']
     )
 
 
-''' Call this daily at 5 am somehow, then save the filename for the day.
-It is honestly not needed to save because it is just {thedate}.xls basically.'''
+def create_report() -> None:
+    """ Call this daily at 5 am somehow, then save the filename for the day.
+    It is not needed to save because it is just {thedate}.xls basically. """
 
+    today_date: str = date.today().strftime("%m-%d-%y")
 
-def create_report():
-    today = date.today()
-    today_date = today.strftime("%m-%d-%y")
-
-    report = openpyxl.Workbook()
-    sh = report.active
+    report: openpyxl.workbook.Workbook = openpyxl.Workbook()
+    sh: openpyxl.worksheet.worksheet.Worksheet = report.active
     sh['A1'] = 'Applicant Name'
     sh['B1'] = 'Time Submitted'
     sh['C1'] = 'SSN'
@@ -221,26 +224,30 @@ def create_report():
     sh['H1'] = 'Telephone Number'
     sh['I1'] = 'Address'
     sh['J1'] = 'IP Submitted From'
-    sh['K1'] = 'Canvasser ID'
-    report_path = 'reports/' + today_date + '.xlsx'
+    sh['K1'] = 'Form ID'
+    sh['L1'] = 'Canvasser ID'
+    report_path: str = f'reports/{today_date}.xlsx'
 
     report.save(report_path)
     return report_path
 
 
-def append_to_report(report_path, data):
-    report = load_workbook(report_path)
-    worksheet = report.active
+def append_to_report(report_path: str, data: Dict[str, str]) -> None:
+    if not os.path.isfile(report_path):
+        create_report()
+    report: openpyxl.workbook.Workbook = load_workbook(filename=report_path)
+    worksheet: openpyxl.worksheet.worksheet.Worksheet = report.active
     worksheet.append(data)
     report.save(report_path)
 
 
-def email_report():
-    today = date.today()
-    today_date = today.strftime("%m-%d-%y")
+def email_report() -> None:
+    today_date: str = date.today().strftime("%m-%d-%y")
     yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
-        to=['raunakdaga@gmail.com'],  # Add mr surovell, mr rouvelas onto report emails
-        subject=f'Daily Absentee Ballot Application Report - {today_date} ',
-        contents='Please find attached the daily report of absentee ballot applications.',
-        attachments='reports/{today_date}.xlsx'
+        to=['raunakdaga@gmail.com'],
+        # to=['ssurovell@gmail.com', 'lerouvelas@gmail.com']
+        subject=f'Daily Absentee Ballot Application Report - {today_date}',
+        contents=f'Please find attached the daily report of absentee ' + \
+        f'ballot applications for {today_date}.',
+        attachments=f'reports/{today_date}.xlsx'
     )

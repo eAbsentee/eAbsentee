@@ -125,5 +125,9 @@ dmypy.json
 
 .DS_Store
 keys.py
+
 applications/*
 !applications/.gitkeep
+
+reports/*
+!reports/.gitkeep
