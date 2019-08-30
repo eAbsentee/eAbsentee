@@ -3,19 +3,19 @@
 <html>
 
 <head>
-      <title>Confirmation</title>
-      <meta charset="utf-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-      <meta name="description" content="" />
-      <meta name="keywords" content="" />
-      <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+  <title>Confirmation</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <meta name="description" content="" />
+  <meta name="keywords" content="" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
 </head>
 
 <body>
-      <h1> Registration Confirmed </h1>
-      <p>Thank you for registering for an absentee ballot, {{session['name']}}! Your absentee ballot application has been emailed to the {{ session['registrar_locality'] }} registrar, at <a
-                  href="mailto:{{ session['registrar_email'] }}">{{ session['registrar_email'] }}</a>. No further action is required on your part.</p>
-      <p>You can download your application file <a href="../{{ session['output_file'] }}">here</a>.</p>
+  <h1> Registration Confirmed </h1>
+  <p>Thank you for registering for an absentee ballot, {{session['name']}}! Your absentee ballot application has been emailed to the {{ session['registrar_locality'] }} registrar, at <a
+      href="mailto:{{ session['registrar_email'] }}">{{ session['registrar_email'] }}</a>. No further action is required on your part.</p>
+  <p>You can download your application file <a href="../{{ session['output_file'] }}">here</a>.</p>
 
 
 

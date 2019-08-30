@@ -1,4 +1,4 @@
-'''
+"""
 TO-DO VERSION1:
 
 Move from keys.py to environemnt variables when deploying
@@ -11,7 +11,7 @@ Turn off ability to submit
 Person who's canvassing
 Administrative optional info collection below signature - what district the race is
 house senate statewide
-'''
+"""
 
 import hashlib
 import yagmail
@@ -26,7 +26,7 @@ from datetime import date
 from keys import GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD
 import localities_info
 
-# Change current working directory (needed for Atom development; I wish I knew how to make Atom work)
+# Change current working directory (needed for Atom development)
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 # Subtypes of pdfrw
@@ -42,8 +42,8 @@ input_pdf_path: str = 'static/blankAppFillable.pdf'
 
 
 def parse_data(request: request):
-    ''' Parse data from the form and convert into a dict format
-    to allow it to be passed to the pdf filler. '''
+    """ Parse data from the form and convert into a dict format
+    to allow it to be passed to the PDF filler. """
     today = date.today()
     todayDate = today.strftime("%m%d%y")
 
@@ -117,11 +117,11 @@ def parse_data(request: request):
 
 
 def build_pdf(data: Dict[str, str], registrar_address: str):
-    '''Takes in an input of the data dictionary,
+    """Takes in an input of the data dictionary,
     along with the email address of the respective registrar.
     It calls set_session_keys, and then write_fillable_pdf,
     and then appends the data to the report, and then
-    sends the registrar address to email_registrar.'''
+    sends the registrar address to email_registrar."""
     today = date.today()
     set_session_keys(data, registrar_address)
     write_fillable_pdf(data)
@@ -137,10 +137,12 @@ def build_pdf(data: Dict[str, str], registrar_address: str):
         data['supporting'],
         data['registeredToVote'],
         data['email'],
-        data['firstThreeTelephone'] + data['secondThreeTelephone'] + data['lastFourTelephone'],
-        data['address'] + data['apt'] + ', ' + data['city'] + ', ' + data['zipCode'],
+        data['firstThreeTelephone']
+        + data['secondThreeTelephone'] + data['lastFourTelephone'],
+        data['address'] + data['apt'] + ', '
+        + data['city'] + ', ' + data['zipCode'],
         data['applicationIP'],
-        session['application_id']
+        session['application_id'],
         data['canvasserId']
     ]
 
@@ -183,22 +185,21 @@ def write_fillable_pdf(data: Dict[str, str]):
 
 
 def email_registrar(registrar_address: str):
-    '''Emailing the registrar is the very last thing to be done in the workflow.'''
+    """Emailing the registrar is the very last thing to be done in the workflow."""
     # TODO: keep one server open to minimize SMTP connections
     yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
-        to='raunakdaga@gmail.com',  # Change when testing, change back when deploying
+        to='raunakdaga@gmail.com',
         # to=registrar_address,
         subject=f'Absentee Ballot Request from {session["name"]}',
-        contents='Please find attached an absentee ballot request submitted ' + \
-        f'on behalf of {session["name"]}.',
-        attachments=session['output_file'],
-        # headers="X-AB-ID"
+        contents='Please find attached an absentee ballot request ' + \
+        f'submitted on behalf of {session["name"]}.',
+        attachments=session['output_file']
     )
 
 
 def create_report():
-    ''' Call this daily at 5 am somehow, then save the filename for the day.
-    It is honestly not needed to save because it is just {thedate}.xls basically.'''
+    """ Call this daily at 5 am somehow, then save the filename for the day.
+    It is honestly not needed to save because it is just {thedate}.xls basically."""
 
     today = date.today()
     today_date = today.strftime("%m-%d-%y")
@@ -217,13 +218,15 @@ def create_report():
     sh['J1'] = 'IP Submitted From'
     sh['K1'] = 'Form ID'
     sh['L1'] = 'Canvasser ID'
-    report_path = 'reports/' + today_date + '.xlsx'
+    report_path = f'reports/{today_date}.xlsx'
 
     report.save(report_path)
     return report_path
 
 
-def append_to_report(report_path, data):
+def append_to_report(report_path: str, data: Dict[str, str]):
+    if not os.path.isfile(report_path):
+        create_report()
     report = load_workbook(report_path)
     worksheet = report.active
     worksheet.append(data)
@@ -234,8 +237,10 @@ def email_report():
     today = date.today()
     today_date = today.strftime("%m-%d-%y")
     yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
-        to=['raunakdaga@gmail.com'],  # Add mr surovell, mr rouvelas onto report emails
+        # Add mr surovell, mr rouvelas onto report emails
+        to=['raunakdaga@gmail.com'],
         subject=f'Daily Absentee Ballot Application Report - {today_date} ',
-        contents=f'Please find attached the daily report of absentee ballot applications for {today_date}.',
-        attachments='reports/{today_date}.xlsx'
+        contents=f'Please find attached the daily report of absentee ' + \
+        f'ballot applications for {today_date}.',
+        attachments=f'reports/{today_date}.xlsx'
     )

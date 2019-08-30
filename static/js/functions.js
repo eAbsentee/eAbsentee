@@ -156,6 +156,18 @@
         $("label[for=\"reason__documentation_field\"]").text(label);
         $("#reason__documentation_field").prop("required", true);
       }
+
+      // Only show email/fax if 6A-6D selected
+      // TODO: instead of completely hiding element, just toggle whether it's required
+      $("#more_info__telephone").hide();
+      $("#email").hide();
+      if ($(this).val() == "6A" || $(this).val() == "6B" || $(this).val() == "6C" || $(this).val() == "6D") {
+        $("#more_info__telephone").show();
+        $("#email").show();
+      } else {
+        $("#more_info__telephone").hide();
+        $("#email").hide();
+      }
     });
 
     // Only display the delivery-to address fields if it's necessary
