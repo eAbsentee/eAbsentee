@@ -17,7 +17,6 @@ import hashlib
 import yagmail
 import pdfrw
 import os
-import json
 import openpyxl
 from openpyxl import load_workbook
 from typing import Dict, List, Tuple
@@ -27,7 +26,7 @@ from datetime import date
 from keys import GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD
 import localities_info
 
-# Change current working directory, only needed
+# Change current working directory, only needed for Atom
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 # Subtypes of pdfrw, needed to write to fillable app.
@@ -43,8 +42,8 @@ input_pdf_path: str = 'static/blankAppFillable.pdf'
 
 
 def parse_data(request: request) -> Tuple[Dict[str, str], str]:
-    """ Parse data from the form and convert into a dict format
-    to allow it to be passed to the PDF filler. """
+    """ Parse data from the form using the Flask request object and convert it
+    into a dict format to allow it to be passed to the PDF filler. """
     todayDate: str = date.today().strftime("%m%d%y")
 
     absentee_telephone: str = request.form.get('more_info__telephone').replace(
@@ -178,6 +177,7 @@ def set_session_keys(data: Dict[str, str], registrar_address: str) -> None:
 
 
 def write_fillable_pdf(data: Dict[str, str]) -> None:
+    """Fill out the PDF based on the data from the form. """
     template_pdf: pdfrw.PdfReader = pdfrw.PdfReader(input_pdf_path)
     template_pdf.Root.AcroForm.update(pdfrw.PdfDict(
         NeedAppearances=pdfrw.PdfObject('true')))
@@ -193,9 +193,12 @@ def write_fillable_pdf(data: Dict[str, str]) -> None:
     pdfrw.PdfWriter().write(session['output_file'], template_pdf)
 
 
+# TODO: keep one server open to minimize SMTP connections
+# TODO: bounce handling
+
+
 def email_registrar(registrar_address: str) -> None:
-    # TODO: keep one server open to minimize SMTP connections
-    # TODO: bounce handling
+    """Email the form to the registrar of the applicant's locality. """
     yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
         to='raunakdaga@gmail.com',
         # to=registrar_address,
@@ -206,7 +209,7 @@ def email_registrar(registrar_address: str) -> None:
     )
 
 
-def create_report() -> None:
+def create_report() -> str:
     """ Call this daily at 5 am somehow, then save the filename for the day.
     It is not needed to save because it is just {thedate}.xls basically. """
 
@@ -233,6 +236,8 @@ def create_report() -> None:
 
 
 def append_to_report(report_path: str, data: Dict[str, str]) -> None:
+    """Add a row to the Excel spreadsheet with data from the application.
+    If the spreadsheet doesn't already exist, create it. """
     if not os.path.isfile(report_path):
         create_report()
     report: openpyxl.workbook.Workbook = load_workbook(filename=report_path)
@@ -242,6 +247,7 @@ def append_to_report(report_path: str, data: Dict[str, str]) -> None:
 
 
 def email_report() -> None:
+    """Email the Excel spreadsheet to Senator Surovell and Mr. Rouvelas. """
     today_date: str = date.today().strftime("%m-%d-%y")
     yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
         to=['raunakdaga@gmail.com'],
