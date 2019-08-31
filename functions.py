@@ -30,7 +30,7 @@ import localities_info
 # Change current working directory, only needed
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
-# Subtypes of pdfrw
+# Subtypes of pdfrw, needed to write to fillable app.
 ANNOT_KEY: str = '/Annots'
 ANNOT_FIELD_KEY: str = '/T'
 ANNOT_VAL_KEY: str = '/V'
@@ -195,6 +195,7 @@ def write_fillable_pdf(data: Dict[str, str]) -> None:
 
 def email_registrar(registrar_address: str) -> None:
     # TODO: keep one server open to minimize SMTP connections
+    # TODO: bounce handling
     yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
         to='raunakdaga@gmail.com',
         # to=registrar_address,
