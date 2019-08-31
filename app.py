@@ -44,6 +44,11 @@ def process_form():
 def error_page():
     return render_template('formerror.html')
 
+# Credits Route
+@app.route('/credits/', methods=['GET'])
+def credits_page():
+    return render_template('credits.html')
+
 
 '''Confirmation Route: user is redirected here
 after submission of form.
