@@ -10,7 +10,7 @@ from typing import Dict, List, Tuple
 from flask import request, session
 import datetime
 from datetime import date
-from apiclient import discovery, errors
+from apiclient import discovery
 import email
 from httplib2 import Http
 from oauth2client import file, client, tools
