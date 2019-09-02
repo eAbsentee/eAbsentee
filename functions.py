@@ -1,30 +1,17 @@
-"""
-TO-DO VERSION1:
-
-Move from keys.py to environemnt variables when deploying
-Change confirmation page to index style
-Only pop up email/fax if 6A-6D selected on reason
-/s automatically applied - check if is required
-
-TO-DO VERSION2:
-Turn off ability to submit
-Person who's canvassing
-Administrative optional info collection below signature - what district the race is
-house senate statewide
-"""
-
 import hashlib
 import yagmail
 import pdfrw
 import os
 import openpyxl
 import json
+import base64
 from openpyxl import load_workbook
 from typing import Dict, List, Tuple
 from flask import request, session
 import datetime
 from datetime import date
-from apiclient import discovery
+from apiclient import discovery, errors
+import email
 from httplib2 import Http
 from oauth2client import file, client, tools
 import re
@@ -210,7 +197,7 @@ def email_registrar(registrar_address: str) -> None:
     yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
         to='raunakdaga@gmail.com',
         # to=registrar_address,
-        subject=f'Absentee Ballot Request from {session["name"]}',
+        subject=f'Absentee Ballot Request - Applicant-ID: {session["application_id"]}',
         contents='Please find attached an absentee ballot request ' + \
         f'submitted on behalf of {session["name"]}.',
         attachments=session['output_file']
@@ -286,9 +273,6 @@ def bounceback_check() -> None:
     # user_id indicates to gmail when in the for loop that we are looking at OUR inbox
     user_id = 'me'
 
-    # we want emails that are in the inbox, and unread
-    # unread emails in particular because we will stream emails every hour,
-    # and look for bouncebacks
     label_id_one = 'INBOX'
     label_id_two = 'UNREAD'
 
@@ -296,8 +280,10 @@ def bounceback_check() -> None:
     unread_messages = GMAIL.users().messages().list(
         userId=user_id, labelIds=[label_id_one]).execute()
 
-    if len(unread_messages) > 0:
+    try:
         message_list = unread_messages['messages']
+    except:
+        return []
 
     final_list = []  # Final list of undeliverable messages which need to be covered
 
@@ -311,7 +297,6 @@ def bounceback_check() -> None:
 
         to_append = True
 
-        # try:
         # Subject of Email
         for parts_of_header in header:
             if parts_of_header['name'] == 'Subject':
@@ -321,20 +306,43 @@ def bounceback_check() -> None:
                 else:
                     to_append = False
 
-        # Snippet of Email
-        snippet = message['snippet']
+        if to_append is True:
+            snippet = message['snippet']
 
-        match = re.search(r"\"?([-a-zA-Z0-9.`?{}]+@\w+\.\w+)\"?", snippet)
-        result = match.group(0) if match else ""
+            email_which_bounced_regex = re.search(r"\"?([-a-zA-Z0-9.`?{}]+@\w+\.\w+)\"?", snippet)
+            email_which_bounced = email_which_bounced_regex.group(
+                0) if email_which_bounced_regex else ""
 
-        if to_append:
-            final_list.append(result)  # This will create a dictonary item in the final list
+            message = GMAIL.users().messages().get(userId=user_id, id=message_id,
+                                                   format='raw').execute()
+            message_with_bytes = base64.urlsafe_b64decode(message['raw'].encode('ASCII'))
+            email_object = email.message_from_bytes(message_with_bytes)
+            email_object_as_string = email_object.as_string()
+
+            application_id_object = re.search(r"Applicant-ID: \w{10}", email_object_as_string)
+            application_id_string = application_id_object.group(
+                0) if application_id_object else ""
+
+            application_id = application_id_string[14:]  # Parses hash only
+            if to_append and application_id_string:
+                # This will create a dictonary item in the final list
+                final_list.append([email_which_bounced, application_id])
 
         # This will mark the message as read
         GMAIL.users().messages().modify(userId=user_id, id=message_id,
                                         body={'removeLabelIds': ['UNREAD']}).execute()
 
-    print(final_list)
+    return final_list
 
 
-bounceback_check()
+def bounceback_email(final_list) -> None:
+    """Email the form to the bounceback email """
+    for pair in final_list:
+        yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
+            to='raunakdaga@gmail.com',
+            # to='info@elections.virginia.gov',
+            subject=f'Absentee Ballot Request (Bounceback) - Applicant-ID: {pair[1]}',
+            contents='Please find attached an absentee ballot request which was unsuccesfully delivered. ' + \
+            f'The email which caused the bounceback was {pair[0]}. We would apreciate if you could update us on the correct registrar email for this locality.',
+            attachments='applications/' + str(pair[1]) + '.pdf'
+        )
