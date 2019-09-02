@@ -131,3 +131,5 @@ applications/*
 
 reports/*
 !reports/.gitkeep
+
+credentials.json

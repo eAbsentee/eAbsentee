@@ -22,7 +22,15 @@ from openpyxl import load_workbook
 from typing import Dict, List, Tuple
 from flask import request, session
 import datetime
+import email
 from datetime import date
+from apiclient import discovery, errors
+from httplib2 import Http
+from oauth2client import file, client, tools
+import base64
+from bs4 import BeautifulSoup
+import dateutil.parser as parser
+import re
 from keys import GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD
 import localities_info
 
@@ -257,3 +265,80 @@ def email_report() -> None:
         f'ballot applications for {today_date}.',
         attachments=f'reports/{today_date}.xlsx'
     )
+
+
+def bounceback_check() -> None:
+    # Gets authentication json if it's been implemented before
+    store = file.Storage('storage.json')
+    creds = store.get()
+
+    # If the credits don't work or don't exist, create them, and store them
+    SCOPES = 'https://www.googleapis.com/auth/gmail.modify'
+    if not creds or creds.invalid:
+        flow = client.flow_from_clientsecrets('credentials.json', SCOPES)
+        creds = tools.run_flow(flow, store)
+
+    # Builds connection to gmail client
+    GMAIL = discovery.build('gmail', 'v1', http=creds.authorize(Http()))
+
+    # user_id indicates to gmail when in the for loop that we are looking at OUR inbox
+    user_id = 'me'
+
+    # we want emails that are in the inbox, and unread
+    # unread emails in particular because we will stream emails every hour,
+    # and look for bouncebacks
+    label_id_one = 'INBOX'
+    label_id_two = 'UNREAD'
+
+    # We connect to the api, request unread messages from our account, and then get a dictionary.
+    unread_messages = GMAIL.users().messages().list(
+        userId=user_id, labelIds=[label_id_one]).execute()
+
+    if len(unread_messages) > 0:
+        message_list = unread_messages['messages']
+
+    final_list = []  # Final list of undeliverable messages which need to be covered
+
+    for message in message_list:
+        temp_dict = {}
+        message_id = message['id']
+
+        message = GMAIL.users().messages().get(
+            userId=user_id, id=message_id).execute()  # Fetch the message using API
+        payload = message['payload']
+        header = payload['headers']
+
+        to_append = True
+
+        # try:
+        # Subject of Email
+        for parts_of_header in header:
+            if parts_of_header['name'] == 'Subject':
+                msg_subject = parts_of_header['value']
+                if 'Failure' in msg_subject:
+                    temp_dict['Subject'] = msg_subject
+                else:
+                    to_append = False
+
+        # Snippet of Email
+        temp_dict['Snippet'] = message['snippet']
+
+        print(temp_dict['Snippet'])
+        match = re.search(r"\"?([-a-zA-Z0-9.`?{}]+@\w+\.\w+)\"?", temp_dict['Snippet'])
+        result = match.group(0) if match else ""
+        temp_dict['Email'] = result
+
+        # except:
+        # print('An error occurred' + str(error))
+
+        if to_append:
+            final_list.append(temp_dict)  # This will create a dictonary item in the final list
+
+        # This will mark the message as read
+        GMAIL.users().messages().modify(userId=user_id, id=message_id,
+                                        body={'removeLabelIds': ['UNREAD']}).execute()
+
+    print(final_list)
+
+
+bounceback_check()
