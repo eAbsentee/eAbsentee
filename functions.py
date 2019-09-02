@@ -18,18 +18,17 @@ import yagmail
 import pdfrw
 import os
 import openpyxl
+import json
 from openpyxl import load_workbook
 from typing import Dict, List, Tuple
 from flask import request, session
 import datetime
-import email
 from datetime import date
-from apiclient import discovery, errors
+from apiclient import discovery
 from httplib2 import Http
 from oauth2client import file, client, tools
 import re
 from keys import GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD
-import localities_info
 
 # Change current working directory, only needed for Atom
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
@@ -54,77 +53,81 @@ def parse_data(request: request) -> Tuple[Dict[str, str], str]:
     absentee_telephone: str = request.form.get('more_info__telephone').replace(
         '-', '').replace('(', '').replace(')', '').replace(' ', '')
 
-    data_dict: Dict[str, str] = {
-        'firstName': request.form['name__first'],
-        'middleName': request.form['name__middle'],
-        'lastName': request.form['name__last'],
-        'suffix': request.form['name__suffix'],
-        'ssn': request.form['name__ssn'],
-        'reasonCode': request.form['reason__code'],
-        'registeredToVote': localities_info.localities[
-            request.form['election__locality_gnis']
-        ]['locality'],
-        'supporting': request.form['reason__documentation'],
-        'birthYear': request.form.get('more_info__birth_year'),
-        'email': request.form.get('more_info__email_fax'),
-        'address': request.form['address__street'],
-        'apt': request.form['address__unit'],
-        'city': request.form['address__city'],
-        'zipCode': request.form['address__zip'],
-        'ballotDeliveryAddress': request.form.get('delivery__street'),
-        'ballotDeliveryCity': request.form.get('delivery__city'),
-        'ballotDeliveryApt': request.form.get('delivery__unit'),
-        'ballotDeliveryZip': request.form.get(
-            'delivery__zip').replace('-', ''),
-        'ballotDeliveryState': request.form.get('deliv-state'),
-        'formerFullName': request.form.get('change__former_name'),
-        'formerAddress': request.form.get('change__former_address'),
-        'signature': '/S/ ' + request.form[
-            'signature__signed'].replace('/S/', '', 1).strip(),
-        'firstThreeTelephone': absentee_telephone[0:3],
-        'secondThreeTelephone': absentee_telephone[3:6],
-        'lastFourTelephone': absentee_telephone[6:10],
-        'assistantCheck': 'X' if request.form.get(
-            'assistance__assistance') == 'true' else '',
-        'assistantFullName': request.form.get('assistant__name'),
-        'assistantAddress': request.form.get('assistant__street'),
-        'assistantSignature': request.form.get('assistant__sig'),
-        'assistantApt': request.form.get('assistant__unit'),
-        'assistantCity': request.form.get('assistant__city'),
-        'assistantState': request.form.get('assistant__state'),
-        'assistantZip': request.form.get('assistant__zip').replace('-', ''),
-        'deliverResidence': 'X' if request.form.get(
-            'delivery__to') == 'residence address' else '',
-        'deliverMailing': 'X' if request.form.get(
-            'delivery__to') == 'mailing address' else '',
-        'deliverEmail': 'X' if request.form.get(
-            'delivery__to') == 'email' else '',
-        'genSpecCheck': 'X' if request.form[
-            'election__type'] == 'General or Special Election' else '',
-        'demPrimCheck': 'X' if request.form[
-            'election__type'] == 'Democratic Primary' else '',
-        'repPrimCheck': 'X' if request.form[
-            'election__type'] == 'Republican Primary' else '',
-        'countyCheck': 'X' if 'County' in localities_info.localities[
-            request.form['election__locality_gnis']
-        ]['locality'] else '',
-        'cityCheck': 'X' if 'City' in localities_info.localities[
-            request.form['election__locality_gnis']
-        ]['locality'] else '',
-        'dateMovedMonth': request.form.get('change__date_moved')[5:7],
-        'dateMovedDay': request.form.get('change__date_moved')[8:10],
-        'dateMovedYear': request.form.get('change__date_moved')[2:4],
-        'dateOfElectionMonth': request.form.get('election__date')[5:7],
-        'dateOfElectionDay': request.form.get('election__date')[8:10],
-        'dateOfElectionYear': request.form.get('election__date')[2:4],
-        'todaysDateMonth': todayDate[0:2],
-        'todaysDateDay': todayDate[2:4],
-        'todaysDateYear': todayDate[4:6],
-        'canvasserId': request.form.get('canvasser_id'),
-        'applicationIP': request.remote_addr
-    }
+    data_dict: Dict[str, str] = {}  # Create outside of scope
 
-    registrar_address: str = localities_info.localities[request.form[
+    with open('localities_info.json') as file:
+        localities = json.load(file)
+        data_dict: Dict[str, str] = {
+            'firstName': request.form['name__first'],
+            'middleName': request.form['name__middle'],
+            'lastName': request.form['name__last'],
+            'suffix': request.form['name__suffix'],
+            'ssn': request.form['name__ssn'],
+            'reasonCode': request.form['reason__code'],
+            'registeredToVote': localities[
+                request.form['election__locality_gnis']
+            ]['locality'],
+            'supporting': request.form['reason__documentation'],
+            'birthYear': request.form.get('more_info__birth_year'),
+            'email': request.form.get('more_info__email_fax'),
+            'address': request.form['address__street'],
+            'apt': request.form['address__unit'],
+            'city': request.form['address__city'],
+            'zipCode': request.form['address__zip'],
+            'ballotDeliveryAddress': request.form.get('delivery__street'),
+            'ballotDeliveryCity': request.form.get('delivery__city'),
+            'ballotDeliveryApt': request.form.get('delivery__unit'),
+            'ballotDeliveryZip': request.form.get(
+                'delivery__zip').replace('-', ''),
+            'ballotDeliveryState': request.form.get('deliv-state'),
+            'formerFullName': request.form.get('change__former_name'),
+            'formerAddress': request.form.get('change__former_address'),
+            'signature': '/S/ ' + request.form[
+                'signature__signed'].replace('/S/', '', 1).strip(),
+            'firstThreeTelephone': absentee_telephone[0:3],
+            'secondThreeTelephone': absentee_telephone[3:6],
+            'lastFourTelephone': absentee_telephone[6:10],
+            'assistantCheck': 'X' if request.form.get(
+                'assistance__assistance') == 'true' else '',
+            'assistantFullName': request.form.get('assistant__name'),
+            'assistantAddress': request.form.get('assistant__street'),
+            'assistantSignature': request.form.get('assistant__sig'),
+            'assistantApt': request.form.get('assistant__unit'),
+            'assistantCity': request.form.get('assistant__city'),
+            'assistantState': request.form.get('assistant__state'),
+            'assistantZip': request.form.get('assistant__zip').replace('-', ''),
+            'deliverResidence': 'X' if request.form.get(
+                'delivery__to') == 'residence address' else '',
+            'deliverMailing': 'X' if request.form.get(
+                'delivery__to') == 'mailing address' else '',
+            'deliverEmail': 'X' if request.form.get(
+                'delivery__to') == 'email' else '',
+            'genSpecCheck': 'X' if request.form[
+                'election__type'] == 'General or Special Election' else '',
+            'demPrimCheck': 'X' if request.form[
+                'election__type'] == 'Democratic Primary' else '',
+            'repPrimCheck': 'X' if request.form[
+                'election__type'] == 'Republican Primary' else '',
+            'countyCheck': 'X' if 'County' in localities[
+                request.form['election__locality_gnis']
+            ]['locality'] else '',
+            'cityCheck': 'X' if 'City' in localities[
+                request.form['election__locality_gnis']
+            ]['locality'] else '',
+            'dateMovedMonth': request.form.get('change__date_moved')[5:7],
+            'dateMovedDay': request.form.get('change__date_moved')[8:10],
+            'dateMovedYear': request.form.get('change__date_moved')[2:4],
+            'dateOfElectionMonth': request.form.get('election__date')[5:7],
+            'dateOfElectionDay': request.form.get('election__date')[8:10],
+            'dateOfElectionYear': request.form.get('election__date')[2:4],
+            'todaysDateMonth': todayDate[0:2],
+            'todaysDateDay': todayDate[2:4],
+            'todaysDateYear': todayDate[4:6],
+            'canvasserId': request.form.get('canvasser_id'),
+            'applicationIP': request.remote_addr
+        }
+
+    registrar_address: str = localities[request.form[
         'election__locality_gnis']]['email']
     return data_dict, registrar_address
 
@@ -165,7 +168,7 @@ def build_pdf(data: Dict[str, str], registrar_address: str) -> str:
 
 def set_session_keys(data: Dict[str, str], registrar_address: str) -> None:
     # id is first 10 characters of MD5 hash of dictionary
-    id: str = hashlib.md5(repr(data).encode('utf-8')).hexdigest()[:10]
+    id: str = hashlib.md5(repr(data).encode('utf-8')).hexdigest()[: 10]
     name: str = data['firstName'] + \
         ' ' + data['middleName'] + \
         ' ' + data['lastName'] + \
@@ -234,6 +237,7 @@ def create_report() -> str:
     sh['J1'] = 'IP Submitted From'
     sh['K1'] = 'Form ID'
     sh['L1'] = 'Canvasser ID'
+
     report_path: str = f'reports/{today_date}.xlsx'
 
     report.save(report_path)
@@ -264,6 +268,7 @@ def email_report() -> None:
     )
 
 
+# Run this every hour to get the list of emails that have bounced back
 def bounceback_check() -> None:
     # Gets authentication json if it's been implemented before
     store = file.Storage('storage.json')
