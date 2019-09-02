@@ -27,9 +27,6 @@ from datetime import date
 from apiclient import discovery, errors
 from httplib2 import Http
 from oauth2client import file, client, tools
-import base64
-from bs4 import BeautifulSoup
-import dateutil.parser as parser
 import re
 from keys import GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD
 import localities_info
