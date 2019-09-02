@@ -133,3 +133,4 @@ reports/*
 !reports/.gitkeep
 
 credentials.json
+storage.json

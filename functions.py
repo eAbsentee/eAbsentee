@@ -297,7 +297,6 @@ def bounceback_check() -> None:
     final_list = []  # Final list of undeliverable messages which need to be covered
 
     for message in message_list:
-        temp_dict = {}
         message_id = message['id']
 
         message = GMAIL.users().messages().get(
@@ -313,23 +312,18 @@ def bounceback_check() -> None:
             if parts_of_header['name'] == 'Subject':
                 msg_subject = parts_of_header['value']
                 if 'Failure' in msg_subject:
-                    temp_dict['Subject'] = msg_subject
+                    continue
                 else:
                     to_append = False
 
         # Snippet of Email
-        temp_dict['Snippet'] = message['snippet']
+        snippet = message['snippet']
 
-        print(temp_dict['Snippet'])
-        match = re.search(r"\"?([-a-zA-Z0-9.`?{}]+@\w+\.\w+)\"?", temp_dict['Snippet'])
+        match = re.search(r"\"?([-a-zA-Z0-9.`?{}]+@\w+\.\w+)\"?", snippet)
         result = match.group(0) if match else ""
-        temp_dict['Email'] = result
-
-        # except:
-        # print('An error occurred' + str(error))
 
         if to_append:
-            final_list.append(temp_dict)  # This will create a dictonary item in the final list
+            final_list.append(result)  # This will create a dictonary item in the final list
 
         # This will mark the message as read
         GMAIL.users().messages().modify(userId=user_id, id=message_id,
