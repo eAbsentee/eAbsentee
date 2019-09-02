@@ -11,6 +11,12 @@ yagmail = "*"
 pdfrw = "*"
 xlwt = "*"
 openpyxl = "*"
+typing = "*"
+datetime = "*"
+apiclient = "*"
+httplib2 = "*"
+oauth2client = "*"
+
 
 [requires]
-python_version = "3.6"
+python_version = "3.7"
