@@ -102,7 +102,10 @@ def bounceback_email(final_list) -> None:
             to='raunakdaga@gmail.com',
             # to='info@elections.virginia.gov',
             subject=f'Absentee Ballot Request (Bounceback) - Applicant-ID: {pair[1]}',
-            contents='Please find attached an absentee ballot request which was unsuccesfully delivered. ' + \
+            contents='This email is being automatically delivered by the eAbsentee absentee ballot application ' + \
+            'system. Our website, eAbsentee.com, is used to request absentee ballots online in an easier manner. ' + \
+            'You can contact us at eAbsentee@gmail.com. Thank you.' + \
+            'Please find attached an absentee ballot request which was unsuccesfully delivered to a registrar due to a bounceback email. ' + \
             f'The email which caused the bounceback was {pair[0]}. We would apreciate if you could update us on the correct registrar email for this locality.',
             attachments='applications/' + str(pair[1]) + '.pdf'
         )
