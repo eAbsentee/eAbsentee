@@ -1,0 +1,29 @@
+import yagmail
+from datetime import date
+from keys import GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD
+import os
+import openpyxl
+from openpyxl import load_workbook
+
+# Change current working directory, only needed for Atom
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
+
+def email_report() -> None:
+    """Email the Excel spreadsheet to Senator Surovell and Mr. Rouvelas. """
+    today_date: str = date.today().strftime("%m-%d-%y")
+    report_path = f'reports/{today_date}.xlsx'
+    report: openpyxl.workbook.Workbook = load_workbook(filename=report_path)
+    worksheet: openpyxl.worksheet.worksheet.Worksheet = report.active
+    if worksheet['A2'].value:
+        yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
+            to=['raunakdaga@gmail.com'],
+            # to=['ssurovell@gmail.com', 'lerouvelas@gmail.com']
+            subject=f'Daily Absentee Ballot Application Report - {today_date}',
+            contents=f'Please find attached the daily report of absentee ' + \
+            f'ballot applications for {today_date}.',
+            attachments=f'../reports/{today_date}.xlsx'
+        )
+
+
+email_report()
