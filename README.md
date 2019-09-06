@@ -22,3 +22,5 @@ GMAIL_SENDER_ADDRESS = 'eAbsentee@gmail.com'
 GMAIL_SENDER_PASSWORD = '<PASSWORD>'
 SECRET_KEY = '<SECRET KEY>'
 ```
+
+-   Run 'email_bounceback.py', and login to your GMAIL-enabled API account. 
