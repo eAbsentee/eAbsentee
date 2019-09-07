@@ -10,7 +10,7 @@ from flask import request, session
 import datetime
 from datetime import date
 from keys import GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD
-from scheduled_tasks.create_report import create_report
+# from scheduled_tasks.create_report import create_report
 
 # Change current working directory, only needed for Atom
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
@@ -200,8 +200,8 @@ def email_registrar(registrar_address: str) -> None:
 def append_to_report(report_path: str, data: Dict[str, str]) -> None:
     """Add a row to the Excel spreadsheet with data from the application.
     If the spreadsheet doesn't already exist, create it. """
-    if not os.path.isfile(report_path):
-        create_report()
+    # if not os.path.isfile(report_path):
+    #     create_report()
     report: openpyxl.workbook.Workbook = load_workbook(filename=report_path)
     worksheet: openpyxl.worksheet.worksheet.Worksheet = report.active
     worksheet.append(data)
