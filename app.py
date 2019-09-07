@@ -7,7 +7,7 @@ import os
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 # Initialize flask app, SECRET_KEY can be found in keys.py
-app = Flask(__name__)
+app = Flask(__name__, template_folder="templates")
 app.secret_key = SECRET_KEY
 app.root_path = os.path.dirname(os.path.abspath(__file__))
 app.config['TEMPLATES_AUTO_RELOAD'] = True
@@ -90,10 +90,10 @@ def render_printform_pdf():
     )
 
 
-@app.errorhandler(404)
-def page_not_found(e):
-    """Render the 404 page if an incorrect URL is entered. """
-    return render_template('404.html'), 404
+# @app.errorhandler(404)
+# def page_not_found(e):
+#     """Render the 404 page if an incorrect URL is entered. """
+#     return render_template('404.html'), 404
 
 
 if __name__ == '__main__':
