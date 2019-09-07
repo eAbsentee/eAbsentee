@@ -13,7 +13,7 @@ from typing import List
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 
-def bounceback_check() -> None:
+def bounceback_check() -> List:
     # Gets authentication json if it's been implemented before
     store = file.Storage('storage.json')
     creds = store.get()
@@ -103,7 +103,8 @@ def bounceback_email(final_list) -> None:
         yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
             to='raunakdaga@gmail.com',
             # to='info@elections.virginia.gov',
-            subject=f'Absentee Ballot Request (Bounceback) - Applicant-ID: {pair[1]}',
+            subject=f'Absentee Ballot Request (Bounceback) - Applicant-ID' + \
+            f': {pair[1]}',
             contents='This email is being automatically delivered by the ' + \
             'eAbsentee absentee ballot application system. Our website, ' + \
             'eAbsentee.com, is used to request absentee ballots online in an ' + \

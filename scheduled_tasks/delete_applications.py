@@ -1,6 +1,7 @@
 import os
-import glob
+from glob import glob
+from Typing import List
 
-files = glob.glob('../applications/*')
+files: List[str] = glob('../applications/*')
 for f in files:
     os.remove(f)
