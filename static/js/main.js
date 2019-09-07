@@ -27,10 +27,6 @@
     }, 100);
   });
 
-  setTimeout(function(){
-  document.getElementById("myVideo").play();
-  }, 5000);
-
   // Menu.
   $("#menu")
     .append("<a href=\"#menu\" class=\"close\"></a>")

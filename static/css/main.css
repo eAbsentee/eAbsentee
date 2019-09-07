@@ -6,17 +6,6 @@
 	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 */
 /* Basic */
-
-.videoyoutube{
-  margin: auto;
-  width: 50%;
-  border: 3px solid green;
-  padding: 10px;
-}
-@-ms-viewport {
-  width: device-width;
-}
-
 body {
   -ms-overflow-style: scrollbar;
 }
@@ -4404,3 +4393,13 @@ body.is-menu-visible #menu {
   box-shadow: 0 0 1.5rem 0 rgba(0, 0, 0, 0.2);
   visibility: visible;
 }
+/*
+.video-close-button {
+  background-color: grey;
+  color: white;
+}
+
+.video-close-button:hover {
+  background-color: rgb(225, 0, 0);
+  color: white;
+} */
