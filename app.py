@@ -9,7 +9,8 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 # Initialize flask app, SECRET_KEY can be found in keys.py
 app = Flask(__name__)
 app.secret_key = SECRET_KEY
-
+app.root_path = os.path.dirname(os.path.abspath(__file__))
+app.config['TEMPLATES_AUTO_RELOAD'] = True
 
 # Homepage route
 @app.route('/')
