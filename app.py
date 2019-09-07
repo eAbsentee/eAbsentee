@@ -7,7 +7,7 @@ import os
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 # Initialize flask app, SECRET_KEY can be found in keys.py
-app = Flask(__name__)
+app = Flask(__name__, template_folder="/templates")
 app.secret_key = SECRET_KEY
 
 
