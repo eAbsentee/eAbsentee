@@ -11,6 +11,7 @@ app = Flask(__name__, template_folder="templates")
 app.secret_key = SECRET_KEY
 app.root_path = os.path.dirname(os.path.abspath(__file__))
 app.config['TEMPLATES_AUTO_RELOAD'] = True
+app.config['EXPLAIN_TEMPLATE_LOADING'] = True
 
 # Homepage route
 @app.route('/')
