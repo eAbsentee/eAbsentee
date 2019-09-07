@@ -77,7 +77,8 @@ def parse_data(request: request) -> Tuple[Dict[str, str], str]:
             'assistantApt': request.form.get('assistant__unit'),
             'assistantCity': request.form.get('assistant__city'),
             'assistantState': request.form.get('assistant__state'),
-            'assistantZip': request.form.get('assistant__zip').replace('-', ''),
+            'assistantZip': request.form.get(
+                'assistant__zip').replace('-', ''),
             'deliverResidence': 'X' if request.form.get(
                 'delivery__to') == 'residence address' else '',
             'deliverMailing': 'X' if request.form.get(
@@ -183,16 +184,13 @@ def write_fillable_pdf(data: Dict[str, str]) -> None:
     pdfrw.PdfWriter().write(session['output_file'], template_pdf)
 
 
-# TODO: keep one server open to minimize SMTP connections
-# TODO: bounce handling
-
-
 def email_registrar(registrar_address: str) -> None:
     """Email the form to the registrar of the applicant's locality. """
     yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
         to='raunakdaga@gmail.com',
         # to=registrar_address,
-        subject=f'Absentee Ballot Request - Applicant-ID: {session["application_id"]}',
+        subject='Absentee Ballot Request - Applicant-ID: ' + \
+        f'{session["application_id"]}',
         contents='Please find attached an absentee ballot request ' + \
         f'submitted on behalf of {session["name"]}.',
         attachments=session['output_file']
