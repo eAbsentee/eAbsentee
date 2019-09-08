@@ -9,6 +9,10 @@ from typing import Dict, List, Tuple
 from flask import request, session
 import datetime
 from datetime import date
+import io
+from PyPDF2 import PdfFileWriter, PdfFileReader
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import letter
 from keys import GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD
 # from scheduled_tasks.create_report import create_report
 
@@ -44,31 +48,31 @@ def parse_data(request: request) -> Tuple[Dict[str, str], str]:
             'middleName': request.form['name__middle'],
             'lastName': request.form['name__last'],
             'suffix': request.form['name__suffix'],
-            'ssn': request.form['name__ssn'],
-            'reasonCode': request.form['reason__code'],
+            'ssn': '  '.join(request.form['name__ssn']),
+            'reasonCode': '     '.join(request.form['reason__code']),
             'registeredToVote': localities[
                 request.form['election__locality_gnis']
             ]['locality'],
             'supporting': request.form['reason__documentation'],
-            'birthYear': request.form.get('more_info__birth_year'),
+            'birthYear': '   '.join(request.form.get('more_info__birth_year')),
             'email': request.form.get('more_info__email_fax'),
             'address': request.form['address__street'],
             'apt': request.form['address__unit'],
             'city': request.form['address__city'],
-            'zipCode': request.form['address__zip'],
+            'zipCode': '   '.join(request.form['address__zip']),
             'ballotDeliveryAddress': request.form.get('delivery__street'),
             'ballotDeliveryCity': request.form.get('delivery__city'),
             'ballotDeliveryApt': request.form.get('delivery__unit'),
-            'ballotDeliveryZip': request.form.get(
-                'delivery__zip').replace('-', ''),
+            'ballotDeliveryZip': '   '.join(request.form.get(
+                'delivery__zip').replace('-', '')),
             'ballotDeliveryState': request.form.get('deliv-state'),
             'formerFullName': request.form.get('change__former_name'),
             'formerAddress': request.form.get('change__former_address'),
             'signature': '/S/ ' + request.form[
                 'signature__signed'].replace('/S/', '', 1).strip(),
-            'firstThreeTelephone': absentee_telephone[0:3],
-            'secondThreeTelephone': absentee_telephone[3:6],
-            'lastFourTelephone': absentee_telephone[6:10],
+            'firstThreeTelephone': '   '.join(absentee_telephone[0:3]),
+            'secondThreeTelephone': '   '.join(absentee_telephone[3:6]),
+            'lastFourTelephone': '   '.join(absentee_telephone[6:10]),
             'assistantCheck': 'X' if request.form.get(
                 'assistance__assistance') == 'true' else '',
             'assistantFullName': request.form.get('assistant__name'),
@@ -77,8 +81,8 @@ def parse_data(request: request) -> Tuple[Dict[str, str], str]:
             'assistantApt': request.form.get('assistant__unit'),
             'assistantCity': request.form.get('assistant__city'),
             'assistantState': request.form.get('assistant__state'),
-            'assistantZip': request.form.get(
-                'assistant__zip').replace('-', ''),
+            'assistantZip': '   '.join(request.form.get(
+                'assistant__zip').replace('-', '')),
             'deliverResidence': 'X' if request.form.get(
                 'delivery__to') == 'residence address' else '',
             'deliverMailing': 'X' if request.form.get(
@@ -97,15 +101,15 @@ def parse_data(request: request) -> Tuple[Dict[str, str], str]:
             'cityCheck': 'X' if 'City' in localities[
                 request.form['election__locality_gnis']
             ]['locality'] else '',
-            'dateMovedMonth': request.form.get('change__date_moved')[5:7],
-            'dateMovedDay': request.form.get('change__date_moved')[8:10],
-            'dateMovedYear': request.form.get('change__date_moved')[2:4],
-            'dateOfElectionMonth': request.form.get('election__date')[5:7],
-            'dateOfElectionDay': request.form.get('election__date')[8:10],
-            'dateOfElectionYear': request.form.get('election__date')[2:4],
-            'todaysDateMonth': todayDate[0:2],
-            'todaysDateDay': todayDate[2:4],
-            'todaysDateYear': todayDate[4:6],
+            'dateMovedMonth': '   '.join(request.form.get('change__date_moved')[5:7]),
+            'dateMovedDay': '   '.join(request.form.get('change__date_moved')[8:10]),
+            'dateMovedYear': '   '.join(request.form.get('change__date_moved')[2:4]),
+            'dateOfElectionMonth': '   '.join(request.form.get('election__date')[5:7]),
+            'dateOfElectionDay': '   '.join(request.form.get('election__date')[8:10]),
+            'dateOfElectionYear': '   '.join(request.form.get('election__date')[2:4]),
+            'todaysDateMonth': '   '.join(todayDate[0:2]),
+            'todaysDateDay': '   '.join(todayDate[2:4]),
+            'todaysDateYear': '   '.join(todayDate[4:6]),
             'canvasserId': request.form.get('canvasser_id'),
             'applicationIP': request.remote_addr
         }
@@ -123,7 +127,7 @@ def build_pdf(data: Dict[str, str], registrar_address: str) -> str:
     sends the registrar address to email_registrar."""
 
     set_session_keys(data, registrar_address)
-    write_fillable_pdf(data)
+    new_write_fillable_pdf(data)
 
     today_date: str = date.today().strftime("%m-%d-%y")
     report_path: str = f'reports/{today_date}.xlsx'
@@ -182,6 +186,91 @@ def write_fillable_pdf(data: Dict[str, str]) -> None:
                         pdfrw.PdfDict(V='{}'.format(data[key]))
                     )
     pdfrw.PdfWriter().write(session['output_file'], template_pdf)
+
+
+def new_write_fillable_pdf(data: Dict[str, str]) -> None:
+    print('Assistnat sig: ' + data['lastName'])
+    packet = io.BytesIO()
+    # Create a new PDF with Reportlab
+    can = canvas.Canvas(packet, pagesize=letter)
+    can.drawString(180, 690, data['lastName'])  # LastName
+    can.drawString(420, 690, data['firstName'])  # First Name
+    can.drawString(185, 666, data['middleName'])  # Middle Name
+    can.drawString(320, 666, data['suffix'])  # Suffix
+    can.drawString(238, 638, data['genSpecCheck'])  # Gen/Spec Election
+    can.drawString(383, 638, data['demPrimCheck'])  # Democratic Primary
+    can.drawString(498, 638, data['repPrimCheck'])  # Republican Primary
+    can.drawString(550, 675, data['ssn'])  # SSN
+    can.drawString(207, 614, data['dateOfElectionMonth'])  # MonthOfElection
+    can.drawString(251, 614, data['dateOfElectionDay'])  # Dayofelection
+    can.drawString(291, 614, data['dateOfElectionYear'])  # YearOfElection
+
+    can.drawString(331, 611, data['countyCheck'])  # REGISTERED COUNTY
+    can.drawString(378, 611, data['cityCheck'])  # REGISTERED CITY
+    can.drawString(425, 611, data['registeredToVote'])  # Registered locality
+
+    can.drawString(189, 554, data['reasonCode'])
+    can.drawString(312, 555, data['supporting'])
+
+    can.drawString(183, 522, data['birthYear'])  # Birth Year
+    can.drawString(423, 524, data['firstThreeTelephone'])  # FIRST 3 TELPEHONE
+    can.drawString(480, 524, data['secondThreeTelephone'])  # SECOND 3 TELPEHONE
+    can.drawString(537, 524, data['lastFourTelephone'])  # LAST 4 TELPEHONE
+    can.drawString(178, 504, data['email'])
+
+    can.drawString(171, 473, data['address'])
+    can.drawString(516, 473, data['apt'])
+    can.drawString(153, 453, data['city'])
+    can.drawString(518, 453, data['zipCode'])  # ZIP CODE OF DELIVERY
+
+    can.drawString(289, 424, data['deliverResidence'])  # DELIVERED TO RESIDENCE
+    can.drawString(459, 424, data['deliverMailing'])  # DELIVERED TO MAILING
+    can.drawString(289, 410, data['deliverEmail'])  # DELIVERED TO EMAIL
+    # can.drawString(459, 410, data['deliverFax'])  # DELIVERED TO FAX
+    can.drawString(168, 392, data['ballotDeliveryAddress'])
+    can.drawString(532, 392, data['ballotDeliveryApt'])
+    can.drawString(154, 372, data['ballotDeliveryCity'])
+    can.drawString(317, 372, data['ballotDeliveryState'])
+    can.drawString(442, 372, data['ballotDeliveryZip'])
+
+    can.drawString(205, 340, data['formerFullName'])
+    can.drawString(487, 340, data['dateMovedMonth'])  # MONTH MOVED
+    can.drawString(528, 340, data['dateMovedDay'])  # DAY MOVED
+    can.drawString(569, 340, data['dateMovedYear'])  # YEAR MOVED
+    can.drawString(192, 320, data['formerAddress'])
+
+    can.drawString(130, 292, data['assistantCheck'])  # Assistant checkbox
+    can.drawString(170, 222, data['assistantFullName'])
+    can.drawString(165, 202, data['assistantAddress'])
+    can.drawString(513, 202, data['assistantApt'])
+    can.drawString(150, 182, data['assistantCity'])
+    can.drawString(363, 182, data['assistantState'])
+    can.drawString(517, 182, data['assistantZip'])
+    can.drawString(170, 162, data['assistantSignature'])
+
+    can.drawString(247, 103, data['signature'])
+    can.drawString(492, 103, data['todaysDateMonth'])  # Month Signed
+    can.drawString(529, 103, data['todaysDateDay'])  # Day Signed
+    can.drawString(569, 103, data['todaysDateYear'])  # Year Signed
+
+    # Apply the changes
+    can.save()
+
+    # Move to the beginning of the StringIO buffer
+    packet.seek(0)
+    new_pdf = PdfFileReader(packet)
+
+    # Read the existing PDF (the first argument passed to this script)
+    existing_pdf = PdfFileReader(input_pdf_path, "rb")
+    output = PdfFileWriter()
+
+    # Add the "watermark" (which is the new pdf) on the existing page
+    page = existing_pdf.getPage(0)
+    page.mergePage(new_pdf.getPage(0))
+    output.addPage(page)
+
+    # Finally, write "output" to a real file
+    output.write(open(session['output_file'], "wb"))
 
 
 def email_registrar(registrar_address: str) -> None:
