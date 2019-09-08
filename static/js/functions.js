@@ -240,7 +240,7 @@
             $("input:submit").attr("disabled", true);
 
             console.log($("form").serializeObject());
-      });
+      }
 
           // $("form").submit(function(e) {
           //
