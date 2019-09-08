@@ -16,6 +16,8 @@ datetime = "*"
 httplib2 = "*"
 oauth2client = "*"
 google-api-python-client = "*"
+pypdf2 = "*"
+reportlab = "*"
 
 [requires]
 python_version = "3.7"

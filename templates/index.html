@@ -15,7 +15,6 @@
 
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}" />
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/tingle.min.css') }}">
 
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-147192988-1"></script>
@@ -58,6 +57,16 @@
 			<ul class="actions fit">
 				<li><a href="./form" class="button primary fit small">Apply for Absentee Ballot</a></li>
 				<li><a href="#faq" class="button fit small">F.A.Q.</a></li>
+			</ul>
+			<ul class="actions fit">
+				<li>
+					<h2>How to use this site</h2>
+					<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/WzhxQXRC15Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				</li>
+				<li>
+					<h2>Does my vote really matter?</h2>
+					<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/usJyXlkl3G4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				</li>
 			</ul>
 		</div>
 		<!-- <video poster="static/thumbnail.png" autoplay playsinline src="static/vid.mp4"></video> -->
@@ -243,12 +252,10 @@
 	</footer>
 
 	<!-- Scripts -->
-	<script src="{{ url_for('static', filename='js/tingle.min.js') }}"></script>
 	<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
 	<script src="{{ url_for('static', filename='js/browser.min.js') }}"></script>
 	<script src="{{ url_for('static', filename='js/breakpoints.min.js') }}"></script>
 	<script src="{{ url_for('static', filename='js/util.min.js') }}"></script>
-	<script src="{{ url_for('static', filename='js/video.js') }}"></script>
 	<script src="{{ url_for('static', filename='js/main.js') }}"></script>
 
 </body>
