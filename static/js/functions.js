@@ -232,7 +232,7 @@
         var formattedDate = d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2) + "T" + ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2) + ":" + ("0" + d.getSeconds()).slice(-2) + "Z";
         $("input[name=\"signature__date\"]").val(formattedDate);
 
-        $("form").submit(function(e)) {
+        $("form").submit(function(e){
 
             e.preventDefault();
 
@@ -240,7 +240,7 @@
             $("input:submit").attr("disabled", true);
 
             console.log($("form").serializeObject());
-          }
+      });
 
           // $("form").submit(function(e) {
           //
