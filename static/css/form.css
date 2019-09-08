@@ -11,6 +11,7 @@ html {
 /* line 19, ../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_normalize.scss */
 body {
   margin: 0;
+  background-color: white;
 }
 
 /* line 33, ../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_normalize.scss */
@@ -53,7 +54,7 @@ template {
 
 /* line 89, ../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_normalize.scss */
 a {
-  background-color: transparent;
+  background-color: white;
 }
 
 /* line 97, ../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_normalize.scss */
