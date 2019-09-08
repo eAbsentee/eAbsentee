@@ -312,43 +312,43 @@
       /* optional triggers
   /* optional triggers
 
-	$(window).load(function() {
+ $(window).load(function() {
 
-	});
+ });
 
-	$(window).resize(function() {
+ $(window).resize(function() {
 
-	});
+ });
 
-	*/
+ */
       $(window).load(function() {
         $("input:submit").attr("enabled", true);
       });
       /* optional triggers
 
-	$(window).load(function() {
+ $(window).load(function() {
 
-	});
+ });
 
-	$(window).resize(function() {
+ $(window).resize(function() {
 
-	});
+ });
 
-	*/
+ */
       $(window).resize(function() {
 
       });
       /* optional triggers
 
-	$(window).load(function() {
+ $(window).load(function() {
 
-	});
+ });
 
-	$(window).resize(function() {
+ $(window).resize(function() {
 
-	});
+ });
 
-	*/
+ */
 
 
     })(window.jQuery);
