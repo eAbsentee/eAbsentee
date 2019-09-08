@@ -233,9 +233,8 @@
     $("input[name=\"signature__date\"]").val(formattedDate);
 
     $("form").submit(function(e) {
-      e.preventDefault();
-      $("input:submit").attr("disabled", true);
       console.log($("form").serializeObject());
+      $("input:submit").attr("disabled", true);
     });
 
   });
