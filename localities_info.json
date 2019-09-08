@@ -73,7 +73,7 @@
     },
     "023": {
         "locality": "Botetourt County",
-        "email": "pbooze@botetourtva.gov",
+        "email": "tclark@botetourtva.gov",
         "phone": "540-473-8235",
         "fax": "540-473-8657"
     },
@@ -91,7 +91,7 @@
     },
     "027": {
         "locality": "Buchanan County",
-        "email": "govote027@vmmicro.net",
+        "email": "registrar@buchanancounty-va.gov",
         "phone": "276-935-6534",
         "fax": "276-935-4320"
     },
@@ -103,13 +103,13 @@
     },
     "530": {
         "locality": "Buena Vista City",
-        "email": "agarrett@bvcity.org",
+        "email": "estaton@bvcity.org",
         "phone": "540-261-8605",
         "fax": "540-261-8618"
     },
     "031": {
         "locality": "Campbell County",
-        "email": "ktdanos@campbellcountyva.gov",
+        "email": "klmartin@co.campbell.va.us",
         "phone": "434-332-9579",
         "fax": "434-332-9689"
     },
@@ -121,7 +121,7 @@
     },
     "035": {
         "locality": "Carroll County",
-        "email": "kcloud@carrollcountyva.org",
+        "email": "kimberly.cloud@carrollcountyva.gov",
         "phone": "276-730-3035",
         "fax": "276-730-3040"
     },
@@ -133,7 +133,7 @@
     },
     "037": {
         "locality": "Charlotte County",
-        "email": "nanlambert@kinex.net",
+        "email": "charlottecovotes037@gmail.com",
         "phone": "434-542-5856",
         "fax": "434-542-4168"
     },
@@ -145,7 +145,7 @@
     },
     "550": {
         "locality": "Chesapeake City",
-        "email": "wspradlin@cityofchesapeake.net",
+        "email": "mlpinkerman@cityofchesapeake.net",
         "phone": "757-277-9797",
         "fax": "757-547-5402"
     },
@@ -163,7 +163,7 @@
     },
     "570": {
         "locality": "Colonial Heights City",
-        "email": "redfords@colonialheightsva.gov",
+        "email": "schottj@colonialheightsva.gov",
         "phone": "804-520-9277",
         "fax": "804-520-9209"
     },
@@ -175,7 +175,7 @@
     },
     "045": {
         "locality": "Craig County",
-        "email": "govote045.craigco@tds.net",
+        "email": "vote@craigcountyva.gov",
         "phone": "540-864-6190",
         "fax": "540-864-5551"
     },
@@ -199,7 +199,7 @@
     },
     "051": {
         "locality": "Dickenson County",
-        "email": "reba.childress@dmv.virginia.gov",
+        "email": "rchildress@dickensonva.org",
         "phone": "276-926-1620",
         "fax": "276-926-8287"
     },
@@ -211,13 +211,13 @@
     },
     "595": {
         "locality": "Emporia City",
-        "email": "ldunlow@ci.emporia.va.us",
+        "email": "awall@ci.emporia.va.us",
         "phone": "434-634-9533",
         "fax": "434-634-0003"
     },
     "057": {
         "locality": "Essex County",
-        "email": "klafollette@essex-virginia.org",
+        "email": "govote@essex-virginia.org",
         "phone": "804-443-4611",
         "fax": "804-443-4157"
     },
@@ -247,7 +247,7 @@
     },
     "063": {
         "locality": "Floyd County",
-        "email": "govote063@floydcova.org",
+        "email": "registrar@floydcova.org",
         "phone": "540-745-9350",
         "fax": "540-745-9390"
     },
@@ -271,13 +271,13 @@
     },
     "069": {
         "locality": "Frederick County",
-        "email": "rmiller@fcva.us",
+        "email": "rich.venskoske@fcva.us",
         "phone": "540-665-5660",
         "fax": "540-665-8976"
     },
     "630": {
         "locality": "Fredericksburg City",
-        "email": "jpitchford@fredericksburgva.gov",
+        "email": "mchoffman@fredericksburgva.gov",
         "phone": "540-372-1030",
         "fax": "540-373-8381"
     },
@@ -289,7 +289,7 @@
     },
     "071": {
         "locality": "Giles County",
-        "email": "govote071@verizon.net",
+        "email": "govote071@gilescounty.org",
         "phone": "540-921-2802",
         "fax": "540-921-3176"
     },
@@ -301,25 +301,25 @@
     },
     "075": {
         "locality": "Goochland County",
-        "email": "fragland@co.goochland.va.us",
+        "email": "Rmulligan@goochlandva.us",
         "phone": "804-556-5803",
         "fax": "804-556-6323"
     },
     "077": {
         "locality": "Grayson County",
-        "email": "graysonreg1@gmail.com",
+        "email": "cwingate@graysoncountyva.gov",
         "phone": "276-773-2842",
         "fax": "276-773-8042"
     },
     "079": {
         "locality": "Greene County",
-        "email": "sshifflett@gcva.us",
+        "email": "jlewis-fowler@gcva.us",
         "phone": "434-985-5213",
         "fax": "434-985-2369"
     },
     "081": {
         "locality": "Greensville County",
-        "email": "dkea@greensvillecountyva.gov",
+        "email": "sconwell@greensvillecountyva.gov",
         "phone": "434-348-4228",
         "fax": "434-348-4257"
     },
@@ -367,13 +367,13 @@
     },
     "670": {
         "locality": "Hopewell City",
-        "email": "pclark@hopewellva.gov",
+        "email": "vote@hopewellva.gov",
         "phone": "804-541-2232",
         "fax": "804-452-5828"
     },
     "093": {
         "locality": "Isle Of Wight County",
-        "email": "lbettert@isleofwightus.net",
+        "email": "lbetterton@isleofwightus.net",
         "phone": "757-365-6230",
         "fax": "757-357-5699"
     },
@@ -415,7 +415,7 @@
     },
     "678": {
         "locality": "Lexington City",
-        "email": "votelex@lexingtonva.gov",
+        "email": "jyowell@lexingtonva.gov",
         "phone": "540-462-3706",
         "fax": "540-463-5310"
     },
@@ -469,7 +469,7 @@
     },
     "115": {
         "locality": "Mathews County",
-        "email": "cfaulkner@co.mathews.va.us",
+        "email": "cfaulkner@mathewscountyva.gov",
         "phone": "804-725-3200",
         "fax": "804-725-5786"
     },
@@ -505,7 +505,7 @@
     },
     "700": {
         "locality": "Newport News City",
-        "email": "vlewis@nnva.gov",
+        "email": "lewisvv@nnva.gov",
         "phone": "757-926-8683",
         "fax": "757-926-3653"
     },
@@ -523,7 +523,7 @@
     },
     "133": {
         "locality": "Northumberland County",
-        "email": "kgoddard@co.northumberland.va.us",
+        "email": "kdavenport@co.northumberland.va.us",
         "phone": "804-580-4655",
         "fax": "804-580-2075"
     },
@@ -535,7 +535,7 @@
     },
     "135": {
         "locality": "Nottoway County",
-        "email": "govote135@gcronline.com",
+        "email": "govote135@gmail.com",
         "phone": "434-645-8148",
         "fax": "434-645-1636"
     },
@@ -565,7 +565,7 @@
     },
     "143": {
         "locality": "Pittsylvania County",
-        "email": "jennylee.sanders@pittgov.org",
+        "email": "kelly.bailess@pittgov.org",
         "phone": "434-432-7971",
         "fax": "434-432-7973"
     },
@@ -595,13 +595,13 @@
     },
     "149": {
         "locality": "Prince George County",
-        "email": "ktyler@princegeorgecountyva.gov",
+        "email": "aricheson@princegeorgecountyva.gov",
         "phone": "804-722-8748",
         "fax": "804-733-2793"
     },
     "153": {
         "locality": "Prince William County",
-        "email": "absenteevoting@pwcgov.org",
+        "email": "pwcvote@pwcgov.org",
         "phone": "703-792-6470",
         "fax": "703-792-6461"
     },
@@ -613,7 +613,7 @@
     },
     "750": {
         "locality": "Radford City",
-        "email": "thoward@radford.va.us",
+        "email": "tracy.howard@radfordva.gov",
         "phone": "540-731-3639",
         "fax": "540-633-0152"
     },
@@ -643,13 +643,13 @@
     },
     "161": {
         "locality": "Roanoke County",
-        "email": "jstokes@roanokecountyva.gov",
+        "email": "acloeter@roanokecountyva.gov",
         "phone": "540-772-7500",
         "fax": "540-772-2115"
     },
     "163": {
         "locality": "Rockbridge County",
-        "email": "m.earhart@co.rockbridge.va.us",
+        "email": "shall@rockbridgecountyva.gov",
         "phone": "540-463-7203",
         "fax": "540-463-1078"
     },
@@ -673,7 +673,7 @@
     },
     "169": {
         "locality": "Scott County",
-        "email": "michael.edwards@dmv.virginia.gov",
+        "email": "medwards@scottcountyva.com",
         "phone": "276-386-3843",
         "fax": "276-386-3741"
     },
@@ -691,7 +691,7 @@
     },
     "175": {
         "locality": "Southampton County",
-        "email": "pdavis@socogovote.com",
+        "email": "lburgess@socogovote.com",
         "phone": "757-653-9280",
         "fax": "757-653-9401"
     },
@@ -709,7 +709,7 @@
     },
     "790": {
         "locality": "Staunton City",
-        "email": "homesaj@ci.staunton.va.us",
+        "email": "goldsmithmg@ci.staunton.va.us",
         "phone": "540-332-3840",
         "fax": "540-332-3834"
     },
@@ -721,13 +721,13 @@
     },
     "181": {
         "locality": "Surry County",
-        "email": "lepps@surrycountyva.gov",
+        "email": "swhite@surrycountyva.gov",
         "phone": "757-294-5213",
         "fax": "757-294-5285"
     },
     "183": {
         "locality": "Sussex County",
-        "email": "officeregistrar04@yahoo.com",
+        "email": "right2voteSUSSEX@yahoo.com",
         "phone": "434-246-1047",
         "fax": "434-246-4315"
     },
@@ -751,7 +751,7 @@
     },
     "191": {
         "locality": "Washington County",
-        "email": "mary.compton@dmv.virginia.gov",
+        "email": "dlyall@washcova.com",
         "phone": "276-676-6227",
         "fax": "276-676-6200"
     },
@@ -769,7 +769,7 @@
     },
     "830": {
         "locality": "Williamsburg City",
-        "email": "wsowder@williamsburgva.gov",
+        "email": "treitzel@williamsburgva.gov",
         "phone": "757-220-6157",
         "fax": "757-220-6158"
     },
