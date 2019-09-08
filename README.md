@@ -26,7 +26,7 @@ API_KEY = <'API KEY'>
 
 -   Run `pipenv shell`
 
--   Run `python scheduled_tasks/email_bounceback.py`, and login to your GMAIL-enabled API account.
+-   Run `python email_bounceback.py`, and login to your GMAIL-enabled API account.
 
 -   Run `export FLASK_ENV=development`
 

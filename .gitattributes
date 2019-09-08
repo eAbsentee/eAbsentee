@@ -1,0 +1,9 @@
+static/js/breakpoints.min.js linguist-vendored
+static/js/browser.min.js linguist-vendored
+static/js/jquery.min.js linguist-vendored
+static/js/modernizr-2.7.1.dev.js linguist-vendored
+static/js/prefixfree.min.js linguist-vendored
+static/js/util.min.js linguist-vendored
+
+static/css/font-awesome.min.css linguist-vendored
+static/css/fonts/* linguist-vendored

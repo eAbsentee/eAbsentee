@@ -1,5 +1,5 @@
 import yagmail
-from apiclient import discovery
+from googleapiclient import discovery
 import email
 from httplib2 import Http
 from oauth2client import file, client, tools
@@ -107,7 +107,7 @@ def bounceback_email(final_list) -> None:
             f': {pair[1]}',
             contents='This email is being automatically delivered by the ' + \
             'eAbsentee absentee ballot application system. Our website, ' + \
-            'eAbsentee.com, is used to request absentee ballots online in an ' + \
+            'eAbsentee.org, is used to request absentee ballots online in an ' + \
             ' easier manner. You can contact us at eAbsentee@gmail.com. ' + \
             'Thank you. Please find attached an absentee ballot request ' + \
             'which was unsuccesfully delivered to a registrar due to a ' + \
