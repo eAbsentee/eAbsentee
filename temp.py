@@ -97,6 +97,10 @@ def main():
     can.drawString(569, 340, '0   0')  # YEAR MOVED
     can.drawString(192, 320, 'Former Address')
 
+    can.drawString(247, 103, 'Signature')
+    can.drawString(492, 103, '0   0')  # Date Signed
+    can.drawString(529, 103, '0   0')  # Month Signed
+    can.drawString(529, 103, '0   0')  # Month Signed
     # Apply the changes
     can.save()
 

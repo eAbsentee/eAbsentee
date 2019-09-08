@@ -27,7 +27,7 @@ def create_report() -> str:
     sh['K1'] = 'Form ID'
     sh['L1'] = 'Canvasser ID'
 
-    report_path: str = f'../reports/{today_date}.xlsx'
+    report_path: str = f'reports/{today_date}.xlsx'
 
     report.save(report_path)
     return report_path

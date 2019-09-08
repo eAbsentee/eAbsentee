@@ -22,7 +22,7 @@ def email_report() -> None:
             subject=f'Daily Absentee Ballot Application Report - {today_date}',
             contents=f'Please find attached the daily report of absentee ' + \
             f'ballot applications for {today_date}.',
-            attachments=f'../reports/{today_date}.xlsx'
+            attachments=f'reports/{today_date}.xlsx'
         )
 
 
