@@ -111,7 +111,7 @@ def parse_data(request: request) -> Tuple[Dict[str, str], str]:
             'todaysDateDay': '   '.join(todayDate[2:4]),
             'todaysDateYear': '   '.join(todayDate[4:6]),
             'canvasserId': request.form.get('canvasser_id'),
-            'applicationIP': request.remote_addr
+            'applicationIP': request.environ['REMOTE_ADDR']
         }
 
     registrar_address: str = localities[request.form[
