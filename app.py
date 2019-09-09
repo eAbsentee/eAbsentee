@@ -96,6 +96,11 @@ def canvass(route: str):
     return(redirect('/'))
 
 
+@app.route('/about')
+def about():
+    return(render_template('about.html'))
+
+
 # @app.errorhandler(404)
 # def page_not_found(e):
 #     """Render the 404 page if an incorrect URL is entered. """

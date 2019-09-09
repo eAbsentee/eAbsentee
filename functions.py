@@ -189,7 +189,6 @@ def write_fillable_pdf(data: Dict[str, str]) -> None:
 
 
 def new_write_fillable_pdf(data: Dict[str, str]) -> None:
-    print('Assistnat sig: ' + data['lastName'])
     packet = io.BytesIO()
     # Create a new PDF with Reportlab
     can = canvas.Canvas(packet, pagesize=letter)
