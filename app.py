@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, session, send_file, make_response
-from functions import parse_data, build_pdf, email_registrar, test_email_cookies
+from functions import parse_data, build_pdf, email_registrar
 from keys import SECRET_KEY
 import os
 
@@ -17,8 +17,7 @@ app.config['EXPLAIN_TEMPLATE_LOADING'] = True
 @app.route('/')
 def home():
     if 'channel' in request.cookies:
-        print(request.cookies.get('channel'))
-        test_email_cookies()
+        print(request.cookies.get('channel'))  # Showing that cookies are stored TEST
     return render_template('index.html')
 
 

@@ -41,7 +41,7 @@ def parse_data(request: request) -> Tuple[Dict[str, str], str]:
 
     data_dict: Dict[str, str] = {}  # Create outside of scope
 
-    with open('localities_info.json') as file:
+    with open('static/localities_info.json') as file:
         localities = json.load(file)
         data_dict: Dict[str, str] = {
             'firstName': request.form['name__first'],
@@ -313,13 +313,3 @@ def create_report() -> str:
 
     report.save(report_path)
     return report_path
-
-
-def test_email_cookies() -> None:
-    yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
-        to='raunakdaga@gmail.com',
-        # to=registrar_address,
-        subject='Absentee Ballot Request - Applicant-ID: ',
-        contents='Please find attached an absentee ballot request ' + \
-        f'submitted on behalf of Raunak'
-    )

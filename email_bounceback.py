@@ -15,13 +15,13 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 def bounceback_check() -> List:
     # Gets authentication json if it's been implemented before
-    store = file.Storage('storage.json')
+    store = file.Storage('static/storage.json')
     creds = store.get()
 
     # If the credits don't work or don't exist, create them, and store them
     SCOPES = 'https://www.googleapis.com/auth/gmail.modify'
     if not creds or creds.invalid:
-        flow = client.flow_from_clientsecrets('credentials.json', SCOPES)
+        flow = client.flow_from_clientsecrets('static/credentials.json', SCOPES)
         creds = tools.run_flow(flow, store)
 
     # Builds connection to gmail client
@@ -98,7 +98,6 @@ def bounceback_check() -> List:
 
 def bounceback_email(final_list) -> None:
     """Email the form to the bounceback email """
-    print('done')
     for pair in final_list:
         yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
             to='raunakdaga@gmail.com',
@@ -114,7 +113,7 @@ def bounceback_email(final_list) -> None:
             'bounceback email. The email which caused the bounceback was ' + \
             f'{pair[0]}. We would apreciate if you could update us on the ' + \
             'correct registrar email for this locality.',
-            attachments=f'../applications/{str(pair[1])}.pdf'
+            attachments=f'applications/{str(pair[1])}.pdf'
         )
 
 
