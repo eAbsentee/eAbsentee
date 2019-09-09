@@ -1,5 +1,5 @@
-from flask import Flask, render_template, request, redirect, session, send_file
-from functions import parse_data, build_pdf, email_registrar
+from flask import Flask, render_template, request, redirect, session, send_file, make_response
+from functions import parse_data, build_pdf, email_registrar, test_email_cookies
 from keys import SECRET_KEY
 import os
 
@@ -16,6 +16,9 @@ app.config['EXPLAIN_TEMPLATE_LOADING'] = True
 # Homepage route
 @app.route('/')
 def home():
+    if 'channel' in request.cookies:
+        print(request.cookies.get('channel'))
+        test_email_cookies()
     return render_template('index.html')
 
 
@@ -31,8 +34,7 @@ def process_form():
         # try:
         email_registrar(
             build_pdf(
-                # * unpacks tuple returned by parse_data into arguments for build_pdf
-                *parse_data(request)))
+                *parse_data(request)))  # * unpacks tuple returned by parse_data into arguments for build_pdf
         # except(Exception):
         #     return redirect('/error/')
         return redirect('/confirmation/')
@@ -91,9 +93,11 @@ def render_printform_pdf():
     )
 
 
-@app.route('/canvass/<route>')
-def canvass(route: str):
-    return(redirect('/'))
+@app.route('/canvass/<channel>')
+def canvass(channel: str):
+    response = make_response(redirect('/'))
+    response.set_cookie('channel', channel)
+    return response
 
 
 @app.route('/about')
@@ -101,9 +105,11 @@ def about():
     return(render_template('about.html'))
 
 
-# @app.errorhandler(404)
-# def page_not_found(e):
-#     """Render the 404 page if an incorrect URL is entered. """
-#     return render_template('404.html'), 404
+@app.errorhandler(404)
+def page_not_found(e):
+    """Render the 404 page if an incorrect URL is entered. """
+    return render_template('404.html'), 404
+
+
 if __name__ == '__main__':
     app.run()

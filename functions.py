@@ -14,7 +14,7 @@ from PyPDF2 import PdfFileWriter, PdfFileReader
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 from keys import GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD
-# from scheduled_tasks.create_report import create_report
+
 
 # Change current working directory, only needed for Atom
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
@@ -54,7 +54,6 @@ def parse_data(request: request) -> Tuple[Dict[str, str], str]:
                 request.form['election__locality_gnis']
             ]['locality'],
             'supporting': request.form['reason__documentation'],
-            'birthYear': '   '.join(request.form.get('more_info__birth_year')),
             'email': request.form.get('more_info__email_fax'),
             'address': request.form['address__street'],
             'apt': request.form['address__unit'],
@@ -110,7 +109,6 @@ def parse_data(request: request) -> Tuple[Dict[str, str], str]:
             'todaysDateMonth': '   '.join(todayDate[0:2]),
             'todaysDateDay': '   '.join(todayDate[2:4]),
             'todaysDateYear': '   '.join(todayDate[4:6]),
-            'canvasserId': request.form.get('canvasser_id'),
             'applicationIP': request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
         }
 
@@ -135,7 +133,6 @@ def build_pdf(data: Dict[str, str], registrar_address: str) -> str:
     data_for_report: List[str] = [
         session['name'],
         str(datetime.datetime.now().time()),
-        data['ssn'],
         data['reasonCode'],
         data['supporting'],
         data['registeredToVote'],
@@ -145,8 +142,7 @@ def build_pdf(data: Dict[str, str], registrar_address: str) -> str:
         data['address'] + data['apt'] + ', '
         + data['city'] + ', ' + data['zipCode'],
         data['applicationIP'],
-        session['application_id'],
-        data['canvasserId']
+        session['application_id']
     ]
 
     append_to_report(report_path, data_for_report)
@@ -210,8 +206,6 @@ def new_write_fillable_pdf(data: Dict[str, str]) -> None:
 
     can.drawString(189, 554, data['reasonCode'])
     can.drawString(312, 555, data['supporting'])
-
-    can.drawString(183, 522, data['birthYear'])  # Birth Year
     can.drawString(423, 524, data['firstThreeTelephone'])  # FIRST 3 TELPEHONE
     can.drawString(480, 524, data['secondThreeTelephone'])  # SECOND 3 TELPEHONE
     can.drawString(537, 524, data['lastFourTelephone'])  # LAST 4 TELPEHONE
@@ -288,9 +282,44 @@ def email_registrar(registrar_address: str) -> None:
 def append_to_report(report_path: str, data: Dict[str, str]) -> None:
     """Add a row to the Excel spreadsheet with data from the application.
     If the spreadsheet doesn't already exist, create it. """
-    # if not os.path.isfile(report_path):
-    #     create_report()
+    if not os.path.isfile(report_path):
+        create_report()
     report: openpyxl.workbook.Workbook = load_workbook(filename=report_path)
     worksheet: openpyxl.worksheet.worksheet.Worksheet = report.active
     worksheet.append(data)
     report.save(report_path)
+
+
+def create_report() -> str:
+    """ Call this daily at 5 am somehow, then save the filename for the day.
+    It is not needed to save because it is just {thedate}.xls basically. """
+
+    today_date: str = date.today().strftime("%m-%d-%y")
+
+    report: openpyxl.workbook.Workbook = openpyxl.Workbook()
+    sh: openpyxl.worksheet.worksheet.Worksheet = report.active
+    sh['A1'] = 'Applicant Name'
+    sh['B1'] = 'Time Submitted'
+    sh['C1'] = 'Reason Code'
+    sh['D1'] = 'Supporting Information'
+    sh['E1'] = 'Registered to Vote Where'
+    sh['F1'] = 'Email'
+    sh['G1'] = 'Telephone Number'
+    sh['H1'] = 'Address'
+    sh['I1'] = 'IP Submitted From'
+    sh['J1'] = 'Form ID'
+
+    report_path: str = f'reports/{today_date}.xlsx'
+
+    report.save(report_path)
+    return report_path
+
+
+def test_email_cookies() -> None:
+    yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
+        to='raunakdaga@gmail.com',
+        # to=registrar_address,
+        subject='Absentee Ballot Request - Applicant-ID: ',
+        contents='Please find attached an absentee ballot request ' + \
+        f'submitted on behalf of Raunak'
+    )
