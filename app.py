@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, session, send_file, make_response
-from functions import parse_data, build_pdf, email_registrar
+from functions import application_process
 from keys import SECRET_KEY
 import os
 
@@ -11,14 +11,19 @@ app = Flask(__name__, template_folder="templates")
 app.secret_key = SECRET_KEY
 app.root_path = os.path.dirname(os.path.abspath(__file__))
 app.config['TEMPLATES_AUTO_RELOAD'] = True
-app.config['EXPLAIN_TEMPLATE_LOADING'] = True
+# app.config['EXPLAIN_TEMPLATE_LOADING'] = True
 
 # Homepage route
 @app.route('/')
 def home():
-    if 'channel' in request.cookies:
-        print(request.cookies.get('channel'))  # Showing that cookies are stored TEST
     return render_template('index.html')
+
+# Homepage route
+@app.route('/campaign/<campaign>')
+def home_with_campaign(campaign: str):
+    response = make_response(redirect('/'))
+    response.set_cookie('campaign', campaign)
+    return response
 
 
 # TODO: Catch specific types of errors, inform that pdf was not sent.
@@ -31,13 +36,13 @@ def process_form():
     unable to send the PDF, an error page is returned. """
     if request.method == 'POST':
         # try:
-        email_registrar(
-            build_pdf(
-                *parse_data(request)))  # * unpacks tuple returned by parse_data into arguments for build_pdf
+        application_process(request)
         # except(Exception):
         #     return redirect('/error/')
         return redirect('/confirmation/')
     else:
+        if 'campaign' in request.cookies:
+            return render_template(('form_' + request.cookies.get('campaign') + '.html'))
         return render_template('form.html')
 
 
@@ -102,6 +107,11 @@ def canvass(channel: str):
 @app.route('/about')
 def about():
     return(render_template('about.html'))
+
+
+@app.route('/api/', methods=['POST', 'GET'])
+def api():
+    return render_template('api.html')
 
 
 @app.errorhandler(404)

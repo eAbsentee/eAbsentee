@@ -109,11 +109,13 @@ def parse_data(request: request) -> Tuple[Dict[str, str], str]:
             'todaysDateMonth': '   '.join(todayDate[0:2]),
             'todaysDateDay': '   '.join(todayDate[2:4]),
             'todaysDateYear': '   '.join(todayDate[4:6]),
-            'applicationIP': request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
+            'applicationIP': request.environ.get('HTTP_X_REAL_IP', request.remote_addr),
+            'emailMe': request.form.get('email_me')
         }
 
     registrar_address: str = localities[request.form[
         'election__locality_gnis']]['email']
+
     return data_dict, registrar_address
 
 
@@ -146,7 +148,10 @@ def build_pdf(data: Dict[str, str], registrar_address: str) -> str:
     ]
 
     append_to_report(report_path, data_for_report)
-    return registrar_address
+    emails_to_be_sent_to = [registrar_address]
+    if data['emailMe'] == 'true':
+        emails_to_be_sent_to.append(data['email'])
+    return emails_to_be_sent_to
 
 
 def set_session_keys(data: Dict[str, str], registrar_address: str) -> None:
@@ -266,11 +271,11 @@ def new_write_fillable_pdf(data: Dict[str, str]) -> None:
     output.write(open(session['output_file'], "wb"))
 
 
-def email_registrar(registrar_address: str) -> None:
+def email_report(emails_to_send) -> None:
     """Email the form to the registrar of the applicant's locality. """
     yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
         to='raunakdaga@gmail.com',
-        # to=registrar_address,
+        # (emails_to_send[0], emails_to_send[1]),
         subject='Absentee Ballot Request - Applicant-ID: ' + \
         f'{session["application_id"]}',
         contents='Please find attached an absentee ballot request ' + \
@@ -291,9 +296,6 @@ def append_to_report(report_path: str, data: Dict[str, str]) -> None:
 
 
 def create_report() -> str:
-    """ Call this daily at 5 am somehow, then save the filename for the day.
-    It is not needed to save because it is just {thedate}.xls basically. """
-
     today_date: str = date.today().strftime("%m-%d-%y")
 
     report: openpyxl.workbook.Workbook = openpyxl.Workbook()
@@ -313,3 +315,24 @@ def create_report() -> str:
 
     report.save(report_path)
     return report_path
+
+
+def application_process(request: request):
+    email_report(build_pdf(*parse_data(request)))
+
+
+def build_campaign_specific_form(campaign: str):
+    with open('static/localities_info.json') as localities:
+        with open('static/campaigns.json') as campaigns:
+            localities_json = json.load(localities)
+            campaigns_json = json.load(campaigns)
+            ids_and_names = []
+            campaignData = campaigns_json[campaign]
+            county_nums = campaignData['county_nums']
+            # for county_num in county_nums:
+            # THIS IS OVERKILL! Just update campaigns with their own HTML file as we go for now.
+            # We only have two campaigns anyways...
+
+
+def api_methods(request: request) -> None:
+    x = 1

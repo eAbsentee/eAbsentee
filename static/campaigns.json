@@ -1,8 +1,8 @@
 {
       "surovell":{
-            "counties": ["059", "153", "179"]
+            "county_nums": ["059", "153", "179"]
       },
       "rodman":{
-            "counties": ["085", "087"]
+            "county_nums": ["085", "087"]
       }
 }
