@@ -234,6 +234,12 @@
       $("input:submit").attr("disabled", true);
     });
 
+    $(function() {
+         $('input[readonly]').on('focus', function(ev) {
+               $(this).trigger('blur');
+         });
+    });
+
   });
 
 

@@ -421,7 +421,7 @@
 
                               <div id="address__street" class="form-group form-inline">
                                     <label for="address__street_field" class="control-label address">Address</label>
-                                    <input name="address__street" id="address__street_field" type="text" class="form-control address" autocomplete="street-address" />
+                                    <input name="address__street" id="address__street_field" type="text" class="form-control address" autocomplete="street-address" required />
 
                                     <label for="address__unit_field" class="control-label apt">Apt./Suite</label>
                                     <input name="address__unit" id="address__unit_field" type="text" class="form-control apt" autocomplete="given-name" />
@@ -429,12 +429,12 @@
 
                               <div id="address__city" class="form-group">
                                     <label for="address__city_field" class="control-label city">City</label>
-                                    <input name="address__city" id="address__city_field" type="text" class="form-control city" autocomplete="address-level2" />
+                                    <input name="address__city" id="address__city_field" type="text" class="form-control city" autocomplete="address-level2" required />
                               </div>
 
                               <div id="address__statezip" class="form-group state">
                                     <label for="address__state" class="control-label state">State</label>
-                                    <select name="address__state" id="address__state" class="form-control state" autocomplete="address-level1">
+                                    <select name="address__state" id="address__state" class="form-control state" autocomplete="address-level1" required>
                                           <option value="">Choose state&hellip;</option>
                                           <option value="AL">Alabama</option>
                                           <option value="AK">Alaska</option>
@@ -497,7 +497,7 @@
                                     </select>
 
                                     <label for="address__zip" class="control-label zip">ZIP Code</label>
-                                    <input name="address__zip" id="address__zip" type="text" class="form-control zip" minlength="5" maxlength="5" pattern="^(\d{5})$" digits autocomplete="postal-code" />
+                                    <input name="address__zip" id="address__zip" type="text" class="form-control zip" minlength="5" maxlength="5" pattern="^(\d{5})$" digits autocomplete="postal-code" required />
                               </div>
                         </fieldset>
 

@@ -116,7 +116,10 @@ def about():
 
 @app.route('/api/', methods=['POST', 'GET'])
 def api():
-    return render_template('api.html')
+    if request.method == 'POST':
+        return render_template('api.html')
+    else:
+        return render_template('api.html')
 
 
 @app.errorhandler(404)
