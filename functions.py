@@ -110,7 +110,8 @@ def parse_data(request: request) -> Tuple[Dict[str, str], str]:
             'todaysDateDay': '   '.join(todayDate[2:4]),
             'todaysDateYear': '   '.join(todayDate[4:6]),
             'applicationIP': request.environ.get('HTTP_X_REAL_IP', request.remote_addr),
-            'emailMe': request.form.get('email_me')
+            'emailMe': request.form.get('email_me'),
+            'campaignCode': request.cookies.get('campaign')
         }
 
     registrar_address: str = localities[request.form[
@@ -144,7 +145,8 @@ def build_pdf(data: Dict[str, str], registrar_address: str) -> str:
         data['address'] + data['apt'] + ', '
         + data['city'] + ', ' + data['zipCode'],
         data['applicationIP'],
-        session['application_id']
+        session['application_id'],
+        data['campaignCode']
     ]
 
     append_to_report(report_path, data_for_report)
@@ -273,7 +275,7 @@ def new_write_fillable_pdf(data: Dict[str, str]) -> None:
     output.write(open(session['output_file'], "wb"))
 
 
-def email_report(emails_to_send) -> None:
+def email_registrar(emails_to_send) -> None:
     """Email the form to the registrar of the applicant's locality. """
     yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
         to='raunakdaga@gmail.com',
@@ -312,6 +314,7 @@ def create_report() -> str:
     sh['H1'] = 'Address'
     sh['I1'] = 'IP Submitted From'
     sh['J1'] = 'Form ID'
+    sh['K1'] = 'Campaign Code'
 
     report_path: str = f'reports/{today_date}.xlsx'
 
@@ -320,7 +323,7 @@ def create_report() -> str:
 
 
 def application_process(request: request):
-    email_report(build_pdf(*parse_data(request)))
+    email_registrar(build_pdf(*parse_data(request)))
 
 
 def build_campaign_specific_form(campaign: str):

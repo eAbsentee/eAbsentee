@@ -20,7 +20,7 @@ def home():
     return render_template('index.html')
 
 # Homepage route
-@app.route('/c/<campaign>')
+@app.route('/cou/<campaign>')
 def home_with_campaign(campaign: str):
     response = make_response(redirect('/'))
     response.set_cookie('campaign', campaign)
@@ -67,9 +67,9 @@ def credits_page():
 def confirmation_page():
     """Confirmation Route: user is redirected here
     after submission of form. """
-    return render_template('confirmation.html')
+    # return render_template('confirmation.html')
     # if session.get('output_pdf') is not None:
-    #     return render_template('confirmation.html')
+    return render_template('confirmation.html')
     # else:
     #     # TODO: redirect to more appropriate error page (like 403 forbidden)
     #     return redirect('/404/')
