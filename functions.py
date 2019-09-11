@@ -1,6 +1,5 @@
 import hashlib
 import yagmail
-import pdfrw
 import os
 import openpyxl
 import json
@@ -14,6 +13,7 @@ from PyPDF2 import PdfFileWriter, PdfFileReader
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 from keys import GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD, API_KEY
+# import pdfrw // MAY BE NEEDED FOR DEPRECATED METHOD IN FUTURE
 
 
 # Change current working directory, only needed for Atom
@@ -40,7 +40,9 @@ def parse_data(request: request) -> Tuple[Dict[str, str], str]:
         '-', '').replace('(', '').replace(')', '').replace(' ', '')
 
     data_dict: Dict[str, str] = {}  # Create outside of scope
-
+    campaign_code_req = ''
+    if request.cookies.get('campaign'):
+        campaign_code_req = request.cookies.get('campaign')
     with open('static/localities_info.json') as file:
         localities = json.load(file)
         data_dict: Dict[str, str] = {
@@ -111,7 +113,7 @@ def parse_data(request: request) -> Tuple[Dict[str, str], str]:
             'todaysDateYear': '   '.join(todayDate[4:6]),
             'applicationIP': request.environ.get('HTTP_X_REAL_IP', request.remote_addr),
             'emailMe': request.form.get('email_me'),
-            'campaignCode': request.cookies.get('campaign')
+            'campaignCode': campaign_code_req
         }
 
     registrar_address: str = localities[request.form[
@@ -172,23 +174,6 @@ def set_session_keys(data: Dict[str, str], registrar_address: str) -> None:
 
     today_date: str = date.today().strftime("%m-%d-%y")
     session['report_file'] = f'reports/{today_date}.xlsx'
-
-
-def write_fillable_pdf(data: Dict[str, str]) -> None:
-    """Fill out the PDF based on the data from the form. """
-    template_pdf: pdfrw.PdfReader = pdfrw.PdfReader(input_pdf_path)
-    template_pdf.Root.AcroForm.update(pdfrw.PdfDict(
-        NeedAppearances=pdfrw.PdfObject('true')))
-    annotations: pdfrw.PdfArray = template_pdf.pages[0][ANNOT_KEY]
-    for annotation in annotations:
-        if annotation[SUBTYPE_KEY] == WIDGET_SUBTYPE_KEY:
-            if annotation[ANNOT_FIELD_KEY]:
-                key = annotation[ANNOT_FIELD_KEY][1:-1]
-                if key in data.keys():
-                    annotation.update(
-                        pdfrw.PdfDict(V='{}'.format(data[key]))
-                    )
-    pdfrw.PdfWriter().write(session['output_file'], template_pdf)
 
 
 def new_write_fillable_pdf(data: Dict[str, str]) -> None:
@@ -288,6 +273,10 @@ def email_registrar(emails_to_send) -> None:
     )
 
 
+def application_process(request: request):
+    email_registrar(build_pdf(*parse_data(request)))
+
+
 def append_to_report(report_path: str, data: Dict[str, str]) -> None:
     """Add a row to the Excel spreadsheet with data from the application.
     If the spreadsheet doesn't already exist, create it. """
@@ -322,10 +311,6 @@ def create_report() -> str:
     return report_path
 
 
-def application_process(request: request):
-    email_registrar(build_pdf(*parse_data(request)))
-
-
 def build_campaign_specific_form(campaign: str):
     with open('static/localities_info.json') as localities:
         with open('static/campaigns.json') as campaigns:
@@ -351,3 +336,21 @@ def add_to_campaign(request: request) -> None:
             print(campaigns)
             with open('campaigns.json', 'w') as f:
                 json.dump(campaigns, f)
+
+
+''' Deprecated '''
+# def write_fillable_pdf(data: Dict[str, str]) -> None:
+#     """Fill out the PDF based on the data from the form. """
+#     template_pdf: pdfrw.PdfReader = pdfrw.PdfReader(input_pdf_path)
+#     template_pdf.Root.AcroForm.update(pdfrw.PdfDict(
+#         NeedAppearances=pdfrw.PdfObject('true')))
+#     annotations: pdfrw.PdfArray = template_pdf.pages[0][ANNOT_KEY]
+#     for annotation in annotations:
+#         if annotation[SUBTYPE_KEY] == WIDGET_SUBTYPE_KEY:
+#             if annotation[ANNOT_FIELD_KEY]:
+#                 key = annotation[ANNOT_FIELD_KEY][1:-1]
+#                 if key in data.keys():
+#                     annotation.update(
+#                         pdfrw.PdfDict(V='{}'.format(data[key]))
+#                     )
+#     pdfrw.PdfWriter().write(session['output_file'], template_pdf)
