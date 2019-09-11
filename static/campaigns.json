@@ -1,8 +1,10 @@
 {
-      "surovell":{
-            "county_nums": ["059", "153", "179"]
+      "SD36":{
+            "county_nums": ["059", "153", "179"],
+            "name": "surovell"
       },
-      "rodman":{
-            "county_nums": ["085", "087"]
+      "SD12":{
+            "county_nums": ["085", "087"],
+            "name": "rodman"
       }
 }

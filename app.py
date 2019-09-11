@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, session, send_file,
 from functions import application_process
 from keys import SECRET_KEY
 import os
+import json
 
 # Sets CWD to whatever directory app.py is located in
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
@@ -42,7 +43,11 @@ def process_form():
         return redirect('/confirmation/')
     else:
         if 'campaign' in request.cookies:
-            return render_template(('form_' + request.cookies.get('campaign') + '.html'))
+            with open('campaigns.json') as file:
+                campaigns = json.load(file)
+                campaign_id = campaigns[request.cookies.get('campaign')]
+                campaign_name = campaign_id['name']
+                return render_template(('form_' + campaign_name + '.html'))
         return render_template('form.html')
 
 

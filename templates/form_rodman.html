@@ -157,110 +157,123 @@
 
                         <!-- Section 3: Reason for Absentee Ballot -->
                         <fieldset id="reason">
-                              <h3 style="color: blue;">Reason for Absentee Ballot</h3>
+                              <h3 style="color: blue; text-align: center;">Reason for Absentee Ballot</h3>
 
                               <div class="form-group">
-                                    <div class="col">
-                                          <div class="radio">
-                                                <label>
-                                                      <input name="reason__code" type="radio" value="1A" required /> Student attending college or university outside of locality of residence in Virginia
-                                                </label>
-                                          </div>
-                                          <div class="radio">
-                                                <label>
-                                                      <input name="reason__code" type="radio" value="1B" /> Spouse of student attending college or university outside locality of residence in Virginia
-                                                </label>
-                                          </div>
-                                          <div class="radio">
-                                                <label>
-                                                      <input name="reason__code" type="radio" value="1C" /> Business outside County/City of residence on election day
-                                                </label>
-                                          </div>
-                                          <div class="radio">
-                                                <label>
-                                                      <input name="reason__code" type="radio" value="1D" /> Personal business or vacation outside County/City of residence on election day
-                                                </label>
-                                          </div>
-                                          <div class="radio">
-                                                <label>
-                                                      <input name="reason__code" type="radio" value="1E" /> I am working and commuting to/from home for 11 or more hours between 6:00 AM and 7:00 PM on election day
-                                                </label>
-                                          </div>
-                                          <div class="radio">
-                                                <label>
-                                                      <input name="reason__code" type="radio" value="1F" /> I am a first responder (member of law enforcement, fire fighter, emergency technician, search and rescue)
-                                                </label>
-                                          </div>
-                                          <div class="radio">
-                                                <label>
-                                                      <input name="reason__code" type="radio" value="2A" /> My disability or illness
-                                                </label>
-                                          </div>
-                                          <div class="radio">
-                                                <label>
-                                                      <input name="reason__code" type="radio" value="2B" /> I am primarily and personally responsible for the care of a disabled/ill family member confined at home
-                                                </label>
-                                          </div>
-                                          <div class="radio">
-                                                <label>
-                                                      <input name="reason__code" type="radio" value="2C" /> My pregnancy
-                                                </label>
-                                          </div>
+                                    <!-- <div class="col"> -->
+                                    <!-- <p> <b> Commonly Cited Reasons </b> </p> -->
+                                    <p> <b> Out of county/city at least part of the day </b> </p>
+                                    <div class="radio">
+                                          <label>
+                                                <input name="reason__code" type="radio" value="1D" /> Personal business or vacation outside County/City of residence on election day
+                                          </label>
+                                    </div>
+                                    <div class="radio">
+                                          <label>
+                                                <input name="reason__code" type="radio" value="1C" /> Business outside County/City of residence on election day
+                                          </label>
+                                    </div>
+                                    <div class="radio">
+                                          <label>
+                                                <input name="reason__code" type="radio" value="1A" required /> Student attending college or university outside of locality of residence in Virginia
+                                          </label>
+                                    </div>
+
+                                    <p> <b> Health Reasons</b> </p>
+                                    <div class="radio">
+                                          <label>
+                                                <input name="reason__code" type="radio" value="2A" /> My disability or illness
+                                          </label>
+                                    </div>
+                                    <div class="radio">
+                                          <label>
+                                                <input name="reason__code" type="radio" value="2C" /> My pregnancy
+                                          </label>
+                                    </div>
+
+                                    <p> <b> Location Reasons</b> </p>
+
+                                    <div class="radio">
+                                          <label>
+                                                <input name="reason__code" type="radio" value="6C" /> Temporarily residing outside of US
+                                          </label>
+                                    </div>
+                                    <div class="radio">
+                                          <label>
+                                                <input name="reason__code" type="radio" value="6D" /> Temporarily residing outside of US for employment or spouse or dependent residing with employee
+                                          </label>
+                                    </div>
+
+                                    <p> <b> Work conflicts or other obligations</b> </p>
+
+                                    <div class="radio">
+                                          <label>
+                                                <input name="reason__code" type="radio" value="2B" /> I am primarily and personally responsible for the care of a disabled/ill family member confined at home
+                                          </label>
+                                    </div>
+
+                                    <div class="radio">
+                                          <label>
+                                                <input name="reason__code" type="radio" value="1E" /> I am working and commuting to/from home for 11 or more hours between 6:00 AM and 7:00 PM on election day
+                                          </label>
+                                    </div>
+                                    <div class="radio">
+                                          <label>
+                                                <input name="reason__code" type="radio" value="1F" /> I am a first responder (member of law enforcement, fire fighter, emergency technician, search and rescue)
+                                          </label>
+                                    </div>
+                                    <div class="radio">
+                                          <label>
+                                                <input name="reason__code" type="radio" value="4A" /> An electoral board member, registrar, officer of election, or custodian of voting equipment
+                                          </label>
+                                    </div>
+                                    <div class="radio">
+                                          <label>
+                                                <input name="reason__code" type="radio" value="5A" /> I have a religious obligation
+                                          </label>
+                                    </div>
+                                    <div class="radio">
+                                          <label>
+                                                <input name="reason__code" type="radio" value="6A" /> Active Duty Merchant Marine or Armed Forces
+                                          </label>
+                                    </div>
+                                    <div class="radio">
+                                          <label>
+                                                <input name="reason__code" type="radio" value="6B" /> Spouse or dependent living with a member of the Armed Forces or Active Duty Merchant Marine
+                                          </label>
+                                    </div>
+                                    <div class="radio">
+                                          <label>
+                                                <input name="reason__code" type="radio" value="8A" /> Authorized representative of candidate or party serving inside the polling place
+                                          </label>
+                                    </div>
+
+                                    <p> <b> Other </b> </p>
+
+                                    <div class="radio">
+                                          <label>
+                                                <input name="reason__code" type="radio" value="3A" /> Confined, awaiting trial
+                                          </label>
+                                    </div>
+                                    <div class="radio">
+                                          <label>
+                                                <input name="reason__code" type="radio" value="3B" /> Confined, convicted of a misdemeanor
+                                          </label>
                                     </div>
 
 
-                                    <div class="col">
-                                          <div class="radio">
-                                                <label>
-                                                      <input name="reason__code" type="radio" value="3A" /> Confined, awaiting trial
-                                                </label>
-                                          </div>
-                                          <div class="radio">
-                                                <label>
-                                                      <input name="reason__code" type="radio" value="3B" /> Confined, convicted of a misdemeanor
-                                                </label>
-                                          </div>
-                                          <div class="radio">
-                                                <label>
-                                                      <input name="reason__code" type="radio" value="4A" /> An electoral board member, registrar, officer of election, or custodian of voting equipment
-                                                </label>
-                                          </div>
-                                          <div class="radio">
-                                                <label>
-                                                      <input name="reason__code" type="radio" value="5A" /> I have a religious obligation
-                                                </label>
-                                          </div>
-                                          <div class="radio">
-                                                <label>
-                                                      <input name="reason__code" type="radio" value="6A" /> Active Duty Merchant Marine or Armed Forces
-                                                </label>
-                                          </div>
-                                          <div class="radio">
-                                                <label>
-                                                      <input name="reason__code" type="radio" value="6B" /> Spouse or dependent living with a member of the Armed Forces or Active Duty Merchant Marine
-                                                </label>
-                                          </div>
-                                          <div class="radio">
-                                                <label>
-                                                      <input name="reason__code" type="radio" value="6C" /> Temporarily residing outside of US
-                                                </label>
-                                          </div>
-                                          <div class="radio">
-                                                <label>
-                                                      <input name="reason__code" type="radio" value="6D" /> Temporarily residing outside of US for employment or spouse or dependent residing with employee
-                                                </label>
-                                          </div>
-                                          <div class="radio">
-                                                <label>
-                                                      <input name="reason__code" type="radio" value="7A" /> Requesting a ballot for presidential and vice-presidential electors only (Ballots for other offices/issues will not be sent)
-                                                </label>
-                                          </div>
-                                          <div class="radio">
-                                                <label>
-                                                      <input name="reason__code" type="radio" value="8A" /> Authorized representative of candidate or party serving inside the polling place
-                                                </label>
-                                          </div>
+                                    <div class="radio">
+                                          <label>
+                                                <input name="reason__code" type="radio" value="7A" /> Requesting a ballot for presidential and vice-presidential electors only (Ballots for other offices/issues will not be sent)
+                                          </label>
                                     </div>
+
+                                    <div class="radio">
+                                          <label>
+                                                <input name="reason__code" type="radio" value="9A" /> Granted a protective order issued by or under the authority of a court of competent jurisdiction
+                                          </label>
+                                    </div>
+
                               </div>
 
                               <div id="reason__documentation" class="form-group">
@@ -894,7 +907,7 @@
                               </div>
 
                               <div id="more_info__telephone" class="form-group form-inline phone">
-                                    <label for="more_info__telephone_field" class="control-label optional">Telephone</label>
+                                    <label for="more_info__telephone_field" class="control-label optional">Telephone (optional)</label>
                                     <input type="tel" name="more_info__telephone" id="more_info__telephone_field" class="form-control" minlength="10" maxlength="14" pattern="^(.{10,14})$" autocomplete="tel" />
                               </div>
 
