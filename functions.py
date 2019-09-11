@@ -210,7 +210,9 @@ def new_write_fillable_pdf(data: Dict[str, str]) -> None:
     can.drawString(425, 611, data['registeredToVote'])  # Registered locality
 
     can.drawString(189, 554, data['reasonCode'])
+    can.setFont('Helvetica', 8)
     can.drawString(312, 555, data['supporting'])
+    can.setFont('Helvetica', 12)
     can.drawString(423, 524, data['firstThreeTelephone'])  # FIRST 3 TELPEHONE
     can.drawString(480, 524, data['secondThreeTelephone'])  # SECOND 3 TELPEHONE
     can.drawString(537, 524, data['lastFourTelephone'])  # LAST 4 TELPEHONE

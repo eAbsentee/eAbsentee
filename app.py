@@ -19,7 +19,7 @@ def home():
     return render_template('index.html')
 
 # Homepage route
-@app.route('/campaign/<campaign>')
+@app.route('/c/<campaign>')
 def home_with_campaign(campaign: str):
     response = make_response(redirect('/'))
     response.set_cookie('campaign', campaign)
