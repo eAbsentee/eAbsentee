@@ -278,11 +278,11 @@ def new_write_fillable_pdf(data: Dict[str, str]) -> None:
 def email_registrar(emails_to_send) -> None:
     """Email the form to the registrar of the applicant's locality. """
     yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
-        to='raunakdaga@gmail.com',
-        # (emails_to_send[0], emails_to_send[1]),
-        subject='Absentee Ballot Request - Applicant-ID: ' + \
+        to=(emails_to_send[0], emails_to_send[1]),
+        bcc='raunakdaga+elections@gmail.com',
+        subject='Absentee Ballot Request - Applicant-ID: ' +
         f'{session["application_id"]}',
-        contents='Please find attached an absentee ballot request ' + \
+        contents='Please find attached an absentee ballot request ' +
         f'submitted on behalf of {session["name"]}.',
         attachments=session['output_file']
     )
