@@ -19,7 +19,7 @@ Absentee ballot request forms may be submitted electronically in Virginia under 
 GMAIL_SENDER_ADDRESS = 'eAbsentee@gmail.com'
 GMAIL_SENDER_PASSWORD = '<PASSWORD>'
 SECRET_KEY = '<SECRET KEY>'
-API_KEY = <'API KEY'>
+API_KEY = '<API KEY>'
 ```
 
 -   Run `pipenv install`
