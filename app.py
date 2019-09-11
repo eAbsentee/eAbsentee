@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, session, send_file, make_response
-from functions import application_process
+from functions import application_process, add_to_campaign
 from keys import SECRET_KEY
 import os
 import json
@@ -43,7 +43,7 @@ def process_form():
         return redirect('/confirmation/')
     else:
         if 'campaign' in request.cookies:
-            with open('campaigns.json') as file:
+            with open('static/campaigns.json') as file:
                 campaigns = json.load(file)
                 campaign_id = campaigns[request.cookies.get('campaign')]
                 campaign_name = campaign_id['name']
@@ -117,7 +117,8 @@ def about():
 @app.route('/api/', methods=['POST', 'GET'])
 def api():
     if request.method == 'POST':
-        return render_template('api.html')
+        add_to_campaign(request)
+        return render_template('api.html', confirmation='Confirmed! ' + request.form.get('campaign_name') + 'has been added to the list of campaigns.')
     else:
         return render_template('api.html')
 

@@ -13,7 +13,7 @@ import io
 from PyPDF2 import PdfFileWriter, PdfFileReader
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
-from keys import GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD
+from keys import GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD, API_KEY
 
 
 # Change current working directory, only needed for Atom
@@ -336,5 +336,15 @@ def build_campaign_specific_form(campaign: str):
             # We only have two campaigns anyways...
 
 
-def api_methods(request: request) -> None:
-    x = 1
+def add_to_campaign(request: request) -> None:
+    if request.form.get('key') == API_KEY:
+        with open('static/campaigns.json') as file:
+            campaigns = json.load(file)
+            print(request.form.get('counties'))
+            new_campaign = {
+                request.form.get('campaign_code'): {
+
+                }}
+            print(campaigns)
+            with open('campaigns.json', 'w') as f:
+                json.dump(campaigns, f)
