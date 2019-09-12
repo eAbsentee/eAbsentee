@@ -84,7 +84,7 @@ def render_pdf(id: str):
     )
 
 
-@app.route('/fillableform')
+@app.route('/fillableform/')
 def render_fillableform_pdf():
     """Displays fillable form online. """
     return send_file(
@@ -93,7 +93,12 @@ def render_fillableform_pdf():
     )
 
 
-@app.route('/printform')
+@app.route('/listcounty/')
+def list_of_counties():
+    return(render_template('list_of_counties.html'))
+
+
+@app.route('/printform/')
 def render_printform_pdf():
     """Displays printable form online. """
     return send_file(
@@ -102,14 +107,14 @@ def render_printform_pdf():
     )
 
 
-@app.route('/canvass/<channel>')
+@app.route('/canvass/<channel>/')
 def canvass(channel: str):
     response = make_response(redirect('/'))
     response.set_cookie('channel', channel)
     return response
 
 
-@app.route('/about')
+@app.route('/about/')
 def about():
     return(render_template('about.html'))
 
