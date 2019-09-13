@@ -14,20 +14,66 @@ app.root_path = os.path.dirname(os.path.abspath(__file__))
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 # app.config['EXPLAIN_TEMPLATE_LOADING'] = True
 
-# Homepage route
+
+'''Static Routes'''
+# Homepage
 @app.route('/')
 def home():
     return render_template('index.html')
 
-# Homepage route
-@app.route('/cou/<campaign>')
-def home_with_campaign(campaign: str):
-    response = make_response(redirect('/'))
-    response.set_cookie('campaign', campaign)
-    return response
+
+# Error
+@app.route('/error/', methods=['GET'])
+def error_page():
+    return render_template('formerror.html')
 
 
-# TODO: Catch specific types of errors, inform that pdf was not sent.
+# Credits
+@app.route('/credits/', methods=['GET'])
+def credits_page():
+    return render_template('credits.html')
+
+
+# Fillable Form as .PDF
+@app.route('/fillableform/')
+def render_fillableform_pdf():
+    return send_file(
+        open('static/blankAppFillable.pdf', 'rb'),
+        attachment_filename='blankAppFillable.pdf'
+    )
+
+# Printable Form as .PDF
+@app.route('/printform/')
+def render_printform_pdf():
+    return send_file(
+        open('static/blankApp.pdf', 'rb'),
+        attachment_filename='blankApp.pdf'
+    )
+
+
+@app.route('/videocredits/')
+def render_videocredits_pdf():
+    return send_file(
+        open('static/credits.pdf', 'rb'),
+        attachment_filename='credits.pdf'
+    )
+
+# List of Counties for API
+@app.route('/listcounty/')
+def list_of_counties():
+    return(render_template('list_of_counties.html'))
+
+# About
+@app.route('/about/')
+def about():
+    return(render_template('about.html'))
+
+# 404
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
+
 @app.route('/form/', methods=['POST', 'GET'])
 def process_form():
     """ Form Route: Returns form when requested,
@@ -51,15 +97,20 @@ def process_form():
         return render_template('form.html')
 
 
-# Error Route
-@app.route('/error/', methods=['GET'])
-def error_page():
-    return render_template('formerror.html')
+# This route sets the county cookies. It is used to determine which form to display. The different forms can have different counties displayed.
+@app.route('/cou/<campaign>')
+def home_with_campaign(campaign: str):
+    response = make_response(redirect('/'))
+    response.set_cookie('campaign', campaign, max_age=60*60*24*365*2)
+    return response
 
-# Credits Route
-@app.route('/credits/', methods=['GET'])
-def credits_page():
-    return render_template('credits.html')
+
+# Sets group cookies - determines which group the users came from
+@app.route('/group/<group>')
+def set_channel(group: str):
+    response = make_response(redirect('/'))
+    response.set_cookie('group', group, max_age=60*60*24*365*2)
+    return response
 
 
 # TODO: Redirect to page based off of succesful submission
@@ -75,48 +126,13 @@ def confirmation_page():
     #     return redirect('/404/')
 
 
+# Displays application to user in PDF form
 @app.route('/applications/<id>.pdf')
 def render_pdf(id: str):
-    """Displays application once submitted to user in PDF form"""
     return send_file(
         open(session['output_file'], 'rb'),
         attachment_filename=session['output_file']
     )
-
-
-@app.route('/fillableform/')
-def render_fillableform_pdf():
-    """Displays fillable form online. """
-    return send_file(
-        open('static/blankAppFillable.pdf', 'rb'),
-        attachment_filename='blankAppFillable.pdf'
-    )
-
-
-@app.route('/listcounty/')
-def list_of_counties():
-    return(render_template('list_of_counties.html'))
-
-
-@app.route('/printform/')
-def render_printform_pdf():
-    """Displays printable form online. """
-    return send_file(
-        open('static/blankApp.pdf', 'rb'),
-        attachment_filename='blankApp.pdf'
-    )
-
-
-@app.route('/canvass/<channel>/')
-def canvass(channel: str):
-    response = make_response(redirect('/'))
-    response.set_cookie('channel', channel)
-    return response
-
-
-@app.route('/about/')
-def about():
-    return(render_template('about.html'))
 
 
 @app.route('/api/', methods=['POST', 'GET'])
@@ -126,12 +142,6 @@ def api():
         return render_template('api.html', confirmation='Confirmed! ' + request.form.get('campaign_name') + 'has been added to the list of campaigns.')
     else:
         return render_template('api.html')
-
-
-@app.errorhandler(404)
-def page_not_found(e):
-    """Render the 404 page if an incorrect URL is entered. """
-    return render_template('404.html'), 404
 
 
 if __name__ == '__main__':

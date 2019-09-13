@@ -12,37 +12,45 @@ import io
 from PyPDF2 import PdfFileWriter, PdfFileReader
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
+from subprocess import call
 from keys import GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD, API_KEY
-# import pdfrw // MAY BE NEEDED FOR DEPRECATED METHOD IN FUTURE
+
+# import pdfrw || DEPRECATED
 
 
-# Change current working directory, only needed for Atom
+# Change current working directory to directory 'functions.py' is in.
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
+'''Deprecated, because we are no longer filling out by the fillable fields. Don't delete, however.'''
 # Subtypes of pdfrw, needed to write to fillable app.
-ANNOT_KEY: str = '/Annots'
-ANNOT_FIELD_KEY: str = '/T'
-ANNOT_VAL_KEY: str = '/V'
-ANNOT_RECT_KEY: str = '/Rect'
-SUBTYPE_KEY: str = '/Subtype'
-WIDGET_SUBTYPE_KEY: str = '/Widget'
+# ANNOT_KEY: str = '/Annots'
+# ANNOT_FIELD_KEY: str = '/T'
+# ANNOT_VAL_KEY: str = '/V'
+# ANNOT_RECT_KEY: str = '/Rect'
+# SUBTYPE_KEY: str = '/Subtype'
+# WIDGET_SUBTYPE_KEY: str = '/Widget'
 
-# Where the fillable form lives
-input_pdf_path: str = 'static/blankAppFillable.pdf'
+# Where the form lives
+form_path: str = 'static/blankAppFillable.pdf'
 
 
 def parse_data(request: request) -> Tuple[Dict[str, str], str]:
     """ Parse data from the form using the Flask request object and convert it
-    into a dict format to allow it to be passed to the PDF filler. """
+    into a dict format to allow it to be passed to the PDF filling methods."""
     todayDate: str = date.today().strftime("%m%d%y")
 
-    absentee_telephone: str = request.form.get('more_info__telephone').replace(
-        '-', '').replace('(', '').replace(')', '').replace(' ', '')
+    campaign_name = ''
+    if request.cookies.get('campaign'):
+        with open('static/campaigns.json') as file:
+            campaigns = json.load(file)
+            campaign_id = campaigns[request.cookies.get('campaign')]
+            campaign_name = campaign_id['name']
+
+    group_code_req = ''
+    if request.cookies.get('group'):
+        group_code_req = request.cookies.get('group')
 
     data_dict: Dict[str, str] = {}  # Create outside of scope
-    campaign_code_req = ''
-    if request.cookies.get('campaign'):
-        campaign_code_req = request.cookies.get('campaign')
     with open('static/localities_info.json') as file:
         localities = json.load(file)
         data_dict: Dict[str, str] = {
@@ -71,9 +79,12 @@ def parse_data(request: request) -> Tuple[Dict[str, str], str]:
             'formerAddress': request.form.get('change__former_address'),
             'signature': '/S/ ' + request.form[
                 'signature__signed'].replace('/S/', '', 1).strip(),
-            'firstThreeTelephone': '   '.join(absentee_telephone[0:3]),
-            'secondThreeTelephone': '   '.join(absentee_telephone[3:6]),
-            'lastFourTelephone': '   '.join(absentee_telephone[6:10]),
+            'firstThreeTelephone': '   '.join(request.form.get('more_info__telephone').replace(
+                '-', '').replace('(', '').replace(')', '').replace(' ', '')[0:3]),
+            'secondThreeTelephone': '   '.join(request.form.get('more_info__telephone').replace(
+                '-', '').replace('(', '').replace(')', '').replace(' ', '')[3:6]),
+            'lastFourTelephone': '   '.join(request.form.get('more_info__telephone').replace(
+                '-', '').replace('(', '').replace(')', '').replace(' ', '')[6:10]),
             'assistantCheck': 'X' if request.form.get(
                 'assistance__assistance') == 'true' else '',
             'assistantFullName': request.form.get('assistant__name'),
@@ -113,7 +124,7 @@ def parse_data(request: request) -> Tuple[Dict[str, str], str]:
             'todaysDateYear': '   '.join(todayDate[4:6]),
             'applicationIP': request.environ.get('HTTP_X_REAL_IP', request.remote_addr),
             'emailMe': request.form.get('email_me'),
-            'campaignCode': campaign_code_req
+            'campaignCode': campaign_name
         }
 
     registrar_address: str = localities[request.form[
@@ -130,7 +141,7 @@ def build_pdf(data: Dict[str, str], registrar_address: str) -> str:
     sends the registrar address to email_registrar."""
 
     set_session_keys(data, registrar_address)
-    new_write_fillable_pdf(data)
+    write_pdf(data)
 
     today_date: str = date.today().strftime("%m-%d-%y")
     report_path: str = f'reports/{today_date}.xlsx'
@@ -176,7 +187,7 @@ def set_session_keys(data: Dict[str, str], registrar_address: str) -> None:
     session['report_file'] = f'reports/{today_date}.xlsx'
 
 
-def new_write_fillable_pdf(data: Dict[str, str]) -> None:
+def write_pdf(data: Dict[str, str]) -> None:
     packet = io.BytesIO()
     # Create a new PDF with Reportlab
     can = canvas.Canvas(packet, pagesize=letter)
@@ -248,7 +259,7 @@ def new_write_fillable_pdf(data: Dict[str, str]) -> None:
     new_pdf = PdfFileReader(packet)
 
     # Read the existing PDF (the first argument passed to this script)
-    existing_pdf = PdfFileReader(input_pdf_path, "rb")
+    existing_pdf = PdfFileReader(form_path, "rb")
     output = PdfFileWriter()
 
     # Add the "watermark" (which is the new pdf) on the existing page
@@ -346,10 +357,15 @@ def add_to_campaign(request: request) -> None:
         #         json.dump(campaigns, f)
 
 
+def push():
+    call("push.sh", shell=True)
+
+
+push()
 # Deprecated
 # def write_fillable_pdf(data: Dict[str, str]) -> None:
 #     """Fill out the PDF based on the data from the form. """
-#     template_pdf: pdfrw.PdfReader = pdfrw.PdfReader(input_pdf_path)
+#     template_pdf: pdfrw.PdfReader = pdfrw.PdfReader(form_path)
 #     template_pdf.Root.AcroForm.update(pdfrw.PdfDict(
 #         NeedAppearances=pdfrw.PdfObject('true')))
 #     annotations: pdfrw.PdfArray = template_pdf.pages[0][ANNOT_KEY]
