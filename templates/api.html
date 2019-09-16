@@ -13,28 +13,86 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
       <meta name="viewport" content="width=device-width,initial-scale=1">
 
+      <script type="text/javascript">
+            function campaign() {
+                  // Get the checkbox
+                  var checkBox = document.getElementById("campaigncheckbox");
+                  // Get the output text
+                  var text = document.getElementById("campaigndiv");
+
+                  // If the checkbox is checked, display the output text
+                  if (checkBox.checked == true) {
+                        text.style.display = "block";
+                  } else {
+                        text.style.display = "none";
+                  }
+            }
+
+            function group() {
+                  // Get the checkbox
+                  var checkBox = document.getElementById("groupcheckbox");
+                  // Get the output text
+                  var text = document.getElementById("groupdiv");
+
+                  // If the checkbox is checked, display the output text
+                  if (checkBox.checked == true) {
+                        text.style.display = "block";
+                  } else {
+                        text.style.display = "none";
+                  }
+            }
+      </script>
+
       {{ favicon() }}
 </head>
 
 <body>
-      <h1>{{confirmation}}</h1>
-      <form method="POST" action="">
-            <p>Please enter your unique API key:</p>
-            API Key: <input type="text" id="key" name="key"><br>
+      <h3>{{confirmation}}</h3>
 
-            <p>Please enter the actual name of the campaign. This should be in ALL LOWERCASE. No capital letters. </p>
-            Campaign Name: <input type="text" id="campaign_name" name="campaign_name"><br>
+      <p>Add a Campaign: <input type="checkbox" name="campaigncheckbox" id="campaigncheckbox" onclick="campaign()" value="0" /></p>
+      <p>Add a Group: <input type="checkbox" name="groupcheckbox" id="groupcheckbox" onclick="group()" value="0" /></p>
 
-            <p>Please enter the name you wish to assign the campaign code (not the actual name of the campaign.) Again, this should be something like SD15. A short code which symbolizes the campaign name.</p>
-            Campaign Code: <input type="text" id="campaign_code" name="campaign_code"><br>
+      <p>Please enter your unique API key:</p>
+      <input type="text" id="api_key" name="api_key">
 
-            <p> A list of counties can be found <a href="/listcounty">here</a>.</p>
-            <p>Pick all the counties which are being campaigned in, and enter their 3 digit number ID's in the below input, <b> separated by spaces. </b></p>
+      <div id="campaigndiv" style="display:none">
+            <h1>Add a New Campaign</h1>
+            <form method="POST" action="">
 
-            County Codes: <input type="text" id="county_codes" name="county_codes"><br>
+                  <p>Please enter the actual name of the campaign. This should be in ALL LOWERCASE. No capital letters. </p>
+                  Campaign Name: <input type="text" id="campaign_name" name="campaign_name"><br>
 
-            <input type="submit" value="Submit">
-      </form>
+                  <p>Please enter the name you wish to assign the campaign code (not the actual name of the campaign.) Again, this should be something like SD15. A short code which symbolizes the campaign name.</p>
+                  Campaign Code: <input type="text" id="campaign_code" name="campaign_code"><br>
+
+                  <p>Please enter the email of the campaign. Be srue to double check the email, as this can not be changed.</p>
+                  Campaign Email: <input type="text" id="campaign_email" name="campaign_email"><br>
+
+                  <p> A list of counties can be found <a href="/listcounty">here</a>.</p>
+                  <p>Pick all the counties which are being campaigned in, and enter their 3 digit number ID's in the below input, <b> separated by spaces. </b></p>
+
+                  County Codes: <input type="text" id="county_codes" name="county_codes"><br>
+
+                  <input type="submit" value="Submit">
+            </form>
+      </div>
+
+
+      <div id="groupdiv" style="display:none">
+            <h1>Add a New Group</h1>
+            <form method="POST" action="">
+                  <p>Please enter the actual name of the group. Example would be 'William and Mary Young Democrats'.</p>
+                  Group Name: <input type="text" id="group_name" name="group_name"><br>
+
+                  <p>Please enter the name you wish to assign the group code (not the actual name of the group.) This should be something like WMYD. A short code which symbolizes the group name.</p>
+                  Group Code: <input type="text" id="group_code" name="group_code"><br>
+
+                  <p>Please enter the email of the group. Be srue to double check the email, as this can not be changed.</p>
+                  Campaign Email: <input type="text" id="group_email" name="group_email"><br>
+
+                  <input type="submit" value="Submit">
+            </form>
+      </div>
 </body>
 
 </html>

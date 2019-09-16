@@ -4,16 +4,8 @@
             "085",
             "087"
         ],
-        "name": "rodman"
-    },
-    "SD21": {
-        "county_nums": [
-            "010",
-            "059",
-            "101",
-            "121"
-        ],
-        "name": "smith"
+        "name": "rodman",
+        "emails": []
     },
     "SD36": {
         "county_nums": [
@@ -21,6 +13,7 @@
             "153",
             "179"
         ],
-        "name": "surovell"
+        "name": "surovell",
+        "emails": ["ssurovell@gmail.com"]
     }
 }
