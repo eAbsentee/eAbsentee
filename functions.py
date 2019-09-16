@@ -369,7 +369,7 @@ def add_to_campaign(request: request) -> None:
 
     call("git add .", shell=True)
     call("git commit -m \"Added new campaign/group\"", shell=True)
-    call("git push origin master")
+    call("git push origin master", shell=True)
 
 # Deprecated
 # def write_fillable_pdf(data: Dict[str, str]) -> None:
