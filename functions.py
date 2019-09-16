@@ -335,30 +335,28 @@ def build_campaign_specific_form(campaign: str):
 
 
 def add_to_campaign(request: request) -> None:
-    # call("pull.sh", shell=True)
-    print(request.form.get('api_key'))
-    print(API_KEY)
-    if request.form.get('key') == API_KEY:
-        if request.form.get('campaigncheckbox') == "1":
+    call("pull.sh", shell=True)
+    if request.form.get('api_key') == API_KEY:
+        if request.form.get('campaign_name'):
             with open('static/campaigns.json') as file:
                 campaigns = json.load(file)
                 list_counties = request.form.get('county_codes').split()
+                list_emails = request.form.get('campaign_email').split()
                 new_campaign = {
                     request.form.get('campaign_code'): {
                         "county_nums": list_counties,
-                        "name": request.form.get('campaign_name')
+                        "name": request.form.get('campaign_name'),
+                        "emails": list_emails
                     }
                 }
                 campaigns.update(new_campaign)
                 with open('static/campaigns.json', 'w') as f:
                     json.dump(campaigns, f, indent=4, sort_keys=True)
-        print('Got this far')
-        print(request.form.get('groupcheckbox'))
-        if request.form.get('groupcheckbox') == "1":
+        if request.form.get('group_name'):
             with open('static/groups.json') as file:
                 groups = json.load(file)
                 new_group = {
-                    request.form.get('campaign_code'): {
+                    request.form.get('group_code'): {
                         "name": request.form.get('group_name'),
                         "email": request.form.get('group_email'),
                         "submissions": "0"
@@ -368,7 +366,7 @@ def add_to_campaign(request: request) -> None:
                 with open('static/groups.json', 'w') as f:
                     json.dump(groups, f, indent=4, sort_keys=True)
 
-    # call("push.sh", shell=True)
+    call("push.sh", shell=True)
 
 # Deprecated
 # def write_fillable_pdf(data: Dict[str, str]) -> None:

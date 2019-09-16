@@ -1,8 +1,7 @@
 {
-      "TG": {
-            "name": "TestGroup",
-            "email": "test@test.com",
-            "submissions": "0"
-      }
-
+    "TG": {
+        "email": "test@test.com",
+        "name": "TestGroup",
+        "submissions": "0"
+    }
 }
