@@ -336,8 +336,7 @@ def build_campaign_specific_form(campaign: str):
 
 
 def add_to_campaign(request: request) -> None:
-    call("pull.sh", shell=True)
-    print('made it so far', file=sys.stderr)
+    call("git pull", shell=True)
     if request.form.get('api_key') == API_KEY:
         if request.form.get('campaign_name'):
             with open('static/campaigns.json') as file:
@@ -354,7 +353,6 @@ def add_to_campaign(request: request) -> None:
                 campaigns.update(new_campaign)
                 with open('static/campaigns.json', 'w') as f:
                     json.dump(campaigns, f, indent=4, sort_keys=True)
-                print(new_campaign, file=sys.stderr)
         if request.form.get('group_name'):
             with open('static/groups.json') as file:
                 groups = json.load(file)
@@ -369,7 +367,9 @@ def add_to_campaign(request: request) -> None:
                 with open('static/groups.json', 'w') as f:
                     json.dump(groups, f, indent=4, sort_keys=True)
 
-    call("push.sh", shell=True)
+    call("git add .", shell=True)
+    call("git commit -m \"Added new campaign/group\"", shell=True)
+    call("git push origin master")
 
 # Deprecated
 # def write_fillable_pdf(data: Dict[str, str]) -> None:
