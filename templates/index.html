@@ -1,3 +1,4 @@
+{% from "macros.html" import favicon %}
 <!DOCTYPE HTML>
 <!--
 Industrious by TEMPLATED
@@ -12,6 +13,8 @@ Released for free under the Creative Commons Attribution 3.0 license (templated.
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
+
+	{{ favicon() }}
 
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}" />
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />

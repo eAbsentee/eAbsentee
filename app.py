@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session, send_file, make_response
+from flask import Flask, render_template, request, redirect, session, send_file, make_response, send_from_directory
 from functions import application_process, add_to_campaign
 from keys import SECRET_KEY
 import os
@@ -101,7 +101,7 @@ def process_form():
 @app.route('/cou/<campaign>')
 def home_with_campaign(campaign: str):
     response = make_response(redirect('/'))
-    response.set_cookie('campaign', campaign, max_age=60*60*24*365*2)
+    response.set_cookie('campaign', campaign, max_age=60 * 60 * 24 * 365 * 2)
     return response
 
 
@@ -109,7 +109,7 @@ def home_with_campaign(campaign: str):
 @app.route('/group/<group>')
 def set_channel(group: str):
     response = make_response(redirect('/'))
-    response.set_cookie('group', group, max_age=60*60*24*365*2)
+    response.set_cookie('group', group, max_age=60 * 60 * 24 * 365 * 2)
     return response
 
 
@@ -142,6 +142,78 @@ def api():
         return render_template('api.html', confirmation='Confirmed! ' + request.form.get('campaign_name') + 'has been added to the list of campaigns.')
     else:
         return render_template('api.html')
+
+
+@app.route('/apple-touch-icon.png', methods=['GET'])
+def apple_touch_icon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicons/apple-touch-icon.png', mimetype='image/png')
+
+
+@app.route('/android-chrome-192x192.png', methods=['GET'])
+def android_chrome_192x192():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicons/android-chrome-192x192.png', mimetype='image/png')
+
+
+@app.route('/android-chrome-512x512.png', methods=['GET'])
+def android_chrome_512x512():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicons/android-chrome-512x512.png', mimetype='image/png')
+
+
+@app.route('/mstile-70x70.png', methods=['GET'])
+def mstile_70x70():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicons/mstile-70x70.png', mimetype='image/png')
+
+
+@app.route('/mstile-144x144.png', methods=['GET'])
+def mstile_144x144():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicons/mstile-144x144.png', mimetype='image/png')
+
+
+@app.route('/mstile-150x150.png', methods=['GET'])
+def mstile_150x150():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicons/mstile-150x150.png', mimetype='image/png')
+
+
+@app.route('/mstile-310x150.png', methods=['GET'])
+def mstile_310x150():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicons/mstile-310x150.png', mimetype='image/png')
+
+
+@app.route('/mstile-310x310.png', methods=['GET'])
+def mstile_310x310():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicons/mstile-310x310.png', mimetype='image/png')
+
+
+@app.route('/safari-pinned-tab.svg', methods=['GET'])
+def safar_pinned_tab():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicons/safari-pinned-tab.svg', mimetype='image/png')
+
+
+@app.route('/favicon.ico', methods=['GET'])
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicons/favicon.ico', mimetype='image/vnd.microsoft.icon')
+
+
+@app.route('/favicon-16x16.png', methods=['GET'])
+def favicon_16x16():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicons/favicon-16x16.png', mimetype='image/png')
+
+
+@app.route('/favicon-32x32.png', methods=['GET'])
+def favicon_32x32():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicons/favicon-32x32.png', mimetype='image/png')
 
 
 if __name__ == '__main__':

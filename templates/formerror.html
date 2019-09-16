@@ -1,3 +1,4 @@
+{% from "macros.html" import favicon %}
 <!DOCTYPE html>
 
 <html>
@@ -8,6 +9,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   <meta name="description" content="" />
   <meta name="keywords" content="" />
+
+  {{ favicon() }}
+
   <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
 </head>
 

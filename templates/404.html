@@ -1,60 +1,63 @@
+{% from "macros.html" import favicon %}
 <!DOCTYPE HTML>
 <html>
 
 <head>
-      <title>eAbsentee Ballot Voting System</title>
-      <meta charset="utf-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-      <meta name="description" content="" />
-      <meta name="keywords" content="" />
+  <title>eAbsentee Ballot Voting System</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <meta name="description" content="" />
+  <meta name="keywords" content="" />
 
-      <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}" />
-      <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+  {{ favicon() }}
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
 </head>
 
 <body class="is-preload">
 
-      <!-- Header -->
-      <header id="header">
-            <a class="logo" href="/">eAbsentee Voting</a>
-            <nav>
-                  <a href="#menu">Menu</a>
-            </nav>
-      </header>
+  <!-- Header -->
+  <header id="header">
+    <a class="logo" href="/">eAbsentee Voting</a>
+    <nav>
+      <a href="#menu">Menu</a>
+    </nav>
+  </header>
 
-      <!-- Nav -->
-      <nav id="menu">
-            <ul class="links">
-                  <li><a href="/">Home</a></li>
-                  <li><a href="/form">Register</a></li>
-                  <li><a href="/about">About</a></li>
-            </ul>
-      </nav>
+  <!-- Nav -->
+  <nav id="menu">
+    <ul class="links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/form">Register</a></li>
+      <li><a href="/about">About</a></li>
+    </ul>
+  </nav>
 
-      <!-- Banner -->
-      <section id="banner">
-            <div class="inner">
-                  <h1>Error 404</h1>
-                  <p>Page not found.</p>
-                  Go <a href="/">home</a>.
-            </div>
-      </section>
+  <!-- Banner -->
+  <section id="banner">
+    <div class="inner">
+      <h1>Error 404</h1>
+      <p>Page not found.</p>
+      Go <a href="/">home</a>.
+    </div>
+  </section>
 
-      <!-- Footer -->
-      <footer id="footer">
-            <div class="copyright">
-                  <p style="color:white;"> Contact us at <a href="mailto:contact@eabsentee.org">contact@eabsentee.org</a> | Paid for and authorized by Vote Absentee Virginia </p>
-            </div>
-            </div>
-      </footer>
-      <!-- Scripts -->
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="copyright">
+      <p style="color:white;"> Contact us at <a href="mailto:contact@eabsentee.org">contact@eabsentee.org</a> | Paid for and authorized by Vote Absentee Virginia </p>
+    </div>
+    </div>
+  </footer>
+  <!-- Scripts -->
 
-      <!-- Scripts -->
-      <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
-      <script src="{{ url_for('static', filename='js/browser.min.js') }}"></script>
-      <script src="{{ url_for('static', filename='js/breakpoints.min.js') }}"></script>
-      <script src="{{ url_for('static', filename='js/util.min.js') }}"></script>
-      <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  <!-- Scripts -->
+  <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/browser.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/breakpoints.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/util.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 
 </body>
 

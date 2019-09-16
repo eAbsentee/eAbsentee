@@ -21,3 +21,6 @@ reportlab = "*"
 
 [requires]
 python_version = "3.7"
+
+[scripts]
+passh = "ssh eabsenteeproject@ssh.pythonanywhere.com"
