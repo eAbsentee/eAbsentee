@@ -1,4 +1,4 @@
 git pull
-git add .
+git add static/campaigns.json
 git commit -m "Add channel"
 git push

@@ -337,31 +337,30 @@ def build_campaign_specific_form(campaign: str):
 
 def add_to_campaign(request: request) -> None:
     if request.form.get('key') == API_KEY:
-        yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
-            to=('raunakdaga@gmail.com', 'sumanthratna@gmail.com'),
-            subject='Add a new campaign to the counties JSON.',
-            contents='Someone has requested a new campagin with the following ID\'s to be added to the campaign list.' +
-            ' Campaign Name: ' + str(request.form.get('campaign_name')) +
-            ' Campaign Code: ' + str(request.form.get('campaign_code')) +
-            ' Campaign Counties ' + str(request.form.get('county_codes'))
-        )
-        # with open('static/campaigns.json') as file:
-        #     campaigns = json.load(file)
-        #     print(request.form.get('counties'))
-        #     new_campaign = {
-        #         request.form.get('campaign_code'): {
-        #
-        #         }}
-        #     print(campaigns)
-        #     with open('campaigns.json', 'w') as f:
-        #         json.dump(campaigns, f)
-
-
-def push():
+        # yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
+        #     to=('raunakdaga@gmail.com', 'sumanthratna@gmail.com'),
+        #     subject='A new campaign has been added to the counties JSON.',
+        #     contents='Someone has requested a new campagin with the following ID\'s to be added to the campaign list.' +
+        #     ' Campaign Name: ' + str(request.form.get('campaign_name')) +
+        #     ' Campaign Code: ' + str(request.form.get('campaign_code')) +
+        #     ' Campaign Counties ' + str(request.form.get('county_codes'))
+        # )
+        with open('static/campaigns.json') as file:
+            campaigns = json.load(file)
+            list_counties = request.form.get('county_codes').split()
+            new_campaign = {
+                request.form.get('campaign_code'): {
+                    "county_nums": list_counties,
+                    "name": request.form.get('campaign_name')
+                }
+            }
+            campaigns.update(new_campaign)
+            print(campaigns)
+            with open('static/campaigns.json', 'w') as f:
+                json.dump(campaigns, f)
     call("push.sh", shell=True)
 
 
-push()
 # Deprecated
 # def write_fillable_pdf(data: Dict[str, str]) -> None:
 #     """Fill out the PDF based on the data from the form. """
