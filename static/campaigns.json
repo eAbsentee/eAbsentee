@@ -1,1 +1,26 @@
-{"SD36": {"county_nums": ["059", "153", "179"], "name": "surovell"}, "SD12": {"county_nums": ["085", "087"], "name": "rodman"}, "SD21": {"county_nums": ["010", "059", "101", "121"], "name": "smith"}}
+{
+    "SD12": {
+        "county_nums": [
+            "085",
+            "087"
+        ],
+        "name": "rodman"
+    },
+    "SD21": {
+        "county_nums": [
+            "010",
+            "059",
+            "101",
+            "121"
+        ],
+        "name": "smith"
+    },
+    "SD36": {
+        "county_nums": [
+            "059",
+            "153",
+            "179"
+        ],
+        "name": "surovell"
+    }
+}
