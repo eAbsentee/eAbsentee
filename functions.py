@@ -275,7 +275,6 @@ def email_registrar(emails_to_send) -> None:
     """Email the form to the registrar of the applicant's locality. """
     yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
         to=(emails_to_send[0], emails_to_send[1]),
-        bcc='raunakdaga+elections@gmail.com',
         subject='Absentee Ballot Request - Applicant-ID: ' +
         f'{session["application_id"]}',
         contents='Please find attached an absentee ballot request ' +
@@ -336,30 +335,40 @@ def build_campaign_specific_form(campaign: str):
 
 
 def add_to_campaign(request: request) -> None:
+    # call("pull.sh", shell=True)
+    print(request.form.get('api_key'))
+    print(API_KEY)
     if request.form.get('key') == API_KEY:
-        # yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
-        #     to=('raunakdaga@gmail.com', 'sumanthratna@gmail.com'),
-        #     subject='A new campaign has been added to the counties JSON.',
-        #     contents='Someone has requested a new campagin with the following ID\'s to be added to the campaign list.' +
-        #     ' Campaign Name: ' + str(request.form.get('campaign_name')) +
-        #     ' Campaign Code: ' + str(request.form.get('campaign_code')) +
-        #     ' Campaign Counties ' + str(request.form.get('county_codes'))
-        # )
-        with open('static/campaigns.json') as file:
-            campaigns = json.load(file)
-            list_counties = request.form.get('county_codes').split()
-            new_campaign = {
-                request.form.get('campaign_code'): {
-                    "county_nums": list_counties,
-                    "name": request.form.get('campaign_name')
+        if request.form.get('campaigncheckbox') == "1":
+            with open('static/campaigns.json') as file:
+                campaigns = json.load(file)
+                list_counties = request.form.get('county_codes').split()
+                new_campaign = {
+                    request.form.get('campaign_code'): {
+                        "county_nums": list_counties,
+                        "name": request.form.get('campaign_name')
+                    }
                 }
-            }
-            campaigns.update(new_campaign)
-            print(campaigns)
-            with open('static/campaigns.json', 'w') as f:
-                json.dump(campaigns, f)
-    call("push.sh", shell=True)
+                campaigns.update(new_campaign)
+                with open('static/campaigns.json', 'w') as f:
+                    json.dump(campaigns, f, indent=4, sort_keys=True)
+        print('Got this far')
+        print(request.form.get('groupcheckbox'))
+        if request.form.get('groupcheckbox') == "1":
+            with open('static/groups.json') as file:
+                groups = json.load(file)
+                new_group = {
+                    request.form.get('campaign_code'): {
+                        "name": request.form.get('group_name'),
+                        "email": request.form.get('group_email'),
+                        "submissions": "0"
+                    }
+                }
+                groups.update(new_group)
+                with open('static/groups.json', 'w') as f:
+                    json.dump(groups, f, indent=4, sort_keys=True)
 
+    # call("push.sh", shell=True)
 
 # Deprecated
 # def write_fillable_pdf(data: Dict[str, str]) -> None:
