@@ -8,5 +8,10 @@
         "email": "test@test.com",
         "name": "Test Group Number 2",
         "submissions": "0"
+    },
+    "tg44": {
+        "email": "tg44@gmail.com",
+        "name": "Test Group number 44",
+        "submissions": "0"
     }
 }
