@@ -139,7 +139,7 @@ def render_pdf(id: str):
 def api():
     if request.method == 'POST':
         add_to_campaign(request)
-        return render_template('api.html', confirmation='Confirmed! ' + request.form.get('campaign_name') + 'has been added to the list of campaigns.')
+        return render_template('api.html')
     else:
         return render_template('api.html')
 
