@@ -3,6 +3,7 @@ import yagmail
 import os
 import openpyxl
 import json
+import sys
 from openpyxl import load_workbook
 from typing import Dict, List, Tuple
 from flask import request, session
@@ -336,6 +337,7 @@ def build_campaign_specific_form(campaign: str):
 
 def add_to_campaign(request: request) -> None:
     call("pull.sh", shell=True)
+    print('made it so far', file=sys.stderr)
     if request.form.get('api_key') == API_KEY:
         if request.form.get('campaign_name'):
             with open('static/campaigns.json') as file:
@@ -352,6 +354,7 @@ def add_to_campaign(request: request) -> None:
                 campaigns.update(new_campaign)
                 with open('static/campaigns.json', 'w') as f:
                     json.dump(campaigns, f, indent=4, sort_keys=True)
+                print(new_campaign, file=sys.stderr)
         if request.form.get('group_name'):
             with open('static/groups.json') as file:
                 groups = json.load(file)
