@@ -129,6 +129,10 @@
 
             </form>
       </div>
+
+      {% if download_link is not none %}
+      <a href={{download_link}} download> Download Spreadsheet </a>
+      {% endif %}
 </body>
 
 </html>

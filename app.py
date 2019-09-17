@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, session, send_file, make_response, send_from_directory
-from functions import application_process, add_to_campaign, get_ids_and_counties, get_spreadsheet_name
-from keys import SECRET_KEY
+from functions import application_process, add_to_campaign, get_ids_and_counties
+from email_report import email_report
+from keys import SECRET_KEY, API_KEY
 import os
 import json
 
@@ -141,8 +142,9 @@ def api():
             add_to_campaign(request)
             return render_template('api.html')
         elif request.form.get('campaign_spreadsheet_name'):
-            print(request.form.get('campaign_spreadsheet_name'))
-            return render_template('api.html', download_link=get_spreadsheet_name())
+            if request.form.get('api_key') == API_KEY:
+                email_report()
+            return render_template('api.html')
         return render_template('api.html')
     else:
         return render_template('api.html')
