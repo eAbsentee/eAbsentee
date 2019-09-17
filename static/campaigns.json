@@ -29,6 +29,18 @@
         ],
         "name": "Daga"
     },
+    "dagatest": {
+        "county_nums": [
+            "010",
+            "059",
+            "061",
+            "063"
+        ],
+        "emails": [
+            "dagatest@gmail.com"
+        ],
+        "name": "Daga"
+    },
     "surovell": {
         "county_nums": [
             "059",
