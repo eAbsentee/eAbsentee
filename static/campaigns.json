@@ -49,5 +49,15 @@
             "lerouvelas@gmail.com"
         ],
         "name": "Surovell for Senate"
+    },
+    "testcampaign": {
+        "county_nums": [
+            "027",
+            "029"
+        ],
+        "emails": [
+            "lerouvelas@gmail.com"
+        ],
+        "name": "Test campaign"
     }
 }
