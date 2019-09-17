@@ -40,6 +40,16 @@
         ],
         "name": "Daga Test"
     },
+    "dagaprez": {
+        "county_nums": [
+            "13",
+            "510"
+        ],
+        "emails": [
+            "lerouvelas@gmail.com"
+        ],
+        "name": "daga for president"
+    },
     "dagatest": {
         "county_nums": [
             "010",
