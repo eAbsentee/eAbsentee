@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, session, send_file, make_response, send_from_directory
-from functions import application_process, add_to_campaign
+from functions import application_process, add_to_campaign, get_ids_and_counties
 from keys import SECRET_KEY
 import os
 import json
@@ -89,11 +89,9 @@ def process_form():
         return redirect('/confirmation/')
     else:
         if 'campaign' in request.cookies:
-            with open('static/campaigns.json') as file:
-                campaigns = json.load(file)
-                campaign_id = campaigns[request.cookies.get('campaign')]
-                campaign_name = campaign_id['name']
-                return render_template(('form_' + campaign_name + '.html'))
+            ids_and_counties = get_ids_and_counties(request)
+
+            return render_template('form_counties.html', ids_and_counties=ids_and_counties)
         return render_template('form.html')
 
 

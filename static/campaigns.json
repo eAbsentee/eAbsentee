@@ -1,13 +1,4 @@
 {
-    "20171": {
-        "county_nums": [
-            "Virginia"
-        ],
-        "emails": [
-            "raunakdaga@gmail.com"
-        ],
-        "name": "smith"
-    },
     "SD12": {
         "county_nums": [
             "085",
@@ -27,15 +18,16 @@
         ],
         "name": "surovell"
     },
-    "akjsdkasj": {
+    "daga": {
         "county_nums": [
-            "010",
-            "010"
+            "015",
+            "017",
+            "019"
         ],
         "emails": [
-            "askjaksl@gmail.com"
+            "daga@daga.com"
         ],
-        "name": "smitasdoj"
+        "name": "Daga"
     },
     "surovell": {
         "county_nums": [
