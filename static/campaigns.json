@@ -18,40 +18,6 @@
         ],
         "name": "surovell"
     },
-    "daga": {
-        "county_nums": [
-            "015",
-            "017",
-            "019"
-        ],
-        "emails": [
-            "daga@daga.com"
-        ],
-        "name": "Daga"
-    },
-    "dagagang": {
-        "county_nums": [
-            "099",
-            "101",
-            "103"
-        ],
-        "emails": [
-            "daklja@gmail.com"
-        ],
-        "name": "Daga Test"
-    },
-    "dagatest": {
-        "county_nums": [
-            "010",
-            "059",
-            "061",
-            "063"
-        ],
-        "emails": [
-            "dagatest@gmail.com"
-        ],
-        "name": "Daga"
-    },
     "surovell": {
         "county_nums": [
             "059",
