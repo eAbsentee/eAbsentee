@@ -137,10 +137,11 @@ def render_pdf(id: str):
 def api():
     if request.method == 'POST':
         if request.form.get('group_name') or request.form.get('campaign_name'):
-            print(request.form.get('group_name'))
+
             add_to_campaign(request)
             return render_template('api.html')
         elif request.form.get('campaign_spreadsheet_name'):
+            print(request.form.get('campaign_spreadsheet_name'))
             return render_template('api.html', download_link=get_spreadsheet_name())
         return render_template('api.html')
     else:
