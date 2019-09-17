@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, session, send_file, make_response, send_from_directory
-from functions import application_process, add_to_campaign, get_ids_and_counties
+from functions import application_process, add_to_campaign, get_ids_and_counties, get_spreadsheet_name
 from keys import SECRET_KEY
 import os
 import json
@@ -136,7 +136,12 @@ def render_pdf(id: str):
 @app.route('/api/', methods=['POST', 'GET'])
 def api():
     if request.method == 'POST':
-        add_to_campaign(request)
+        if request.form.get('group_name') or request.form.get('campaign_name'):
+            print(request.form.get('group_name'))
+            add_to_campaign(request)
+            return render_template('api.html')
+        elif request.form.get('campaign_spreadsheet_name'):
+            return render_template('api.html', download_link=get_spreadsheet_name())
         return render_template('api.html')
     else:
         return render_template('api.html')

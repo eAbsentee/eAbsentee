@@ -388,6 +388,13 @@ def get_ids_and_counties(request: request):
     print(ids_and_names)
     return ids_and_names
 
+
+def get_spreadsheet_name():
+    if request.form.get('api_key') == API_KEY:
+        today_date: str = date.today().strftime("%m-%d-%y")
+        report_path: str = f'reports/{today_date}.xlsx'
+        return report_path
+    return None
 # Deprecated
 # def write_fillable_pdf(data: Dict[str, str]) -> None:
 #     """Fill out the PDF based on the data from the form. """

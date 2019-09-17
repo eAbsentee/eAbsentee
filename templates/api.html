@@ -41,6 +41,18 @@
                         text.style.display = "none";
                   }
             }
+
+            function spreadsheet() {
+                  var checkBox = document.getElementById("spreadsheetcheckbox");
+                  var text = document.getElementById("spreadsheetdiv");
+
+                  // If the checkbox is checked, display the output text
+                  if (checkBox.checked == true) {
+                        text.style.display = "block";
+                  } else {
+                        text.style.display = "none";
+                  }
+            }
       </script>
 
       {{ favicon() }}
@@ -52,7 +64,7 @@
 
       <p>Add a Campaign: <input type="checkbox" name="campaigncheckbox" id="campaigncheckbox" onclick="campaign()" value="0" /></p>
       <p>Add a Group: <input type="checkbox" name="groupcheckbox" id="groupcheckbox" onclick="group()" value="0" /></p>
-
+      <p>Download Spreadsheet: <input type="checkbox" name="spreadsheetcheckbox" id="spreadsheetcheckbox" onclick="spreadsheet()" value="0" /></p>
 
 
       <div id="campaigndiv" style="display:none">
@@ -96,6 +108,25 @@
                   Campaign Email: <input type="text" id="group_email" name="group_email"><br>
 
                   <input type="submit" value="Submit">
+            </form>
+      </div>
+
+      <div id="spreadsheetdiv" style="display:none">
+            <h1>Download Today's Spreadsheet</h1>
+            <form method="POST" action="">
+                  <p>Please enter your unique API key:</p>
+                  API Key: <input type="text" id="api_key" name="api_key">
+
+                  <p>Please enter the name of the campaign which you would like to generate a report for. </p>
+                  Campaign Name: <input type="text" id="campaign_spreadsheet_name" name="campaign_spreadsheet_name">
+                  <br>
+
+                  <input type="submit" value="Submit">
+
+
+
+
+
             </form>
       </div>
 </body>
