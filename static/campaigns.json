@@ -18,6 +18,38 @@
         ],
         "name": "surovell"
     },
+    "SD36d2d": {
+        "county_nums": [
+            "059",
+            "179",
+            "153"
+        ],
+        "emails": [
+            "ssurovell@gmail.com",
+            "lerouvelas@gmail.com"
+        ],
+        "name": "Surovell door-to-door"
+    },
+    "dagabois": {
+        "county_nums": [
+            "011",
+            "013"
+        ],
+        "emails": [
+            "daga@gmail.com"
+        ],
+        "name": "Daga Bois"
+    },
+    "dagaprez": {
+        "county_nums": [
+            "013",
+            "510"
+        ],
+        "emails": [
+            "lerouvelas@gmail.com"
+        ],
+        "name": "daga for president"
+    },
     "surovell": {
         "county_nums": [
             "059",
@@ -29,5 +61,15 @@
             "lerouvelas@gmail.com"
         ],
         "name": "Surovell for Senate"
+    },
+    "testcampaign": {
+        "county_nums": [
+            "027",
+            "029"
+        ],
+        "emails": [
+            "lerouvelas@gmail.com"
+        ],
+        "name": "Test campaign"
     }
 }
