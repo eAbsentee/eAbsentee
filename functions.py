@@ -389,6 +389,21 @@ def get_ids_and_counties(request: request):
     return ids_and_names
 
 
+def email_report_api(request: request):
+    """Email the Excel spreadsheet to Senator Surovell and Mr. Rouvelas. """
+    today_date: str = date.today().strftime("%m-%d-%y")
+    report_path = f'reports/{today_date}.xlsx'
+    report: openpyxl.workbook.Workbook = load_workbook(filename=report_path)
+    worksheet: openpyxl.worksheet.worksheet.Worksheet = report.active
+    if worksheet['A2'].value:
+        yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
+            to=request.form.get('email_spreadsheet'),
+            subject=f'Absentee Ballot Application Report - {today_date}',
+            contents=f'Please find attached the report of absentee ' +
+            f'ballot applications for {today_date}.',
+            attachments=f'reports/{today_date}.xlsx'
+        )
+
 # Deprecated
 # def write_fillable_pdf(data: Dict[str, str]) -> None:
 #     """Fill out the PDF based on the data from the form. """
