@@ -18,6 +18,16 @@
         ],
         "name": "surovell"
     },
+    "dagabois": {
+        "county_nums": [
+            "011",
+            "013"
+        ],
+        "emails": [
+            "daga@gmail.com"
+        ],
+        "name": "Daga Bois"
+    },
     "surovell": {
         "county_nums": [
             "059",
