@@ -62,6 +62,15 @@
         ],
         "name": "Surovell for Senate"
     },
+    "tcn44": {
+        "county_nums": [
+            "011"
+        ],
+        "emails": [
+            "tcn44@gmail.com"
+        ],
+        "name": "testing campaign name"
+    },
     "testcampaign": {
         "county_nums": [
             "027",
