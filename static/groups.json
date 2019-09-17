@@ -38,5 +38,10 @@
         "email": "tg44@gmail.com",
         "name": "Test Group",
         "submissions": "0"
+    },
+    "tgn": {
+        "email": "tgn@test.com",
+        "name": "temporary group name",
+        "submissions": "0"
     }
 }
