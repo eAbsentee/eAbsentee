@@ -125,7 +125,8 @@ def parse_data(request: request) -> Tuple[Dict[str, str], str]:
             'todaysDateYear': '   '.join(todayDate[4:6]),
             'applicationIP': request.environ.get('HTTP_X_REAL_IP', request.remote_addr),
             'emailMe': request.form.get('email_me'),
-            'campaignCode': campaign_name
+            'campaignCode': campaign_name,
+            'groupCode': group_code_req
         }
 
     registrar_address: str = localities[request.form[
@@ -160,7 +161,8 @@ def build_pdf(data: Dict[str, str], registrar_address: str) -> str:
         + data['city'] + ', ' + data['zipCode'],
         data['applicationIP'],
         session['application_id'],
-        data['campaignCode']
+        data['campaignCode'],
+        data['groupCode']
     ]
 
     append_to_report(report_path, data_for_report)
@@ -315,6 +317,7 @@ def create_report() -> str:
     sh['I1'] = 'IP Submitted From'
     sh['J1'] = 'Form ID'
     sh['K1'] = 'Campaign Code'
+    sh['L1'] = 'Group Code'
 
     report_path: str = f'reports/{today_date}.xlsx'
 
