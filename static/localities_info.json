@@ -229,7 +229,7 @@
     },
     "059": {
         "locality": "Fairfax County",
-        "email": "voting@fairfaxcounty.gov",
+        "email": "absenteeballot@fairfaxcounty.gov",
         "phone": "703-222-0776",
         "fax": "703-324-2205"
     },
@@ -601,7 +601,7 @@
     },
     "153": {
         "locality": "Prince William County",
-        "email": "pwcvote@pwcgov.org",
+        "email": "absenteevoting@pwcgov.org",
         "phone": "703-792-6470",
         "fax": "703-792-6461"
     },
