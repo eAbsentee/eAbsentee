@@ -3,7 +3,6 @@ import yagmail
 import os
 import openpyxl
 import json
-import sys
 from openpyxl import load_workbook
 from typing import Dict, List, Tuple
 from flask import request, session
