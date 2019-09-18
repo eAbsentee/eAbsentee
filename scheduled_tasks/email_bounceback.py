@@ -15,13 +15,13 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 def bounceback_check() -> List:
     # Gets authentication json if it's been implemented before
-    store = file.Storage('static/storage.json')
+    store = file.Storage('../static/storage.json')
     creds = store.get()
 
     # If the credits don't work or don't exist, create them, and store them
     SCOPES = 'https://www.googleapis.com/auth/gmail.modify'
     if not creds or creds.invalid:
-        flow = client.flow_from_clientsecrets('static/credentials.json', SCOPES)
+        flow = client.flow_from_clientsecrets('../static/credentials.json', SCOPES)
         creds = tools.run_flow(flow, store)
 
     # Builds connection to gmail client

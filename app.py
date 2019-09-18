@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, redirect, session, send_file,
 from functions import application_process, add_to_campaign, get_ids_and_counties, email_report_api
 from keys import SECRET_KEY, API_KEY
 import os
-import json
 
 # Sets CWD to whatever directory app.py is located in
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
