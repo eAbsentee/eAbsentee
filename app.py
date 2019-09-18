@@ -38,7 +38,7 @@ def credits_page():
 @app.route('/fillableform/')
 def render_fillableform_pdf():
     return send_file(
-        open('static/blankAppFillable.pdf', 'rb'),
+        open('static/pdf/blankAppFillable.pdf', 'rb'),
         attachment_filename='blankAppFillable.pdf'
     )
 
@@ -46,7 +46,7 @@ def render_fillableform_pdf():
 @app.route('/printform/')
 def render_printform_pdf():
     return send_file(
-        open('static/blankApp.pdf', 'rb'),
+        open('static/pdf/blankApp.pdf', 'rb'),
         attachment_filename='blankApp.pdf'
     )
 
@@ -54,7 +54,7 @@ def render_printform_pdf():
 @app.route('/videocredits/')
 def render_videocredits_pdf():
     return send_file(
-        open('static/credits.pdf', 'rb'),
+        open('static/pdf/credits.pdf', 'rb'),
         attachment_filename='credits.pdf'
     )
 

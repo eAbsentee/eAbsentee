@@ -31,7 +31,7 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 # WIDGET_SUBTYPE_KEY: str = '/Widget'
 
 # Where the form lives
-form_path: str = 'static/blankAppFillable.pdf'
+form_path: str = 'static/pdf/blankAppFillable.pdf'
 
 
 def parse_data(request: request) -> Tuple[Dict[str, str], str]:
