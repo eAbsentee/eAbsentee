@@ -1,3 +1,4 @@
+from typing import List
 import yagmail
 from googleapiclient import discovery
 import email
@@ -5,9 +6,11 @@ from httplib2 import Http
 from oauth2client import file, client, tools
 import re
 import base64
-from keys import GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD
 import os
-from typing import List
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from keys import GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD  # noqa
+
 
 # Change current working directory, only needed for Atom
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
@@ -21,19 +24,20 @@ def bounceback_check() -> List:
     # If the credits don't work or don't exist, create them, and store them
     SCOPES = 'https://www.googleapis.com/auth/gmail.modify'
     if not creds or creds.invalid:
-        flow = client.flow_from_clientsecrets('../static/credentials.json', SCOPES)
+        flow = client.flow_from_clientsecrets(
+            '../static/credentials.json', SCOPES)
         creds = tools.run_flow(flow, store)
 
     # Builds connection to gmail client
     GMAIL = discovery.build('gmail', 'v1', http=creds.authorize(Http()))
 
-    # user_id indicates to gmail when in the for loop that we are looking at OUR inbox
+    # user_id indicates to gmail that we are looking at OUR inbox
     user_id = 'me'
 
     label_id_one = 'INBOX'
     label_id_two = 'UNREAD'
 
-    # We connect to the api, request unread messages from our account, and then get a dictionary.
+    # Connect to the api, request unread messages, then get a dictionary
     unread_messages = GMAIL.users().messages().list(
         userId=user_id, labelIds=[label_id_one, label_id_two]).execute()
 
@@ -42,13 +46,14 @@ def bounceback_check() -> List:
     except(Exception):
         return []
 
-    final_list: List = []  # Final list of undeliverable messages which need to be covered
+    final_list: List = []  # Final list of undeliverable messages
 
     for message in message_list:
         message_id = message['id']
 
         message = GMAIL.users().messages().get(
-            userId=user_id, id=message_id).execute()  # Fetch the message using API
+            userId=user_id, id=message_id
+        ).execute()  # Fetch the message using API
         payload = message['payload']
         header = payload['headers']
 
@@ -106,8 +111,8 @@ def bounceback_email(final_list) -> None:
             f': {pair[1]}',
             contents='This email is being automatically delivered by the ' + \
             'eAbsentee absentee ballot application system. Our website, ' + \
-            'eAbsentee.org, is used to request absentee ballots online in an ' + \
-            ' easier manner. You can contact us at eAbsentee@gmail.com. ' + \
+            'eAbsentee.org, is used to request absentee ballots online in ' + \
+            'an easier manner. You can contact us at eAbsentee@gmail.com. ' + \
             'Thank you. Please find attached an absentee ballot request ' + \
             'which was unsuccesfully delivered to a registrar due to a ' + \
             'bounceback email. The email which caused the bounceback was ' + \
