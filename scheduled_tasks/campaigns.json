@@ -1,0 +1,95 @@
+{
+    "SD12": {
+        "county_nums": [
+            "085",
+            "087"
+        ],
+        "emails": [],
+        "name": "rodman"
+    },
+    "SD12d2d": {
+        "county_nums": [
+            "087",
+            "085"
+        ],
+        "emails": [
+            "molly@debrarodman.com,",
+            "lerouvelas@gmail.com"
+        ],
+        "name": "Rodman door-to-door"
+    },
+    "SD36": {
+        "county_nums": [
+            "059",
+            "153",
+            "179"
+        ],
+        "emails": [
+            "ssurovell@gmail.com"
+        ],
+        "name": "surovell"
+    },
+    "SD36d2d": {
+        "county_nums": [
+            "059",
+            "179",
+            "153"
+        ],
+        "emails": [
+            "ssurovell@gmail.com",
+            "lerouvelas@gmail.com"
+        ],
+        "name": "Surovell door-to-door"
+    },
+    "dagabois": {
+        "county_nums": [
+            "011",
+            "013"
+        ],
+        "emails": [
+            "daga@gmail.com"
+        ],
+        "name": "Daga Bois"
+    },
+    "dagaprez": {
+        "county_nums": [
+            "013",
+            "510"
+        ],
+        "emails": [
+            "lerouvelas@gmail.com"
+        ],
+        "name": "daga for president"
+    },
+    "surovell": {
+        "county_nums": [
+            "059",
+            "179",
+            "153"
+        ],
+        "emails": [
+            "ssurovell@gmail.com",
+            "lerouvelas@gmail.com"
+        ],
+        "name": "Surovell for Senate"
+    },
+    "tcn44": {
+        "county_nums": [
+            "011"
+        ],
+        "emails": [
+            "tcn44@gmail.com"
+        ],
+        "name": "testing campaign name"
+    },
+    "testcampaign": {
+        "county_nums": [
+            "027",
+            "029"
+        ],
+        "emails": [
+            "lerouvelas@gmail.com"
+        ],
+        "name": "Test campaign"
+    }
+}
