@@ -9,21 +9,6 @@
         "name": "SD12-Hermitage",
         "submissions": "0"
     },
-    "TG": {
-        "email": "test@test.com",
-        "name": "TestGroup",
-        "submissions": "0"
-    },
-    "TG22": {
-        "email": "test@test.com",
-        "name": "Test Group Number 2",
-        "submissions": "0"
-    },
-    "TG67": {
-        "email": "test@test.com",
-        "name": "Test Group 102931029",
-        "submissions": "0"
-    },
     "barnett": {
         "email": "karl.bach@barnett4delegate.com",
         "name": "Friends of Larry Barnett",
@@ -49,19 +34,4 @@
         "name": "Surovell campaign",
         "submissions": "0"
     },
-    "tg44": {
-        "email": "tg44@gmail.com",
-        "name": "Test Group number 44",
-        "submissions": "0"
-    },
-    "tg4413": {
-        "email": "tg44@gmail.com",
-        "name": "Test Group",
-        "submissions": "0"
-    },
-    "tgn": {
-        "email": "tgn@test.com",
-        "name": "temporary group name",
-        "submissions": "0"
-    }
 }
