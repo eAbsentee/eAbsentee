@@ -315,37 +315,39 @@ def create_report() -> str:
 
 def add_to_campaign(request: request) -> None:
     call("git pull", shell=True)
-    if request.form.get('api_key') == API_KEY:
-        if request.form.get('campaign_name'):
-            os.mkdir(('reports/' + request.form.get('campaign_name')))
-            with open('static/campaigns.json') as file:
-                campaigns = json.load(file)
-                list_counties = request.form.get('county_codes').split()
-                list_emails = request.form.get('campaign_email').split()
-                new_campaign = {
-                    request.form.get('campaign_code'): {
-                        "county_nums": list_counties,
-                        "name": request.form.get('campaign_name'),
-                        "emails": list_emails
-                    }
+    if request.form.get('api_key') != API_KEY:
+        return
+
+    if request.form.get('campaign_name'):
+        os.mkdir(('reports/' + request.form.get('campaign_name')))
+        with open('static/campaigns.json') as file:
+            campaigns = json.load(file)
+            list_counties = request.form.get('county_codes').split()
+            list_emails = request.form.get('campaign_email').split()
+            new_campaign = {
+                request.form.get('campaign_code'): {
+                    "county_nums": list_counties,
+                    "name": request.form.get('campaign_name'),
+                    "emails": list_emails
                 }
-                campaigns.update(new_campaign)
-                with open('static/campaigns.json', 'w') as f:
-                    json.dump(campaigns, f, indent=4, sort_keys=True)
-        if request.form.get('group_name'):
-            os.mkdir(('reports/' + request.form.get('group_name')))
-            with open('static/groups.json') as file:
-                groups = json.load(file)
-                new_group = {
-                    request.form.get('group_code'): {
-                        "name": request.form.get('group_name'),
-                        "email": request.form.get('group_email'),
-                        "submissions": "0"
-                    }
+            }
+            campaigns.update(new_campaign)
+            with open('static/campaigns.json', 'w') as f:
+                json.dump(campaigns, f, indent=4, sort_keys=True)
+    if request.form.get('group_name'):
+        os.mkdir(('reports/' + request.form.get('group_name')))
+        with open('static/groups.json') as file:
+            groups = json.load(file)
+            new_group = {
+                request.form.get('group_code'): {
+                    "name": request.form.get('group_name'),
+                    "email": request.form.get('group_email'),
+                    "submissions": "0"
                 }
-                groups.update(new_group)
-                with open('static/groups.json', 'w') as f:
-                    json.dump(groups, f, indent=4, sort_keys=True)
+            }
+            groups.update(new_group)
+            with open('static/groups.json', 'w') as f:
+                json.dump(groups, f, indent=4, sort_keys=True)
 
     call("git add .", shell=True)
     call("git commit -m \"Added new campaign/group\"", shell=True)
