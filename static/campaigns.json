@@ -62,6 +62,16 @@
         ],
         "name": "Surovell door-to-door"
     },
+    "ct123": {
+        "county_nums": [
+            "011",
+            "013"
+        ],
+        "emails": [
+            "ct231@gmail.com"
+        ],
+        "name": "TEST GROUP"
+    },
     "dagabois": {
         "county_nums": [
             "011",

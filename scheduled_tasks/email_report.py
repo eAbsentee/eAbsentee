@@ -9,6 +9,9 @@ from openpyxl import load_workbook
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 
+def split_reports() -> None:
+
+
 def email_report() -> None:
     """Email the Excel spreadsheet to Senator Surovell and Mr. Rouvelas. """
     today_date: str = date.today().strftime("%m-%d-%y")

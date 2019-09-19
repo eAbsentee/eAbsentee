@@ -14,21 +14,10 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 from subprocess import call
 from keys import GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD, API_KEY
-
 # import pdfrw || DEPRECATED
-
 
 # Change current working directory to directory 'functions.py' is in.
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
-
-'''Deprecated, because we are no longer filling out by the fillable fields. Don't delete, however.'''
-# Subtypes of pdfrw, needed to write to fillable app.
-# ANNOT_KEY: str = '/Annots'
-# ANNOT_FIELD_KEY: str = '/T'
-# ANNOT_VAL_KEY: str = '/V'
-# ANNOT_RECT_KEY: str = '/Rect'
-# SUBTYPE_KEY: str = '/Subtype'
-# WIDGET_SUBTYPE_KEY: str = '/Widget'
 
 # Where the form lives
 form_path: str = 'static/pdf/blankAppFillable.pdf'
@@ -46,16 +35,16 @@ def parse_data(request: request) -> Tuple[Dict[str, str], str]:
             campaign_id = campaigns[request.cookies.get('campaign')]
             campaign_name = campaign_id['name']
 
-    group_code_req = ''
+    group_code = ''
     if request.cookies.get('group'):
-        group_code_req = request.cookies.get('group')
+        group_code = request.cookies.get('group')
 
     data_dict: Dict[str, str] = {}  # Create outside of scope
     with open('static/localities_info.json') as file:
         localities = json.load(file)
         data_dict: Dict[str, str] = {
-            'firstName': request.form['name__first'],
-            'middleName': request.form['name__middle'],
+            'first_name': request.form['name__first'],
+            'middle_name': request.form['name__middle'],
             'lastName': request.form['name__last'],
             'suffix': request.form['name__suffix'],
             'ssn': '  '.join(request.form['name__ssn']),
@@ -125,7 +114,7 @@ def parse_data(request: request) -> Tuple[Dict[str, str], str]:
             'applicationIP': request.environ.get('HTTP_X_REAL_IP', request.remote_addr),
             'emailMe': request.form.get('email_me'),
             'campaignCode': campaign_name,
-            'groupCode': group_code_req
+            'groupCode': group_code
         }
 
     registrar_address: str = localities[request.form[
@@ -174,8 +163,8 @@ def build_pdf(data: Dict[str, str], registrar_address: str) -> str:
 def set_session_keys(data: Dict[str, str], registrar_address: str) -> None:
     # id is first 10 characters of MD5 hash of dictionary
     id: str = hashlib.md5(repr(data).encode('utf-8')).hexdigest()[: 10]
-    name: str = data['firstName'] + \
-        ' ' + data['middleName'] + \
+    name: str = data['first_name'] + \
+        ' ' + data['middle_name'] + \
         ' ' + data['lastName'] + \
         (', ' + data['suffix']
          if data['suffix'].strip() else '')
@@ -194,8 +183,8 @@ def write_pdf(data: Dict[str, str]) -> None:
     # Create a new PDF with Reportlab
     can = canvas.Canvas(packet, pagesize=letter)
     can.drawString(180, 690, data['lastName'])  # LastName
-    can.drawString(420, 690, data['firstName'])  # First Name
-    can.drawString(185, 666, data['middleName'])  # Middle Name
+    can.drawString(420, 690, data['first_name'])  # First Name
+    can.drawString(185, 666, data['middle_name'])  # Middle Name
     can.drawString(320, 666, data['suffix'])  # Suffix
     can.drawString(238, 638, data['genSpecCheck'])  # Gen/Spec Election
     can.drawString(383, 638, data['demPrimCheck'])  # Democratic Primary
@@ -324,23 +313,11 @@ def create_report() -> str:
     return report_path
 
 
-def build_campaign_specific_form(campaign: str):
-    with open('static/localities_info.json') as localities:
-        with open('static/campaigns.json') as campaigns:
-            localities_json = json.load(localities)
-            campaigns_json = json.load(campaigns)
-            ids_and_names = []
-            campaignData = campaigns_json[campaign]
-            county_nums = campaignData['county_nums']
-            # for county_num in county_nums:
-            # THIS IS OVERKILL! Just update campaigns with their own HTML file as we go for now.
-            # We only have two campaigns anyways...
-
-
 def add_to_campaign(request: request) -> None:
     call("git pull", shell=True)
     if request.form.get('api_key') == API_KEY:
         if request.form.get('campaign_name'):
+            os.mkdir(('reports/' + request.form.get('campaign_name')))
             with open('static/campaigns.json') as file:
                 campaigns = json.load(file)
                 list_counties = request.form.get('county_codes').split()
@@ -356,6 +333,7 @@ def add_to_campaign(request: request) -> None:
                 with open('static/campaigns.json', 'w') as f:
                     json.dump(campaigns, f, indent=4, sort_keys=True)
         if request.form.get('group_name'):
+            os.mkdir(('reports/' + request.form.get('group_name')))
             with open('static/groups.json') as file:
                 groups = json.load(file)
                 new_group = {
@@ -402,6 +380,16 @@ def email_report_api(request: request):
             f'ballot applications for {today_date}.',
             attachments=f'reports/{today_date}.xlsx'
         )
+
+
+# Deprecated, because we are no longer filling out by the fillable fields. Don't delete, however.
+# Subtypes of pdfrw, needed to write to fillable app.
+# ANNOT_KEY: str = '/Annots'
+# ANNOT_FIELD_KEY: str = '/T'
+# ANNOT_VAL_KEY: str = '/V'
+# ANNOT_RECT_KEY: str = '/Rect'
+# SUBTYPE_KEY: str = '/Subtype'
+# WIDGET_SUBTYPE_KEY: str = '/Widget'
 
 # Deprecated
 # def write_fillable_pdf(data: Dict[str, str]) -> None:
