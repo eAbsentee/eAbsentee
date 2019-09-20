@@ -60,11 +60,11 @@ def parse_data(request: request) -> Tuple[Dict[str, str], str]:
         data_dict: Dict[str, str] = {
             'first_name': request.form['name__first'],
             'middle_name': request.form['name__middle'],
-            'lastName': request.form['name__last'],
+            'last_name': request.form['name__last'],
             'suffix': request.form['name__suffix'],
             'ssn': '  '.join(request.form['name__ssn']),
-            'reasonCode': '     '.join(request.form['reason__code']),
-            'registeredToVote': localities[
+            'reason_code': '     '.join(request.form['reason__code']),
+            'registered_to_vote': localities[
                 request.form['election__locality_gnis']
             ]['locality'],
             'supporting': request.form['reason__documentation'],
@@ -72,64 +72,64 @@ def parse_data(request: request) -> Tuple[Dict[str, str], str]:
             'address': request.form['address__street'],
             'apt': request.form['address__unit'],
             'city': request.form['address__city'],
-            'zipCode': '   '.join(request.form['address__zip']),
-            'ballotDeliveryAddress': request.form.get('delivery__street'),
-            'ballotDeliveryCity': request.form.get('delivery__city'),
-            'ballotDeliveryApt': request.form.get('delivery__unit'),
-            'ballotDeliveryZip': '   '.join(request.form.get(
+            'zip_code': '   '.join(request.form['address__zip']),
+            'ballot_delivery_address': request.form.get('delivery__street'),
+            'ballot_delivery_city': request.form.get('delivery__city'),
+            'ballot_delivery_apt': request.form.get('delivery__unit'),
+            'ballot_delivery_zip': '   '.join(request.form.get(
                 'delivery__zip').replace('-', '')),
-            'ballotDeliveryState': request.form.get('deliv-state'),
-            'formerFullName': request.form.get('change__former_name'),
-            'formerAddress': request.form.get('change__former_address'),
+            'ballot_delivery_state': request.form.get('deliv-state'),
+            'former_fullname': request.form.get('change__former_name'),
+            'former_address': request.form.get('change__former_address'),
             'signature': '/S/ ' + request.form[
                 'signature__signed'].replace('/S/', '', 1).strip(),
-            'firstThreeTelephone': '   '.join(request.form.get('more_info__telephone').replace(
+            'first_three_telephone': '   '.join(request.form.get('more_info__telephone').replace(
                 '-', '').replace('(', '').replace(')', '').replace(' ', '')[0:3]),
-            'secondThreeTelephone': '   '.join(request.form.get('more_info__telephone').replace(
+            'second_three_telephone': '   '.join(request.form.get('more_info__telephone').replace(
                 '-', '').replace('(', '').replace(')', '').replace(' ', '')[3:6]),
-            'lastFourTelephone': '   '.join(request.form.get('more_info__telephone').replace(
+            'last_four_telpehone': '   '.join(request.form.get('more_info__telephone').replace(
                 '-', '').replace('(', '').replace(')', '').replace(' ', '')[6:10]),
-            'assistantCheck': 'X' if request.form.get(
+            'assistant_check': 'X' if request.form.get(
                 'assistance__assistance') == 'true' else '',
-            'assistantFullName': request.form.get('assistant__name'),
-            'assistantAddress': request.form.get('assistant__street'),
-            'assistantSignature': request.form.get('assistant__sig'),
-            'assistantApt': request.form.get('assistant__unit'),
-            'assistantCity': request.form.get('assistant__city'),
-            'assistantState': request.form.get('assistant__state'),
-            'assistantZip': '   '.join(request.form.get(
+            'assistant_fullname': request.form.get('assistant__name'),
+            'assistant_address': request.form.get('assistant__street'),
+            'assistant_signature': request.form.get('assistant__sig'),
+            'assistant_apt': request.form.get('assistant__unit'),
+            'assistant_city': request.form.get('assistant__city'),
+            'assistant_state': request.form.get('assistant__state'),
+            'assistant_zip': '   '.join(request.form.get(
                 'assistant__zip').replace('-', '')),
-            'deliverResidence': 'X' if request.form.get(
+            'deliver_residence': 'X' if request.form.get(
                 'delivery__to') == 'residence address' else '',
-            'deliverMailing': 'X' if request.form.get(
+            'deliver_mailing': 'X' if request.form.get(
                 'delivery__to') == 'mailing address' else '',
-            'deliverEmail': 'X' if request.form.get(
+            'deliver_email': 'X' if request.form.get(
                 'delivery__to') == 'email' else '',
-            'genSpecCheck': 'X' if request.form[
+            'gen_spec_check': 'X' if request.form[
                 'election__type'] == 'General or Special Election' else '',
-            'demPrimCheck': 'X' if request.form[
+            'dem_prim_check': 'X' if request.form[
                 'election__type'] == 'Democratic Primary' else '',
-            'repPrimCheck': 'X' if request.form[
+            'rep_prim_check': 'X' if request.form[
                 'election__type'] == 'Republican Primary' else '',
-            'countyCheck': 'X' if 'County' in localities[
+            'county_check': 'X' if 'County' in localities[
                 request.form['election__locality_gnis']
             ]['locality'] else '',
-            'cityCheck': 'X' if 'City' in localities[
+            'city_check': 'X' if 'City' in localities[
                 request.form['election__locality_gnis']
             ]['locality'] else '',
-            'dateMovedMonth': '   '.join(request.form.get('change__date_moved')[5:7]),
-            'dateMovedDay': '   '.join(request.form.get('change__date_moved')[8:10]),
-            'dateMovedYear': '   '.join(request.form.get('change__date_moved')[2:4]),
-            'dateOfElectionMonth': '   '.join(request.form.get('election__date')[5:7]),
-            'dateOfElectionDay': '   '.join(request.form.get('election__date')[8:10]),
-            'dateOfElectionYear': '   '.join(request.form.get('election__date')[2:4]),
-            'todaysDateMonth': '   '.join(todayDate[0:2]),
-            'todaysDateDay': '   '.join(todayDate[2:4]),
-            'todaysDateYear': '   '.join(todayDate[4:6]),
-            'applicationIP': request.environ.get('HTTP_X_REAL_IP', request.remote_addr),
-            'emailMe': request.form.get('email_me'),
-            'campaignCode': campaign_name,
-            'groupCode': group_code,
+            'date_moved_month': '   '.join(request.form.get('change__date_moved')[5:7]),
+            'date_moved_day': '   '.join(request.form.get('change__date_moved')[8:10]),
+            'date_moved_year': '   '.join(request.form.get('change__date_moved')[2:4]),
+            'date_election_month': '   '.join(request.form.get('election__date')[5:7]),
+            'date_election_day': '   '.join(request.form.get('election__date')[8:10]),
+            'date_election_year': '   '.join(request.form.get('election__date')[2:4]),
+            'date_today_month': '   '.join(todayDate[0:2]),
+            'date_today_day': '   '.join(todayDate[2:4]),
+            'date_today_year': '   '.join(todayDate[4:6]),
+            'application_ip': request.environ.get('HTTP_X_REAL_IP', request.remote_addr),
+            'email_me': request.form.get('email_me'),
+            'campaign_code': campaign_name,
+            'group_code': group_code,
             'registrar_address': localities[request.form['election__locality_gnis']]['email'],
             'emails_to_be_sent_to': emails_to_be_sent_to
         }
@@ -141,18 +141,18 @@ def build_report_data(data: Dict[str, str]) -> str:
     data_for_report: List[str] = [
         session['name'],
         str(datetime.datetime.now().time()),
-        data['reasonCode'],
+        data['reason_code'],
         data['supporting'],
-        data['registeredToVote'],
+        data['registered_to_vote'],
         data['email'],
-        data['firstThreeTelephone']
-        + data['secondThreeTelephone'] + data['lastFourTelephone'],
+        data['first_three_telephone']
+        + data['second_three_telephone'] + data['last_four_telpehone'],
         data['address'] + data['apt'] + ', '
-        + data['city'] + ', ' + data['zipCode'],
-        data['applicationIP'],
+        + data['city'] + ', ' + data['zip_code'],
+        data['application_ip'],
         session['application_id'],
-        data['campaignCode'],
-        data['groupCode']
+        data['campaign_code'],
+        data['group_code']
     ]
 
     append_to_report(data_for_report)
@@ -163,13 +163,13 @@ def set_session_keys(data: Dict[str, str]) -> None:
     id: str = hashlib.md5(repr(data).encode('utf-8')).hexdigest()[: 10]
     name: str = data['first_name'] + \
         ' ' + data['middle_name'] + \
-        ' ' + data['lastName'] + \
+        ' ' + data['last_name'] + \
         (', ' + data['suffix']
          if data['suffix'].strip() else '')
     session['name'] = name
     session['application_id'] = id
     session['output_file'] = f'applications/{id}.pdf'
-    session['registrar_locality'] = data['registeredToVote']
+    session['registrar_locality'] = data['registered_to_vote']
     session['registrar_email'] = data['registrar_address']
 
     today_date: str = date.today().strftime("%m-%d-%y")
@@ -179,65 +179,65 @@ def set_session_keys(data: Dict[str, str]) -> None:
 def write_pdf(data: Dict[str, str]) -> None:
     packet = io.BytesIO()
     can = canvas.Canvas(packet, pagesize=letter)
-    can.drawString(180, 690, data['lastName'])  # LastName
+    can.drawString(180, 690, data['last_name'])  # LastName
     can.drawString(420, 690, data['first_name'])  # First Name
     can.drawString(185, 666, data['middle_name'])  # Middle Name
     can.drawString(320, 666, data['suffix'])  # Suffix
-    can.drawString(238, 638, data['genSpecCheck'])  # Gen/Spec Election
-    can.drawString(383, 638, data['demPrimCheck'])  # Democratic Primary
-    can.drawString(498, 638, data['repPrimCheck'])  # Republican Primary
+    can.drawString(238, 638, data['gen_spec_check'])  # Gen/Spec Election
+    can.drawString(383, 638, data['dem_prim_check'])  # Democratic Primary
+    can.drawString(498, 638, data['rep_prim_check'])  # Republican Primary
     can.drawString(550, 675, data['ssn'])  # SSN
-    can.drawString(207, 614, data['dateOfElectionMonth'])  # MonthOfElection
-    can.drawString(251, 614, data['dateOfElectionDay'])  # Dayofelection
-    can.drawString(291, 614, data['dateOfElectionYear'])  # YearOfElection
+    can.drawString(207, 614, data['date_election_month'])  # MonthOfElection
+    can.drawString(251, 614, data['date_election_day'])  # Dayofelection
+    can.drawString(291, 614, data['date_election_year'])  # YearOfElection
 
-    can.drawString(331, 611, data['countyCheck'])  # REGISTERED COUNTY
-    can.drawString(378, 611, data['cityCheck'])  # REGISTERED CITY
-    can.drawString(425, 611, data['registeredToVote'])  # Registered locality
+    can.drawString(331, 611, data['county_check'])  # REGISTERED COUNTY
+    can.drawString(378, 611, data['city_check'])  # REGISTERED CITY
+    can.drawString(425, 611, data['registered_to_vote'])  # Registered locality
 
-    can.drawString(189, 554, data['reasonCode'])
+    can.drawString(189, 554, data['reason_code'])
     can.setFont('Helvetica', 8)
     can.drawString(312, 555, data['supporting'])
     can.setFont('Helvetica', 12)
-    can.drawString(423, 524, data['firstThreeTelephone'])  # FIRST 3 TELPEHONE
-    can.drawString(480, 524, data['secondThreeTelephone'])  # SECOND 3 TELPEHONE
-    can.drawString(537, 524, data['lastFourTelephone'])  # LAST 4 TELPEHONE
+    can.drawString(423, 524, data['first_three_telephone'])  # FIRST 3 TELPEHONE
+    can.drawString(480, 524, data['second_three_telephone'])  # SECOND 3 TELPEHONE
+    can.drawString(537, 524, data['last_four_telpehone'])  # LAST 4 TELPEHONE
     can.drawString(178, 504, data['email'])
 
     can.drawString(171, 473, data['address'])
     can.drawString(516, 473, data['apt'])
     can.drawString(153, 453, data['city'])
-    can.drawString(518, 453, data['zipCode'])  # ZIP CODE OF DELIVERY
+    can.drawString(518, 453, data['zip_code'])  # ZIP CODE OF DELIVERY
 
-    can.drawString(289, 424, data['deliverResidence'])  # DELIVERED TO RESIDENCE
-    can.drawString(459, 424, data['deliverMailing'])  # DELIVERED TO MAILING
-    can.drawString(289, 410, data['deliverEmail'])  # DELIVERED TO EMAIL
+    can.drawString(289, 424, data['deliver_residence'])  # DELIVERED TO RESIDENCE
+    can.drawString(459, 424, data['deliver_mailing'])  # DELIVERED TO MAILING
+    can.drawString(289, 410, data['deliver_email'])  # DELIVERED TO EMAIL
     # can.drawString(459, 410, data['deliverFax'])  # DELIVERED TO FAX
-    can.drawString(168, 392, data['ballotDeliveryAddress'])
-    can.drawString(532, 392, data['ballotDeliveryApt'])
-    can.drawString(154, 372, data['ballotDeliveryCity'])
-    can.drawString(317, 372, data['ballotDeliveryState'])
-    can.drawString(442, 372, data['ballotDeliveryZip'])
+    can.drawString(168, 392, data['ballot_delivery_address'])
+    can.drawString(532, 392, data['ballot_delivery_apt'])
+    can.drawString(154, 372, data['ballot_delivery_city'])
+    can.drawString(317, 372, data['ballot_delivery_state'])
+    can.drawString(442, 372, data['ballot_delivery_zip'])
 
-    can.drawString(205, 340, data['formerFullName'])
-    can.drawString(487, 340, data['dateMovedMonth'])  # MONTH MOVED
-    can.drawString(528, 340, data['dateMovedDay'])  # DAY MOVED
-    can.drawString(569, 340, data['dateMovedYear'])  # YEAR MOVED
-    can.drawString(192, 320, data['formerAddress'])
+    can.drawString(205, 340, data['former_fullname'])
+    can.drawString(487, 340, data['date_moved_month'])  # MONTH MOVED
+    can.drawString(528, 340, data['date_moved_day'])  # DAY MOVED
+    can.drawString(569, 340, data['date_moved_year'])  # YEAR MOVED
+    can.drawString(192, 320, data['former_address'])
 
-    can.drawString(130, 292, data['assistantCheck'])  # Assistant checkbox
-    can.drawString(170, 222, data['assistantFullName'])
-    can.drawString(165, 202, data['assistantAddress'])
-    can.drawString(513, 202, data['assistantApt'])
-    can.drawString(150, 182, data['assistantCity'])
-    can.drawString(363, 182, data['assistantState'])
-    can.drawString(517, 182, data['assistantZip'])
-    can.drawString(170, 162, data['assistantSignature'])
+    can.drawString(130, 292, data['assistant_check'])  # Assistant checkbox
+    can.drawString(170, 222, data['assistant_fullname'])
+    can.drawString(165, 202, data['assistant_address'])
+    can.drawString(513, 202, data['assistant_apt'])
+    can.drawString(150, 182, data['assistant_city'])
+    can.drawString(363, 182, data['assistant_state'])
+    can.drawString(517, 182, data['assistant_zip'])
+    can.drawString(170, 162, data['assistant_signature'])
 
     can.drawString(247, 103, data['signature'])
-    can.drawString(492, 103, data['todaysDateMonth'])  # Month Signed
-    can.drawString(529, 103, data['todaysDateDay'])  # Day Signed
-    can.drawString(569, 103, data['todaysDateYear'])  # Year Signed
+    can.drawString(492, 103, data['date_today_month'])  # Month Signed
+    can.drawString(529, 103, data['date_today_day'])  # Day Signed
+    can.drawString(569, 103, data['date_today_year'])  # Year Signed
 
     can.save()
     packet.seek(0)
