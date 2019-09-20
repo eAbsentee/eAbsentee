@@ -23,6 +23,14 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 form_path: str = 'static/pdf/blankAppFillable.pdf'
 
 
+def application_process(request: request):
+    data = parse_data(request)
+    set_session_keys(data)
+    write_pdf(data)
+    build_report_data(data)
+    email_registrar(data)
+
+
 def parse_data(request: request) -> Tuple[Dict[str, str], str]:
     """ Parse data from the form using the Flask request object and convert it
     into a dict format to allow it to be passed to the PDF filling methods."""
@@ -38,6 +46,13 @@ def parse_data(request: request) -> Tuple[Dict[str, str], str]:
     group_code = ''
     if request.cookies.get('group'):
         group_code = request.cookies.get('group')
+
+    emails_to_be_sent_to = []
+    with open('static/localities_info.json') as file:
+        localities = json.load(file)
+        emails_to_be_sent_to = [localities[request.form['election__locality_gnis']]['email']]
+        if request.form.get('email_me') == 'true':
+            emails_to_be_sent_to.append(request.form.get('email'))
 
     data_dict: Dict[str, str] = {}  # Create outside of scope
     with open('static/localities_info.json') as file:
@@ -114,28 +129,15 @@ def parse_data(request: request) -> Tuple[Dict[str, str], str]:
             'applicationIP': request.environ.get('HTTP_X_REAL_IP', request.remote_addr),
             'emailMe': request.form.get('email_me'),
             'campaignCode': campaign_name,
-            'groupCode': group_code
+            'groupCode': group_code,
+            'registrar_address': localities[request.form['election__locality_gnis']]['email'],
+            'emails_to_be_sent_to': emails_to_be_sent_to
         }
 
-    registrar_address: str = localities[request.form[
-        'election__locality_gnis']]['email']
-
-    return data_dict, registrar_address
+    return data_dict
 
 
-def build_pdf(data: Dict[str, str], registrar_address: str) -> str:
-    """Takes in an input of the data dictionary,
-    along with the email address of the respective registrar.
-    It calls set_session_keys, and then write_fillable_pdf,
-    and then appends the data to the report, and then
-    sends the registrar address to email_registrar."""
-
-    set_session_keys(data, registrar_address)
-    write_pdf(data)
-
-    today_date: str = date.today().strftime("%m-%d-%y")
-    report_path: str = f'reports/{today_date}.xlsx'
-
+def build_report_data(data: Dict[str, str]) -> str:
     data_for_report: List[str] = [
         session['name'],
         str(datetime.datetime.now().time()),
@@ -153,14 +155,10 @@ def build_pdf(data: Dict[str, str], registrar_address: str) -> str:
         data['groupCode']
     ]
 
-    append_to_report(report_path, data_for_report)
-    emails_to_be_sent_to = [registrar_address]
-    if data['emailMe'] == 'true':
-        emails_to_be_sent_to.append(data['email'])
-    return emails_to_be_sent_to
+    append_to_report(data_for_report)
 
 
-def set_session_keys(data: Dict[str, str], registrar_address: str) -> None:
+def set_session_keys(data: Dict[str, str]) -> None:
     # id is first 10 characters of MD5 hash of dictionary
     id: str = hashlib.md5(repr(data).encode('utf-8')).hexdigest()[: 10]
     name: str = data['first_name'] + \
@@ -172,7 +170,7 @@ def set_session_keys(data: Dict[str, str], registrar_address: str) -> None:
     session['application_id'] = id
     session['output_file'] = f'applications/{id}.pdf'
     session['registrar_locality'] = data['registeredToVote']
-    session['registrar_email'] = registrar_address
+    session['registrar_email'] = data['registrar_address']
 
     today_date: str = date.today().strftime("%m-%d-%y")
     session['report_file'] = f'reports/{today_date}.xlsx'
@@ -180,7 +178,6 @@ def set_session_keys(data: Dict[str, str], registrar_address: str) -> None:
 
 def write_pdf(data: Dict[str, str]) -> None:
     packet = io.BytesIO()
-    # Create a new PDF with Reportlab
     can = canvas.Canvas(packet, pagesize=letter)
     can.drawString(180, 690, data['lastName'])  # LastName
     can.drawString(420, 690, data['first_name'])  # First Name
@@ -242,30 +239,22 @@ def write_pdf(data: Dict[str, str]) -> None:
     can.drawString(529, 103, data['todaysDateDay'])  # Day Signed
     can.drawString(569, 103, data['todaysDateYear'])  # Year Signed
 
-    # Apply the changes
     can.save()
-
-    # Move to the beginning of the StringIO buffer
     packet.seek(0)
     new_pdf = PdfFileReader(packet)
-
-    # Read the existing PDF (the first argument passed to this script)
     existing_pdf = PdfFileReader(form_path, "rb")
     output = PdfFileWriter()
-
-    # Add the "watermark" (which is the new pdf) on the existing page
     page = existing_pdf.getPage(0)
     page.mergePage(new_pdf.getPage(0))
     output.addPage(page)
 
-    # Finally, write "output" to a real file
     output.write(open(session['output_file'], "wb"))
 
 
-def email_registrar(emails_to_send) -> None:
+def email_registrar(data: Dict[str, str]) -> None:
     """Email the form to the registrar of the applicant's locality. """
     yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
-        to=(emails_to_send[0], emails_to_send[1]),
+        to=(data['emails_to_be_sent_to'][0], data['emails_to_be_sent_to'][1]),
         subject='Absentee Ballot Request - Applicant-ID: ' +
         f'{session["application_id"]}',
         contents='Please find attached an absentee ballot request ' +
@@ -274,15 +263,15 @@ def email_registrar(emails_to_send) -> None:
     )
 
 
-def application_process(request: request):
-    email_registrar(build_pdf(*parse_data(request)))
-
-
-def append_to_report(report_path: str, data: Dict[str, str]) -> None:
+def append_to_report(data: Dict[str, str]) -> None:
     """Add a row to the Excel spreadsheet with data from the application.
     If the spreadsheet doesn't already exist, create it. """
+    today_date: str = date.today().strftime("%m-%d-%y")
+    report_path: str = f'reports/{today_date}.xlsx'
+
     if not os.path.isfile(report_path):
         create_report()
+
     report: openpyxl.workbook.Workbook = load_workbook(filename=report_path)
     worksheet: openpyxl.worksheet.worksheet.Worksheet = report.active
     worksheet.append(data)
@@ -319,7 +308,11 @@ def add_to_campaign(request: request) -> None:
         return
 
     if request.form.get('campaign_name'):
-        os.mkdir(('reports/' + request.form.get('campaign_name')))
+        try:
+            os.mkdir(('reports/' + request.form.get('campaign_name')))
+        except:
+            pass
+
         with open('static/campaigns.json') as file:
             campaigns = json.load(file)
             list_counties = request.form.get('county_codes').split()
@@ -334,8 +327,12 @@ def add_to_campaign(request: request) -> None:
             campaigns.update(new_campaign)
             with open('static/campaigns.json', 'w') as f:
                 json.dump(campaigns, f, indent=4, sort_keys=True)
+
     if request.form.get('group_name'):
-        os.mkdir(('reports/' + request.form.get('group_name')))
+        try:
+            os.mkdir(('reports/' + request.form.get('group_name')))
+        except:
+            pass
         with open('static/groups.json') as file:
             groups = json.load(file)
             new_group = {
