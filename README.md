@@ -21,12 +21,13 @@ GMAIL_SENDER_PASSWORD = '<PASSWORD>'
 SECRET_KEY = '<SECRET KEY>'
 API_KEY = '<API KEY>'
 ```
+-   Create `static/credentials.json` and `static/storage.json` with the correct content, which are both for the Google API
 
 -   Run `pipenv install`
 
 -   Run `pipenv shell`
 
--   Run `python email_bounceback.py`, and login to your GMAIL-enabled API account.
+-   Run `python scheduled_tasks/email_bounceback.py`, and login to your GMAIL-enabled API account.
 
 -   Run `export FLASK_ENV=development`
 
