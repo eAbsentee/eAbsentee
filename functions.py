@@ -20,7 +20,7 @@ from keys import GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD, API_KEY
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 # Where the form lives
-form_path: str = 'static/pdf/blankAppFillable.pdf'
+form_path: str = 'static/pdf/blank_app.pdf'
 
 
 def application_process(request: request):
