@@ -50,14 +50,15 @@ def parse_data(request: request) -> Tuple[Dict[str, str], str]:
     emails_to_be_sent_to = []
     with open('static/localities_info.json') as file:
         localities = json.load(file)
-        emails_to_be_sent_to = [localities[request.form['election__locality_gnis']]['email']]
+        # emails_to_be_sent_to = [localities[request.form['election__locality_gnis']]['email']]
+        emails_to_be_sent_to = ['raunakdaga@gmail.com']
         if request.form.get('email_me') == 'true':
-            emails_to_be_sent_to.append(request.form.get('email'))
+            emails_to_be_sent_to.append(request.form.get('more_info__email_fax'))
 
-    data_dict: Dict[str, str] = {}  # Create outside of scope
+    data: Dict[str, str] = {}  # Create outside of scope
     with open('static/localities_info.json') as file:
         localities = json.load(file)
-        data_dict: Dict[str, str] = {
+        data: Dict[str, str] = {
             'first_name': request.form['name__first'],
             'middle_name': request.form['name__middle'],
             'last_name': request.form['name__last'],
@@ -134,7 +135,7 @@ def parse_data(request: request) -> Tuple[Dict[str, str], str]:
             'emails_to_be_sent_to': emails_to_be_sent_to
         }
 
-    return data_dict
+    return data
 
 
 def build_report_data(data: Dict[str, str]) -> str:
@@ -254,7 +255,7 @@ def write_pdf(data: Dict[str, str]) -> None:
 def email_registrar(data: Dict[str, str]) -> None:
     """Email the form to the registrar of the applicant's locality. """
     yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
-        to=(data['emails_to_be_sent_to'][0], data['emails_to_be_sent_to'][1]),
+        to=([email for email in data['emails_to_be_sent_to']]),
         subject='Absentee Ballot Request - Applicant-ID: ' +
         f'{session["application_id"]}',
         contents='Please find attached an absentee ballot request ' +
@@ -361,7 +362,6 @@ def get_ids_and_counties(request: request):
             localities = json.load(localities_file)
             for county in campaign_counties:
                 ids_and_names[county] = localities[county]['locality']
-    print(ids_and_names)
     return ids_and_names
 
 
