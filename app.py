@@ -97,6 +97,25 @@ def process_form():
         return render_template('form.html')
 
 
+@app.route('/form/<group>/', methods=['POST', 'GET'])
+def form_surovell(group: str):
+    """ Form Route: Returns form when requested,
+    collects data from user when inputted. The data is sent to
+    functions.py, where it is parsed and converted,
+    built into the PDF, and emailed to the respective registar. If
+    unable to send the PDF, an error page is returned. """
+    if request.method == 'POST':
+        # try:
+        application_process(request)
+        # except(Exception):
+        #     return redirect('/error/')
+        return redirect('/confirmation/')
+    else:
+        response = make_response(render_template('form.html'))
+        response.set_cookie('group', group, max_age=60 * 60 * 24 * 365 * 2)
+        return response
+
+
 @app.route('/cou/<campaign>')
 def home_with_campaign(campaign: str):
     """This route sets the county cookies. It is used to determine which form
