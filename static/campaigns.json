@@ -71,6 +71,15 @@
         ],
         "name": "Surovell door-to-door"
     },
+    "SPLGd2d": {
+        "county_nums": [
+            "059"
+        ],
+        "emails": [
+            "rohan@sperlingforsupervisor.com"
+        ],
+        "name": "Sperling door-to-door"
+    },
     "dagaprez": {
         "county_nums": [
             "013",
