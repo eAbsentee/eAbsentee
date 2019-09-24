@@ -3,63 +3,63 @@
 <html>
 
 <head>
-  <title>eAbsentee Ballot Voting System</title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-  <meta name="description" content="" />
-  <meta name="keywords" content="" />
+      <title>eAbsentee Ballot Voting System</title>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+      <meta name="description" content="" />
+      <meta name="keywords" content="" />
 
-  {{ favicon() }}
+      {{ favicon() }}
 
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}" />
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}" />
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
 </head>
 
 <body class="is-preload">
 
-  <!-- Header -->
-  <header id="header">
-    <a class="logo" href="/">eAbsentee Voting</a>
-    <nav>
-      <a href="#menu">Menu</a>
-    </nav>
-  </header>
+      <!-- Header -->
+      <header id="header">
+            <a class="logo" href="/">eAbsentee Voting</a>
+            <nav>
+                  <a href="#menu">Menu</a>
+            </nav>
+      </header>
 
-  <!-- Nav -->
-  <nav id="menu">
-    <ul class="links">
-      <li><a href="/">Home</a></li>
-      <li><a href="/form">Register</a></li>
-      <li><a href="/about">About</a></li>
-    </ul>
-  </nav>
+      <!-- Nav -->
+      <nav id="menu">
+            <ul class="links">
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/form">Apply</a></li>
+                  <li><a href="/about">About</a></li>
+            </ul>
+      </nav>
 
-  <!-- Banner -->
-  <section id="banner">
-    <div class="inner">
-      <h1> Application Confirmed </h1>
-      <p>Thank you for applying for an absentee ballot, {{session['name']}}! Your absentee ballot application has been emailed to the {{ session['registrar_locality'] }} registrar at <a
-          href="mailto:{{ session['registrar_email'] }}">{{ session['registrar_email'] }}</a>. No further action is required on your part.</p>
-      <p>You can download your application file <a href="../{{ session['output_file'] }}">here</a>.</p>
-      <a href="/">Home</a>.
-    </div>
-  </section>
+      <!-- Banner -->
+      <section id="banner">
+            <div class="inner">
+                  <h1> Application Confirmed </h1>
+                  <p>Thank you for applying for an absentee ballot, {{session['name']}}! Your absentee ballot application has been emailed to the {{ session['registrar_locality'] }} registrar at <a
+                              href="mailto:{{ session['registrar_email'] }}">{{ session['registrar_email'] }}</a>. No further action is required on your part.</p>
+                  <p>You can download your application file <a href="../{{ session['output_file'] }}"><u>by clicking here</u></a>.</p>
+                  <a href="/"><u>Home Page</u></a>.
+            </div>
+      </section>
 
-  <!-- Footer -->
-  <footer id="footer">
-    <div class="copyright">
-      <p style="color:white;"> Contact us at <a href="mailto:contact@eabsentee.org">contact@eabsentee.org</a> | Paid for and authorized by Vote Absentee Virginia </p>
-    </div>
-    </div>
-  </footer>
-  <!-- Scripts -->
+      <!-- Footer -->
+      <footer id="footer">
+            <div class="copyright">
+                  <p style="color:white;"> Contact us at <a href="mailto:contact@eabsentee.org">contact@eabsentee.org</a> | Paid for and authorized by Vote Absentee Virginia </p>
+            </div>
+            </div>
+      </footer>
+      <!-- Scripts -->
 
-  <!-- Scripts -->
-  <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/browser.min.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/breakpoints.min.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/util.min.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+      <!-- Scripts -->
+      <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/browser.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/breakpoints.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/util.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 
 </body>
 
