@@ -10,12 +10,13 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 
 def split_reports() -> None:
+    pass
 
 
 def email_report() -> None:
     """Email the Excel spreadsheet to Senator Surovell and Mr. Rouvelas. """
     today_date: str = date.today().strftime("%m-%d-%y")
-    report_path = f'reports/{today_date}.xlsx'
+    report_path = f'reports/dailyreports/{today_date}.xlsx'
     report: openpyxl.workbook.Workbook = load_workbook(filename=report_path)
     worksheet: openpyxl.worksheet.worksheet.Worksheet = report.active
     if worksheet['A2'].value:
@@ -25,7 +26,7 @@ def email_report() -> None:
             subject=f'Daily Absentee Ballot Application Report - {today_date}',
             contents=f'Please find attached the daily report of absentee ' + \
             f'ballot applications for {today_date}.',
-            attachments=f'reports/{today_date}.xlsx'
+            attachments=report_path
         )
 
 
