@@ -259,7 +259,7 @@ def email_registrar(data: Dict[str, str]) -> None:
         subject='Absentee Ballot Request - Applicant-ID: ' +
         f'{session["application_id"]}',
         contents='Please find attached an absentee ballot request ' +
-        f'submitted on behalf of {session["name"]}.',
+        f'submitted on behalf of {session["name"]} - from eAbsentee.org',
         attachments=session['output_file']
     )
 
@@ -267,6 +267,13 @@ def email_registrar(data: Dict[str, str]) -> None:
 def append_to_report(data: Dict[str, str]) -> None:
     """Add a row to the Excel spreadsheet with data from the application.
     If the spreadsheet doesn't already exist, create it. """
+
+    # APPENDING TO ALL TIME SPREADSHEET
+    report_path: str = f'reports/all_time.xlsx'
+    if not os.path.isfile(report_path):
+        create_report()
+
+    # APPENDING TO TODAYS SPREADSHEET
     today_date: str = date.today().strftime("%m-%d-%y")
     report_path: str = f'reports/{today_date}.xlsx'
 
