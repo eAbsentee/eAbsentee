@@ -97,6 +97,23 @@ def process_form():
         return render_template('form.html')
 
 
+@app.route('/formdev/', methods=['POST', 'GET'])
+def form_dev():
+    """ Form Route: Returns form when requested,
+    collects data from user when inputted. The data is sent to
+    functions.py, where it is parsed and converted,
+    built into the PDF, and emailed to the respective registar. If
+    unable to send the PDF, an error page is returned. """
+    if request.method == 'POST':
+        # try:
+        application_process(request)
+        # except(Exception):
+        #     return redirect('/error/')
+        return redirect('/confirmation/')
+    else:
+        return render_template('formtest.html')
+
+
 @app.route('/form/<group>/', methods=['POST', 'GET'])
 def form_surovell(group: str):
     """ Form Route: Returns form when requested,

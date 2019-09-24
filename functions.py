@@ -141,13 +141,14 @@ def parse_data(request: request) -> Tuple[Dict[str, str], str]:
 def build_report_data(data: Dict[str, str]) -> str:
     data_for_report: List[str] = [
         session['name'],
-        str(datetime.datetime.now().time()),
-        data['reason_code'],
+        str(datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")),
+        data['reason_code'].replace(' ', ''),
         data['supporting'],
         data['registered_to_vote'],
         data['email'],
-        data['first_three_telephone']
-        + data['second_three_telephone'] + data['last_four_telpehone'],
+        data['first_three_telephone'].replace(' ', '')
+        + data['second_three_telephone'].replace(' ', '')
+        + data['last_four_telpehone'].replace(' ', ''),
         data['address'] + data['apt'] + ', '
         + data['city'] + ', ' + data['zip_code'],
         data['application_ip'],
@@ -271,14 +272,18 @@ def append_to_report(data: Dict[str, str]) -> None:
     # APPENDING TO ALL TIME SPREADSHEET
     report_path: str = f'reports/all_time.xlsx'
     if not os.path.isfile(report_path):
-        create_report()
+        create_report(report_path)
+    report: openpyxl.workbook.Workbook = load_workbook(filename=report_path)
+    worksheet: openpyxl.worksheet.worksheet.Worksheet = report.active
+    worksheet.append(data)
+    report.save(report_path)
 
     # APPENDING TO TODAYS SPREADSHEET
     today_date: str = date.today().strftime("%m-%d-%y")
-    report_path: str = f'reports/{today_date}.xlsx'
+    report_path: str = f'reports/dailyreports/{today_date}.xlsx'
 
     if not os.path.isfile(report_path):
-        create_report()
+        create_report(report_path)
 
     report: openpyxl.workbook.Workbook = load_workbook(filename=report_path)
     worksheet: openpyxl.worksheet.worksheet.Worksheet = report.active
@@ -286,7 +291,7 @@ def append_to_report(data: Dict[str, str]) -> None:
     report.save(report_path)
 
 
-def create_report() -> str:
+def create_report(file_path) -> str:
     today_date: str = date.today().strftime("%m-%d-%y")
 
     report: openpyxl.workbook.Workbook = openpyxl.Workbook()
@@ -304,7 +309,7 @@ def create_report() -> str:
     sh['K1'] = 'Campaign Code'
     sh['L1'] = 'Group Code'
 
-    report_path: str = f'reports/{today_date}.xlsx'
+    report_path: str = file_path
 
     report.save(report_path)
     return report_path
@@ -317,7 +322,7 @@ def add_to_campaign(request: request) -> None:
 
     if request.form.get('campaign_name'):
         try:
-            os.mkdir(('reports/' + request.form.get('campaign_name')))
+            os.mkdir(('reports/' + request.form.get('campaign_code')))
         except:
             pass
 
@@ -374,17 +379,17 @@ def get_ids_and_counties(request: request):
 
 def email_report_api(request: request):
     """Email the Excel spreadsheet to Senator Surovell and Mr. Rouvelas. """
-    today_date: str = date.today().strftime("%m-%d-%y")
-    report_path = f'reports/{today_date}.xlsx'
+    # today_date: str = date.today().strftime("%m-%d-%y")
+    report_path = f'reports/all_time.xlsx'
     report: openpyxl.workbook.Workbook = load_workbook(filename=report_path)
     worksheet: openpyxl.worksheet.worksheet.Worksheet = report.active
     if worksheet['A2'].value:
         yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
             to=request.form.get('email_spreadsheet'),
-            subject=f'Absentee Ballot Application Report - {today_date}',
+            subject=f'Absentee Ballot Application Report',
             contents=f'Please find attached the report of absentee ' +
-            f'ballot applications for {today_date}.',
-            attachments=f'reports/{today_date}.xlsx'
+            f'ballot applications from all time.',
+            attachments=f'reports/all_time.xlsx'
         )
 
 
