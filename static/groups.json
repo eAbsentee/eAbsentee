@@ -19,6 +19,16 @@
         "name": "JMU Young Democrats",
         "submissions": "0"
     },
+    "missyforsenate": {
+        "email": "brenna@missyforsenate.com",
+        "name": "Missy For Senate",
+        "submissions": "0"
+    },
+    "pwcdc": {
+        "email": "dpala@vademocrats.org",
+        "name": "PWC Dem Cmte",
+        "submissions": "0"
+    },
     "rodman": {
         "email": "molly@debrarodman.com lerouvelas@gmail.com",
         "name": "Rodman campaign",
@@ -29,9 +39,19 @@
         "name": "Surovell for Senate",
         "submissions": "0"
     },
+    "turpin": {
+        "email": "greg@techforcampaigns.org",
+        "name": "Turpin for Senate",
+        "submissions": "0"
+    },
     "va2019": {
         "email": "trevor@vahousedems.org",
         "name": "House Democratic Caucus",
+        "submissions": "0"
+    },
+    "wheeler": {
+        "email": "kyle@pocketacesconsulting.com will@wheelerforpwc.com",
+        "name": "Wheeler PWC Chair",
         "submissions": "0"
     }
 }
