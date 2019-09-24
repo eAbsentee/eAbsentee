@@ -62,26 +62,6 @@
         ],
         "name": "Surovell door-to-door"
     },
-    "ct123": {
-        "county_nums": [
-            "011",
-            "013"
-        ],
-        "emails": [
-            "ct231@gmail.com"
-        ],
-        "name": "TEST GROUP"
-    },
-    "dagabois": {
-        "county_nums": [
-            "011",
-            "013"
-        ],
-        "emails": [
-            "daga@gmail.com"
-        ],
-        "name": "Daga Bois"
-    },
     "dagaprez": {
         "county_nums": [
             "013",
@@ -103,24 +83,5 @@
             "lerouvelas@gmail.com"
         ],
         "name": "Surovell for Senate"
-    },
-    "tcn44": {
-        "county_nums": [
-            "011"
-        ],
-        "emails": [
-            "tcn44@gmail.com"
-        ],
-        "name": "testing campaign name"
-    },
-    "testcampaign": {
-        "county_nums": [
-            "027",
-            "029"
-        ],
-        "emails": [
-            "lerouvelas@gmail.com"
-        ],
-        "name": "Test campaign"
     }
 }
