@@ -176,10 +176,9 @@ def render_pdf(id: str):
 def api():
     if request.method == 'POST':
         if request.form.get('group_name') or request.form.get('campaign_name'):
-
             add_to_campaign(request)
             return render_template('api.html')
-        elif request.form.get('campaign_spreadsheet_name'):
+        elif request.form.get('email_spreadsheet'):
             if request.form.get('api_key') == API_KEY:
                 email_report_api(request)
             return render_template('api.html')

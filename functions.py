@@ -383,14 +383,16 @@ def email_report_api(request: request):
     report_path = f'reports/all_time.xlsx'
     report: openpyxl.workbook.Workbook = load_workbook(filename=report_path)
     worksheet: openpyxl.worksheet.worksheet.Worksheet = report.active
-    if worksheet['A2'].value:
-        yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
-            to=request.form.get('email_spreadsheet'),
-            subject=f'Absentee Ballot Application Report',
-            contents=f'Please find attached the report of absentee ' +
-            f'ballot applications from all time.',
-            attachments=f'reports/all_time.xlsx'
-        )
+    if request.form.get('api_key') == API_KEY:
+        print('yeet)')
+        if worksheet['A2'].value:
+            yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
+                to=request.form.get('email_spreadsheet'),
+                subject=f'Absentee Ballot Application Report',
+                contents=f'Please find attached the report of absentee ' +
+                f'ballot applications from all time.',
+                attachments=f'reports/all_time.xlsx'
+            )
 
 
 # Deprecated, because we are no longer filling out by the fillable fields. Don't delete, however.
