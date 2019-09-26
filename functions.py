@@ -1,6 +1,7 @@
 import hashlib
 import yagmail
 import os
+import sys
 import openpyxl
 import json
 from openpyxl import load_workbook
@@ -157,7 +158,7 @@ def build_report_data(data: Dict[str, str]) -> str:
         data['group_code']
     ]
 
-    append_to_report(data_for_report)
+    append_to_report(data_for_report, data['group_code'])
 
 
 def set_session_keys(data: Dict[str, str]) -> None:
@@ -265,7 +266,7 @@ def email_registrar(data: Dict[str, str]) -> None:
     )
 
 
-def append_to_report(data: Dict[str, str]) -> None:
+def append_to_report(data: Dict[str, str], group_code) -> None:
     """Add a row to the Excel spreadsheet with data from the application.
     If the spreadsheet doesn't already exist, create it. """
 
@@ -289,6 +290,20 @@ def append_to_report(data: Dict[str, str]) -> None:
     worksheet: openpyxl.worksheet.worksheet.Worksheet = report.active
     worksheet.append(data)
     report.save(report_path)
+
+    # APPENDING TO GROUP SPREADSHEET
+    if group_code != '':
+        group = group_code
+        report_path: str = f'reports/{group}.xlsx'
+
+        if not os.path.isfile(report_path):
+            print('Made it into creating spreadsheet', file=sys.stderr)
+            create_report(report_path)
+
+        report: openpyxl.workbook.Workbook = load_workbook(filename=report_path)
+        worksheet: openpyxl.worksheet.worksheet.Worksheet = report.active
+        worksheet.append(data)
+        report.save(report_path)
 
 
 def create_report(file_path) -> str:
@@ -378,7 +393,6 @@ def get_ids_and_counties(request: request):
 
 
 def email_report_api(request: request):
-    """Email the Excel spreadsheet to Senator Surovell and Mr. Rouvelas. """
     # today_date: str = date.today().strftime("%m-%d-%y")
     report_path = f'reports/all_time.xlsx'
     report: openpyxl.workbook.Workbook = load_workbook(filename=report_path)
