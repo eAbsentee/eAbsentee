@@ -14,6 +14,7 @@ def split_reports() -> None:
 
 
 def email_report() -> None:
+    print(os.path.dirname(os.path.realpath(__file__)))
     """Email the Excel spreadsheet to Senator Surovell and Mr. Rouvelas. """
     today_date: str = date.today().strftime("%m-%d-%y")
     report_path = f'reports/dailyreports/{today_date}.xlsx'
