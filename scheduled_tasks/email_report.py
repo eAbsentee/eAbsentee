@@ -18,7 +18,7 @@ def email_report() -> None:
     print(os.path.dirname(os.path.realpath(__file__)))
     """Email the Excel spreadsheet to Senator Surovell and Mr. Rouvelas. """
     today_date: str = date.today().strftime("%m-%d-%y")
-    report_path = f'09-25-19.xlsx'
+    report_path = f'{today_date}.xlsx'
     report: openpyxl.workbook.Workbook = load_workbook(filename=report_path)
     worksheet: openpyxl.worksheet.worksheet.Worksheet = report.active
     if worksheet['A2'].value:
