@@ -23,9 +23,9 @@ def email_report() -> None:
     worksheet: openpyxl.worksheet.worksheet.Worksheet = report.active
     if worksheet['A2'].value:
         yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
-            # to=['raunakdaga@gmail.com', 'ssurovell@gmail.com', 'lerouvelas@gmail.com'],
+            to=['raunakdaga@gmail.com', 'ssurovell@gmail.com', 'lerouvelas@gmail.com'],
             # to=['ssurovell@gmail.com', 'lerouvelas@gmail.com'],
-            to='raunakdaga@gmail.com',
+            # to='raunakdaga@gmail.com',
             subject=f'Daily Absentee Ballot Application Report - {today_date}',
             contents=f'Please find attached the daily report of absentee ' + \
             f'ballot applications for {today_date}.',
