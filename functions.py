@@ -155,7 +155,8 @@ def build_report_data(data: Dict[str, str]) -> str:
         data['application_ip'],
         session['application_id'],
         data['campaign_code'],
-        data['group_code']
+        data['group_code'],
+        data['registrar_address']
     ]
 
     append_to_report(data_for_report, data['group_code'])
@@ -315,7 +316,7 @@ def create_report(file_path) -> str:
     sh['B1'] = 'Time Submitted'
     sh['C1'] = 'Reason Code'
     sh['D1'] = 'Supporting Information'
-    sh['E1'] = 'Registered to Vote Where'
+    sh['E1'] = 'Locality'
     sh['F1'] = 'Email'
     sh['G1'] = 'Telephone Number'
     sh['H1'] = 'Address'
@@ -323,6 +324,7 @@ def create_report(file_path) -> str:
     sh['J1'] = 'Form ID'
     sh['K1'] = 'Campaign Code'
     sh['L1'] = 'Group Code'
+    sh['M1'] = 'Locality Email'
 
     report_path: str = file_path
 
