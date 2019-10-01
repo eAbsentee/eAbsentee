@@ -1,4 +1,9 @@
 {
+    "CEEP": {
+        "email": "jacob@campuselect.org",
+        "name": "Campus Election Engagement Project",
+        "submissions": "0"
+    },
     "Galante": {
         "email": "matthew@galantefordelegate.com",
         "name": "Galante for Delegate",
@@ -34,6 +39,11 @@
         "name": "Friends of Larry Barnett",
         "submissions": "0"
     },
+    "cole": {
+        "email": "greg@techforcampaigns.org",
+        "name": "Josh Cole for Delegate",
+        "submissions": "0"
+    },
     "ghazala": {
         "email": "greg@techforcampaigns.org",
         "name": "Ghazala Hashemi",
@@ -42,6 +52,11 @@
     "hickey": {
         "email": "sam@timhickeyfordelegate.com",
         "name": "Tim Hickey for Delegate",
+        "submissions": "0"
+    },
+    "jenkins": {
+        "email": "greg@techforcampaigns.org",
+        "name": "Clinton Jenkins for Delegate",
         "submissions": "0"
     },
     "jmuyd": {
