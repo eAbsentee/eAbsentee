@@ -11,8 +11,8 @@ os.chdir('..')
 
 def email_report_api(registrar, email_address):
     yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
-        # to=email_address,
-        to='raunakdaga@gmail.com',
+        to=email_address,
+        # to='raunakdaga@gmail.com',
         subject=f'Introducing Vote Absentee Virginia',
         contents=f'Dear {registrar} Registrar,\n\n' +
         'In the near future, you may start receiving absentee ballot applications from this email address. I want to give you some background and, if you have any questions, to answer them.\n\n' +
@@ -27,12 +27,13 @@ def email_report_api(registrar, email_address):
         '703-407-9938',
         attachments=f'static/eAbsentee guidance from VA Dept of Elections.jpg'
     )
-    time.sleep(300)
+    time.sleep(5)
 
 
 with open('registrars_email.json') as file:
     registars_json = json.load(file)
     counties = registars_json.keys()
     for county in counties:
-        print(county)
+        print(registars_json[county]['locality'])
+        print(registars_json[county]['email'])
         email_report_api(registars_json[county]['locality'], registars_json[county]['email'])

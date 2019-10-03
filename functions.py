@@ -151,7 +151,7 @@ def build_report_data(data: Dict[str, str]) -> str:
         + data['second_three_telephone'].replace(' ', '')
         + data['last_four_telpehone'].replace(' ', ''),
         data['address'] + data['apt'] + ', '
-        + data['city'] + ', ' + data['zip_code'],
+        + data['city'] + ', ' + data['zip_code'].replace(' ', ''),
         data['application_ip'],
         session['application_id'],
         data['campaign_code'],
@@ -298,7 +298,6 @@ def append_to_report(data: Dict[str, str], group_code) -> None:
         report_path: str = f'reports/{group}.xlsx'
 
         if not os.path.isfile(report_path):
-            print('Made it into creating spreadsheet', file=sys.stderr)
             create_report(report_path)
 
         report: openpyxl.workbook.Workbook = load_workbook(filename=report_path)
