@@ -4,9 +4,49 @@
         "name": "Campus Election Engagement Project",
         "submissions": "0"
     },
+    "CNUc": {
+        "email": "lerouvelas@gmail.com",
+        "name": "CEEP CNU",
+        "submissions": "0"
+    },
+    "GMUc": {
+        "email": "lerouvelas@gmail.com",
+        "name": "CEEP GMU",
+        "submissions": "0"
+    },
     "Galante": {
         "email": "matthew@galantefordelegate.com",
         "name": "Galante for Delegate",
+        "submissions": "0"
+    },
+    "HamptonUc": {
+        "email": "lerouvelas@gmail.com",
+        "name": "CEEP HamptonU",
+        "submissions": "0"
+    },
+    "JMUc": {
+        "email": "lerouvelas@gmail.com",
+        "name": "CEEP JMU",
+        "submissions": "0"
+    },
+    "NSUc": {
+        "email": "lerouvelas@gmail.com",
+        "name": "CEEP NSU",
+        "submissions": "0"
+    },
+    "ODUc": {
+        "email": "lerouvelas@gmail.com",
+        "name": "CEEP ODU",
+        "submissions": "0"
+    },
+    "PVCCc": {
+        "email": "lerouvelas@gmail.com",
+        "name": "CEEP PVCC",
+        "submissions": "0"
+    },
+    "ReynoldsCCc": {
+        "email": "lerouvelas@gmail.com",
+        "name": "CEEP Reynolds",
         "submissions": "0"
     },
     "RonnieRoss": {
@@ -19,6 +59,11 @@
         "name": "SD12-Hermitage",
         "submissions": "0"
     },
+    "TCCc": {
+        "email": "lerouvelas@gmail.com",
+        "name": "CEEP TCC",
+        "submissions": "0"
+    },
     "TtM19SD12hs": {
         "email": "salaar2001@gmail.com",
         "name": "TakeMaj19 SD-12 High School",
@@ -29,9 +74,44 @@
         "name": "TakeMaj19 High School",
         "submissions": "0"
     },
+    "UVAc": {
+        "email": "lerouvelas@gmail.com",
+        "name": "CEEP UVA",
+        "submissions": "0"
+    },
+    "UVAnews": {
+        "email": "le",
+        "name": "UVA newspaper",
+        "submissions": "0"
+    },
     "VCU-URyd": {
         "email": "salaar2001@gmail.com",
         "name": "VCU/UR Young Democrats",
+        "submissions": "0"
+    },
+    "VCUc": {
+        "email": "lerouvelas@gmail.com",
+        "name": "CEEP VCU",
+        "submissions": "0"
+    },
+    "VCUnews": {
+        "email": "lerouvelas@gmail.com",
+        "name": "VCU newspaper",
+        "submissions": "0"
+    },
+    "VSUc": {
+        "email": "lerouvelas@gmail.com",
+        "name": "CEEP VSU",
+        "submissions": "0"
+    },
+    "VTechc": {
+        "email": "lerouvelas@gmail.com",
+        "name": "CEEP VTech",
+        "submissions": "0"
+    },
+    "WMnews": {
+        "email": "lerouvelas@gmail.com",
+        "name": "W&M newspaper",
         "submissions": "0"
     },
     "barnett": {
