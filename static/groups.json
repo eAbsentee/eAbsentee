@@ -9,6 +9,11 @@
         "name": "CEEP GMU",
         "submissions": "0"
     },
+    "GMUdems": {
+        "email": "lerouvelas@gmail.com",
+        "name": "GMU Democrats",
+        "submissions": "0"
+    },
     "Galante": {
         "email": "matthew@galantefordelegate.com",
         "name": "Galante for Delegate",
@@ -69,6 +74,16 @@
         "name": "UVA newspaper",
         "submissions": "0"
     },
+    "UVAud": {
+        "email": "lerouvelas@gmail.com",
+        "name": "UVA Dems",
+        "submissions": "0"
+    },
+    "VAratifyERA": {
+        "email": "VAratifyERA.absentee@gmail.com",
+        "name": "VA Ratify ERA",
+        "submissions": "0"
+    },
     "VCU-URyd": {
         "email": "salaar2001@gmail.com",
         "name": "VCU/UR Young Democrats",
@@ -104,6 +119,16 @@
         "name": "Friends of Larry Barnett",
         "submissions": "0"
     },
+    "campusFB": {
+        "email": "lerouvelas@gmail.com",
+        "name": "Campus FB ads",
+        "submissions": "0"
+    },
+    "campusIG": {
+        "email": "lerouvelas@gmail.com",
+        "name": "Campus IG ads",
+        "submissions": "0"
+    },
     "cole": {
         "email": "greg@techforcampaigns.org",
         "name": "Josh Cole for Delegate",
@@ -112,6 +137,11 @@
     "ghazala": {
         "email": "greg@techforcampaigns.org",
         "name": "Ghazala Hashemi",
+        "submissions": "0"
+    },
+    "gooditis": {
+        "email": "truman@wendygooditis.com",
+        "name": "Wendy Gooditis",
         "submissions": "0"
     },
     "hickey": {
