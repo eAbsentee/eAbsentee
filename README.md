@@ -32,3 +32,7 @@ API_KEY = '<API KEY>'
 -   Run `export FLASK_ENV=development`
 
 -   Run `flask run`
+
+## Contact
+
+-   If you have questions, please message raunak@eAbsentee.org and sumanth@eAbsentee.org :)
