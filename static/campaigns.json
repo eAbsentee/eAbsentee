@@ -52,14 +52,6 @@
         ],
         "name": "PWC door-to-door"
     },
-    "SD12": {
-        "county_nums": [
-            "085",
-            "087"
-        ],
-        "emails": [],
-        "name": "rodman"
-    },
     "SD12d2d": {
         "county_nums": [
             "087",
@@ -82,17 +74,6 @@
             "austin@ronnieross.com"
         ],
         "name": "Ronnie Ross for Senate"
-    },
-    "SD36": {
-        "county_nums": [
-            "059",
-            "153",
-            "179"
-        ],
-        "emails": [
-            "ssurovell@gmail.com"
-        ],
-        "name": "surovell"
     },
     "SD36d2d": {
         "county_nums": [
@@ -124,17 +105,5 @@
             "lerouvelas@gmail.com"
         ],
         "name": "daga for president"
-    },
-    "surovell": {
-        "county_nums": [
-            "059",
-            "179",
-            "153"
-        ],
-        "emails": [
-            "ssurovell@gmail.com",
-            "lerouvelas@gmail.com"
-        ],
-        "name": "Surovell for Senate"
     }
 }
