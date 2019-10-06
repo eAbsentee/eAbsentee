@@ -22,7 +22,7 @@ def bounceback_check() -> List:
     creds = store.get()
 
     # If the credits don't work or don't exist, create them, and store them
-    SCOPES = 'https://www.googleapis.com/auth/gmail.modify'
+    SCOPES = 'https://mail.google.com/'
     if not creds or creds.invalid:
         flow = client.flow_from_clientsecrets(
             '../static/credentials.json', SCOPES)
