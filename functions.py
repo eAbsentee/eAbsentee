@@ -25,7 +25,7 @@ form_path: str = 'static/pdf/blank_app.pdf'
 
 
 def application_process(request: request, group_code_form=None):
-    data = parse_data(request, group_code=group_code_form)
+    data = parse_data(request, group_code_form=group_code_form)
     set_session_keys(data)
     write_pdf(data)
     build_report_data(data)
