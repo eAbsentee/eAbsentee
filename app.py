@@ -123,14 +123,15 @@ def form_surovell(group: str):
     unable to send the PDF, an error page is returned. """
     if request.method == 'POST':
         # try:
-        application_process(request)
+        application_process(request, group)
         # except(Exception):
         #     return redirect('/error/')
         return redirect('/confirmation/')
     else:
-        response = make_response(render_template('form.html'))
-        response.set_cookie('group', group, max_age=60 * 60 * 24 * 365 * 2)
-        return response
+        # response = make_response(render_template('form.html'))
+        # response.set_cookie('group', group, max_age=60 * 60 * 24 * 365 * 2)
+        # return response
+        return render_template('form.html')
 
 
 @app.route('/cou/<campaign>')

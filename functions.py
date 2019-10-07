@@ -24,15 +24,15 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 form_path: str = 'static/pdf/blank_app.pdf'
 
 
-def application_process(request: request):
-    data = parse_data(request)
+def application_process(request: request, group_code_form=None):
+    data = parse_data(request, group_code=group_code_form)
     set_session_keys(data)
     write_pdf(data)
     build_report_data(data)
     email_registrar(data)
 
 
-def parse_data(request: request) -> Tuple[Dict[str, str], str]:
+def parse_data(request: request, group_code_form) -> Tuple[Dict[str, str], str]:
     """ Parse data from the form using the Flask request object and convert it
     into a dict format to allow it to be passed to the PDF filling methods."""
     todayDate: str = date.today().strftime("%m%d%y")
@@ -45,7 +45,9 @@ def parse_data(request: request) -> Tuple[Dict[str, str], str]:
             campaign_name = campaign_id['name']
 
     group_code = ''
-    if request.cookies.get('group'):
+    if group_code_form is not None:
+        group_code = group_code_form
+    elif request.cookies.get('group'):
         group_code = request.cookies.get('group')
 
     emails_to_be_sent_to = []
