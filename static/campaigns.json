@@ -1,109 +1,252 @@
 {
-    "HD18d2d": {
-        "county_nums": [
-            "061",
-            "187",
-            "047",
-            "157"
-        ],
-        "emails": [
-            "matthew@galantefordelegate.com"
-        ],
-        "name": "Galante door-to-door"
-    },
-    "HD27d2d": {
-        "county_nums": [
-            "041"
-        ],
-        "emails": [
-            "karl.bach@barnett4delegate.com"
-        ],
-        "name": "Friends of Larry Barnett"
-    },
-    "HD59d2d": {
-        "county_nums": [
-            "011",
-            "029",
-            "003",
-            "125",
-            "031"
-        ],
-        "emails": [
-            "sam@timhickeyfordelegate.com"
-        ],
-        "name": "Hickey door-to-door"
-    },
-    "HD87d2d": {
-        "county_nums": [
-            "107",
-            "153"
-        ],
-        "emails": [
-            "tess@suhasforvirginia.com"
-        ],
-        "name": "Suhas door-to-door"
-    },
-    "PWCDCd2d": {
-        "county_nums": [
-            "153"
-        ],
-        "emails": [
-            "dpala@vademocrats.org"
-        ],
-        "name": "PWC door-to-door"
-    },
-    "SD12d2d": {
-        "county_nums": [
-            "087",
-            "085"
-        ],
-        "emails": [
-            "molly@debrarodman.com",
-            "lerouvelas@gmail.com"
-        ],
-        "name": "Rodman door-to-door"
-    },
-    "SD27d2d": {
-        "county_nums": [
-            "840",
-            "069",
-            "053",
-            "061"
-        ],
-        "emails": [
-            "austin@ronnieross.com"
-        ],
-        "name": "Ronnie Ross for Senate"
-    },
-    "SD36d2d": {
-        "county_nums": [
-            "059",
-            "179",
-            "153"
-        ],
-        "emails": [
-            "ssurovell@gmail.com",
-            "lerouvelas@gmail.com"
-        ],
-        "name": "Surovell door-to-door"
-    },
-    "SPLGd2d": {
-        "county_nums": [
-            "059"
-        ],
-        "emails": [
-            "rohan@sperlingforsupervisor.com"
-        ],
-        "name": "Sperling door-to-door"
-    },
-    "dagaprez": {
-        "county_nums": [
-            "013",
-            "510"
-        ],
-        "emails": [
-            "lerouvelas@gmail.com"
-        ],
-        "name": "daga for president"
-    }
+	"HD18d2d": {
+		"county_nums": [
+			"061",
+			"187",
+			"047",
+			"157"
+		],
+		"emails": [
+			"matthew@galantefordelegate.com"
+		],
+		"name": "Galante door-to-door"
+	},
+	"HD27d2d": {
+		"county_nums": [
+			"041"
+		],
+		"emails": [
+			"karl.bach@barnett4delegate.com"
+		],
+		"name": "Friends of Larry Barnett"
+	},
+	"HD59d2d": {
+		"county_nums": [
+			"011",
+			"029",
+			"003",
+			"125",
+			"031"
+		],
+		"emails": [
+			"sam@timhickeyfordelegate.com"
+		],
+		"name": "Hickey door-to-door"
+	},
+	"HD87d2d": {
+		"county_nums": [
+			"107",
+			"153"
+		],
+		"emails": [
+			"tess@suhasforvirginia.com"
+		],
+		"name": "Suhas door-to-door"
+	},
+	"PWCDCd2d": {
+		"county_nums": [
+			"153"
+		],
+		"emails": [
+			"dpala@vademocrats.org"
+		],
+		"name": "PWC door-to-door"
+	},
+	"SD12d2d": {
+		"county_nums": [
+			"087",
+			"085"
+		],
+		"emails": [
+			"molly@debrarodman.com",
+			"lerouvelas@gmail.com"
+		],
+		"name": "Rodman door-to-door"
+	},
+	"SD27d2d": {
+		"county_nums": [
+			"840",
+			"069",
+			"053",
+			"061"
+		],
+		"emails": [
+			"austin@ronnieross.com"
+		],
+		"name": "Ronnie Ross for Senate"
+	},
+	"SD36d2d": {
+		"county_nums": [
+			"059",
+			"179",
+			"153"
+		],
+		"emails": [
+			"ssurovell@gmail.com",
+			"lerouvelas@gmail.com"
+		],
+		"name": "Surovell door-to-door"
+	},
+	"SPLGd2d": {
+		"county_nums": [
+			"059"
+		],
+		"emails": [
+			"rohan@sperlingforsupervisor.com"
+		],
+		"name": "Sperling door-to-door"
+	},
+	"dagaprez": {
+		"county_nums": [
+			"013",
+			"510"
+		],
+		"emails": [
+			"lerouvelas@gmail.com"
+		],
+		"name": "daga for president"
+	},
+	"allcounties": {
+		"county_nums": [
+			"001",
+			"003",
+			"510",
+			"005",
+			"007",
+			"009",
+			"011",
+			"013",
+			"015",
+			"017",
+			"019",
+			"021",
+			"023",
+			"520",
+			"025",
+			"027",
+			"029",
+			"530",
+			"031",
+			"033",
+			"035",
+			"036",
+			"037",
+			"540",
+			"550",
+			"041",
+			"053",
+			"570",
+			"580",
+			"045",
+			"047",
+			"049",
+			"590",
+			"051",
+			"990",
+			"595",
+			"057",
+			"600",
+			"059",
+			"610",
+			"061",
+			"063",
+			"065",
+			"620",
+			"067",
+			"069",
+			"630",
+			"640",
+			"071",
+			"073",
+			"075",
+			"077",
+			"079",
+			"081",
+			"083",
+			"650",
+			"085",
+			"660",
+			"087",
+			"089",
+			"091",
+			"670",
+			"093",
+			"095",
+			"097",
+			"099",
+			"101",
+			"103",
+			"105",
+			"678",
+			"107",
+			"109",
+			"111",
+			"680",
+			"113",
+			"683",
+			"685",
+			"690",
+			"115",
+			"117",
+			"119",
+			"121",
+			"125",
+			"127",
+			"700",
+			"710",
+			"131",
+			"133",
+			"720",
+			"135",
+			"137",
+			"139",
+			"141",
+			"730",
+			"143",
+			"735",
+			"740",
+			"145",
+			"147",
+			"149",
+			"153",
+			"155",
+			"750",
+			"157",
+			"760",
+			"159",
+			"770",
+			"161",
+			"163",
+			"165",
+			"167",
+			"775",
+			"169",
+			"171",
+			"173",
+			"175",
+			"177",
+			"179",
+			"790",
+			"800",
+			"181",
+			"183",
+			"185",
+			"810",
+			"187",
+			"191",
+			"820",
+			"193",
+			"830",
+			"840",
+			"195",
+			"197",
+			"199",
+			"1000"
+		],
+		"emails": [
+			"raunakdaga@gmail.com"
+		],
+		"name": "all counties"
+	}
+
 }
