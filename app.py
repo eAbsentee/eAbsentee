@@ -75,18 +75,27 @@ def render_videocredits_pdf():
     )
 
 
+@app.route('/applications/<id>.pdf')
+def render_pdf(id: str):
+    '''Displays application to user in PDF form'''
+    return send_file(
+        open(session['output_file'], 'rb'), attachment_filename=session['output_file']
+    )
+
+
 # 404
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
 
 
+''' FORM ROUTES '''
+
+
 @app.route('/form/', methods=['POST', 'GET'])
 def process_form():
-    """ Form Route: Returns form when requested,
-    collects data from user when inputted. The data is sent to
-    functions.py, where it is parsed and converted,
-    built into the PDF, and emailed to the respective registar. If
+    """ Form Route: Returns form when requested, collects data from user when inputted. The data is sent to
+    functions.py, where it is parsed and converted, built into the PDF, and emailed to the respective registar. If
     unable to send the PDF, an error page is returned. """
     if request.method == 'POST':
         try:
@@ -100,17 +109,7 @@ def process_form():
             ids_and_counties = get_ids_and_counties(request.cookies.get('campaign'))
         else:
             ids_and_counties = get_ids_and_counties('allcounties')
-        return render_template('form_counties.html', ids_and_counties=ids_and_counties)
-
-
-@app.route('/formdev/', methods=['POST', 'GET'])
-def form_dev():
-    if request.method == 'POST':
-        application_process(request)
-        return redirect('/confirmation/')
-    else:
-        ids_and_counties = get_ids_and_counties('dagaprez')
-        return render_template('form_counties.html', ids_and_counties)
+        return render_template('form.html', ids_and_counties=ids_and_counties)
 
 
 @app.route('/form/<group>/', methods=['POST', 'GET'])
@@ -122,7 +121,21 @@ def form_group(group: str):
             return redirect('/error/')
         return redirect('/confirmation/')
     else:
-        return render_template('form.html')
+        ids_and_counties = get_ids_and_counties('allcounties')
+        return render_template('form.html', ids_and_counties=ids_and_counties)
+
+
+@app.route('/formdev/', methods=['POST', 'GET'])
+def form_dev():
+    if request.method == 'POST':
+        application_process(request)
+        return redirect('/confirmation/')
+    else:
+        ids_and_counties = get_ids_and_counties('dagaprez')
+        return render_template('form.html', ids_and_counties=ids_and_counties)
+
+
+''' COOKIE ROUTES '''
 
 
 @app.route('/cou/<campaign>')
@@ -142,12 +155,7 @@ def set_group(group: str):
     return response
 
 
-@app.route('/applications/<id>.pdf')
-def render_pdf(id: str):
-    '''Displays application to user in PDF form'''
-    return send_file(
-        open(session['output_file'], 'rb'), attachment_filename=session['output_file']
-    )
+''' API ROUTES '''
 
 
 @app.route('/api/', methods=['POST', 'GET'])

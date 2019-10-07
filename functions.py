@@ -382,11 +382,11 @@ def add_to_campaign(request: request) -> None:
     call("git push origin master", shell=True)
 
 
-def get_ids_and_counties(request: request):
+def get_ids_and_counties(campaign_code: str):
     ids_and_names = {}
     with open('static/campaigns.json') as file:
         campaigns = json.load(file)
-        campaign_id = campaigns[request.cookies.get('campaign')]
+        campaign_id = campaigns[campaign_code]
         campaign_counties = campaign_id['county_nums']
         with open('static/localities_info.json') as localities_file:
             localities = json.load(localities_file)
