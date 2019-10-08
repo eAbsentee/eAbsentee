@@ -153,7 +153,9 @@ def build_report_data(data: Dict[str, str]) -> str:
         + data['second_three_telephone'].replace(' ', '')
         + data['last_four_telpehone'].replace(' ', ''),
         data['address'] + data['apt'] + ', '
-        + data['city'] + ', ' + data['zip_code'].replace(' ', ''),
+        + data['city'] + ', ' + data['zip_code'].replace(' ', '')
+        + ' | ' + data["ballot_delivery_address"] + ' ' + data["ballot_delivery_apt"] + '. '
+        + data["ballot_delivery_city"] + ', ' + data["ballot_delivery_zip"].replace(' ', ''),
         data['application_ip'],
         session['application_id'],
         data['campaign_code'],
@@ -320,7 +322,7 @@ def create_report(file_path) -> str:
     sh['E1'] = 'Locality'
     sh['F1'] = 'Email'
     sh['G1'] = 'Telephone Number'
-    sh['H1'] = 'Address'
+    sh['H1'] = 'Address + Residence Address'
     sh['I1'] = 'IP Submitted From'
     sh['J1'] = 'Form ID'
     sh['K1'] = 'Campaign Code'
