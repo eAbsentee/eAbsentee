@@ -57,14 +57,14 @@ def confirmation_page():
 @app.route('/fillableform/')
 def render_fillableform_pdf():
     return send_file(
-        open('static/pdf/blankAppFillable.pdf', 'rb'), attachment_filename='blank_app_fillable.pdf'
+        open('static/pdf/blank_app_fillable.pdf', 'rb'), attachment_filename='blank_app_fillable.pdf'
     )
 
 # Printable Form as .PDF
 @app.route('/printform/')
 def render_printform_pdf():
     return send_file(
-        open('static/pdf/blankApp.pdf', 'rb'), attachment_filename='blank_app_printable.pdf'
+        open('static/pdf/blank_app_printable.pdf', 'rb'), attachment_filename='blank_app_printable.pdf'
     )
 
 
