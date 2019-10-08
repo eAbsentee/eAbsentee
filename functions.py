@@ -154,7 +154,7 @@ def build_report_data(data: Dict[str, str]) -> str:
         + data['last_four_telpehone'].replace(' ', ''),
         data['address'] + data['apt'] + ', '
         + data['city'] + ', ' + data['zip_code'].replace(' ', '')
-        + ' | ' + data["ballot_delivery_address"] + ' ' + data["ballot_delivery_apt"] + '. '
+        + ' | ' + data["ballot_delivery_address"] + ' ' + data["ballot_delivery_apt"] + ', '
         + data["ballot_delivery_city"] + ', ' + data["ballot_delivery_zip"].replace(' ', ''),
         data['application_ip'],
         session['application_id'],
