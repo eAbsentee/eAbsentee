@@ -144,7 +144,7 @@ def parse_data(request: request, group_code_form) -> Tuple[Dict[str, str], str]:
 def build_report_data(data: Dict[str, str]) -> str:
     data_for_report: List[str] = [
         session['name'],
-        str(datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")),
+        str(datetime.datetime.now().strftime("%m-%d-%y %H:%M:%S")),
         data['reason_code'].replace(' ', ''),
         data['supporting'],
         data['registered_to_vote'],
