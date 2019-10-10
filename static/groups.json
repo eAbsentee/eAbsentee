@@ -84,6 +84,11 @@
         "name": "UVA newspaper",
         "submissions": "0"
     },
+    "UVAsc": {
+        "email": "ah2fq@virginia.edu",
+        "name": "UVA Student Council",
+        "submissions": "0"
+    },
     "UVAud": {
         "email": "lerouvelas@gmail.com",
         "name": "UVA Dems",
@@ -122,6 +127,11 @@
     "WMnews": {
         "email": "lerouvelas@gmail.com",
         "name": "W&M newspaper",
+        "submissions": "0"
+    },
+    "YDVCU": {
+        "email": "youngdemocrats.vcu@gmail.com",
+        "name": "VCU Young Dems",
         "submissions": "0"
     },
     "barnett": {
