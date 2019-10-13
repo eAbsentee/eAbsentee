@@ -16,7 +16,7 @@ Absentee ballot request forms may be submitted electronically in Virginia under 
 -   Create a file called `keys.py` with the following format:
 
 ```python
-GMAIL_SENDER_ADDRESS = 'eAbsentee@gmail.com'
+GMAIL_SENDER_ADDRESS = 'applications@eAbsentee.org'
 GMAIL_SENDER_PASSWORD = '<PASSWORD>'
 SECRET_KEY = '<SECRET KEY>'
 API_KEY = '<API KEY>'
