@@ -33,29 +33,18 @@ def email_report(file_name, emails):
     today_date: str = date.today().strftime("%m-%d-%y")
     report: openpyxl.workbook.Workbook = load_workbook(filename=file_name)
     worksheet: openpyxl.worksheet.worksheet.Worksheet = report.active
-    # if worksheet['B' + str(worksheet.max_row)].value.split()[0] == today_date:
-    #     print("I am now emailing the group: " + file_name)
-    #     yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
-    #         to='raunakdaga@gmail.com',
-    #         # to=emails,
-    #         cc=['raunak@eabsentee.org', 'larry@eabsentee.org'],
-    #         subject=f'Daily Report - eAbsentee Applications',
-    #         contents=f'New absentee ballot applications were submitted ' +
-    #         'yesterday using your eAbsentee.org campaign link. Attached ' +
-    #         'is a report on new and previously-submitted applications.',
-    #         attachments=file_name
-    #     )
-    print("I am now emailing the group: " + file_name)
-    yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
-        to='raunakdaga@gmail.com',
-        # to=emails,
-        cc=['raunak@eabsentee.org', 'larry@eabsentee.org'],
-        subject=f'Daily Report - eAbsentee Applications',
-        contents=f'New absentee ballot applications were submitted ' +
-        'yesterday using your eAbsentee.org campaign link. Attached ' +
-        'is a report on new and previously-submitted applications.',
-        attachments=file_name
-    )
+    if worksheet['B' + str(worksheet.max_row)].value.split()[0] == today_date:
+        # print("I am now emailing the group: " + file_name)
+        yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
+            # to='raunakdaga@gmail.com',
+            to=emails,
+            cc=['raunak@eabsentee.org', 'larry@eabsentee.org'],
+            subject=f'Daily Report - eAbsentee Applications',
+            contents=f'New absentee ballot applications were submitted ' +
+            'yesterday using your eAbsentee.org campaign link. Attached ' +
+            'is a report on new and previously-submitted applications.',
+            attachments=file_name
+        )
 
 
 def email_all_groups():
@@ -64,10 +53,13 @@ def email_all_groups():
         groups_json = json.load(file)
         groups = groups_json.keys()
         for group in groups:
-            print("Group attempting: " + group)
+            # print("Group attempting: " + group)
             if os.path.isfile('../reports/' + group + '.xlsx'):
-                email_report('../reports/' + group + '.xlsx', groups_json[group]['email'].split())
-                print('Oops, an error occurred with the group ' + group)
+                try:
+                    email_report('../reports/' + group + '.xlsx',
+                                 groups_json[group]['email'].split())
+                except:
+                    print('Oops, an error occurred with the group ' + group)
 
 
 email_report_daily()
