@@ -9,18 +9,13 @@ import sys
 
 # Change current working directory, only needed for Atom
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
-os.chdir('../reports')
-
-
-def split_reports():
-    pass
 
 
 def email_report_daily() -> None:
     # print(os.path.dirname(os.path.realpath(__file__)))
     """Email the Excel spreadsheet to Senator Surovell and Mr. Rouvelas. """
     today_date: str = date.today().strftime("%m-%d-%y")
-    report_path = f'dailyreports/{today_date}.xlsx'
+    report_path = f'../reports/dailyreports/{today_date}.xlsx'
     report: openpyxl.workbook.Workbook = load_workbook(filename=report_path)
     worksheet: openpyxl.worksheet.worksheet.Worksheet = report.active
     if worksheet['A2'].value:
@@ -36,20 +31,31 @@ def email_report_daily() -> None:
 
 def email_report(file_name, emails):
     today_date: str = date.today().strftime("%m-%d-%y")
-    report: openpyxl.workbook.Workbook = load_workbook(filename='surovell.xlsx')
+    report: openpyxl.workbook.Workbook = load_workbook(filename=file_name)
     worksheet: openpyxl.worksheet.worksheet.Worksheet = report.active
-    if worksheet['B' + str(worksheet.max_row)].value.split()[0] == today_date:
-        print("I am now emailing the group: " + file_name)
-        yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
-            to='raunakdaga@gmail.com',
-            # to=emails,
-            cc=['raunak@eabsentee.org', 'larry@eabsentee.org'],
-            subject=f'Daily Report - eAbsentee Applications',
-            contents=f'New absentee ballot applications were submitted ' +
-            'yesterday using your eAbsentee.org campaign link. Attached ' +
-            'is a report on new and previously-submitted applications.',
-            attachments=file_name
-        )
+    # if worksheet['B' + str(worksheet.max_row)].value.split()[0] == today_date:
+    #     print("I am now emailing the group: " + file_name)
+    #     yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
+    #         to='raunakdaga@gmail.com',
+    #         # to=emails,
+    #         cc=['raunak@eabsentee.org', 'larry@eabsentee.org'],
+    #         subject=f'Daily Report - eAbsentee Applications',
+    #         contents=f'New absentee ballot applications were submitted ' +
+    #         'yesterday using your eAbsentee.org campaign link. Attached ' +
+    #         'is a report on new and previously-submitted applications.',
+    #         attachments=file_name
+    #     )
+    print("I am now emailing the group: " + file_name)
+    yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
+        to='raunakdaga@gmail.com',
+        # to=emails,
+        cc=['raunak@eabsentee.org', 'larry@eabsentee.org'],
+        subject=f'Daily Report - eAbsentee Applications',
+        contents=f'New absentee ballot applications were submitted ' +
+        'yesterday using your eAbsentee.org campaign link. Attached ' +
+        'is a report on new and previously-submitted applications.',
+        attachments=file_name
+    )
 
 
 def email_all_groups():
@@ -59,11 +65,10 @@ def email_all_groups():
         groups = groups_json.keys()
         for group in groups:
             print("Group attempting: " + group)
-            if os.path.isfile(group + '.xlsx'):
-                try:
-                    email_report(group + '.xlsx', groups_json[group]['email'].split())
-                except:
-                    print('Oops, an error occurred with the group ' + group)
+            try:
+                email_report('../reports' + group + '.xlsx', groups_json[group]['email'].split())
+            except:
+                print('Oops, an error occurred with the group ' + group)
 
 
 email_report_daily()
