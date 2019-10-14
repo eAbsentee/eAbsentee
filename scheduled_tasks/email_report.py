@@ -65,8 +65,9 @@ def email_all_groups():
         groups = groups_json.keys()
         for group in groups:
             print("Group attempting: " + group)
-            email_report('../reports' + group + '.xlsx', groups_json[group]['email'].split())
-            print('Oops, an error occurred with the group ' + group)
+            if os.path.isfile('../reports/' + group + '.xlsx'):
+                email_report('../reports/' + group + '.xlsx', groups_json[group]['email'].split())
+                print('Oops, an error occurred with the group ' + group)
 
 
 email_report_daily()
