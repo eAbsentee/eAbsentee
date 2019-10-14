@@ -12,7 +12,7 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 os.chdir('../reports')
 
 
-def split_reports() -> None:
+def split_reports():
     pass
 
 
