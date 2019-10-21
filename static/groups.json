@@ -1,7 +1,17 @@
 {
+    "Bell": {
+        "email": "kiera@voteforjohnbell.com",
+        "name": "Bell for Senate",
+        "submissions": "0"
+    },
     "CNUc": {
         "email": "lerouvelas@gmail.com",
         "name": "CEEP CNU",
+        "submissions": "0"
+    },
+    "FBRegisterNow": {
+        "email": "max@adrielhamptongroup.com adriel@adrielhampton.com",
+        "name": "AHG Facebook",
         "submissions": "0"
     },
     "GBell": {
@@ -15,7 +25,7 @@
         "submissions": "0"
     },
     "GMUdems": {
-        "email": "lerouvelas@gmail.com",
+        "email": "karaakline@gmail.com",
         "name": "GMU Democrats",
         "submissions": "0"
     },
@@ -29,6 +39,11 @@
         "name": "CEEP HamptonU",
         "submissions": "0"
     },
+    "IGRegisterNow": {
+        "email": "max@adrielhamptongroup.com adriel@adrielhampton.com",
+        "name": "AHG Instagram",
+        "submissions": "0"
+    },
     "JMUc": {
         "email": "lerouvelas@gmail.com",
         "name": "CEEP JMU",
@@ -37,6 +52,11 @@
     "JMUcd": {
         "email": "jmucollegedemocrats@gmail.com",
         "name": "JMU College Dems",
+        "submissions": "0"
+    },
+    "KhaninRegisterNow": {
+        "email": "adriel@adrielhampton.com rohan@irina4delegate.com",
+        "name": "Khanin for Delegate",
         "submissions": "0"
     },
     "NSUc": {
@@ -109,6 +129,11 @@
         "name": "VA Ratify ERA",
         "submissions": "0"
     },
+    "VAsenateDems": {
+        "email": "kristina@vasenatedems.com",
+        "name": "VA Senate Dems",
+        "submissions": "0"
+    },
     "VCU-URyd": {
         "email": "salaar2001@gmail.com",
         "name": "VCU/UR Young Democrats",
@@ -134,6 +159,16 @@
         "name": "CEEP VTech",
         "submissions": "0"
     },
+    "VVRegisterNow": {
+        "email": "adriel@adrielhampton.com david@vanvalkenburg4va.com",
+        "name": "VanValkenburg for Delegate SM",
+        "submissions": "0"
+    },
+    "VVsm1": {
+        "email": "adriel@adrielhampton.com",
+        "name": "VanValkenburg for Delegate",
+        "submissions": "0"
+    },
     "WMnews": {
         "email": "lerouvelas@gmail.com",
         "name": "W&M newspaper",
@@ -144,13 +179,18 @@
         "name": "VCU Young Dems",
         "submissions": "0"
     },
+    "YDatVT": {
+        "email": "rebcat11@vt.edu",
+        "name": "YDs at VT",
+        "submissions": "0"
+    },
     "barnett": {
         "email": "karl.bach@barnett4delegate.com",
         "name": "Friends of Larry Barnett",
         "submissions": "0"
     },
     "campusFB": {
-        "email": "lerouvelas@gmail.com",
+        "email": "larry@eabsentee.org robert@eabsentee.org",
         "name": "Campus FB ads",
         "submissions": "0"
     },
@@ -177,6 +217,11 @@
     "gooditis": {
         "email": "truman@wendygooditis.com",
         "name": "Wendy Gooditis",
+        "submissions": "0"
+    },
+    "hashmi": {
+        "email": "philip@hashmi4vasenate.org greg@techforcampaigns.org",
+        "name": "Hashmi for Delegate",
         "submissions": "0"
     },
     "hickey": {
