@@ -5,7 +5,7 @@
         "submissions": "0"
     },
     "CNUc": {
-        "email": "jacob@campuselect.org michelle@campuselect.org",
+        "email": "lerouvelas@gmail.com",
         "name": "CEEP CNU",
         "submissions": "0"
     },
@@ -20,7 +20,7 @@
         "submissions": "0"
     },
     "GMUc": {
-        "email": "jacob@campuselect.org michelle@campuselect.org",
+        "email": "lerouvelas@gmail.com",
         "name": "CEEP GMU",
         "submissions": "0"
     },
@@ -35,7 +35,7 @@
         "submissions": "0"
     },
     "HamptonUc": {
-        "email": "jacob@campuselect.org michelle@campuselect.org",
+        "email": "lerouvelas@gmail.com",
         "name": "CEEP HamptonU",
         "submissions": "0"
     },
@@ -45,7 +45,7 @@
         "submissions": "0"
     },
     "JMUc": {
-        "email": "jacob@campuselect.org michelle@campuselect.org",
+        "email": "lerouvelas@gmail.com",
         "name": "CEEP JMU",
         "submissions": "0"
     },
@@ -60,7 +60,7 @@
         "submissions": "0"
     },
     "NSUc": {
-        "email": "jacob@campuselect.org michelle@campuselect.org",
+        "email": "lerouvelas@gmail.com",
         "name": "CEEP NSU",
         "submissions": "0"
     },
@@ -70,22 +70,17 @@
         "submissions": "0"
     },
     "ODUc": {
-        "email": "jacob@campuselect.org michelle@campuselect.org",
+        "email": "lerouvelas@gmail.com",
         "name": "CEEP ODU",
         "submissions": "0"
     },
     "PVCCc": {
-        "email": "jacob@campuselect.org michelle@campuselect.org",
+        "email": "lerouvelas@gmail.com",
         "name": "CEEP PVCC",
         "submissions": "0"
     },
-    "RRG": {
-        "email": "adriel@adrielhampton.com",
-        "name": "Rural Ground Game",
-        "submissions": "0"
-    },
     "ReynoldsCCc": {
-        "email": "jacob@campuselect.org michelle@campuselect.org",
+        "email": "lerouvelas@gmail.com",
         "name": "CEEP Reynolds",
         "submissions": "0"
     },
@@ -95,7 +90,7 @@
         "submissions": "0"
     },
     "TCCc": {
-        "email": "jacob@campuselect.org michelle@campuselect.org",
+        "email": "lerouvelas@gmail.com",
         "name": "CEEP TCC",
         "submissions": "0"
     },
@@ -110,7 +105,7 @@
         "submissions": "0"
     },
     "UVAc": {
-        "email": "jacob@campuselect.org michelle@campuselect.org",
+        "email": "lerouvelas@gmail.com",
         "name": "CEEP UVA",
         "submissions": "0"
     },
@@ -145,7 +140,7 @@
         "submissions": "0"
     },
     "VCUc": {
-        "email": "jacob@campuselect.org michelle@campuselect.org",
+        "email": "lerouvelas@gmail.com",
         "name": "CEEP VCU",
         "submissions": "0"
     },
@@ -155,12 +150,12 @@
         "submissions": "0"
     },
     "VSUc": {
-        "email": "jacob@campuselect.org michelle@campuselect.org",
+        "email": "lerouvelas@gmail.com",
         "name": "CEEP VSU",
         "submissions": "0"
     },
     "VTechc": {
-        "email": "jacob@campuselect.org michelle@campuselect.org",
+        "email": "lerouvelas@gmail.com",
         "name": "CEEP VTech",
         "submissions": "0"
     },
@@ -303,5 +298,15 @@
         "email": "kyle@pocketacesconsulting.com will@wheelerforpwc.com",
         "name": "Wheeler PWC Chair",
         "submissions": "0"
+    },
+    "snf": {
+            "email": "adriel@adrielhampton.com",
+            "name": "Story Now Foundation",
+            "submissions": "0"
+    },
+     "TM19e": {
+            "email": "eromanos@takethemajority19.org",
+            "name": "Take Majority 19-Elias",
+            "submissions": "0"
     }
 }
