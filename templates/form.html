@@ -83,15 +83,18 @@
       <!-- End Facebook Pixel Code -->
 </head>
 
-<body>
+<body style="background-color: #ffffff;">
 
       <div class="wrapper">
             <!-- not needed? up to you: http://camendesign.com/code/developpeurs_sans_frontieres -->
 
             <header style="color: #106FDB;">
                   <h1>Virginia Absentee Ballot Application</h1>
+                  <!-- <button class="btn-lg btn-default">Home Page</button>
+                  <button class="btn-lg btn-default">Home Page</button> -->
             </header>
 
+            <!-- <button class="btn-lg btn-default">Home Page</button> -->
             <section id="instructions">
                   <p><b>Are you already registered to vote? If not, click <a href="https://www.virginia.gov/services/register-to-vote/"> here</a>. If you are, continue below.</b></p>
                   <p>You can apply to vote absentee as early as one year before the election. Ballots are available 45 days before most elections. The deadline for receipt of your application to vote absentee by mail is 5:00 PM one week before the
@@ -135,7 +138,11 @@
                               <div id="name__ssn" class="form-group">
                                     <label for="name__ssn_field" class="control-label">Social Security # <u><a href="https://www.eabsentee.org/#faq_ssn">Why?</a></u> (last&nbsp;4) </label>
                                     <input name="name__ssn" id="name__ssn_field" type="password" class="form-control" style="max-width: 9em;" minlength="4" maxlength="4" pattern="^([0-9]{4})$" required digits />
+                                    <img width="40" height="40" src="{{ url_for('static', filename='img/ssl-lock.png') }}"></img>
                               </div>
+
+
+
                         </fieldset>
 
 
@@ -972,6 +979,7 @@
                                                 form is true, (2) I am not requesting a ballot or voting in any other jurisdiction in the U.S., except the jurisdiction to which this application relates, and (3) that I am the person named in this
                                                 absentee application.
                                           </label>
+
                                           <input type="hidden" name="signature__date" value="" />
                                     </div>
 
@@ -982,6 +990,8 @@
 
                               <div style="text-align: center; margin-top: 2em;">
                                     <input type="submit" value="Submit Application" class="btn-lg btn-default" />
+                                    </br>
+                                    <img width="120" height="100" src="{{ url_for('static', filename='img/ssl-image.svg') }}"></img>
                               </div>
                         </fieldset>
 
@@ -998,7 +1008,7 @@
                   </div>
             </div>
 
-            <footer>Contact us at <a href="mailto:contact@eabsentee.org">contact@eabsentee.org</a> | Paid for and authorized by Vote Absentee Virginia</footer>
+            <footer>Contact us at <a href="mailto:raunak@eabsentee.org">raunak@eabsentee.org</a> | Paid for and authorized by Vote Absentee Virginia</footer>
 
       </div>
 
