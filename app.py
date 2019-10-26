@@ -4,6 +4,7 @@ from functions import application_process, add_to_campaign, get_ids_and_counties
 from keys import SECRET_KEY, API_KEY
 import os
 import time
+import datetime
 
 # Sets CWD to whatever directory app.py is located in
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
@@ -109,6 +110,8 @@ def process_form():
             return redirect('/error/')
         return redirect('/confirmation/')
     else:
+        if "10-29-19 20:55:00" < datetime.datetime.now().strftime("%m-%d-%y %H:%M:%S"):
+            return render_template('formclosed.html')
         ids_and_counties = ''
         if 'campaign' in request.cookies:
             ids_and_counties = get_ids_and_counties(request.cookies.get('campaign'))
