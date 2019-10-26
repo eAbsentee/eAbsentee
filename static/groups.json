@@ -99,6 +99,11 @@
         "name": "TakeMaj19 H-H",
         "submissions": "0"
     },
+    "TM19e": {
+        "email": "eromanos@takethemajority19.org",
+        "name": "Take Majority 19-Elias",
+        "submissions": "0"
+    },
     "TtM19SD12hs": {
         "email": "lerouvelas@gmail.com",
         "name": "TakeMaj19 High School",
@@ -240,7 +245,7 @@
         "submissions": "0"
     },
     "missy": {
-        "email": "brenna@missyforsenate.com",
+        "email": "brenna@missyforsenate.com lerouvelas@gmail.com",
         "name": "Missy For Senate",
         "submissions": "0"
     },
@@ -262,6 +267,11 @@
     "rodman": {
         "email": "molly@debrarodman.com lerouvelas@gmail.com",
         "name": "Rodman campaign",
+        "submissions": "0"
+    },
+    "snf": {
+        "email": "adriel@adrielhampton.com",
+        "name": "Story Now Foundation",
         "submissions": "0"
     },
     "sperling": {
@@ -298,15 +308,5 @@
         "email": "kyle@pocketacesconsulting.com will@wheelerforpwc.com",
         "name": "Wheeler PWC Chair",
         "submissions": "0"
-    },
-    "snf": {
-            "email": "adriel@adrielhampton.com",
-            "name": "Story Now Foundation",
-            "submissions": "0"
-    },
-     "TM19e": {
-            "email": "eromanos@takethemajority19.org",
-            "name": "Take Majority 19-Elias",
-            "submissions": "0"
     }
 }
