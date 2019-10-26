@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, session
 from flask import send_file, make_response, send_from_directory
-from functions import application_process, add_to_campaign, get_ids_and_counties, email_report_api
+from functions import application_process, add_to_campaign, get_ids_and_counties, email_report_alltime_api
 from keys import SECRET_KEY, API_KEY
 import os
 import time
@@ -50,6 +50,11 @@ def about():
 def confirmation_page():
     """Confirmation Route: user is redirected here after submission of form. """
     return render_template('confirmation.html')
+
+
+@app.route('/formclosed/')
+def form_closed():
+    return render_template("formclosed.html")
 
 
 '''Static PDF Routes'''
@@ -166,7 +171,7 @@ def api():
             return render_template('api.html')
         elif request.form.get('email_spreadsheet'):
             if request.form.get('api_key') == API_KEY:
-                email_report_api(request)
+                email_report_alltime_api(request)
             return render_template('api.html')
         return render_template('api.html')
     else:
