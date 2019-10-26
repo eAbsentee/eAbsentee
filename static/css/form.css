@@ -4556,15 +4556,15 @@ select[multiple].input-lg,
 
 /* line 60, ../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_buttons.scss */
 .btn-default {
-  color: #333;
-  background-color: #fff;
+  color:  #106FDB;
+  background-color: #aaaaaa;
   border-color: #ccc;
 }
 
 /* line 11, ../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_buttons.scss */
 .btn-default:hover, .btn-default:focus, .btn-default.focus, .btn-default:active, .btn-default.active, .open>.btn-default.dropdown-toggle {
   color: #333;
-  background-color: #e6e6e6;
+  background-color: #106FDB;
   border-color: #adadad;
 }
 
@@ -4573,16 +4573,12 @@ select[multiple].input-lg,
   background-image: none;
 }
 
-/* line 29, ../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_buttons.scss */
-.btn-default.disabled, .btn-default.disabled:hover, .btn-default.disabled:focus, .btn-default.disabled.focus, .btn-default.disabled:active, .btn-default.disabled.active, .btn-default[disabled], .btn-default[disabled]:hover, .btn-default[disabled]:focus, .btn-default[disabled].focus, .btn-default[disabled]:active, .btn-default[disabled].active, fieldset[disabled] .btn-default, fieldset[disabled] .btn-default:hover, fieldset[disabled] .btn-default:focus, fieldset[disabled] .btn-default.focus, fieldset[disabled] .btn-default:active, fieldset[disabled] .btn-default.active {
-  background-color: #fff;
-  border-color: #ccc;
-}
+
 
 /* line 40, ../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_buttons.scss */
 .btn-default .badge {
   color: #fff;
-  background-color: #333;
+  background-color: #106FDB;
 }
 
 /* line 63, ../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_buttons.scss */
