@@ -16,7 +16,7 @@ from reportlab.lib.pagesizes import letter
 from subprocess import call
 from gmplot import gmplot
 import googlemaps
-from keys import GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD, API_KEY, MAPS_API_KEY
+from keys import GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD, API_KEY
 # import pdfrw || DEPRECATED
 
 # Change current working directory to directory 'functions.py' is in.
