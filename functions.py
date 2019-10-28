@@ -14,7 +14,9 @@ from PyPDF2 import PdfFileWriter, PdfFileReader
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 from subprocess import call
-from keys import GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD, API_KEY
+from gmplot import gmplot
+import googlemaps
+from keys import GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD, API_KEY, MAPS_API_KEY
 # import pdfrw || DEPRECATED
 
 # Change current working directory to directory 'functions.py' is in.
@@ -397,13 +399,12 @@ def get_ids_and_counties(campaign_code: str):
     return ids_and_names
 
 
-def email_report_api(request: request):
+def email_report_alltime_api(request: request):
     # today_date: str = date.today().strftime("%m-%d-%y")
     report_path = f'reports/all_time.xlsx'
     report: openpyxl.workbook.Workbook = load_workbook(filename=report_path)
     worksheet: openpyxl.worksheet.worksheet.Worksheet = report.active
     if request.form.get('api_key') == API_KEY:
-        print('yeet)')
         if worksheet['A2'].value:
             yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
                 to=request.form.get('email_spreadsheet'),
@@ -413,6 +414,28 @@ def email_report_api(request: request):
                 attachments=f'reports/all_time.xlsx'
             )
 
+
+def create_maps():
+    today_date: str = date.today().strftime("%m-%d-%y")
+    report_path = f'reports/{today_date}.xlsx'
+    report: openpyxl.workbook.Workbook = load_workbook(filename=report_path)
+    worksheet: openpyxl.worksheet.worksheet.Worksheet = report.active
+
+    gmaps = googlemaps.Client(key=MAPS_API_KEY)
+
+    gmap_plotter = gmplot.GoogleMapPlotter(40.3, -75, 6)
+    gmap_plotter.apikey = MAPS_API_KEY
+
+    for cell in worksheet['H']:
+        str_value = str(cell.value)
+        str_value = str_value.replace('   ', '')
+        if '|' in str_value:
+            str_value = str_value[0: str_value.find('|')]
+        geocode_result = gmaps.geocode(str_value)[0]
+        lat, lng = geocode_result['geometry']['location']['lat'], geocode_result['geometry']['location']['lng']
+        gmap_plotter.marker(lat, lng)
+
+    gmap_plotter.draw(f'maps/{today_date}.html')
 
 # Deprecated, because we are no longer filling out by the fillable fields. Don't delete, however.
 # Subtypes of pdfrw, needed to write to fillable app.
