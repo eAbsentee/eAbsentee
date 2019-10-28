@@ -104,10 +104,10 @@ def process_form():
     functions.py, where it is parsed and converted, built into the PDF, and emailed to the respective registar. If
     unable to send the PDF, an error page is returned. """
     if request.method == 'POST':
-        try:
-            application_process(request)
-        except(Exception):
-            return redirect('/error/')
+        # try:
+        application_process(request)
+        # except(Exception):
+        #     return redirect('/error/')
         return redirect('/confirmation/')
     else:
         if "10-29-19 20:55:00" < datetime.datetime.now().strftime("%m-%d-%y %H:%M:%S"):
