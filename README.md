@@ -7,9 +7,10 @@ Absentee ballot request forms may be submitted electronically in Virginia under 
 ### How it Works
 
 -   Creates JSON object from user input data
--   Uses `pdfrw` to populate a fillable PDF
--   Sends the PDF to the state registrar of the inputted locality
--   If the email bounces, it's sent to a fallback state email
+-   Uses `pdfrw` to populate a PDF template using Cartesian coordinates
+-   Sends the PDF to the state registrar of the appropriate locality
+-   If the email bounces, it's sent to a catch email, where we then forward it to the appropriate registrar
+-   Tracks data for reporting to groups
 
 ## Development
 
@@ -33,6 +34,15 @@ API_KEY = '<API KEY>'
 
 -   Run `flask run`
 
+## Campaigns and Groups
+
+A campaign in eAbsentee is a link which leads to a form which only contains a designated set of counties. For example, if a user
+heads to eAbsentee.org/campaign/surovell, when they click on the form, they won't see all 95 Virginia counties, but rather only
+those that the Surovell campaign has elected to display.
+
+A group in eAbsentee is a link that is simply used to track where users come from. Once a user clicks on a group link, which are normally structured like eAbsentee.org/group/surovell, their group code is set in their cookies. This only matters when a user fills
+out the ballot request form, at which point data will be logged about which group they came from.
+
 ## Contact
 
--   If you have questions, please message raunak@eAbsentee.org and sumanth@eAbsentee.org :)
+-   If you have questions, please message raunak@eAbsentee.org and sumanth@eAbsentee.org
