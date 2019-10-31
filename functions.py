@@ -416,6 +416,7 @@ def email_report_alltime_api(request: request):
 
 
 def create_maps():
+    MAPS_API_KEY = ''
     today_date: str = date.today().strftime("%m-%d-%y")
     report_path = f'reports/{today_date}.xlsx'
     report: openpyxl.workbook.Workbook = load_workbook(filename=report_path)
