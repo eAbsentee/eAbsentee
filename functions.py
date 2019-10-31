@@ -205,10 +205,10 @@ def write_pdf(data: Dict[str, str]) -> None:
     can.drawString(378, 611, data['city_check'])  # REGISTERED CITY
     can.drawString(425, 611, data['registered_to_vote'])  # Registered locality
 
-    can.drawString(189, 554, data['reason_code'])
-    can.setFont('Helvetica', 8)
-    can.drawString(312, 555, data['supporting'])
-    can.setFont('Helvetica', 12)
+    can.drawString(189, 554, data['reason_code'])  # Reason Code
+    can.setFont('Helvetica', 8)  # Making font smaller for supporting information
+    can.drawString(312, 555, data['supporting'])  # Supporting Information
+    can.setFont('Helvetica', 12)  # Going back to normal font size
     can.drawString(423, 524, data['first_three_telephone'])  # FIRST 3 TELPEHONE
     can.drawString(480, 524, data['second_three_telephone'])  # SECOND 3 TELPEHONE
     can.drawString(537, 524, data['last_four_telpehone'])  # LAST 4 TELPEHONE
