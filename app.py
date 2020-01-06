@@ -14,6 +14,7 @@ app = Flask(__name__, template_folder="templates")
 app.secret_key = SECRET_KEY
 app.root_path = os.path.dirname(os.path.abspath(__file__))
 app.config['TEMPLATES_AUTO_RELOAD'] = True
+app.config['DEBUG'] = True
 # app.config['EXPLAIN_TEMPLATE_LOADING'] = True
 
 
@@ -56,6 +57,31 @@ def confirmation_page():
 @app.route('/formclosed/')
 def form_closed():
     return render_template("formclosed.html")
+
+
+@app.route('/hb1/')
+def hb1():
+    return render_template("hb1.html")
+
+
+@app.route('/hb201/')
+def hb201():
+    return render_template("hb201.html")
+
+
+@app.route('/hb207/')
+def hb207():
+    return render_template("hb2071.html")
+
+
+@app.route('/hb220/')
+def hb220():
+    return render_template("hb220.html")
+
+
+@app.route('/hb238/')
+def hb238():
+    return render_template("hb238.html")
 
 
 '''Static PDF Routes'''
@@ -110,14 +136,15 @@ def process_form():
         #     return redirect('/error/')
         return redirect('/confirmation/')
     else:
-        if "10-29-19 20:55:00" < datetime.datetime.now().strftime("%m-%d-%y %H:%M:%S"):
-            return render_template('formclosed.html')
-        ids_and_counties = ''
-        if 'campaign' in request.cookies:
-            ids_and_counties = get_ids_and_counties(request.cookies.get('campaign'))
-        else:
-            ids_and_counties = get_ids_and_counties('allcounties')
-        return render_template('form.html', ids_and_counties=ids_and_counties)
+        # if "10-29-19 20:55:00" < datetime.datetime.now().strftime("%m-%d-%y %H:%M:%S"):
+        return render_template('formclosed.html')
+        if 1 > 2:
+            ids_and_counties = ''
+            if 'campaign' in request.cookies:
+                ids_and_counties = get_ids_and_counties(request.cookies.get('campaign'))
+            else:
+                ids_and_counties = get_ids_and_counties('allcounties')
+            return render_template('form.html', ids_and_counties=ids_and_counties)
 
 
 @app.route('/form/<group>/', methods=['POST', 'GET'])
