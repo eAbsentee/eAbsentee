@@ -170,20 +170,20 @@ def form_dev():
 ''' COOKIE ROUTES '''
 
 
-@app.route('/cou/<campaign>')
+@app.route('/c/<campaign>')
 def home_with_campaign(campaign: str):
     """This route sets the county cookies. It is used to determine which form
     to display. The different forms can have different counties displayed."""
     response = make_response(redirect('/'))
-    response.set_cookie('campaign', campaign, max_age=60 * 60 * 24 * 365 * 2)
+    response.set_cookie('campaign', campaign, max_age=60 * 60 * 24 * 365)
     return response
 
 
-@app.route('/group/<group>')
+@app.route('/g/<group>')
 def set_group(group: str):
     """This route sets the group cookies."""
     response = make_response(redirect('/'))
-    response.set_cookie('group', group, max_age=60 * 60 * 24 * 365 * 2)
+    response.set_cookie('group', group, max_age=60 * 60 * 24 * 365)
     return response
 
 
