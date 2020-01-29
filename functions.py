@@ -79,6 +79,7 @@ def parse_data(request: request, group_code_form) -> Tuple[Dict[str, str], str]:
             'apt': request.form['address__unit'],
             'city': request.form['address__city'],
             'zip_code': '   '.join(request.form['address__zip']),
+            'state': request.form['address__state'],
             'ballot_delivery_address': request.form.get('delivery__street'),
             'ballot_delivery_city': request.form.get('delivery__city'),
             'ballot_delivery_apt': request.form.get('delivery__unit'),
@@ -93,7 +94,7 @@ def parse_data(request: request, group_code_form) -> Tuple[Dict[str, str], str]:
                 '-', '').replace('(', '').replace(')', '').replace(' ', '')[0:3]),
             'second_three_telephone': '   '.join(request.form.get('more_info__telephone').replace(
                 '-', '').replace('(', '').replace(')', '').replace(' ', '')[3:6]),
-            'last_four_telpehone': '   '.join(request.form.get('more_info__telephone').replace(
+            'last_four_telephone': '   '.join(request.form.get('more_info__telephone').replace(
                 '-', '').replace('(', '').replace(')', '').replace(' ', '')[6:10]),
             'assistant_check': 'X' if request.form.get(
                 'assistance__assistance') == 'true' else '',
@@ -153,11 +154,13 @@ def build_report_data(data: Dict[str, str]) -> str:
         data['email'],
         data['first_three_telephone'].replace(' ', '')
         + data['second_three_telephone'].replace(' ', '')
-        + data['last_four_telpehone'].replace(' ', ''),
-        data['address'] + data['apt'] + ', '
-        + data['city'] + ', ' + data['zip_code'].replace(' ', '')
-        + ' | ' + data["ballot_delivery_address"] + ' ' + data["ballot_delivery_apt"] + ', '
-        + data["ballot_delivery_city"] + ', ' + data["ballot_delivery_zip"].replace(' ', ''),
+        + data['last_four_telephone'].replace(' ', ''),
+        data['address'] + (' ' if data['apt'] else '') + data['apt'] + ', '
+        + data['city'] + ', ' + data['state'] + ', ' + data['zip_code'].replace(' ', '')
+        + ((' | ' + data["ballot_delivery_address"] + (' ' if data['ballot_delivery_apt'] else '') + data["ballot_delivery_apt"] + ', ' +
+            data["ballot_delivery_city"] + ', ' +
+            data["ballot_delivery_state"] + ", " +
+            data["ballot_delivery_zip"].replace(' ', '')) if data["ballot_delivery_address"] else ""),
         data['application_ip'],
         session['application_id'],
         data['campaign_code'],
