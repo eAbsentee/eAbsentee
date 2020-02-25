@@ -136,12 +136,14 @@ def process_form():
             return redirect('/error/')
         return redirect('/confirmation/')
     else:
-        ids_and_counties = ''
-        if 'campaign' in request.cookies:
-            ids_and_counties = get_ids_and_counties(request.cookies.get('campaign'))
-        else:
-            ids_and_counties = get_ids_and_counties('allcounties')
-        return render_template('form.html', ids_and_counties=ids_and_counties)
+        return render_template('formclosed.html')
+        # ids_and_counties = ''
+        # if 'campaign' in request.cookies:
+        #     ids_and_counties = get_ids_and_counties(
+        #         request.cookies.get('campaign'))
+        # else:
+        #     ids_and_counties = get_ids_and_counties('allcounties')
+        # return render_template('form.html', ids_and_counties=ids_and_counties)
 
 
 @app.route('/form/<group>/', methods=['POST', 'GET'])
