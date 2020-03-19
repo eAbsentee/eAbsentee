@@ -55,10 +55,12 @@ def parse_data(request: request, group_code_form) -> Tuple[Dict[str, str], str]:
     emails_to_be_sent_to = []
     with open('static/localities_info.json') as file:
         localities = json.load(file)
-        emails_to_be_sent_to = [localities[request.form['election__locality_gnis']]['email']]
+        emails_to_be_sent_to = [
+            localities[request.form['election__locality_gnis']]['email']]
         # emails_to_be_sent_to = ['raunakdaga@gmail.com']
         if request.form.get('email_me') == 'true':
-            emails_to_be_sent_to.append(request.form.get('more_info__email_fax'))
+            emails_to_be_sent_to.append(
+                request.form.get('more_info__email_fax'))
 
     data: Dict[str, str] = {}  # Create outside of scope
     with open('static/localities_info.json') as file:
@@ -156,7 +158,8 @@ def build_report_data(data: Dict[str, str]) -> str:
         + data['second_three_telephone'].replace(' ', '')
         + data['last_four_telephone'].replace(' ', ''),
         data['address'] + (' ' if data['apt'] else '') + data['apt'] + ', '
-        + data['city'] + ', ' + data['state'] + ', ' + data['zip_code'].replace(' ', '')
+        + data['city'] + ', ' + data['state'] +
+        ', ' + data['zip_code'].replace(' ', '')
         + ((' | ' + data["ballot_delivery_address"] + (' ' if data['ballot_delivery_apt'] else '') + data["ballot_delivery_apt"] + ', ' +
             data["ballot_delivery_city"] + ', ' +
             data["ballot_delivery_state"] + ", " +
@@ -209,12 +212,15 @@ def write_pdf(data: Dict[str, str]) -> None:
     can.drawString(425, 611, data['registered_to_vote'])  # Registered locality
 
     can.drawString(189, 554, data['reason_code'])  # Reason Code
-    can.setFont('Helvetica', 8)  # Making font smaller for supporting information
+    # Making font smaller for supporting information
+    can.setFont('Helvetica', 8)
     can.drawString(312, 555, data['supporting'])  # Supporting Information
     can.setFont('Helvetica', 12)  # Going back to normal font size
-    can.drawString(423, 524, data['first_three_telephone'])  # FIRST 3 TELPEHONE
-    can.drawString(480, 524, data['second_three_telephone'])  # SECOND 3 TELPEHONE
-    can.drawString(537, 524, data['last_four_telpehone'])  # LAST 4 TELPEHONE
+    # FIRST 3 TELPEHONE
+    can.drawString(423, 524, data['first_three_telephone'])
+    # SECOND 3 TELPEHONE
+    can.drawString(480, 524, data['second_three_telephone'])
+    can.drawString(537, 524, data['last_four_telephone'])  # LAST 4 TELPEHONE
     can.drawString(178, 504, data['email'])
 
     can.drawString(171, 473, data['address'])
@@ -222,7 +228,8 @@ def write_pdf(data: Dict[str, str]) -> None:
     can.drawString(153, 453, data['city'])
     can.drawString(518, 453, data['zip_code'])  # ZIP CODE OF DELIVERY
 
-    can.drawString(289, 424, data['deliver_residence'])  # DELIVERED TO RESIDENCE
+    # DELIVERED TO RESIDENCE
+    can.drawString(289, 424, data['deliver_residence'])
     can.drawString(459, 424, data['deliver_mailing'])  # DELIVERED TO MAILING
     can.drawString(289, 410, data['deliver_email'])  # DELIVERED TO EMAIL
     # can.drawString(459, 410, data['deliverFax'])  # DELIVERED TO FAX
@@ -309,7 +316,8 @@ def append_to_report(data: Dict[str, str], group_code) -> None:
         if not os.path.isfile(report_path):
             create_report(report_path)
 
-        report: openpyxl.workbook.Workbook = load_workbook(filename=report_path)
+        report: openpyxl.workbook.Workbook = load_workbook(
+            filename=report_path)
         worksheet: openpyxl.worksheet.worksheet.Worksheet = report.active
         worksheet.append(data)
         report.save(report_path)
