@@ -37,7 +37,7 @@ def application_process(request: request, group_code_form=None):
 def parse_data(request: request, group_code_form) -> Tuple[Dict[str, str], str]:
     """ Parse data from the form using the Flask request object and convert it
     into a dict format to allow it to be passed to the PDF filling methods."""
-    todayDate: str = date.today().strftime("%m%d%y")
+    today_date: str = date.today().strftime("%m%d%y")
 
     campaign_name = ''
     if request.cookies.get('campaign'):
@@ -129,12 +129,17 @@ def parse_data(request: request, group_code_form) -> Tuple[Dict[str, str], str]:
             'date_moved_month': '   '.join(request.form.get('change__date_moved')[5:7]),
             'date_moved_day': '   '.join(request.form.get('change__date_moved')[8:10]),
             'date_moved_year': '   '.join(request.form.get('change__date_moved')[2:4]),
-            'date_election_month': '   '.join(request.form.get('election__date')[5:7]),
-            'date_election_day': '   '.join(request.form.get('election__date')[8:10]),
-            'date_election_year': '   '.join(request.form.get('election__date')[2:4]),
-            'date_today_month': '   '.join(todayDate[0:2]),
-            'date_today_day': '   '.join(todayDate[2:4]),
-            'date_today_year': '   '.join(todayDate[4:6]),
+            'date_election_month': '   '.join('05' if request.form[
+                'election__type'] == 'General or Special Election' else '06'),
+            # 'date_election_month': '   '.join(request.form.get('election__date')[5:7]),
+            'date_election_day': '   '.join('05' if request.form[
+                'election__type'] == 'General or Special Election' else '09'),
+            # 'date_election_day': '   '.join(request.form.get('election__date')[8:10]),
+            'date_election_year': '   '.join('20'),
+            # 'date_election_year': '   '.join(request.form.get('election__date')[2:4]),
+            'date_today_month': '   '.join(today_date[0:2]),
+            'date_today_day': '   '.join(today_date[2:4]),
+            'date_today_year': '   '.join(today_date[4:6]),
             'application_ip': request.environ.get('HTTP_X_REAL_IP', request.remote_addr),
             'email_me': request.form.get('email_me'),
             'campaign_code': campaign_name,
