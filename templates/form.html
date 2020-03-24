@@ -41,6 +41,14 @@
   <!-- Lea Verou's Prefix Free, lets you use un-prefixed properties in your CSS files -->
   <script src="{{ url_for('static', filename='js/prefixfree.min.js') }}"></script>
 
+  <style>
+    body {
+      font-size: 150%;
+      font-family: Arial;
+      color: black;
+      background: white;
+    }
+  </style>
 
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -101,10 +109,18 @@
 
     <!-- <button class="btn-lg btn-default">Home Page</button> -->
     <section id="instructions">
-      <p><b>Are you already registered to vote? If not, click <a href="https://www.virginia.gov/services/register-to-vote/"> here</a>. If you are, continue below.</b></p>
-      <p>You can apply to vote absentee as early as one year before the election. Ballots are available 45 days before most elections. The deadline for receipt of your application to vote absentee by mail is 5:00 PM one week before the
-        election. You can contact the Virginia Department of Elections at <a href="tel:8048648901">804-864-8901</a> or <a href="mailto:info@elections.virginia.gov">info@elections.virginia.gov</a>.
+      <p>
+        <b>
+          Are you already registered to vote? If not, click <a href="https://www.elections.virginia.gov/citizen-portal/"> here</a>.
+        </b>
+      </p> <!-- Link rot - check yearly -->
+      <p>
+        You can apply to vote absentee-by-mail as early as one year before the election. Ballots will be sent as directed at earliest 45 days before Election Day. The deadline for online receipt of your Absentee-by-Mail Ballot Application is 5:00 PM the Tuesday before Election Day.
+        <!-- You can contact the Virginia Department of Elections at <a href="tel:8048648901">804-864-8901</a> or <a href="mailto:info@elections.virginia.gov">info@elections.virginia.gov</a>. -->
         <!-- If you'd like to print out and mail your application yourself, you can do so <a href="/printform">here</a> -->
+      </p>
+      <p>
+        If your voter registration needs to be updated for a change in your name/residence, please indicate your former name or resident address at the end of this form.
       </p>
       <br>
     </section>
@@ -153,7 +169,7 @@
 
         <!-- Section 2: Election -->
         <fieldset id="election">
-          <h3 style="color: #106FDB; text-align: center;">Election</h3>
+          <h3 style="color: #106FDB; text-align: center;">I Am Applying to Vote In:</h3>
           <div class="form-group">
             <div id="election__type" class="radio-group">
               <!-- <p>I am applying to vote in:</p> -->
@@ -161,21 +177,21 @@
               <div class="radio">
                 <label>
                   <input name="election__type" type="radio" checked="checked" value="General or Special Election" required />
-                  Town Elections (05-05-20)
+                  Town Elections | Tuesday, May 5, 2020
                 </label>
               </div>
 
               <div class="radio">
                 <label>
                   <input name="election__type" type="radio" checked="checked" value="Democratic Primary" required />
-                  Democratic Congressional Primary (06-09-20)
+                  Democratic Congressional Primary | Tuesday, June 9, 2020
                 </label>
               </div>
 
               <div class="radio">
                 <label>
                   <input name="election__type" type="radio" value="Republican Primary" required />
-                  Republican Congressional Primary (06-09-20)
+                  Republican Congressional Primary | Tuesday, June 9, 2020
                 </label>
               </div>
 
@@ -187,7 +203,7 @@
               </div> -->
             </div>
 
-          <!-- <div>
+            <!-- <div>
             <div id="election__date" class="form-inline date">
               <label class="control-label">Date of Election</label>
 
@@ -196,17 +212,17 @@
             </div>
           </div> -->
 
-          <div id="election__locality" class="form-group form-inline">
-            <label for="election__locality_gnis" class="control-label">I am registered to vote in</label>
+            <div id="election__locality" class="form-group form-inline">
+              <label for="election__locality_gnis" class="control-label">I am registered to vote in</label>
 
-            <input type="hidden" name="election__locality" />
-            <select name="election__locality_gnis" id="election__locality_gnis" type="text" class="form-control" required>
-              <option value="" selected>Choose your residence&hellip;</option>
-              {% for id, name in ids_and_counties.items() %}
-              <option value={{id}}> {{ name }} </option>
-              {% endfor %}
-            </select>
-          </div>
+              <input type="hidden" name="election__locality" />
+              <select name="election__locality_gnis" id="election__locality_gnis" type="text" class="form-control" required>
+                <option value="" selected>Choose your residence&hellip;</option>
+                {% for id, name in ids_and_counties.items() %}
+                <option value={{id}}> {{ name }} </option>
+                {% endfor %}
+              </select>
+            </div>
         </fieldset>
 
 
@@ -217,7 +233,7 @@
           <div class="form-group">
             <!-- <div class="col"> -->
             <!-- <p> <b> Commonly Cited Reasons </b> </p> -->
-            <p> <b> Out of county/city at least part of the day </b> </p>
+            <p> <b>I plan to be out of County/City for some part of Election Day for: </b> </p>
             <div class="radio">
               <label>
                 <input name="reason__code" type="radio" value="1D" /> Personal business or vacation outside County/City of residence on election day
@@ -230,40 +246,40 @@
             </div>
             <div class="radio">
               <label>
-                <input name="reason__code" type="radio" value="1A" required /> Student attending college or university outside of locality of residence in Virginia
+                <input name="reason__code" type="radio" value="1A" required /> I am a student attending college or university outside of locality of residence in Virginia
               </label>
             </div>
-
+            <br>
             <p> <b> Health reasons</b> </p>
             <div class="radio">
               <label>
-                <input name="reason__code" type="radio" value="2A" /> My disability or illness
+                <input name="reason__code" type="radio" value="2A" /> I have a disability or illness
               </label>
             </div>
             <div class="radio">
               <label>
-                <input name="reason__code" type="radio" value="2C" /> My pregnancy
+                <input name="reason__code" type="radio" value="2C" /> I'm pregnant
               </label>
             </div>
-
+            <br>
             <p> <b> Location reasons</b> </p>
             <div class="radio">
               <label>
-                <input name="reason__code" type="radio" value="1B" /> Spouse of student attending college or university outside of locality of residence in Virginia
+                <input name="reason__code" type="radio" value="1B" /> I am a spouse of student attending college or university outside of locality of residence in Virginia
               </label>
             </div>
 
             <div class="radio">
               <label>
-                <input name="reason__code" type="radio" value="6C" /> Temporarily residing outside of US
+                <input name="reason__code" type="radio" value="6C" /> I am temporarily residing outside of US
               </label>
             </div>
             <div class="radio">
               <label>
-                <input name="reason__code" type="radio" value="6D" /> Temporarily residing outside of US for employment or spouse or dependent residing with employee
+                <input name="reason__code" type="radio" value="6D" /> I am temporarily residing outside of US for employment or spouse or dependent residing with employee
               </label>
             </div>
-
+            <br>
             <p> <b> Work conflicts or other obligations</b> </p>
 
             <div class="radio">
@@ -284,7 +300,7 @@
             </div>
             <div class="radio">
               <label>
-                <input name="reason__code" type="radio" value="4A" /> An electoral board member, registrar, officer of election, or custodian of voting equipment
+                <input name="reason__code" type="radio" value="4A" /> I am an electoral board member, registrar, officer of election, or custodian of voting equipment
               </label>
             </div>
             <div class="radio">
@@ -294,43 +310,43 @@
             </div>
             <div class="radio">
               <label>
-                <input name="reason__code" type="radio" value="6A" /> Active Duty Merchant Marine or Armed Forces
+                <input name="reason__code" type="radio" value="6A" /> I am an Active Duty Merchant Marine or Armed Forces
               </label>
             </div>
             <div class="radio">
               <label>
-                <input name="reason__code" type="radio" value="6B" /> Spouse or dependent living with a member of the Armed Forces or Active Duty Merchant Marine
+                <input name="reason__code" type="radio" value="6B" /> I am a spouse or dependent living with a member of the Armed Forces or Active Duty Merchant Marine
               </label>
             </div>
             <div class="radio">
               <label>
-                <input name="reason__code" type="radio" value="8A" /> Authorized representative of candidate or party serving inside the polling place
+                <input name="reason__code" type="radio" value="8A" /> I am an authorized representative of candidate or party serving inside the polling place
               </label>
             </div>
-
+            <br>
             <p> <b> Other </b> </p>
 
             <div class="radio">
               <label>
-                <input name="reason__code" type="radio" value="3A" /> Confined, awaiting trial
+                <input name="reason__code" type="radio" value="3A" /> I am confined and awaiting trial
               </label>
             </div>
             <div class="radio">
               <label>
-                <input name="reason__code" type="radio" value="3B" /> Confined, convicted of a misdemeanor
+                <input name="reason__code" type="radio" value="3B" /> I am confined and convicted of a misdemeanor
               </label>
             </div>
 
 
             <div class="radio">
               <label>
-                <input name="reason__code" type="radio" value="7A" /> Requesting a ballot for presidential and vice-presidential electors only (Ballots for other offices/issues will not be sent)
+                <input name="reason__code" type="radio" value="7A" /> I am requesting a ballot for presidential and vice-presidential electors only
               </label>
             </div>
 
             <div class="radio">
               <label>
-                <input name="reason__code" type="radio" value="9A" /> Granted a protective order issued by or under the authority of a court of competent jurisdiction
+                <input name="reason__code" type="radio" value="9A" /> I am granted a protective order issued by or under the authority of a court of competent jurisdiction
               </label>
             </div>
 
@@ -347,7 +363,7 @@
 
         <!-- Section 5: Residence Address -->
         <fieldset id="address">
-          <h3 style="color: #106FDB;">Residence Address</h3>
+          <h3 style="color: #106FDB; text-align: center;">Residence Address</h3>
           <p>Your residence address is where you are registered to vote. If you're a college student, this is your home address, not your college address.</p>
           <div id="address__street" class="form-group form-inline">
             <label for="address__street_field" class="control-label address">Address</label>
@@ -376,12 +392,10 @@
 
         <!-- Section 6: Delivery of Ballot -->
         <fieldset id="delivery">
-          <h3 style="color: #106FDB; text-align: center;">Delivery of Ballot</h3>
+          <h3 style="color: #106FDB; text-align: center;">I Would Like My Ballot Delivered To:</h3>
 
           <div class="form-group">
             <div id="ballot_delivery" class="radio-group">
-              <p>I would like my ballot delivered to:</p>
-
               <div class="radio">
                 <label>
                   <input name="delivery__to" type="radio" value="residence address" required />
@@ -904,12 +918,12 @@
           </div>
 
           <div id="email" class="form-group">
-            <label for="more_info__email_fax" class="control-label">Email (Optional)</label>
+            <label for="more_info__email_fax" class="control-label">Email</label>
             <input name="more_info__email_fax" id="more_info__email_fax" type="email" class="form-control" autocomplete="email" />
           </div>
 
           <div id="more_info__telephone" class="form-group form-inline phone">
-            <label for="more_info__telephone_field" class="control-label optional">Telephone (Optional)</label>
+            <label for="more_info__telephone_field" class="control-label optional">Telephone</label>
             <input type="tel" name="more_info__telephone" id="more_info__telephone_field" class="form-control" minlength="10" maxlength="14" pattern="^(.{10,14})$" autocomplete="tel" />
           </div>
 
