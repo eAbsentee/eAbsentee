@@ -4,18 +4,18 @@ import os
 import sys
 import openpyxl
 import json
+import datetime
+import io
+import googlemaps
 from openpyxl import load_workbook
 from typing import Dict, List, Tuple
 from flask import request, session
-import datetime
 from datetime import date
-import io
 from PyPDF2 import PdfFileWriter, PdfFileReader
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 from subprocess import call
 from gmplot import gmplot
-import googlemaps
 from keys import GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD, API_KEY
 # import pdfrw || DEPRECATED
 
@@ -62,10 +62,10 @@ def parse_data(request: request, group_code_form) -> Tuple[Dict[str, str], str]:
             emails_to_be_sent_to.append(
                 request.form.get('more_info__email_fax'))
 
-    data: Dict[str, str] = {}  # Create outside of scope
+    data = {}  # Create outside of scope
     with open('static/localities_info.json') as file:
         localities = json.load(file)
-        data: Dict[str, str] = {
+        data = {
             'first_name': request.form['name__first'],
             'middle_name': request.form['name__middle'],
             'last_name': request.form['name__last'],
@@ -114,12 +114,12 @@ def parse_data(request: request, group_code_form) -> Tuple[Dict[str, str], str]:
                 'delivery__to') == 'mailing address' else '',
             'deliver_email': 'X' if request.form.get(
                 'delivery__to') == 'email' else '',
-            'gen_spec_check': 'X' if request.form[
-                'election__type'] == 'General or Special Election' else '',
-            'dem_prim_check': 'X' if request.form[
-                'election__type'] == 'Democratic Primary' else '',
-            'rep_prim_check': 'X' if request.form[
-                'election__type'] == 'Republican Primary' else '',
+            # 'gen_spec_check': 'X' if request.form[
+            #     'election__type'] == 'General or Special Election' else '',
+            # 'dem_prim_check': 'X' if request.form[
+            #     'election__type'] == 'Democratic Primary' else '',
+            # 'rep_prim_check': 'X' if request.form[
+            #     'election__type'] == 'Republican Primary' else '',
             'county_check': 'X' if 'County' in localities[
                 request.form['election__locality_gnis']
             ]['locality'] else '',
@@ -129,13 +129,12 @@ def parse_data(request: request, group_code_form) -> Tuple[Dict[str, str], str]:
             'date_moved_month': '   '.join(request.form.get('change__date_moved')[5:7]),
             'date_moved_day': '   '.join(request.form.get('change__date_moved')[8:10]),
             'date_moved_year': '   '.join(request.form.get('change__date_moved')[2:4]),
-            'date_election_month': '   '.join('05' if request.form[
-                'election__type'] == 'General or Special Election' else '06'),
+            # 'date_election_month': '   '.join('05' if request.form['election__type'] == 'General or Special Election' else '06'),
             # 'date_election_month': '   '.join(request.form.get('election__date')[5:7]),
-            'date_election_day': '   '.join('05' if request.form[
-                'election__type'] == 'General or Special Election' else '09'),
+            # 'date_election_day': '   '.join('05' if request.form[
+            #     'election__type'] == 'General or Special Election' else '09'),
             # 'date_election_day': '   '.join(request.form.get('election__date')[8:10]),
-            'date_election_year': '   '.join('20'),
+            # 'date_election_year': '   '.join('20'),
             # 'date_election_year': '   '.join(request.form.get('election__date')[2:4]),
             'date_today_month': '   '.join(today_date[0:2]),
             'date_today_day': '   '.join(today_date[2:4]),
@@ -147,6 +146,27 @@ def parse_data(request: request, group_code_form) -> Tuple[Dict[str, str], str]:
             'registrar_address': localities[request.form['election__locality_gnis']]['email'],
             'emails_to_be_sent_to': emails_to_be_sent_to
         }
+
+    data['date_election_year'] = '   '.join('20')
+    data['dem_prim_check'] = ''
+    data['rep_prim_check'] = ''
+    data['gen_spec_check'] = ''
+    if request.form['election__type'] == 'TE':
+        data['gen_spec_check'] = 'X'
+        data['date_election_day'] = '   '.join('05')
+        data['date_election_month'] = '   '.join('05')
+    elif request.form['election__type'] == 'DP':
+        data['dem_prim_check'] = 'X'
+        data['date_election_day'] = '   '.join('09')
+        data['date_election_month'] = '   '.join('06')
+    elif request.form['election__type'] == 'RP':
+        data['rep_prim_check'] = 'X'
+        data['date_election_day'] = '   '.join('09')
+        data['date_election_month'] = '   '.join('06')
+    elif request.form['election__type'] == 'PE':
+        data['gen_spec_check'] = 'X'
+        data['date_election_day'] = '   '.join('03')
+        data['date_election_month'] = '   '.join('11')
 
     return data
 
