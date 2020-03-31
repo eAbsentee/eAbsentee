@@ -153,8 +153,9 @@ def form_group(group: str):
             return redirect('/error/')
         return redirect('/confirmation/')
     else:
-        ids_and_counties = get_ids_and_counties('allcounties')
-        return render_template('form.html', ids_and_counties=ids_and_counties)
+        if group == 'fcdc':
+            return render_template('form_fcdc.html', ids_and_counties=get_ids_and_counties('fcdc'))
+        return render_template('form.html', ids_and_counties=get_ids_and_counties('allcounties'))
 
 
 @app.route('/formdev/', methods=['POST', 'GET'])

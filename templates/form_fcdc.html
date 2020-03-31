@@ -181,19 +181,19 @@
 
               <div class="radio">
                 <label>
-                  <input name="election__type" type="radio"  value="TE" required />
+                  <input name="election__type" type="radio" checked="checked" value="TE" required />
                   Town Elections | Tuesday, May 5, 2020
                 </label>
               </div>
 
-              <div class="radio">
+              <!-- <div class="radio">
                 <label>
-                  <input name="election__type" type="radio"  value="DP" required />
+                  <input name="election__type" type="radio" checked="checked" value="DP" required />
                   Democratic Congressional Primary | Tuesday, June 9, 2020
                 </label>
-              </div>
+              </div> -->
 
-              <div class="radio">
+              <!-- <div class="radio">
                 <label>
                   <input name="election__type" type="radio" value="RP" required />
                   Republican Congressional Primary | Tuesday, June 9, 2020
@@ -205,7 +205,7 @@
                   <input name="election__type" type="radio" value="PE" required />
                   Presidential Election | Tuesday, November 3, 2020
                 </label>
-              </div>
+              </div> -->
 
               <!-- <div class="radio">
                 <label>
@@ -229,9 +229,9 @@
 
               <input type="hidden" name="election__locality" />
               <select name="election__locality_gnis" id="election__locality_gnis" type="text" class="form-control" required>
-                <option value="" selected>Choose your residence&hellip;</option>
+                <!-- <option value="" selected>Choose your residence&hellip;</option> -->
                 {% for id, name in ids_and_counties.items() %}
-                <option value={{id}}> {{ name }} </option>
+                <option value={{id}} selected> {{ name }} </option>
                 {% endfor %}
               </select>
             </div>
@@ -245,7 +245,7 @@
           <div class="form-group">
             <!-- <div class="col"> -->
             <!-- <p> <b> Commonly Cited Reasons </b> </p> -->
-            <p> <b>I plan to be out of County/City for some part of Election Day for: </b> </p>
+            <!-- <p> <b>I plan to be out of County/City for some part of Election Day for: </b> </p>
             <div class="radio">
               <label>
                 <input name="reason__code" type="radio" value="1D" /> Personal business or vacation outside County/City of residence on election day
@@ -261,14 +261,14 @@
                 <input name="reason__code" type="radio" value="1A" required /> I am a student attending college or university outside of locality of residence in Virginia
               </label>
             </div>
-            <br>
+            <br> -->
             <p> <b> Health reasons</b> </p>
             <div class="radio">
               <label>
                 <input name="reason__code" type="radio" value="2A" /> I have a disability or illness
               </label>
             </div>
-            <div class="radio">
+            <!-- <div class="radio">
               <label>
                 <input name="reason__code" type="radio" value="2C" /> I'm pregnant
               </label>
@@ -360,7 +360,7 @@
               <label>
                 <input name="reason__code" type="radio" value="9A" /> I am granted a protective order issued by or under the authority of a court of competent jurisdiction
               </label>
-            </div>
+            </div> -->
 
           </div>
 
