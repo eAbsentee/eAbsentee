@@ -9239,7 +9239,7 @@ section#absentee-form:after {
 h1 {
   font-weight: 300;
   text-align: center;
-  margin: 2em 0 1em;
+  margin: 1em 0 1em;
 }
 
 /* line 146, ../assets/scss/style.scss */
@@ -9661,3 +9661,13 @@ footer {
 
 /* Print styles
 -------------------------------------------------------------------------------*/
+
+.coronavirus_banner {
+  background-color: red;
+  height: 100px;
+  width: 100%;
+}
+
+.coronavirus_banner_content {
+  text-align: center;
+}
