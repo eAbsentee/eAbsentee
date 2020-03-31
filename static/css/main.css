@@ -4403,3 +4403,14 @@ body.is-menu-visible #menu {
   background-color: rgb(225, 0, 0);
   color: white;
 } */
+
+
+.coronavirus_banner {
+  background-color: red;
+  height: 100px;
+  width: 100%;
+}
+
+.coronavirus_banner_content {
+  text-align: center;
+}

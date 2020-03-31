@@ -80,44 +80,74 @@ Released for free under the Creative Commons Attribution 3.0 license (templated.
 	<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=548028756026350&ev=PageView&noscript=1" /></noscript>
 	<!-- End Facebook Pixel Code -->
 
+	<style type="text/css" media="screen">
+		/* * {
+		 margin: 0;
+		 padding: 0;
+	 } */
+
+		div#banner {
+			position: absolute;
+			top: 0;
+			left: 0;
+			background-color: #DDEEEE;
+			width: 100%;
+		}
+
+		div#banner-content {
+			width: 800px;
+			margin: 0 auto;
+			padding: 10px;
+			border: 1px solid #000;
+		}
+
+		div#main-content {
+			padding-top: 70px;
+		}
+	</style>
 </head>
 
 <body class="is-preload">
 
-	<!-- Header -->
-	<header id="header">
-		<a class="logo" href="/">eAbsentee</a>
-		<nav>
-			<a href="#menu">Menu</a>
-		</nav>
-	</header>
-
-	<!-- Nav -->
-	<nav id="menu">
-		<ul class="links">
-			<li><a href="/">Home</a></li>
-			<li><a href="/form">Apply for Ballot</a></li>
-			<li><a href="/about">About</a></li>
-		</ul>
-	</nav>
-
-	<!-- Banner -->
-	<section id="banner">
-		<div class="inner">
-			<h1>Vote Absentee Virginia</h1>
-			<h4> Deadline is 5pm Tuesday 6/2 to apply for an absentee ballot for the June Congressional Primary</h4>
-			<p></p>
-			<ul class="actions fit">
-				<li><a href="#faq" class="button primary fit small">F.A.Q.</a></li>
-				<li><a href="./form" class="button fit small">Apply for Absentee Ballot</a></li>
-				<li><a href="#eligible" class="button primary fit small">Am I eligible?</a></li>
-			</ul>
+		<div id="coronavirus_banner">
+			<div id="coronavirus_banner_content" style="background-color:#ce1b28; text-align: center; color: black; font-size: 20px">
+				Due to COVID-19, all voters are allowed to apply for an absentee ballot in the May Elections and cite Reason 2A: "I have a disability or illness."
+			</div>
 		</div>
-		<!-- <video poster="static/thumbnail.png" autoplay playsinline src="static/vid.mp4"></video> -->
-	</section>
+		<!-- Header -->
+		<header id="header">
+			<a class="logo" href="/">eAbsentee</a>
+			<nav>
+				<a href="#menu">Menu</a>
+			</nav>
+		</header>
 
-	<!-- Main -->
-	<!-- <section id="eligible" class="wrapper">
+		<!-- Nav -->
+		<nav id="menu">
+			<ul class="links">
+				<li><a href="/">Home</a></li>
+				<li><a href="/form">Apply for Ballot</a></li>
+				<li><a href="/about">About</a></li>
+			</ul>
+		</nav>
+
+		<!-- Banner -->
+		<section id="banner">
+			<div class="inner">
+				<h1>Vote Absentee Virginia</h1>
+				<h4> Deadline is 5pm Tuesday 6/2 to apply for an absentee ballot for the June Congressional Primary</h4>
+				<p></p>
+				<ul class="actions fit">
+					<li><a href="#faq" class="button primary fit small">F.A.Q.</a></li>
+					<li><a href="./form" class="button fit small">Apply for Absentee Ballot</a></li>
+					<li><a href="#eligible" class="button primary fit small">Am I eligible?</a></li>
+				</ul>
+			</div>
+			<!-- <video poster="static/thumbnail.png" autoplay playsinline src="static/vid.mp4"></video> -->
+		</section>
+
+		<!-- Main -->
+		<!-- <section id="eligible" class="wrapper">
 		<div class="inner">
 			<div class="content">
 				<header class="special">
@@ -179,7 +209,7 @@ Released for free under the Creative Commons Attribution 3.0 license (templated.
 		</div>
 	</section> -->
 
-	<!-- Main
+		<!-- Main
 	<section id="faq" class="wrapper">
 	<div class="inner">
 	<div>
@@ -192,289 +222,291 @@ Released for free under the Creative Commons Attribution 3.0 license (templated.
 </div>
 </section> -->
 
-	<!-- Removed until primaries -->
-	<!-- Videos - -->
-	<section id="videos" class="wrapper">
-		<div class="parent" style="display: flex">
-			<center class="child" style="flex: 1;">
-				<h2>How to use this site</h2>
-				<div class='embed-container'><iframe src="https://www.youtube-nocookie.com/embed/K9NDP05j3CM" frameborder='0' allowfullscreen></iframe></div>
+		<!-- Removed until primaries -->
+		<!-- Videos - -->
+		<section id="videos" class="wrapper">
+			<div class="parent" style="display: flex">
+				<center class="child" style="flex: 1;">
+					<h2>How to use this site</h2>
+					<div class='embed-container'><iframe src="https://www.youtube-nocookie.com/embed/K9NDP05j3CM" frameborder='0' allowfullscreen></iframe></div>
 
-			</center>
-			<center class="child" style="flex: 1;">
-				<h2>Does my vote matter?</h2>
-				<div class='embed-container'><iframe src="https://www.youtube-nocookie.com/embed/usJyXlkl3G4" frameborder='0' allowfullscreen></iframe></div>
+				</center>
+				<center class="child" style="flex: 1;">
+					<h2>Does my vote matter?</h2>
+					<div class='embed-container'><iframe src="https://www.youtube-nocookie.com/embed/usJyXlkl3G4" frameborder='0' allowfullscreen></iframe></div>
 
-			</center>
-		</div>
-	</section>
-
-	<!-- Main -->
-	<<section id="faq" class="wrapper">
-		<div class="inner">
-			<div class="content">
-				<header class="special">
-					<h2>Frequently Asked Questions</h2>
-				</header>
-				<p>
-					<b>How does this site work?</b>
-					<br>
-					It places the information you enter onto an official Virginia form, creates a PDF and emails an
-					electronically signed copy to your county/city registrar. You can receive a copy of the PDF if you
-					provide your email address.
-				</p>
-				<hr />
-				<p>
-					<b>The form needs to be signed. Is the electronic signature here adequate?</b>
-					<br>
-					Yes. According to a decision by the Virginia State Board of Elections made in 2015 at the
-					request of Speaker Bill Howell, registrars can accept emailed applications with such signatures.
-					For more details and news articles on the topic, click <a href="/about/">here</a>.
-				</p>
-				<hr />
-				<p>
-					<b>Can anyone receive an absentee ballot?</b>
-					<br>
-					By Virginia law, a voter needs to provide one of 20 reasons, such as being
-					physically present outside of the County/City where you are registered on Election Day, to
-					qualify for an absentee ballot.
-				</p>
-				<hr />
-				<p>
-					<b>How long will it take to receive an absentee ballot?</b>
-					<br>
-					Typically within 10 business days.
-				</p>
-				<hr />
-				<p>
-					<b>What if I don’t receive my absentee ballot?</b>
-					<br>
-					Call your local General Registrar, the Virginia Department of Elections toll free number or check
-					the Department of Elections website: <a href="https://www.elections.virginia.gov/">elections.virginia.gov</a>.
-				</p>
-				<hr />
-				<p>
-					<b>Can I submit this application on behalf of someone else?</b>
-					<br>
-					No. It’s acceptable to help someone fill it out data fields, but the voter must give final approval
-					for submission.
-				</p>
-				<hr />
-				<p>
-					<b>What if I get an absentee ballot, then later decide to vote in person? Or what if I forget I
-						submitted an absentee and show up at the polling place?</b>
-					<br>
-					The registrar keeps good records of these things. If you show up at the polls after having
-					received an absentee ballot, you can either bring your ballot and surrender it at your poll on
-					Election Day or you may be asked to cast a provisional ballot. Your vote will not be counted
-					twice.
-				</p>
-				<hr />
-				<p>
-					<b>Is there a risk of voter fraud here?</b>
-					<br>
-					This website only submits applications for absentee ballots. It does not cast ballots themselves.
-					If a voter receives an absentee ballot without wanting it, he/she can surrender it at a polling
-					place or cast a provisional ballot. Plus, falsely requesting an absentee ballot is a felony, just like
-					with a traditional paper application, except here it is traceable on-line unlike mailed in absentee
-					ballot applications.
-				</p>
-				<hr />
-				<p>
-					<b>Who sponsors this website?</b>
-					<br>
-					It is run by Vote Absentee Virginia, a not-for-profit 501(c)4 organization. It was formed to help broaden
-					voter access across all parties in Virginia. Click <a href="/about">here</a> for more information.
-				</p>
-				<hr />
-				<p>
-					<b>How do you make money here?</b>
-					<br>
-					We don’t. We created this site as a public service to Virginians.
-				</p>
-				<hr />
-				<p>
-					<b>Does the state of Virginia have its own website to request absentee ballots?</b>
-					<br id="faq_ssn">
-					It does, but it asks for a lot more information like driver’s license number and full social security
-					number. That can be daunting, particularly for people who don’t have driver’s licenses.
-				</p>
-				<hr />
-				<section>
-					<p>
-						<b>Where does my data go?</b>
-
-						<p>It goes to two places and partly to a third. The two: your local County/City registrar and this
-							website’s sponsor, Vote Absentee Virginia. </p>
-						<p> At the end of each day, this website destroys its records of the last-four-digits of your Social
-							Security number from its records. The end-of-the-day gives us enough time to ensure your
-							application PDF was properly sent, then afterwards we don’t need—or really even want—those
-							last four digits. </p>
-						<p> The third place your data goes: if you landed on this site from a link sent by an organization,
-							then it receives your name and contact information (but not your last-four-of-SSN nor reason-
-							for-absentee-voting). </p>
-						<p> Which organization? At the end of the url link you clicked is a set of letters. In most cases, the
-							organization will be apparent. However, if you are unsure, email the letter-code to
-							raunak@eAbsentee.org and we’ll be happy to let you know, usually a candidate’s campaign or
-							get-out-the-vote group.
-						</p>
-						<p> Why is partial information provided to linking organizations? Campaigns and get-out-the-vote groups
-							work hard to reach out potential voters. They want to know which channels are making an impact, plus
-							they want to encourage you afterwards to return your absentee ballot. Your data will never be sold by Vote Absentee Virginia. (See <a href="/about">"About Us”</a> for detail on how the site is supported).
-						</p>
-					</p>
-				</section>
-				<hr />
-				<p>
-					<b>How can I check whether my absentee application is in process?</b>
-					<br>
-					A voter can check his or here voter record, including applications, at the <a href="https://vote.elections.virginia.gov/VoterInformation"> Virginia elections website.</a>
-					Please allow a few days for the local registrar to enter an application into the computer system.
-				</p>
-				<hr />
-				<p>
-					<b>On the website application form, I don't see my county/city on the dropdown list? Where is it?</b>
-					<br>
-					Some campaign-specific links to the eAbsentee website limit the choices for county/city. You may have clicked on such a link. To see all county/cities, clear the cookies from your browser (usually in the same place you clear history). Note: this won't work for Chrome, so a different browser should be used to solve this problem.
-				</p>
-				<hr />
-
-
-
+				</center>
 			</div>
-		</div>
 		</section>
 
 		<!-- Main -->
-		<section id="eligible" class="wrapper">
+		<<section id="faq" class="wrapper">
 			<div class="inner">
 				<div class="content">
 					<header class="special">
-						<h2>Am I eligible?</h2>
+						<h2>Frequently Asked Questions</h2>
 					</header>
-					<p><b>Can I get an absentee ballot...</b></p>
 					<p>
-						<b><i>... because I work on Election Day and my job is outside my home city or county?</i></b>
+						<b>How does this site work?</b>
 						<br>
-						Yes. Choose the "Business outside County/City" reason.
+						It places the information you enter onto an official Virginia form, creates a PDF and emails an
+						electronically signed copy to your county/city registrar. You can receive a copy of the PDF if you
+						provide your email address.
 					</p>
 					<hr />
 					<p>
-						<b><i>... because I’m eating lunch on Election Day in a different city or county?</i></b>
+						<b>The form needs to be signed. Is the electronic signature here adequate?</b>
 						<br>
-						Yes. Choose the "Personal business or vacation" reason.
+						Yes. According to a decision by the Virginia State Board of Elections made in 2015 at the
+						request of Speaker Bill Howell, registrars can accept emailed applications with such signatures.
+						For more details and news articles on the topic, click <a href="/about/">here</a>.
 					</p>
 					<hr />
 					<p>
-						<b><i>... because I’m on vacation outside my city or county?</i></b>
+						<b>Can anyone receive an absentee ballot?</b>
 						<br>
-						Yes. Choose the "Personal business or vacation" reason.
+						By Virginia law, a voter needs to provide one of 20 reasons, such as being
+						physically present outside of the County/City where you are registered on Election Day, to
+						qualify for an absentee ballot.
 					</p>
 					<hr />
 					<p>
-						<b><i>... because I have trouble walking and it’s hard to stand in line a long time at the polling place?</i></b>
+						<b>How long will it take to receive an absentee ballot?</b>
 						<br>
-						Yes. Choose "My disability or illness" reason.
+						Typically within 10 business days.
 					</p>
 					<hr />
 					<p>
-						<b><i>... because I work long hours near my home and it’s difficult to get the polls?</i></b>
+						<b>What if I don’t receive my absentee ballot?</b>
 						<br>
-						If you work in the same county you live in, and will work & commute more than 11 hours between 6AM and 7PM, then yes.
-						Choose the "I am working and commuting to/from home" reason.
+						Call your local General Registrar, the Virginia Department of Elections toll free number or check
+						the Department of Elections website: <a href="https://www.elections.virginia.gov/">elections.virginia.gov</a>.
 					</p>
 					<hr />
 					<p>
-						<b><i>... I attend college in a different city or county?</i></b>
+						<b>Can I submit this application on behalf of someone else?</b>
 						<br>
-						Yes. Choose the "Student attending college" reason.
+						No. It’s acceptable to help someone fill it out data fields, but the voter must give final approval
+						for submission.
 					</p>
 					<hr />
 					<p>
-						<b><i>... I’m pregnant?</i></b>
+						<b>What if I get an absentee ballot, then later decide to vote in person? Or what if I forget I
+							submitted an absentee and show up at the polling place?</b>
 						<br>
-						Yes. Choose "My pregnancy" reason.
+						The registrar keeps good records of these things. If you show up at the polls after having
+						received an absentee ballot, you can either bring your ballot and surrender it at your poll on
+						Election Day or you may be asked to cast a provisional ballot. Your vote will not be counted
+						twice.
 					</p>
 					<hr />
 					<p>
-						<b><i>... I need to take care of my sick elderly mother at home?</i></b>
+						<b>Is there a risk of voter fraud here?</b>
 						<br>
-						Yes. Choose the "I am primarily and personally responsible for the care of a disabled/ill family member" reason.
+						This website only submits applications for absentee ballots. It does not cast ballots themselves.
+						If a voter receives an absentee ballot without wanting it, he/she can surrender it at a polling
+						place or cast a provisional ballot. Plus, falsely requesting an absentee ballot is a felony, just like
+						with a traditional paper application, except here it is traceable on-line unlike mailed in absentee
+						ballot applications.
 					</p>
 					<hr />
+					<p>
+						<b>Who sponsors this website?</b>
+						<br>
+						It is run by Vote Absentee Virginia, a not-for-profit 501(c)4 organization. It was formed to help broaden
+						voter access across all parties in Virginia. Click <a href="/about">here</a> for more information.
+					</p>
+					<hr />
+					<p>
+						<b>How do you make money here?</b>
+						<br>
+						We don’t. We created this site as a public service to Virginians.
+					</p>
+					<hr />
+					<p>
+						<b>Does the state of Virginia have its own website to request absentee ballots?</b>
+						<br id="faq_ssn">
+						It does, but it asks for a lot more information like driver’s license number and full social security
+						number. That can be daunting, particularly for people who don’t have driver’s licenses.
+					</p>
+					<hr />
+					<section>
+						<p>
+							<b>Where does my data go?</b>
 
+							<p>It goes to two places and partly to a third. The two: your local County/City registrar and this
+								website’s sponsor, Vote Absentee Virginia. </p>
+							<p> At the end of each day, this website destroys its records of the last-four-digits of your Social
+								Security number from its records. The end-of-the-day gives us enough time to ensure your
+								application PDF was properly sent, then afterwards we don’t need—or really even want—those
+								last four digits. </p>
+							<p> The third place your data goes: if you landed on this site from a link sent by an organization,
+								then it receives your name and contact information (but not your last-four-of-SSN nor reason-
+								for-absentee-voting). </p>
+							<p> Which organization? At the end of the url link you clicked is a set of letters. In most cases, the
+								organization will be apparent. However, if you are unsure, email the letter-code to
+								raunak@eAbsentee.org and we’ll be happy to let you know, usually a candidate’s campaign or
+								get-out-the-vote group.
+							</p>
+							<p> Why is partial information provided to linking organizations? Campaigns and get-out-the-vote groups
+								work hard to reach out potential voters. They want to know which channels are making an impact, plus
+								they want to encourage you afterwards to return your absentee ballot. Your data will never be sold by Vote Absentee Virginia. (See <a href="/about">"About Us”</a> for detail on how the site is supported).
+							</p>
+						</p>
+					</section>
+					<hr />
+					<p>
+						<b>How can I check whether my absentee application is in process?</b>
+						<br>
+						A voter can check his or here voter record, including applications, at the <a href="https://vote.elections.virginia.gov/VoterInformation"> Virginia elections website.</a>
+						Please allow a few days for the local registrar to enter an application into the computer system.
+					</p>
+					<hr />
+					<p>
+						<b>On the website application form, I don't see my county/city on the dropdown list? Where is it?</b>
+						<br>
+						Some campaign-specific links to the eAbsentee website limit the choices for county/city. You may have clicked on such a link. To see all county/cities, clear the cookies from your browser (usually in the same place you clear history).
+						Note: this won't work for Chrome, so a different browser should be used to solve this problem.
+					</p>
+					<hr />
 
 
 
 				</div>
 			</div>
-		</section>
+			</section>
 
-		<!-- Testimonials
-	<section class="wrapper">
-	<div class="inner">
-	<header class="special">
-	<h2>Testimonials</h2>
-	<p>eAbsentee is a safe, secure, and efficient system. The platform is endorsed by (INSERT endorsements).</p>
-</header>
-<div class="testimonials">
-<section>
-<div class="content">
-<blockquote>
-<p>Insert testimonial.</p>
-</blockquote>
-<div class="author">
-<div class="image">
-<img src="images/pic01.jpg" alt="" />
-</div>
-<p class="credit">- <strong>Mr. Scott Surovell</strong> <span>Mount Vernon District State Senator</span></p>
-</div>
-</div>
-</section>
-<section>
-<div class="content">
-<blockquote>
-<p>Insert testimonial.</p>
-</blockquote>
-<div class="author">
-<div class="image">
-<img src="images/pic03.jpg" alt="" />
-</div>
-<p class="credit">- <strong>John Doe</strong> <span>CEO - ABC Inc.</span></p>
-</div>
-</div>
-</section>
-<section>
-<div class="content">
-<blockquote>
-<p>Insert testimonial.</p>
-</blockquote>
-<div class="author">
-<div class="image">
-<img src="images/pic02.jpg" alt="" />
-</div>
-<p class="credit">- <strong>Janet Smith</strong> <span>CEO - ABC Inc.</span></p>
-</div>
-</div>
-</section>
-</div>
-</div>
-</section> -->
+			<!-- Main -->
+			<section id="eligible" class="wrapper">
+				<div class="inner">
+					<div class="content">
+						<header class="special">
+							<h2>Am I eligible?</h2>
+						</header>
+						<p><b>Can I get an absentee ballot...</b></p>
+						<p>
+							<b><i>... because I work on Election Day and my job is outside my home city or county?</i></b>
+							<br>
+							Yes. Choose the "Business outside County/City" reason.
+						</p>
+						<hr />
+						<p>
+							<b><i>... because I’m eating lunch on Election Day in a different city or county?</i></b>
+							<br>
+							Yes. Choose the "Personal business or vacation" reason.
+						</p>
+						<hr />
+						<p>
+							<b><i>... because I’m on vacation outside my city or county?</i></b>
+							<br>
+							Yes. Choose the "Personal business or vacation" reason.
+						</p>
+						<hr />
+						<p>
+							<b><i>... because I have trouble walking and it’s hard to stand in line a long time at the polling place?</i></b>
+							<br>
+							Yes. Choose "My disability or illness" reason.
+						</p>
+						<hr />
+						<p>
+							<b><i>... because I work long hours near my home and it’s difficult to get the polls?</i></b>
+							<br>
+							If you work in the same county you live in, and will work & commute more than 11 hours between 6AM and 7PM, then yes.
+							Choose the "I am working and commuting to/from home" reason.
+						</p>
+						<hr />
+						<p>
+							<b><i>... I attend college in a different city or county?</i></b>
+							<br>
+							Yes. Choose the "Student attending college" reason.
+						</p>
+						<hr />
+						<p>
+							<b><i>... I’m pregnant?</i></b>
+							<br>
+							Yes. Choose "My pregnancy" reason.
+						</p>
+						<hr />
+						<p>
+							<b><i>... I need to take care of my sick elderly mother at home?</i></b>
+							<br>
+							Yes. Choose the "I am primarily and personally responsible for the care of a disabled/ill family member" reason.
+						</p>
+						<hr />
 
-		<!-- Footer -->
-		<footer id="footer">
-			<div class=" copyright">
-				<p style="color:white;">Contact us at <a href="mailto:applications@eabsentee.org">applications@eabsentee.org</a> | Paid for and authorized by Vote Absentee Virginia </p>
-			</div>
 
-		</footer>
 
-		<!-- Scripts -->
-		<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
-		<script src="{{ url_for('static', filename='js/browser.min.js') }}"></script>
-		<script src="{{ url_for('static', filename='js/breakpoints.min.js') }}"></script>
-		<script src="{{ url_for('static', filename='js/util.min.js') }}"></script>
-		<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+					</div>
+				</div>
+			</section>
+
+							<!-- Testimonials
+					<section class="wrapper">
+					<div class="inner">
+					<header class="special">
+					<h2>Testimonials</h2>
+					<p>eAbsentee is a safe, secure, and efficient system. The platform is endorsed by (INSERT endorsements).</p>
+				</header>
+				<div class="testimonials">
+				<section>
+				<div class="content">
+				<blockquote>
+				<p>Insert testimonial.</p>
+				</blockquote>
+				<div class="author">
+				<div class="image">
+				<img src="images/pic01.jpg" alt="" />
+				</div>
+				<p class="credit">- <strong>Mr. Scott Surovell</strong> <span>Mount Vernon District State Senator</span></p>
+				</div>
+				</div>
+				</section>
+				<section>
+				<div class="content">
+				<blockquote>
+				<p>Insert testimonial.</p>
+				</blockquote>
+				<div class="author">
+				<div class="image">
+				<img src="images/pic03.jpg" alt="" />
+				</div>
+				<p class="credit">- <strong>John Doe</strong> <span>CEO - ABC Inc.</span></p>
+				</div>
+				</div>
+				</section>
+				<section>
+				<div class="content">
+				<blockquote>
+				<p>Insert testimonial.</p>
+				</blockquote>
+				<div class="author">
+				<div class="image">
+				<img src="images/pic02.jpg" alt="" />
+				</div>
+				<p class="credit">- <strong>Janet Smith</strong> <span>CEO - ABC Inc.</span></p>
+				</div>
+				</div>
+				</section>
+				</div>
+				</div>
+				</section> -->
+
+			<!-- Footer -->
+			<footer id="footer">
+				<div class=" copyright">
+					<p style="color:white;">Contact us at <a href="mailto:applications@eabsentee.org">applications@eabsentee.org</a> | Paid for and authorized by Vote Absentee Virginia </p>
+				</div>
+
+			</footer>
+
+
+	<!-- Scripts -->
+	<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/browser.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/breakpoints.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/util.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/main.js') }}"></script>
 
 </body>
 
