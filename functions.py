@@ -8,7 +8,6 @@ import datetime
 import io
 import googlemaps
 from openpyxl import load_workbook
-from typing import Dict, List, Tuple
 from flask import request, session
 from datetime import date
 from PyPDF2 import PdfFileWriter, PdfFileReader
@@ -17,13 +16,12 @@ from reportlab.lib.pagesizes import letter
 from subprocess import call
 from gmplot import gmplot
 from keys import GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD, API_KEY
-# import pdfrw || DEPRECATED
 
 # Change current working directory to directory 'functions.py' is in.
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 # Where the form lives
-form_path: str = 'static/pdf/blank_app.pdf'
+form_path = 'static/pdf/blank_app.pdf'
 
 
 def application_process(request: request, group_code_form=None):
@@ -34,10 +32,10 @@ def application_process(request: request, group_code_form=None):
     email_registrar(data)
 
 
-def parse_data(request: request, group_code_form) -> Tuple[Dict[str, str], str]:
+def parse_data(request: request, group_code_form):
     """ Parse data from the form using the Flask request object and convert it
     into a dict format to allow it to be passed to the PDF filling methods."""
-    today_date: str = date.today().strftime("%m%d%y")
+    today_date = date.today().strftime("%m%d%y")
 
     campaign_name = ''
     if request.cookies.get('campaign'):
@@ -171,8 +169,8 @@ def parse_data(request: request, group_code_form) -> Tuple[Dict[str, str], str]:
     return data
 
 
-def build_report_data(data: Dict[str, str]) -> str:
-    data_for_report: List[str] = [
+def build_report_data(data):
+    data_for_report = [
         session['name'],
         str(datetime.datetime.now().strftime("%m-%d-%y %H:%M:%S")),
         data['reason_code'].replace(' ', ''),
@@ -184,11 +182,10 @@ def build_report_data(data: Dict[str, str]) -> str:
         + data['last_four_telephone'].replace(' ', ''),
         data['address'] + (' ' if data['apt'] else '') + data['apt'] + ', '
         + data['city'] + ', ' + data['state'] +
-        ', ' + data['zip_code'].replace(' ', '')
-        + ((' | ' + data["ballot_delivery_address"] + (' ' if data['ballot_delivery_apt'] else '') + data["ballot_delivery_apt"] + ', ' +
-            data["ballot_delivery_city"] + ', ' +
-            data["ballot_delivery_state"] + ", " +
-            data["ballot_delivery_zip"].replace(' ', '')) if data["ballot_delivery_address"] else ""),
+        ', ' + data['zip_code'].replace(' ', ''),
+        data["ballot_delivery_address"] +  data['ballot_delivery_apt'] + data["ballot_delivery_apt"] + ', ' +
+        data["ballot_delivery_city"] + ', ' + data["ballot_delivery_state"] + ", " +
+        data["ballot_delivery_zip"].replace(' ', ''),
         data['application_ip'],
         session['application_id'],
         data['campaign_code'],
@@ -199,10 +196,10 @@ def build_report_data(data: Dict[str, str]) -> str:
     append_to_report(data_for_report, data['group_code'])
 
 
-def set_session_keys(data: Dict[str, str]) -> None:
+def set_session_keys(data) -> None:
     # id is first 10 characters of MD5 hash of dictionary
-    id: str = hashlib.md5(repr(data).encode('utf-8')).hexdigest()[: 10]
-    name: str = data['first_name'] + \
+    id = hashlib.md5(repr(data).encode('utf-8')).hexdigest()[: 10]
+    name = data['first_name'] + \
         ' ' + data['middle_name'] + \
         ' ' + data['last_name'] + \
         (', ' + data['suffix']
@@ -213,11 +210,11 @@ def set_session_keys(data: Dict[str, str]) -> None:
     session['registrar_locality'] = data['registered_to_vote']
     session['registrar_email'] = data['registrar_address']
 
-    today_date: str = date.today().strftime("%m-%d-%y")
+    today_date = date.today().strftime("%m-%d-%y")
     session['report_file'] = f'reports/{today_date}.xlsx'
 
 
-def write_pdf(data: Dict[str, str]) -> None:
+def write_pdf(data) -> None:
     packet = io.BytesIO()
     can = canvas.Canvas(packet, pagesize=letter)
     can.drawString(180, 690, data['last_name'])  # LastName
@@ -296,7 +293,7 @@ def write_pdf(data: Dict[str, str]) -> None:
     output.write(open(session['output_file'], "wb"))
 
 
-def email_registrar(data: Dict[str, str]) -> None:
+def email_registrar(data) -> None:
     """Email the form to the registrar of the applicant's locality. """
     yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
         to=([email for email in data['emails_to_be_sent_to']]),
@@ -308,51 +305,51 @@ def email_registrar(data: Dict[str, str]) -> None:
     )
 
 
-def append_to_report(data: Dict[str, str], group_code) -> None:
+def append_to_report(data, group_code):
     """Add a row to the Excel spreadsheet with data from the application.
     If the spreadsheet doesn't already exist, create it. """
 
     # APPENDING TO ALL TIME SPREADSHEET
-    report_path: str = f'reports/all_time.xlsx'
+    report_path = f'reports/all_time.xlsx'
     if not os.path.isfile(report_path):
         create_report(report_path)
-    report: openpyxl.workbook.Workbook = load_workbook(filename=report_path)
-    worksheet: openpyxl.worksheet.worksheet.Worksheet = report.active
+    report = load_workbook(filename=report_path)
+    worksheet = report.active
     worksheet.append(data)
     report.save(report_path)
 
     # APPENDING TO TODAYS SPREADSHEET
-    today_date: str = date.today().strftime("%m-%d-%y")
-    report_path: str = f'reports/dailyreports/{today_date}.xlsx'
+    today_date = date.today().strftime("%m-%d-%y")
+    report_path = f'reports/dailyreports/{today_date}.xlsx'
 
     if not os.path.isfile(report_path):
         create_report(report_path)
 
-    report: openpyxl.workbook.Workbook = load_workbook(filename=report_path)
-    worksheet: openpyxl.worksheet.worksheet.Worksheet = report.active
+    report = load_workbook(filename=report_path)
+    worksheet = report.active
     worksheet.append(data)
     report.save(report_path)
 
     # APPENDING TO GROUP SPREADSHEET
     if group_code != '':
         group = group_code
-        report_path: str = f'reports/{group}.xlsx'
+        report_path = f'reports/{group}.xlsx'
 
         if not os.path.isfile(report_path):
             create_report(report_path)
 
-        report: openpyxl.workbook.Workbook = load_workbook(
-            filename=report_path)
-        worksheet: openpyxl.worksheet.worksheet.Worksheet = report.active
-        worksheet.append(data)
+        report = load_workbook(filename=report_path)
+        worksheet = report.active
+        group_data = data[0:2] + data[4:]
+        worksheet.append(group_data)
         report.save(report_path)
 
 
 def create_report(file_path) -> str:
-    today_date: str = date.today().strftime("%m-%d-%y")
+    today_date = date.today().strftime("%m-%d-%y")
 
-    report: openpyxl.workbook.Workbook = openpyxl.Workbook()
-    sh: openpyxl.worksheet.worksheet.Worksheet = report.active
+    report = openpyxl.Workbook()
+    sh = report.active
     sh['A1'] = 'Applicant Name'
     sh['B1'] = 'Time Submitted'
     sh['C1'] = 'Reason Code'
@@ -360,14 +357,15 @@ def create_report(file_path) -> str:
     sh['E1'] = 'Locality'
     sh['F1'] = 'Email'
     sh['G1'] = 'Telephone Number'
-    sh['H1'] = 'Address + Residence Address'
-    sh['I1'] = 'IP Submitted From'
-    sh['J1'] = 'Form ID'
-    sh['K1'] = 'Campaign Code'
-    sh['L1'] = 'Group Code'
-    sh['M1'] = 'Locality Email'
+    sh['H1'] = 'Address'
+    sh['I1'] = 'Residence Address'
+    sh['J1'] = 'IP Submitted From'
+    sh['K1'] = 'Form ID'
+    sh['L1'] = 'Campaign Code'
+    sh['M1'] = 'Group Code'
+    sh['N1'] = 'Locality Email'
 
-    report_path: str = file_path
+    report_path = file_path
 
     report.save(report_path)
     return report_path
@@ -379,11 +377,6 @@ def add_to_campaign(request: request) -> None:
         return
 
     if request.form.get('campaign_name'):
-        try:
-            os.mkdir(('reports/' + request.form.get('campaign_code')))
-        except:
-            pass
-
         with open('static/campaigns.json') as file:
             campaigns = json.load(file)
             list_counties = request.form.get('county_codes').split()
@@ -422,7 +415,7 @@ def add_to_campaign(request: request) -> None:
     call("git push origin master", shell=True)
 
 
-def get_ids_and_counties(campaign_code: str):
+def get_ids_and_counties(campaign_code):
     ids_and_names = {}
     with open('static/campaigns.json') as file:
         campaigns = json.load(file)
@@ -435,11 +428,11 @@ def get_ids_and_counties(campaign_code: str):
     return ids_and_names
 
 
-def email_report_alltime_api(request: request):
+def email_report_alltime_api(request):
     # today_date: str = date.today().strftime("%m-%d-%y")
     report_path = f'reports/all_time.xlsx'
-    report: openpyxl.workbook.Workbook = load_workbook(filename=report_path)
-    worksheet: openpyxl.worksheet.worksheet.Worksheet = report.active
+    report = load_workbook(filename=report_path)
+    worksheet = report.active
     if request.form.get('api_key') == API_KEY:
         if worksheet['A2'].value:
             yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
@@ -453,10 +446,10 @@ def email_report_alltime_api(request: request):
 
 def create_maps():
     MAPS_API_KEY = ''
-    today_date: str = date.today().strftime("%m-%d-%y")
+    today_date = date.today().strftime("%m-%d-%y")
     report_path = f'reports/{today_date}.xlsx'
-    report: openpyxl.workbook.Workbook = load_workbook(filename=report_path)
-    worksheet: openpyxl.worksheet.worksheet.Worksheet = report.active
+    report = load_workbook(filename=report_path)
+    worksheet = report.active
 
     gmaps = googlemaps.Client(key=MAPS_API_KEY)
 
@@ -473,29 +466,3 @@ def create_maps():
         gmap_plotter.marker(lat, lng)
 
     gmap_plotter.draw(f'maps/{today_date}.html')
-
-# Deprecated, because we are no longer filling out by the fillable fields. Don't delete, however.
-# Subtypes of pdfrw, needed to write to fillable app.
-# ANNOT_KEY: str = '/Annots'
-# ANNOT_FIELD_KEY: str = '/T'
-# ANNOT_VAL_KEY: str = '/V'
-# ANNOT_RECT_KEY: str = '/Rect'
-# SUBTYPE_KEY: str = '/Subtype'
-# WIDGET_SUBTYPE_KEY: str = '/Widget'
-
-# Deprecated
-# def write_fillable_pdf(data: Dict[str, str]) -> None:
-#     """Fill out the PDF based on the data from the form. """
-#     template_pdf: pdfrw.PdfReader = pdfrw.PdfReader(form_path)
-#     template_pdf.Root.AcroForm.update(pdfrw.PdfDict(
-#         NeedAppearances=pdfrw.PdfObject('true')))
-#     annotations: pdfrw.PdfArray = template_pdf.pages[0][ANNOT_KEY]
-#     for annotation in annotations:
-#         if annotation[SUBTYPE_KEY] == WIDGET_SUBTYPE_KEY:
-#             if annotation[ANNOT_FIELD_KEY]:
-#                 key = annotation[ANNOT_FIELD_KEY][1:-1]
-#                 if key in data.keys():
-#                     annotation.update(
-#                         pdfrw.PdfDict(V='{}'.format(data[key]))
-#                     )
-#     pdfrw.PdfWriter().write(session['output_file'], template_pdf)
