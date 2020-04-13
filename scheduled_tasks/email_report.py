@@ -20,7 +20,7 @@ def email_report_daily() -> None:
     worksheet: openpyxl.worksheet.worksheet.Worksheet = report.active
     if worksheet['A2'].value:
         yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
-            to=['raunak@eabsentee.org', 'larry@eabsentee.org'],
+            to=['raunak@eabsentee.org', 'larry@eabsentee.org', 'robert@eabsentee.org'],
             # to='raunakdaga@gmail.com',
             subject=f'Daily Absentee Ballot Application Report - {today_date}',
             contents=f'Please find attached the daily report of absentee ' +
@@ -64,9 +64,3 @@ def email_all_groups():
 
 email_report_daily()
 email_all_groups()
-
-
-# today_date: str = date.today().strftime("%m-%d-%y")
-# report: openpyxl.workbook.Workbook = load_workbook(filename='surovell.xlsx')
-# worksheet: openpyxl.worksheet.worksheet.Worksheet = report.active
-# print(worksheet['B' + str(worksheet.max_row)].value.split()[0] == today_date)
