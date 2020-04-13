@@ -87,6 +87,19 @@
     fbq('init', '548028756026350');
     fbq('track', 'PageView');
   </script>
+  <script>
+   function openOtherReasons(){
+    var elem = document.getElementById('reasons');
+    if elem.style.display == 'none'{
+      elem.style.display = 'block';
+    }
+    else{
+      elem.style.display = 'none'
+    }
+    console.log('yeet')
+   }
+
+  </script>
   <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=548028756026350&ev=PageView&noscript=1" /></noscript>
   <!-- End Facebook Pixel Code -->
 </head>
@@ -96,7 +109,7 @@
 <body style="background-color: #ffffff;">
   <div id="coronavirus_banner">
     <div id="coronavirus_banner_content" style="background-color:#106FDB; text-align: center; color: black; font-size: 18px">
-      Due to COVID-19, all voters are allowed to apply for an absentee ballot in the May Elections and cite Reason 2A: "I have a disability or illness."
+      Due to COVID-19, all voters are allowed to apply for an absentee ballot in the May and June Elections and cite Reason 2A: "I have a disability or illness."
     </div>
   </div>
 
@@ -242,9 +255,40 @@
         <fieldset id="reason">
           <h3 style="color: #106FDB; text-align: center;">Reason for Absentee Ballot</h3>
 
-          <div class="form-group">
-            <!-- <div class="col"> -->
-            <!-- <p> <b> Commonly Cited Reasons </b> </p> -->
+          <p> Due to COVID-19, all voters are eligible to apply for an absentee ballot using
+          Reason 2A below.</p>
+          <div class="radio">
+            <label>
+              <input name="reason__code" type="radio" value="2A" /> I have a disability or illness
+            </label>
+          </div>
+          <!-- <select name="temp" id="temp" type="text" class="form-control" required>
+            <option value="" selected>Choose your residence&hellip;</option>
+            <option name="reason__code" value="1D"}>
+              Personal business or vacation outside County/City of residence on election day
+            </option>
+          </select> -->
+
+          <script>
+           function openOtherReasons(){
+            var elem = document.getElementById('reasons');
+            if elem.style.display == 'none'{
+              elem.style.display = 'block';
+            }
+            else{
+              elem.style.display = 'none'
+            }
+            console.log('yeet')
+           }
+
+          </script>
+          <!-- <a href="#reason" onclick="openOtherReasons()" class="btn-lg btn-default" style="color: #ffffff; background-color: #106FDB"/>Open Other Reasons</a> -->
+
+
+
+          <!-- <div class="form-group" id="reasons" style="display: block;">
+            <div class="col">
+            <p> <b> Commonly Cited Reasons </b> </p>
             <p> <b>I plan to be out of County/City for some part of Election Day for: </b> </p>
             <div class="radio">
               <label>
@@ -362,7 +406,7 @@
               </label>
             </div>
 
-          </div>
+          </div> -->
 
           <div id="reason__documentation" class="form-group">
             <label for="reason__documentation_field" class="control-label">Supporting Information</label>
