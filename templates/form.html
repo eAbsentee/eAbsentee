@@ -163,7 +163,7 @@
             <input name="name__first" id="name__first" type="text" class="form-control" autocomplete="given-name" required />
 
             <label for="name__middle" class="control-label">Middle Name</label>
-            <input name="name__middle" id="name__middle" type="text" class="form-control" autocomplete="additional-name" />
+            <input name="name__middle" id="name__middle" type="text" class="form-control" autocomplete="new-password" />
           </div>
 
           <div id="last_suffix" class="form-group">
@@ -171,12 +171,12 @@
             <input name="name__last" id="name__last" type="text" class="form-control" autocomplete="family-name" required />
 
             <label for="name__suffix" class="control-label">Suffix</label>
-            <input name="name__suffix" id="name__suffix" type="text" class="form-control" />
+            <input name="suffix" id="suffix" type="text" class="form-control" autocomplete="new-password" />
           </div>
 
           <div id="name__ssn" class="form-group">
             <label for="name__ssn_field" class="control-label">Social Security # <u><a href="https://www.eabsentee.org/#faq_ssn">Why?</a></u> (last&nbsp;4) </label>
-            <input name="name__ssn" id="name__ssn_field" type="password" class="form-control" style="max-width: 9em;" minlength="4" maxlength="4" pattern="^([0-9]{4})$" required digits />
+            <input name="name__ssn" id="name__ssn_field" type="password" class="form-control" style="max-width: 9em;" minlength="4" maxlength="4" pattern="^([0-9]{4})$" autocomplete="new-password" required digits />
             <img width="40" height="40" src="{{ url_for('static', filename='img/ssl-lock.png') }}"></img>
           </div>
 
@@ -252,14 +252,13 @@
 
 
         <!-- Section 3: Reason for Absentee Ballot -->
-        <fieldset id="reason">
+        <fieldset id="reason" style="display: none;">
           <h3 style="color: #106FDB; text-align: center;">Reason for Absentee Ballot</h3>
 
-          <p> Due to COVID-19, all voters are eligible to apply for an absentee ballot using
-          Reason 2A below.</p>
-          <div class="radio">
+          <p> Due to COVID-19, all voters are eligible to apply for an absentee ballot using Reason 2A below.</p>
+          <div class="radio" hidden>
             <label>
-              <input name="reason__code" type="radio" value="2A" /> I have a disability or illness
+              <input name="reason__code" type="radio" value="2A" checked/> I have a disability or illness
             </label>
           </div>
           <!-- <select name="temp" id="temp" type="text" class="form-control" required>
@@ -269,19 +268,7 @@
             </option>
           </select> -->
 
-          <script>
-           function openOtherReasons(){
-            var elem = document.getElementById('reasons');
-            if elem.style.display == 'none'{
-              elem.style.display = 'block';
-            }
-            else{
-              elem.style.display = 'none'
-            }
-            console.log('yeet')
-           }
 
-          </script>
           <!-- <a href="#reason" onclick="openOtherReasons()" class="btn-lg btn-default" style="color: #ffffff; background-color: #106FDB"/>Open Other Reasons</a> -->
 
 
@@ -479,20 +466,20 @@
 
             <div id="delivery__street" class="form-group form-inline">
               <label for="delivery__street_field" class="control-label address">Address</label>
-              <input name="delivery__street" id="delivery__street_field" type="text" class="form-control address" autocomplete="false" />
+              <input name="delivery__street" id="delivery__street_field" type="text" class="form-control address" autocomplete="new-password" />
 
               <label for="delivery__unit_field" class="control-label apt">Apt/Suite</label>
-              <input name="delivery__unit" id="delivery__unit_field" type="text" class="form-control apt" autocomplete="false" />
+              <input name="delivery__unit" id="delivery__unit_field" type="text" class="form-control apt" autocomplete="new-password" />
             </div>
 
             <div id="delivery__city" class="form-group city">
               <label for="delivery__city_field" class="control-label city">City</label>
-              <input name="delivery__city" id="delivery__city_field" type="text" class="form-control" autocomplete="false" />
+              <input name="delivery__city" id="delivery__city_field" type="text" class="form-control" autocomplete="new-password" />
             </div>
 
             <div id="country" class="form-group">
               <label for="country_field" class="control-label">Country</label>
-              <select name="country" id="country_field" class="form-control" autocomplete="false">
+              <select name="country" id="country_field" class="form-control" autocomplete="new-password">
                 <option value="Afghanistan">Afghanistan</option>
                 <option value="Åland Islands">Åland Islands</option>
                 <option value="Albania">Albania</option>
@@ -747,7 +734,7 @@
 
             <div id="delivery__statezip" class="form-group state">
               <label for="deliv-state" class="control-label state">State</label>
-              <select name="deliv-state" id="deliv-state" class="form-control state" autocomplete="false">
+              <select name="deliv-state" id="deliv-state" class="form-control state" autocomplete="new-password">
                 <option value="">Choose state&hellip;</option>
                 <option value="AL">Alabama</option>
                 <option value="AK">Alaska</option>
@@ -810,9 +797,9 @@
               </select>
 
               <label for="delivery__zip" class="control-label zip">ZIP Code</label>
-              <input name="delivery__zip" id="delivery__zip" type="text" class="form-control zip" minlength="5" maxlength="5" pattern="^(\d{5})$" digits autocomplete="false" />
+              <input name="delivery__zip" id="delivery__zip" type="text" class="form-control zip" minlength="5" maxlength="5" pattern="^(\d{5})$" digits autocomplete="new-password" />
 
-              <input type="hidden" name="delivery__state_or_country" value="" />
+
             </div>
           </div>
 
@@ -825,12 +812,12 @@
           <p>If changing registration name/address.</p>
           <div id="change__former_name" class="form-group">
             <label for="change__former_name_field" class="control-label">Former Full Name</label>
-            <input name="change__former_name" id="change__former_name_field" type="text" class="form-control" autocomplete="off" />
+            <input name="change__former_name" id="change__former_name_field" type="text" class="form-control" autocomplete="new-password"  />
           </div>
 
           <div id="change__former_address" class="form-group">
             <label for="change__former_address_field" class="control-label">Former Address</label>
-            <input name="change__former_address" id="change__former_address_field" type="text" class="form-control" autocomplete="off" />
+            <input name="change__former_address" id="change__former_address_field" type="text" class="form-control" autocomplete="new-password"  />
           </div>
 
           <div id="change__date_moved" class="form-group form-inline date">
