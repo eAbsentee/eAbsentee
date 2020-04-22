@@ -26,7 +26,7 @@ def home():
 
 
 # Error
-@app.route('/error/', methods=['GET'])
+@app.route('/error/')
 def error_page():
     return render_template('formerror.html')
 
@@ -48,7 +48,7 @@ def about():
     return(render_template('about.html'))
 
 
-@app.route('/confirmation/', methods=['GET'])
+@app.route('/confirmation/')
 def confirmation_page():
     """Confirmation Route: user is redirected here after submission of form. """
     return render_template('confirmation.html')
@@ -63,25 +63,26 @@ def form_closed():
 def hb1():
     return render_template("hb1.html")
 
+# Bills
 
-@app.route('/hb201/')
-def hb201():
-    return render_template("hb201.html")
-
-
-@app.route('/hb207/')
-def hb207():
-    return render_template("hb207.html")
-
-
-@app.route('/hb220/')
-def hb220():
-    return render_template("hb220.html")
-
-
-@app.route('/hb238/')
-def hb238():
-    return render_template("hb238.html")
+# @app.route('/hb201/')
+# def hb201():
+#     return render_template("hb201.html")
+#
+#
+# @app.route('/hb207/')
+# def hb207():
+#     return render_template("hb207.html")
+#
+#
+# @app.route('/hb220/')
+# def hb220():
+#     return render_template("hb220.html")
+#
+#
+# @app.route('/hb238/')
+# def hb238():
+#     return render_template("hb238.html")
 
 
 '''Static PDF Routes'''
@@ -108,12 +109,17 @@ def render_videocredits_pdf():
 
 
 @app.route('/applications/<id>.pdf')
-def render_pdf(id: str):
+def render_pdf(id):
     '''Displays application to user in PDF form'''
     return send_file(
         open(session['output_file'], 'rb'), attachment_filename=session['output_file']
     )
 
+@app.route('/privacy/')
+def privacy():
+    return send_file(
+        open('static/pdf/privacy_policy.pdf', 'rb'), attachment_filename='privacy_policy.pdf'
+    )
 
 # 404
 @app.errorhandler(404)
@@ -130,10 +136,10 @@ def process_form():
     functions.py, where it is parsed and converted, built into the PDF, and emailed to the respective registar. If
     unable to send the PDF, an error page is returned. """
     if request.method == 'POST':
-        try:
-            application_process(request)
-        except(Exception):
-            return redirect('/error/')
+        # try:
+        application_process(request)
+        # except(Exception):
+            # return redirect('/error/')
         return redirect('/confirmation/')
     else:
         # return render_template('formclosed.html')
