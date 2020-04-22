@@ -24,7 +24,7 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 form_path = 'static/pdf/blank_app.pdf'
 
 
-def application_process(request: request, group_code_form=None):
+def application_process(request, group_code_form=None):
     data = parse_data(request, group_code_form=group_code_form)
     set_session_keys(data)
     write_pdf(data)
@@ -32,7 +32,7 @@ def application_process(request: request, group_code_form=None):
     email_registrar(data)
 
 
-def parse_data(request: request, group_code_form):
+def parse_data(request, group_code_form):
     """ Parse data from the form using the Flask request object and convert it
     into a dict format to allow it to be passed to the PDF filling methods."""
     today_date = date.today().strftime("%m%d%y")
@@ -60,6 +60,9 @@ def parse_data(request: request, group_code_form):
             emails_to_be_sent_to.append(
                 request.form.get('more_info__email_fax'))
 
+    phonenumber = request.form.get('more_info__telephone').replace(
+        '-', '').replace('(', '').replace(')', '').replace(' ', '').replace('+1', '').replace('-', '').replace('.', '').replace('+', '')
+
     data = {}  # Create outside of scope
     with open('static/localities_info.json') as file:
         localities = json.load(file)
@@ -67,7 +70,7 @@ def parse_data(request: request, group_code_form):
             'first_name': request.form['name__first'],
             'middle_name': request.form['name__middle'],
             'last_name': request.form['name__last'],
-            'suffix': request.form['name__suffix'],
+            'suffix': request.form['suffix'],
             'ssn': '  '.join(request.form['name__ssn']),
             'reason_code': '     '.join(request.form['reason__code']),
             'registered_to_vote': localities[
@@ -90,12 +93,10 @@ def parse_data(request: request, group_code_form):
             'former_address': request.form.get('change__former_address'),
             'signature': '/S/ ' + request.form[
                 'signature__signed'].replace('/S/', '', 1).strip(),
-            'first_three_telephone': '   '.join(request.form.get('more_info__telephone').replace(
-                '-', '').replace('(', '').replace(')', '').replace(' ', '')[0:3]),
-            'second_three_telephone': '   '.join(request.form.get('more_info__telephone').replace(
-                '-', '').replace('(', '').replace(')', '').replace(' ', '')[3:6]),
-            'last_four_telephone': '   '.join(request.form.get('more_info__telephone').replace(
-                '-', '').replace('(', '').replace(')', '').replace(' ', '')[6:10]),
+            'first_three_telephone': '   '.join(phonenumber[0:3]),
+            'second_three_telephone': '   '.join(phonenumber[3:6]),
+            'last_four_telephone': '   '.join(phonenumber[6:10]),
+            'telephone': phonenumber,
             'assistant_check': 'X' if request.form.get(
                 'assistance__assistance') == 'true' else '',
             'assistant_fullname': request.form.get('assistant__name'),
@@ -177,9 +178,7 @@ def build_report_data(data):
         data['supporting'],
         data['registered_to_vote'],
         data['email'],
-        data['first_three_telephone'].replace(' ', '')
-        + data['second_three_telephone'].replace(' ', '')
-        + data['last_four_telephone'].replace(' ', ''),
+        data['telephone'],
         data['address'] + (' ' if data['apt'] else '') + data['apt'] + ', '
         + data['city'] + ', ' + data['state'] +
         ', ' + data['zip_code'].replace(' ', ''),
@@ -196,7 +195,7 @@ def build_report_data(data):
     append_to_report(data_for_report, data['group_code'])
 
 
-def set_session_keys(data) -> None:
+def set_session_keys(data):
     # id is first 10 characters of MD5 hash of dictionary
     id = hashlib.md5(repr(data).encode('utf-8')).hexdigest()[: 10]
     name = data['first_name'] + \
@@ -214,7 +213,7 @@ def set_session_keys(data) -> None:
     session['report_file'] = f'reports/{today_date}.xlsx'
 
 
-def write_pdf(data) -> None:
+def write_pdf(data):
     packet = io.BytesIO()
     can = canvas.Canvas(packet, pagesize=letter)
     can.drawString(180, 690, data['last_name'])  # LastName
@@ -293,7 +292,7 @@ def write_pdf(data) -> None:
     output.write(open(session['output_file'], "wb"))
 
 
-def email_registrar(data) -> None:
+def email_registrar(data):
     """Email the form to the registrar of the applicant's locality. """
     yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
         to=([email for email in data['emails_to_be_sent_to']]),
@@ -345,7 +344,7 @@ def append_to_report(data, group_code):
         report.save(report_path)
 
 
-def create_report(file_path) -> str:
+def create_report(file_path):
     today_date = date.today().strftime("%m-%d-%y")
 
     report = openpyxl.Workbook()
@@ -371,7 +370,7 @@ def create_report(file_path) -> str:
     return report_path
 
 
-def add_to_campaign(request: request) -> None:
+def add_to_campaign(request: request):
     call("git pull", shell=True)
     if request.form.get('api_key') != API_KEY:
         return
@@ -393,17 +392,12 @@ def add_to_campaign(request: request) -> None:
                 json.dump(campaigns, f, indent=4, sort_keys=True)
 
     if request.form.get('group_name'):
-        try:
-            os.mkdir(('reports/' + request.form.get('group_name')))
-        except:
-            pass
         with open('static/groups.json') as file:
             groups = json.load(file)
             new_group = {
                 request.form.get('group_code'): {
                     "name": request.form.get('group_name'),
-                    "email": request.form.get('group_email'),
-                    "submissions": "0"
+                    "email": request.form.get('group_email')
                 }
             }
             groups.update(new_group)
