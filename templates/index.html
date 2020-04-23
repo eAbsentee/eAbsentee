@@ -1,34 +1,24 @@
 {% from "macros.html" import favicon %}
 <!DOCTYPE HTML>
-<!--
-Industrious by TEMPLATED
-templated.co @templatedco
-Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
--->
 <html>
 
 <head>
+	{{ favicon() }}
 	<title>eAbsentee</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
-
-	{{ favicon() }}
-
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}" />
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
 
-	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-147192988-1"></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
-
 		function gtag() {
 			dataLayer.push(arguments);
 		}
 		gtag('js', new Date());
-
 		gtag('config', 'UA-147192988-1');
 	</script>
 
@@ -53,65 +43,13 @@ Released for free under the Creative Commons Attribution 3.0 license (templated.
 			height: 100%;
 		}
 	</style>
-
-	<!-- Facebook Pixel Code -->
-	<script>
-		! function(f, b, e, v, n, t, s) {
-			if (f.fbq) return;
-			n = f.fbq = function() {
-				n.callMethod ?
-					n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-			};
-			if (!f._fbq) f._fbq = n;
-			n.push = n;
-			n.loaded = !0;
-			n.version = '2.0';
-			n.queue = [];
-			t = b.createElement(e);
-			t.async = !0;
-			t.src = v;
-			s = b.getElementsByTagName(e)[0];
-			s.parentNode.insertBefore(t, s)
-		}(window, document, 'script',
-			'https://connect.facebook.net/en_US/fbevents.js');
-		fbq('init', '548028756026350');
-		fbq('track', 'PageView');
-	</script>
-	<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=548028756026350&ev=PageView&noscript=1" /></noscript>
-	<!-- End Facebook Pixel Code -->
-
-	<style type="text/css" media="screen">
-		/* * {
-		 margin: 0;
-		 padding: 0;
-	 } */
-
-		div#banner {
-			position: absolute;
-			top: 0;
-			left: 0;
-			background-color: #DDEEEE;
-			width: 100%;
-		}
-
-		div#banner-content {
-			width: 800px;
-			margin: 0 auto;
-			padding: 10px;
-			border: 1px solid #000;
-		}
-
-		div#main-content {
-			padding-top: 70px;
-		}
-	</style>
 </head>
 
 <body class="is-preload">
 
 	<div id="coronavirus_banner">
 		<div id="coronavirus_banner_content" style="background-color:#ce1b28; text-align: center; color: black; font-size: 18px">
-			Due to COVID-19, all voters are allowed to apply for an absentee ballot in the May and June Elections and cite Reason 2A.
+			Due to COVID-19, the Virginia Board of Elections suggests all registered voters vote by mail to avoid crowds. All voters are permitted to select reason 2A.
 		</div>
 	</div>
 	<!-- Header -->

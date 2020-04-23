@@ -1,44 +1,15 @@
 {% from "macros.html" import favicon %}
 <!DOCTYPE html>
-
-<!--
-    HTML5 Reset: https://github.com/murtaugh/HTML5-Reset
-    Free to use
--->
-
-<!--[if lt IE 7 ]> <html class="ie ie6 ie-lt10 ie-lt9 ie-lt8 ie-lt7 no-js" lang="en"> <![endif]-->
-<!--[if IE 7 ]>    <html class="ie ie7 ie-lt10 ie-lt9 ie-lt8 no-js" lang="en"> <![endif]-->
-<!--[if IE 8 ]>    <html class="ie ie8 ie-lt10 ie-lt9 no-js" lang="en"> <![endif]-->
-<!--[if IE 9 ]>    <html class="ie ie9 ie-lt10 no-js" lang="en"> <![endif]-->
-<!--[if gt IE 9]><!-->
 <html class="no-js" lang="en">
-<!--<![endif]-->
-<!-- the "no-js" class is for Modernizr. -->
 
 <head>
-
+  {{ favicon() }}
   <meta charset="utf-8">
-
-  <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
-  <!-- Important stuff for SEO, don't neglect. (And don't duplicate values across site!) -->
   <title>Virginia Absentee Ballot Application</title>
   <meta name="description" content="" />
-
-  <!--  Mobile Viewport
-    http://j.mp/mobileviewport & http://davidbcalhoun.com/2010/viewport-metatag
-    device-width : Occupy full width of the screen in its current orientation
-    initial-scale = 1.0 retains dimensions instead of zooming out if page height > device height
-    maximum-scale = 1.0 retains dimensions instead of zooming in if page width < device width (wrong for most sites)
-    -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  {{ favicon() }}
-
   <link rel="stylesheet" href="{{ url_for('static', filename='css/form.css') }}" />
-
-  <!-- Lea Verou's Prefix Free, lets you use un-prefixed properties in your CSS files -->
   <script src="{{ url_for('static', filename='js/prefixfree.min.js') }}"></script>
 
   <style>
@@ -49,59 +20,27 @@
       background: white;
     }
   </style>
-
-
-  <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-147192988-1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-
     function gtag() {
       dataLayer.push(arguments);
     }
     gtag('js', new Date());
-
     gtag('config', 'UA-147192988-1');
   </script>
 
-  <!-- Facebook Pixel Code -->
-  <script>
-    ! function(f, b, e, v, n, t, s) {
-      if (f.fbq) return;
-      n = f.fbq = function() {
-        n.callMethod ?
-          n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-      };
-      if (!f._fbq) f._fbq = n;
-      n.push = n;
-      n.loaded = !0;
-      n.version = '2.0';
-      n.queue = [];
-      t = b.createElement(e);
-      t.async = !0;
-      t.src = v;
-      s = b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t, s)
-    }(window, document, 'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '548028756026350');
-    fbq('track', 'PageView');
-  </script>
-  <script>
-   function openOtherReasons(){
-    var elem = document.getElementById('reasons');
-    if elem.style.display == 'none'{
-      elem.style.display = 'block';
+  <script type="text/javascript">
+    function group() {
+      var checkBox = document.getElementById("groupcheckbox");
+      var text = document.getElementById("groupdiv");
+      if (checkBox.checked == true) {
+        text.style.display = "block";
+      } else {
+        text.style.display = "none";
+      }
     }
-    else{
-      elem.style.display = 'none'
-    }
-    console.log('yeet')
-   }
-
   </script>
-  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=548028756026350&ev=PageView&noscript=1" /></noscript>
-  <!-- End Facebook Pixel Code -->
 </head>
 
 <br>
@@ -109,7 +48,7 @@
 <body style="background-color: #ffffff;">
   <div id="coronavirus_banner">
     <div id="coronavirus_banner_content" style="background-color:#106FDB; text-align: center; color: black; font-size: 18px">
-      Due to COVID-19, all voters are allowed to apply for an absentee ballot in the May and June Elections and cite Reason 2A: "I have a disability or illness."
+      Due to COVID-19, the Virginia Board of Elections suggests all registered voters vote by mail to avoid crowds. All voters are permitted to select reason 2A.
     </div>
   </div>
 
@@ -125,7 +64,6 @@
       <br>
     </header>
 
-    <!-- <button class="btn-lg btn-default">Home Page</button> -->
     <section id="instructions">
       <p>
         <b>
@@ -255,18 +193,13 @@
         <fieldset id="reason">
           <h3 style="color: #106FDB; text-align: center;">Reason for Absentee Ballot</h3>
 
-          <p> Due to COVID-19, the Virginia Board of Elections suggests all registered voters vote by mail in the May and June Elections to avoid crowds. All voters are permitted to select reason 2A.</p>
+          <p> Due to COVID-19, the Virginia Board of Elections suggests all registered voters vote by mail to avoid crowds. All voters are permitted to select reason 2A.</p>
           <div class="radio" hidden>
             <label>
               <input name="reason__code" type="radio" value="2A" checked/> Reason 2A
             </label>
           </div>
-          <!-- <select name="temp" id="temp" type="text" class="form-control" required>
-            <option value="" selected>Choose your residence&hellip;</option>
-            <option name="reason__code" value="1D"}>
-              Personal business or vacation outside County/City of residence on election day
-            </option>
-          </select> -->
+
 
 
           <!-- <a href="#reason" onclick="openOtherReasons()" class="btn-lg btn-default" style="color: #ffffff; background-color: #106FDB"/>Open Other Reasons</a> -->
