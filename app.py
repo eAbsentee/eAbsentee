@@ -1,10 +1,12 @@
 from flask import Flask, render_template, request, redirect, session
 from flask import send_file, make_response, send_from_directory
 from functions import application_process, add_to_campaign, get_ids_and_counties, email_report_alltime_api
-from keys import SECRET_KEY, API_KEY
+from fcdc_functions import add_group
+from keys import SECRET_KEY, API_KEY, API_KEY_FCDC
 import os
 import time
 import datetime
+
 
 # Sets CWD to whatever directory app.py is located in
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
@@ -210,6 +212,14 @@ def api():
         return render_template('api.html')
     else:
         return render_template('api.html')
+
+@app.route('/api_fcdc/', methods=['POST', 'GET'])
+def api_fcdc():
+    if request.method == 'POST':
+        add_group(request)
+        return render_template('api_fcdc.html')
+    else:
+        return render_template('api_fcdc.html')
 
 
 ''' FAVICONS '''
