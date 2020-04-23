@@ -1,215 +1,41 @@
 {
-    "Bell": {
-        "email": "kiera@voteforjohnbell.com"
-    },
-    "CNUc": {
-        "email": "lerouvelas@gmail.com"
-    },
-    "DPVAe": {
-        "email": "awhitley@vademocrats.org apooler@vademocrats.org"
-    },
-    "DPVAf": {
-        "email": "awhitley@vademocrats.org apooler@vademocrats.org"
-    },
-    "DPVAi": {
-        "email": "awhitley@vademocrats.org apooler@vademocrats.org"
-    },
-    "DPVAw": {
-        "email": "awhitley@vademocrats.org apooler@vademocrats.org"
-    },
-    "FBRegisterNow": {
-        "email": "max@adrielhamptongroup.com adriel@adrielhampton.com"
-    },
-    "FCDC": {
-        "email": "jack@fairfaxdemocrats.org"
-    },
-    "GBell": {
-        "email": "gwenforoffice@gmail.com"
-    },
-    "GMUc": {
-        "email": "lerouvelas@gmail.com"
-    },
-    "GMUdems": {
-        "email": "karaakline@gmail.com"
-    },
-    "Galante": {
-        "email": "matthew@galantefordelegate.com"
-    },
-    "HamptonUc": {
-        "email": "lerouvelas@gmail.com"
-    },
-    "IGRegisterNow": {
-        "email": "max@adrielhamptongroup.com adriel@adrielhampton.com"
-    },
-    "JMUc": {
-        "email": "lerouvelas@gmail.com"
-    },
-    "JMUcd": {
-        "email": "jmucollegedemocrats@gmail.com"
-    },
-    "KhaninRegisterNow": {
-        "email": "adriel@adrielhampton.com rohan@irina4delegate.com"
-    },
-    "NSUc": {
-        "email": "lerouvelas@gmail.com"
-    },
-    "NextGenVA": {
-        "email": "adin.lenchner@nextgenamerica.org"
-    },
-    "ODUc": {
-        "email": "lerouvelas@gmail.com"
-    },
-    "PVCCc": {
-        "email": "lerouvelas@gmail.com"
-    },
-    "ReynoldsCCc": {
-        "email": "lerouvelas@gmail.com"
-    },
-    "RonnieRoss": {
-        "email": "austin@ronnieross.com"
-    },
-    "SCoDC": {
-        "email": "blitchf@gmail.com"
-    },
-    "TCCc": {
-        "email": "lerouvelas@gmail.com"
-    },
-    "TM19HH": {
-        "email": "lerouvelas@gmail.com"
-    },
-    "TM19e": {
-        "email": "eromanos@takethemajority19.org"
-    },
-    "TtM19SD12hs": {
-        "email": "lerouvelas@gmail.com"
-    },
-    "UVAc": {
-        "email": "lerouvelas@gmail.com"
-    },
-    "UVAnews": {
-        "email": "larry@eabsentee.org robert@eabsentee.org"
-    },
-    "UVAsc": {
-        "email": "ah2fq@virginia.edu"
-    },
-    "UVAud": {
-        "email": "jds2wd@virginia.edu"
-    },
-    "VAratifyERA": {
-        "email": "VAratifyERA.absentee@gmail.com"
-    },
-    "VAsenateDems": {
-        "email": "kristina@vasenatedems.com"
-    },
-    "VCU-URyd": {
-        "email": "salaar2001@gmail.com"
-    },
-    "VCUc": {
-        "email": "lerouvelas@gmail.com"
-    },
-    "VCUnews": {
-        "email": "lerouvelas@gmail.com"
-    },
-    "VSUc": {
-        "email": "lerouvelas@gmail.com"
-    },
-    "VTechc": {
-        "email": "lerouvelas@gmail.com"
-    },
-    "VVRegisterNow": {
-        "email": "adriel@adrielhampton.com david@vanvalkenburg4va.com"
-    },
-    "VVsm1": {
-        "email": "adriel@adrielhampton.com"
-    },
-    "VW4C": {
-        "email": "field1@vangieforcongress.com"
-    },
-    "WMnews": {
-        "email": "lerouvelas@gmail.com"
-    },
-    "YDVCU": {
-        "email": "youngdemocrats.vcu@gmail.com"
-    },
-    "YDatVT": {
-        "email": "rebcat11@vt.edu"
-    },
-    "barnett": {
-        "email": "karl.bach@barnett4delegate.com"
-    },
-    "campusFB": {
-        "email": "larry@eabsentee.org robert@eabsentee.org"
-    },
-    "campusIG": {
-        "email": "lerouvelas@gmail.com"
-    },
-    "cole": {
-        "email": "greg@techforcampaigns.org"
-    },
-    "foster": {
-        "email": "hannah@jessfoster.org"
-    },
-    "ghazala": {
-        "email": "greg@techforcampaigns.org"
-    },
-    "gooditis": {
-        "email": "truman@wendygooditis.com"
-    },
-    "hashmi": {
-        "email": "philip@hashmi4vasenate.org greg@techforcampaigns.org"
-    },
-    "hdc": {
-        "email": "trevor@vahousedems.org"
-    },
-    "hickey": {
-        "email": "sam@timhickeyfordelegate.com"
-    },
-    "jenkins": {
-        "email": "greg@techforcampaigns.org"
-    },
-    "jmuyd": {
-        "email": "lerouvelas@gmail.com"
-    },
-    "missy": {
-        "email": "brenna@missyforsenate.com lerouvelas@gmail.com"
-    },
-    "missyforsenate": {
-        "email": "brenna@missyforsenate.com"
-    },
-    "pohl": {
-        "email": "greg@techforcampaigns.org"
-    },
-    "pwcdc": {
-        "email": "dpala@vademocrats.org"
-    },
-    "rodman": {
-        "email": "molly@debrarodman.com lerouvelas@gmail.com"
-    },
-    "snf": {
-        "email": "adriel@adrielhampton.com"
-    },
-    "sperling": {
-        "email": "rohan@sperlingforsupervisor.com"
-    },
-    "suhas": {
-        "email": "tess@suhasforvirginia.com"
-    },
-    "surovell": {
-        "email": "lerouvelas@gmail.com philipscranage@gmail.com ssurovell@gmail.com"
-    },
-    "turpin": {
-        "email": "greg@techforcampaigns.org"
-    },
-    "va2019": {
-        "email": "trevor@vahousedems.org"
-    },
-    "vahdc": {
-        "email": "trevor@vahousedems.org"
-    },
-    "vayd": {
-        "email": "president@vayd.org"
-    },
-    "wheeler": {
-        "email": "kyle@pocketacesconsulting.com will@wheelerforpwc.com"
-    }
+  "DPVAe": {
+    "email": "awhitley@vademocrats.org apooler@vademocrats.org"
+  },
+  "DPVAf": {
+    "email": "awhitley@vademocrats.org apooler@vademocrats.org"
+  },
+  "DPVAi": {
+    "email": "awhitley@vademocrats.org apooler@vademocrats.org"
+  },
+  "DPVAw": {
+    "email": "awhitley@vademocrats.org apooler@vademocrats.org"
+  },
+  "FCDC": {
+    "email": "jack@fairfaxdemocrats.org"
+  },
+  "NextGenVA": {
+    "email": "adin.lenchner@nextgenamerica.org"
+  },
+  "UVAsc": {
+    "email": "ah2fq@virginia.edu"
+  },
+  "UVAud": {
+    "email": "jds2wd@virginia.edu"
+  },
+  "VAsenateDems": {
+    "email": "kristina@vasenatedems.com"
+  },
+  "VW4C": {
+    "email": "field1@vangieforcongress.com"
+  },
+  "pwcdc": {
+    "email": "dpala@vademocrats.org"
+  },
+  "surovell": {
+    "email": "lerouvelas@gmail.com philipscranage@gmail.com ssurovell@gmail.com"
+  },
+  "vahdc": {
+    "email": "trevor@vahousedems.org"
+  },
 }
