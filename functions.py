@@ -156,11 +156,11 @@ def parse_data(request, group_code_form):
         data['date_election_month'] = '   '.join('05')
     elif request.form['election__type'] == 'DP':
         data['dem_prim_check'] = 'X'
-        data['date_election_day'] = '   '.join('09')
+        data['date_election_day'] = '   '.join('23')
         data['date_election_month'] = '   '.join('06')
     elif request.form['election__type'] == 'RP':
         data['rep_prim_check'] = 'X'
-        data['date_election_day'] = '   '.join('09')
+        data['date_election_day'] = '   '.join('23')
         data['date_election_month'] = '   '.join('06')
     elif request.form['election__type'] == 'PE':
         data['gen_spec_check'] = 'X'
