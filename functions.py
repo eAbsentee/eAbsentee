@@ -370,7 +370,7 @@ def create_report(file_path):
     return report_path
 
 
-def add_to_campaign(request: request):
+def add_to_campaign(request):
     call("git pull", shell=True)
     if request.form.get('api_key') != API_KEY:
         return
