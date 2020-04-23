@@ -1,286 +1,215 @@
 {
     "Bell": {
-        "email": "kiera@voteforjohnbell.com",
-        "name": "Bell for Senate"
+        "email": "kiera@voteforjohnbell.com"
     },
     "CNUc": {
-        "email": "lerouvelas@gmail.com",
-        "name": "CEEP CNU"
+        "email": "lerouvelas@gmail.com"
     },
     "DPVAe": {
-        "email": "awhitley@vademocrats.org apooler@vademocrats.org",
-        "name": "DPVA email"
+        "email": "awhitley@vademocrats.org apooler@vademocrats.org"
     },
     "DPVAf": {
-        "email": "awhitley@vademocrats.org apooler@vademocrats.org",
-        "name": "DPVA facebook"
+        "email": "awhitley@vademocrats.org apooler@vademocrats.org"
     },
     "DPVAi": {
-        "email": "awhitley@vademocrats.org apooler@vademocrats.org",
-        "name": "DPVA instagram"
+        "email": "awhitley@vademocrats.org apooler@vademocrats.org"
     },
     "DPVAw": {
-        "email": "awhitley@vademocrats.org apooler@vademocrats.org",
-        "name": "DPVA website"
+        "email": "awhitley@vademocrats.org apooler@vademocrats.org"
     },
     "FBRegisterNow": {
-        "email": "max@adrielhamptongroup.com adriel@adrielhampton.com",
-        "name": "AHG Facebook"
+        "email": "max@adrielhamptongroup.com adriel@adrielhampton.com"
     },
     "FCDC": {
-        "email": "jack@fairfaxdemocrats.org",
-        "name": "Fairfax County Dem Cmte"
+        "email": "jack@fairfaxdemocrats.org"
     },
     "GBell": {
-        "email": "gwenforoffice@gmail.com",
-        "name": "Gwen Bell for Supervisor"
+        "email": "gwenforoffice@gmail.com"
     },
     "GMUc": {
-        "email": "lerouvelas@gmail.com",
-        "name": "CEEP GMU"
+        "email": "lerouvelas@gmail.com"
     },
     "GMUdems": {
-        "email": "karaakline@gmail.com",
-        "name": "GMU Democrats"
+        "email": "karaakline@gmail.com"
     },
     "Galante": {
-        "email": "matthew@galantefordelegate.com",
-        "name": "Galante for Delegate"
+        "email": "matthew@galantefordelegate.com"
     },
     "HamptonUc": {
-        "email": "lerouvelas@gmail.com",
-        "name": "CEEP HamptonU"
+        "email": "lerouvelas@gmail.com"
     },
     "IGRegisterNow": {
-        "email": "max@adrielhamptongroup.com adriel@adrielhampton.com",
-        "name": "AHG Instagram"
+        "email": "max@adrielhamptongroup.com adriel@adrielhampton.com"
     },
     "JMUc": {
-        "email": "lerouvelas@gmail.com",
-        "name": "CEEP JMU"
+        "email": "lerouvelas@gmail.com"
     },
     "JMUcd": {
-        "email": "jmucollegedemocrats@gmail.com",
-        "name": "JMU College Dems"
+        "email": "jmucollegedemocrats@gmail.com"
     },
     "KhaninRegisterNow": {
-        "email": "adriel@adrielhampton.com rohan@irina4delegate.com",
-        "name": "Khanin for Delegate"
+        "email": "adriel@adrielhampton.com rohan@irina4delegate.com"
     },
     "NSUc": {
-        "email": "lerouvelas@gmail.com",
-        "name": "CEEP NSU"
+        "email": "lerouvelas@gmail.com"
     },
     "NextGenVA": {
-        "email": "adin.lenchner@nextgenamerica.org",
-        "name": "NextGen Virginia"
+        "email": "adin.lenchner@nextgenamerica.org"
     },
     "ODUc": {
-        "email": "lerouvelas@gmail.com",
-        "name": "CEEP ODU"
+        "email": "lerouvelas@gmail.com"
     },
     "PVCCc": {
-        "email": "lerouvelas@gmail.com",
-        "name": "CEEP PVCC"
+        "email": "lerouvelas@gmail.com"
     },
     "ReynoldsCCc": {
-        "email": "lerouvelas@gmail.com",
-        "name": "CEEP Reynolds"
+        "email": "lerouvelas@gmail.com"
     },
     "RonnieRoss": {
-        "email": "austin@ronnieross.com",
-        "name": "Ronnie Ross for Senate"
+        "email": "austin@ronnieross.com"
     },
     "SCoDC": {
-        "email": "blitchf@gmail.com",
-        "name": "Stafford Democratic Committee"
+        "email": "blitchf@gmail.com"
     },
     "TCCc": {
-        "email": "lerouvelas@gmail.com",
-        "name": "CEEP TCC"
+        "email": "lerouvelas@gmail.com"
     },
     "TM19HH": {
-        "email": "lerouvelas@gmail.com",
-        "name": "TakeMaj19 H-H"
+        "email": "lerouvelas@gmail.com"
     },
     "TM19e": {
-        "email": "eromanos@takethemajority19.org",
-        "name": "Take Majority 19-Elias"
+        "email": "eromanos@takethemajority19.org"
     },
     "TtM19SD12hs": {
-        "email": "lerouvelas@gmail.com",
-        "name": "TakeMaj19 High School"
+        "email": "lerouvelas@gmail.com"
     },
     "UVAc": {
-        "email": "lerouvelas@gmail.com",
-        "name": "CEEP UVA"
+        "email": "lerouvelas@gmail.com"
     },
     "UVAnews": {
-        "email": "larry@eabsentee.org robert@eabsentee.org",
-        "name": "UVA newspaper"
+        "email": "larry@eabsentee.org robert@eabsentee.org"
     },
     "UVAsc": {
-        "email": "ah2fq@virginia.edu",
-        "name": "UVA Student Council"
+        "email": "ah2fq@virginia.edu"
     },
     "UVAud": {
-        "email": "jds2wd@virginia.edu",
-        "name": "UVA Dems"
+        "email": "jds2wd@virginia.edu"
     },
     "VAratifyERA": {
-        "email": "VAratifyERA.absentee@gmail.com",
-        "name": "VA Ratify ERA"
+        "email": "VAratifyERA.absentee@gmail.com"
     },
     "VAsenateDems": {
-        "email": "kristina@vasenatedems.com",
-        "name": "VA Senate Dems"
+        "email": "kristina@vasenatedems.com"
     },
     "VCU-URyd": {
-        "email": "salaar2001@gmail.com",
-        "name": "VCU/UR Young Democrats"
+        "email": "salaar2001@gmail.com"
     },
     "VCUc": {
-        "email": "lerouvelas@gmail.com",
-        "name": "CEEP VCU"
+        "email": "lerouvelas@gmail.com"
     },
     "VCUnews": {
-        "email": "lerouvelas@gmail.com",
-        "name": "VCU newspaper"
+        "email": "lerouvelas@gmail.com"
     },
     "VSUc": {
-        "email": "lerouvelas@gmail.com",
-        "name": "CEEP VSU"
+        "email": "lerouvelas@gmail.com"
     },
     "VTechc": {
-        "email": "lerouvelas@gmail.com",
-        "name": "CEEP VTech"
+        "email": "lerouvelas@gmail.com"
     },
     "VVRegisterNow": {
-        "email": "adriel@adrielhampton.com david@vanvalkenburg4va.com",
-        "name": "VanValkenburg for Delegate SM"
+        "email": "adriel@adrielhampton.com david@vanvalkenburg4va.com"
     },
     "VVsm1": {
-        "email": "adriel@adrielhampton.com",
-        "name": "VanValkenburg for Delegate"
+        "email": "adriel@adrielhampton.com"
     },
     "VW4C": {
-        "email": "field1@vangieforcongress.com",
-        "name": "Vangie for Congress"
+        "email": "field1@vangieforcongress.com"
     },
     "WMnews": {
-        "email": "lerouvelas@gmail.com",
-        "name": "W&M newspaper"
+        "email": "lerouvelas@gmail.com"
     },
     "YDVCU": {
-        "email": "youngdemocrats.vcu@gmail.com",
-        "name": "VCU Young Dems"
+        "email": "youngdemocrats.vcu@gmail.com"
     },
     "YDatVT": {
-        "email": "rebcat11@vt.edu",
-        "name": "YDs at VT"
+        "email": "rebcat11@vt.edu"
     },
     "barnett": {
-        "email": "karl.bach@barnett4delegate.com",
-        "name": "Friends of Larry Barnett"
+        "email": "karl.bach@barnett4delegate.com"
     },
     "campusFB": {
-        "email": "larry@eabsentee.org robert@eabsentee.org",
-        "name": "Campus FB ads"
+        "email": "larry@eabsentee.org robert@eabsentee.org"
     },
     "campusIG": {
-        "email": "lerouvelas@gmail.com",
-        "name": "Campus IG ads"
+        "email": "lerouvelas@gmail.com"
     },
     "cole": {
-        "email": "greg@techforcampaigns.org",
-        "name": "Josh Cole for Delegate"
+        "email": "greg@techforcampaigns.org"
     },
     "foster": {
-        "email": "hannah@jessfoster.org",
-        "name": "Jess Foster for Delegate"
+        "email": "hannah@jessfoster.org"
     },
     "ghazala": {
-        "email": "greg@techforcampaigns.org",
-        "name": "Ghazala Hashemi"
+        "email": "greg@techforcampaigns.org"
     },
     "gooditis": {
-        "email": "truman@wendygooditis.com",
-        "name": "Wendy Gooditis"
+        "email": "truman@wendygooditis.com"
     },
     "hashmi": {
-        "email": "philip@hashmi4vasenate.org greg@techforcampaigns.org",
-        "name": "Hashmi for Delegate"
+        "email": "philip@hashmi4vasenate.org greg@techforcampaigns.org"
     },
     "hdc": {
-        "email": "trevor@vahousedems.org",
-        "name": "House Democratic Caucus"
+        "email": "trevor@vahousedems.org"
     },
     "hickey": {
-        "email": "sam@timhickeyfordelegate.com",
-        "name": "Tim Hickey for Delegate"
+        "email": "sam@timhickeyfordelegate.com"
     },
     "jenkins": {
-        "email": "greg@techforcampaigns.org",
-        "name": "Clinton Jenkins for Delegate"
+        "email": "greg@techforcampaigns.org"
     },
     "jmuyd": {
-        "email": "lerouvelas@gmail.com",
-        "name": "JMU Young Democrats"
+        "email": "lerouvelas@gmail.com"
     },
     "missy": {
-        "email": "brenna@missyforsenate.com lerouvelas@gmail.com",
-        "name": "Missy For Senate"
+        "email": "brenna@missyforsenate.com lerouvelas@gmail.com"
     },
     "missyforsenate": {
-        "email": "brenna@missyforsenate.com",
-        "name": "Missy For Senate"
+        "email": "brenna@missyforsenate.com"
     },
     "pohl": {
-        "email": "greg@techforcampaigns.org",
-        "name": "Pohl for Virginia"
+        "email": "greg@techforcampaigns.org"
     },
     "pwcdc": {
-        "email": "dpala@vademocrats.org",
-        "name": "PWC Dem Cmte"
+        "email": "dpala@vademocrats.org"
     },
     "rodman": {
-        "email": "molly@debrarodman.com lerouvelas@gmail.com",
-        "name": "Rodman campaign"
+        "email": "molly@debrarodman.com lerouvelas@gmail.com"
     },
     "snf": {
-        "email": "adriel@adrielhampton.com",
-        "name": "Story Now Foundation"
+        "email": "adriel@adrielhampton.com"
     },
     "sperling": {
-        "email": "rohan@sperlingforsupervisor.com",
-        "name": "Sperling for Supervisor"
+        "email": "rohan@sperlingforsupervisor.com"
     },
     "suhas": {
-        "email": "tess@suhasforvirginia.com",
-        "name": "Suhas for Virginia"
+        "email": "tess@suhasforvirginia.com"
     },
     "surovell": {
-        "email": "lerouvelas@gmail.com philipscranage@gmail.com ssurovell@gmail.com",
-        "name": "Surovell for Senate"
+        "email": "lerouvelas@gmail.com philipscranage@gmail.com ssurovell@gmail.com"
     },
     "turpin": {
-        "email": "greg@techforcampaigns.org",
-        "name": "Turpin for Senate"
+        "email": "greg@techforcampaigns.org"
     },
     "va2019": {
-        "email": "trevor@vahousedems.org",
-        "name": "House Democratic Caucus"
+        "email": "trevor@vahousedems.org"
     },
     "vahdc": {
-        "email": "trevor@vahousedems.org",
-        "name": "VA House Democratic Caucus"
+        "email": "trevor@vahousedems.org"
     },
     "vayd": {
-        "email": "president@vayd.org",
-        "name": "Virginia Young Democrats"
+        "email": "president@vayd.org"
     },
     "wheeler": {
-        "email": "kyle@pocketacesconsulting.com will@wheelerforpwc.com",
-        "name": "Wheeler PWC Chair"
+        "email": "kyle@pocketacesconsulting.com will@wheelerforpwc.com"
     }
 }
