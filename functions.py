@@ -382,7 +382,7 @@ def add_to_campaign(request):
             list_emails = request.form.get('campaign_email').split()
             new_campaign = {
                 request.form.get('campaign_code'): {
-                    "county_nums": list_counties
+                    "county_nums": list_counties,
                     "emails": list_emails
                 }
             }
