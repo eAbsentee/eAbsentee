@@ -1,41 +1,57 @@
 {
-  "DPVAe": {
-    "email": "awhitley@vademocrats.org apooler@vademocrats.org"
-  },
-  "DPVAf": {
-    "email": "awhitley@vademocrats.org apooler@vademocrats.org"
-  },
-  "DPVAi": {
-    "email": "awhitley@vademocrats.org apooler@vademocrats.org"
-  },
-  "DPVAw": {
-    "email": "awhitley@vademocrats.org apooler@vademocrats.org"
-  },
-  "FCDC": {
-    "email": "jack@fairfaxdemocrats.org"
-  },
-  "NextGenVA": {
-    "email": "adin.lenchner@nextgenamerica.org"
-  },
-  "UVAsc": {
-    "email": "ah2fq@virginia.edu"
-  },
-  "UVAud": {
-    "email": "jds2wd@virginia.edu"
-  },
-  "VAsenateDems": {
-    "email": "kristina@vasenatedems.com"
-  },
-  "VW4C": {
-    "email": "field1@vangieforcongress.com"
-  },
-  "pwcdc": {
-    "email": "dpala@vademocrats.org"
-  },
-  "surovell": {
-    "email": "lerouvelas@gmail.com philipscranage@gmail.com ssurovell@gmail.com"
-  },
-  "vahdc": {
-    "email": "trevor@vahousedems.org"
-  }
+    "DPVAe": {
+        "email": "awhitley@vademocrats.org apooler@vademocrats.org"
+    },
+    "DPVAf": {
+        "email": "awhitley@vademocrats.org apooler@vademocrats.org"
+    },
+    "DPVAi": {
+        "email": "awhitley@vademocrats.org apooler@vademocrats.org"
+    },
+    "DPVAw": {
+        "email": "awhitley@vademocrats.org apooler@vademocrats.org"
+    },
+    "FCDC": {
+        "email": "jack@fairfaxdemocrats.org"
+    },
+    "JW4Ce": {
+        "email": "meredith@jenniferwexton.com ",
+        "name": "Jennifer Wexton for Congress"
+    },
+    "JW4Cf": {
+        "email": "meredith@jenniferwexton.com ",
+        "name": "Jennifer Wexton for Congress"
+    },
+    "JW4Ci": {
+        "email": "meredith@jenniferwexton.com ",
+        "name": "Jennifer Wexton for Congress"
+    },
+    "JW4Cw": {
+        "email": "meredith@jenniferwexton.com ",
+        "name": "Jennifer Wexton for Congress"
+    },
+    "NextGenVA": {
+        "email": "adin.lenchner@nextgenamerica.org"
+    },
+    "UVAsc": {
+        "email": "ah2fq@virginia.edu"
+    },
+    "UVAud": {
+        "email": "jds2wd@virginia.edu"
+    },
+    "VAsenateDems": {
+        "email": "kristina@vasenatedems.com"
+    },
+    "VW4C": {
+        "email": "field1@vangieforcongress.com"
+    },
+    "pwcdc": {
+        "email": "dpala@vademocrats.org"
+    },
+    "surovell": {
+        "email": "lerouvelas@gmail.com philipscranage@gmail.com ssurovell@gmail.com"
+    },
+    "vahdc": {
+        "email": "trevor@vahousedems.org"
+    }
 }
