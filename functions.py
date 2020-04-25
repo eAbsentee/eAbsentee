@@ -52,7 +52,6 @@ def parse_data(request, group_code_form):
         localities = json.load(file)
         emails_to_be_sent_to = [
             localities[request.form['election__locality_gnis']]['email']]
-        # emails_to_be_sent_to = ['raunakdaga@gmail.com']
         if request.form.get('email_me') == 'true':
             emails_to_be_sent_to.append(
                 request.form.get('more_info__email_fax'))
