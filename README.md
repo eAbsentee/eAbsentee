@@ -36,12 +36,7 @@ API_KEY = '<API KEY>'
 
 ## Campaigns and Groups
 
-A campaign in eAbsentee is a link which leads to a form which only contains a designated set of counties. For example, if a user
-heads to eAbsentee.org/campaign/surovell, when they click on the form, they won't see all 95 Virginia counties, but rather only
-those that the Surovell campaign has elected to display.
-
-A group in eAbsentee is a link that is simply used to track where users come from. Once a user clicks on a group link, which are normally structured like eAbsentee.org/group/surovell, their group code is set in their cookies. This only matters when a user fills
-out the ballot request form, at which point data will be logged about which group they came from.
+Under construction 
 
 ## Contact
 
