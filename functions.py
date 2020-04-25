@@ -398,7 +398,7 @@ def add_to_campaign(request):
             with open('static/campaigns.json', 'w') as f:
                 json.dump(campaigns, f, indent=4, sort_keys=True)
 
-    if request.form.get('group_name'):
+    if request.form.get('group_code'):
         with open('static/groups.json') as file:
             groups = json.load(file)
             new_group = {

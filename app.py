@@ -155,10 +155,10 @@ def process_form():
 @app.route('/form/<group>/', methods=['POST', 'GET'])
 def form_group(group: str):
     if request.method == 'POST':
-        try:
-            application_process(request, group)
-        except(Exception):
-            return redirect('/error/')
+        # try:
+        application_process(request, group)
+        # except(Exception):
+            # return redirect('/error/')
         return redirect('/confirmation/')
     else:
         if group == 'fcdc':
@@ -202,7 +202,7 @@ def set_group(group: str):
 @app.route('/api/', methods=['POST', 'GET'])
 def api():
     if request.method == 'POST':
-        if request.form.get('group_name') or request.form.get('campaign_name'):
+        if request.form.get('group_code') or request.form.get('campaign_name'):
             add_to_campaign(request)
             return render_template('api.html')
         elif request.form.get('email_spreadsheet'):
