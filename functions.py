@@ -67,24 +67,24 @@ def parse_data(request, group_code_form):
             'middle_name': request.form['name__middle'],
             'last_name': request.form['name__last'],
             'suffix': request.form['suffix'],
+            'full_name': request.form['name__first'] + ' ' + request.form['name__middle'] + ' ' + request.form['name__last'],
             'ssn': '  '.join(request.form['name__ssn']),
             'reason_code': '     '.join(request.form['reason__code']),
-            'registered_to_vote': localities[
-                request.form['election__locality_gnis']
-            ]['locality'],
+            'registered_to_vote': localities[request.form['election__locality_gnis']]['locality'],
             'supporting': request.form['reason__documentation'],
-            'email': request.form.get('more_info__email_fax'),
+            'email': request.form['more_info__email_fax'],
             'address': request.form['address__street'],
             'apt': request.form['address__unit'],
             'city': request.form['address__city'],
             'zip_code': '   '.join(request.form['address__zip']),
             'state': request.form['address__state'],
-            'ballot_delivery_address': request.form.get('delivery__street'),
-            'ballot_delivery_city': request.form.get('delivery__city'),
-            'ballot_delivery_apt': request.form.get('delivery__unit'),
-            'ballot_delivery_zip': '   '.join(request.form.get(
-                'delivery__zip').replace('-', '')),
-            'ballot_delivery_state': request.form.get('deliv-state'),
+            'full_address': request.form['address__street'] +                 ((' ' + request.form['address__unit']) if request.form['address__unit'] else ' ') + ', ' + request.form['address__city'] + ', ' + request.form['address__state'] +  ' ' + request.form['address__zip'],
+            'full_delivery_address': request.form['delivery__street'] +      ((' ' + request.form['delivery__unit']) if request.form['delivery__unit'] else ' ') + ', ' + request.form['delivery__city'] + ', ' + request.form['delivery_state'] +  ' ' + request.form['delivery__zip'],
+            'delivery_address': request.form.get('delivery__street'),
+            'delivery_city': request.form.get('delivery__city'),
+            'delivery_apt': request.form.get('delivery__unit'),
+            'delivery_zip': '   '.join(request.form.get( 'delivery__zip').replace('-', '')),
+            'delivery_state': request.form.get('delivery_state'),
             'former_fullname': request.form.get('change__former_name'),
             'former_address': request.form.get('change__former_address'),
             'signature': '/S/ ' + request.form[
@@ -141,7 +141,6 @@ def parse_data(request, group_code_form):
             'registrar_address': localities[request.form['election__locality_gnis']]['email'],
             'emails_to_be_sent_to': emails_to_be_sent_to
         }
-
     data['date_election_year'] = '   '.join('20')
     data['dem_prim_check'] = ''
     data['rep_prim_check'] = ''
@@ -164,32 +163,6 @@ def parse_data(request, group_code_form):
         data['date_election_month'] = '   '.join('11')
 
     return data
-
-
-def build_report_data(data):
-    data_for_report = [
-        session['name'],
-        str(datetime.datetime.now().strftime("%m-%d-%y %H:%M:%S")),
-        data['reason_code'].replace(' ', ''),
-        data['supporting'],
-        data['registered_to_vote'],
-        data['email'],
-        data['telephone'],
-        data['address'] + (' ' if data['apt'] else '') + data['apt'] + ', '
-        + data['city'] + ', ' + data['state'] +
-        ', ' + data['zip_code'].replace(' ', ''),
-        data["ballot_delivery_address"] +  data['ballot_delivery_apt'] + data["ballot_delivery_apt"] + ', ' +
-        data["ballot_delivery_city"] + ', ' + data["ballot_delivery_state"] + ", " +
-        data["ballot_delivery_zip"].replace(' ', ''),
-        data['application_ip'],
-        session['application_id'],
-        data['campaign_code'],
-        data['group_code'],
-        data['registrar_address']
-    ]
-
-    append_to_report(data_for_report, data['group_code'])
-
 
 def set_session_keys(data):
     # id is first 10 characters of MD5 hash of dictionary
@@ -298,48 +271,64 @@ def email_registrar(data):
         attachments=session['output_file']
     )
 
+def build_report_data(data):
+    data_for_report = [
+        session['name'],
+        str(datetime.datetime.now().strftime("%m-%d-%y %H:%M:%S")),
+        data['reason_code'].replace(' ', ''),
+        data['supporting'],
+        data['registered_to_vote'],
+        data['email'],
+        data['telephone'],
+        data['full_address'],
+        data['full_delivery_address'],
+        data['application_ip'],
+        session['application_id'],
+        data['campaign_code'],
+        data['group_code'],
+        data['registrar_address']
+    ]
 
-def append_to_report(data, group_code):
+    append_to_report(data_for_report, data['group_code'])
+
+def append_to_report(data_for_report, group_code):
     """Add a row to the Excel spreadsheet with data from the application.
     If the spreadsheet doesn't already exist, create it. """
 
     # APPENDING TO ALL TIME SPREADSHEET
     report_path = f'reports/all_time.xlsx'
     if not os.path.isfile(report_path):
-        create_report(report_path)
+        create_personal_report(report_path)
     report = load_workbook(filename=report_path)
     worksheet = report.active
-    worksheet.append(data)
+    worksheet.append(data_for_report)
     report.save(report_path)
 
     # APPENDING TO TODAYS SPREADSHEET
     today_date = date.today().strftime("%m-%d-%y")
     report_path = f'reports/dailyreports/{today_date}.xlsx'
-
     if not os.path.isfile(report_path):
-        create_report(report_path)
-
+        create_personal_report(report_path)
     report = load_workbook(filename=report_path)
     worksheet = report.active
-    worksheet.append(data)
+    worksheet.append(data_for_report)
     report.save(report_path)
 
     # APPENDING TO GROUP SPREADSHEET
     if group_code != '':
-        group = group_code
-        report_path = f'reports/{group}.xlsx'
+        report_path = f'reports/{group_code}.xlsx'
 
         if not os.path.isfile(report_path):
-            create_report(report_path)
+            create_org_report(report_path)
 
         report = load_workbook(filename=report_path)
         worksheet = report.active
-        group_data = data[0:2] + data[4:]
+        group_data = data_for_report[0:2] + data_for_report[4:]
         worksheet.append(group_data)
         report.save(report_path)
 
 
-def create_report(file_path):
+def create_personal_report(file_path):
     today_date = date.today().strftime("%m-%d-%y")
 
     report = openpyxl.Workbook()
@@ -353,6 +342,29 @@ def create_report(file_path):
     sh['G1'] = 'Telephone Number'
     sh['H1'] = 'Address'
     sh['I1'] = 'Residence Address'
+    sh['J1'] = 'IP Submitted From'
+    sh['K1'] = 'Form ID'
+    sh['L1'] = 'Campaign Code'
+    sh['M1'] = 'Group Code'
+    sh['N1'] = 'Locality Email'
+
+    report_path = file_path
+
+    report.save(report_path)
+    return report_path
+
+def create_org_report(file_path):
+    today_date = date.today().strftime("%m-%d-%y")
+
+    report = openpyxl.Workbook()
+    sh = report.active
+    sh['A1'] = 'Applicant Name'
+    sh['B1'] = 'Time Submitted'
+    sh['C1'] = 'Locality'
+    sh['D1'] = 'Email'
+    sh['E1'] = 'Telephone Number'
+    sh['F1'] = 'Address'
+    sh['G1'] = 'Residence Address'
     sh['J1'] = 'IP Submitted From'
     sh['K1'] = 'Form ID'
     sh['L1'] = 'Campaign Code'
