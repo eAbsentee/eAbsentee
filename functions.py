@@ -162,7 +162,7 @@ def parse_data(request, group_code_form):
         data['date_election_day'] = '   '.join('03')
         data['date_election_month'] = '   '.join('11')
 
-    data['full_election_date'] =                        data[date_election_month].replace(' ', '') + ' ' + data[date_election_day].replace(' ', '') + ' ' + data[date_election_year].replace(' ', '')
+    data['full_election_date'] =                        data['date_election_month'].replace(' ', '') + ' ' + data['date_election_day'].replace(' ', '') + ' ' + data['date_election_year'].replace(' ', '')
 
     return data
 
@@ -190,7 +190,7 @@ def write_pdf(data):
     can.drawString(185, 666, data['middle_name'])
     can.drawString(180, 690, data['last_name'])
     can.drawString(320, 666, data['suffix'])
-    can.drawString(550, 675, data['ssn']) =
+    can.drawString(550, 675, data['ssn'])
 
     can.drawString(238, 638, data['gen_spec_check'])  # Gen/Spec Election
     can.drawString(383, 638, data['dem_prim_check'])  # Democratic Primary
@@ -355,12 +355,11 @@ def create_personal_report(file_path):
     sh['I1'] = 'Residence Address'
     sh['J1'] = 'IP Submitted From'
     sh['K1'] = 'Form ID'
-    sh['M1'] = 'Group Code'
-    sh['N1'] = 'Locality Email'
-    sh['O1'] = 'Election Date'
+    sh['L1'] = 'Group Code'
+    sh['M1'] = 'Locality Email'
+    sh['N1'] = 'Election Date'
 
     report.save(file_path)
-    return report_path
 
 def create_org_report(file_path):
     report = openpyxl.Workbook()
@@ -377,7 +376,6 @@ def create_org_report(file_path):
     sh['J1'] = 'Election Date'
 
     report.save(file_path)
-    return report_path
 
 
 def add_to_campaign(request):
