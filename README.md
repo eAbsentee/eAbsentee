@@ -46,3 +46,10 @@ out the ballot request form, at which point data will be logged about which grou
 ## Contact
 
 -   If you have questions, please email raunak@eAbsentee.org
+
+
+## Testing
+
+-   Verify form works
+-   Verify data is logged in report
+-   Verify all forms remain the same visually
