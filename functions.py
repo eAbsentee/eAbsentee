@@ -20,9 +20,6 @@ from keys import GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD, API_KEY
 # Change current working directory to directory 'functions.py' is in.
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
-# Where the form lives
-form_path = 'static/pdf/blank_app.pdf'
-
 
 def application_process(request, group_code_form=None):
     data = parse_data(request, group_code_form=group_code_form)
@@ -216,57 +213,56 @@ def set_session_keys(data):
 def write_pdf(data):
     packet = io.BytesIO()
     can = canvas.Canvas(packet, pagesize=letter)
-    can.drawString(180, 690, data['last_name'])  # LastName
-    can.drawString(420, 690, data['first_name'])  # First Name
-    can.drawString(185, 666, data['middle_name'])  # Middle Name
-    can.drawString(320, 666, data['suffix'])  # Suffix
+    can.drawString(420, 690, data['first_name'])
+    can.drawString(185, 666, data['middle_name'])
+    can.drawString(180, 690, data['last_name'])
+    can.drawString(320, 666, data['suffix'])
+    can.drawString(550, 675, data['ssn']) =
+
     can.drawString(238, 638, data['gen_spec_check'])  # Gen/Spec Election
     can.drawString(383, 638, data['dem_prim_check'])  # Democratic Primary
     can.drawString(498, 638, data['rep_prim_check'])  # Republican Primary
-    can.drawString(550, 675, data['ssn'])  # SSN
-    can.drawString(207, 614, data['date_election_month'])  # MonthOfElection
-    can.drawString(251, 614, data['date_election_day'])  # Dayofelection
-    can.drawString(291, 614, data['date_election_year'])  # YearOfElection
 
-    can.drawString(331, 611, data['county_check'])  # REGISTERED COUNTY
-    can.drawString(378, 611, data['city_check'])  # REGISTERED CITY
+    can.drawString(207, 614, data['date_election_month'])
+    can.drawString(251, 614, data['date_election_day'])
+    can.drawString(291, 614, data['date_election_year'])
+
+    can.drawString(331, 611, data['county_check'])
+    can.drawString(378, 611, data['city_check'])
     can.drawString(425, 611, data['registered_to_vote'])  # Registered locality
 
     can.drawString(189, 554, data['reason_code'])  # Reason Code
-    # Making font smaller for supporting information
-    can.setFont('Helvetica', 8)
+    can.setFont('Helvetica', 8) # Making font smaller for supporting information
     can.drawString(312, 555, data['supporting'])  # Supporting Information
     can.setFont('Helvetica', 12)  # Going back to normal font size
-    # FIRST 3 TELPEHONE
+
     can.drawString(423, 524, data['first_three_telephone'])
-    # SECOND 3 TELPEHONE
     can.drawString(480, 524, data['second_three_telephone'])
-    can.drawString(537, 524, data['last_four_telephone'])  # LAST 4 TELPEHONE
+    can.drawString(537, 524, data['last_four_telephone'])
     can.drawString(178, 504, data['email'])
 
     can.drawString(171, 473, data['address'])
     can.drawString(516, 473, data['apt'])
     can.drawString(153, 453, data['city'])
-    can.drawString(518, 453, data['zip_code'])  # ZIP CODE OF DELIVERY
+    can.drawString(518, 453, data['zip_code'])
 
-    # DELIVERED TO RESIDENCE
     can.drawString(289, 424, data['deliver_residence'])
-    can.drawString(459, 424, data['deliver_mailing'])  # DELIVERED TO MAILING
-    can.drawString(289, 410, data['deliver_email'])  # DELIVERED TO EMAIL
-    # can.drawString(459, 410, data['deliverFax'])  # DELIVERED TO FAX
-    can.drawString(168, 392, data['ballot_delivery_address'])
-    can.drawString(532, 392, data['ballot_delivery_apt'])
-    can.drawString(154, 372, data['ballot_delivery_city'])
-    can.drawString(317, 372, data['ballot_delivery_state'])
-    can.drawString(442, 372, data['ballot_delivery_zip'])
+    can.drawString(459, 424, data['deliver_mailing'])
+    can.drawString(289, 410, data['deliver_email'])
+
+    can.drawString(168, 392, data['delivery_address'])
+    can.drawString(532, 392, data['delivery_apt'])
+    can.drawString(154, 372, data['delivery_city'])
+    can.drawString(317, 372, data['delivery_state'])
+    can.drawString(442, 372, data['delivery_zip'])
 
     can.drawString(205, 340, data['former_fullname'])
-    can.drawString(487, 340, data['date_moved_month'])  # MONTH MOVED
-    can.drawString(528, 340, data['date_moved_day'])  # DAY MOVED
-    can.drawString(569, 340, data['date_moved_year'])  # YEAR MOVED
     can.drawString(192, 320, data['former_address'])
+    can.drawString(487, 340, data['date_moved_month'])
+    can.drawString(528, 340, data['date_moved_day'])
+    can.drawString(569, 340, data['date_moved_year'])
 
-    can.drawString(130, 292, data['assistant_check'])  # Assistant checkbox
+    can.drawString(130, 292, data['assistant_check'])
     can.drawString(170, 222, data['assistant_fullname'])
     can.drawString(165, 202, data['assistant_address'])
     can.drawString(513, 202, data['assistant_apt'])
@@ -276,14 +272,14 @@ def write_pdf(data):
     can.drawString(170, 162, data['assistant_signature'])
 
     can.drawString(247, 103, data['signature'])
-    can.drawString(492, 103, data['date_today_month'])  # Month Signed
-    can.drawString(529, 103, data['date_today_day'])  # Day Signed
-    can.drawString(569, 103, data['date_today_year'])  # Year Signed
+    can.drawString(492, 103, data['date_today_month'])
+    can.drawString(529, 103, data['date_today_day'])
+    can.drawString(569, 103, data['date_today_year'])
 
     can.save()
     packet.seek(0)
     new_pdf = PdfFileReader(packet)
-    existing_pdf = PdfFileReader(form_path, "rb")
+    existing_pdf = PdfFileReader('static/pdf/blank_app.pdf', "rb")
     output = PdfFileWriter()
     page = existing_pdf.getPage(0)
     page.mergePage(new_pdf.getPage(0))
