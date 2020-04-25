@@ -391,7 +391,6 @@ def add_to_campaign(request):
             groups = json.load(file)
             new_group = {
                 request.form.get('group_code'): {
-                    "name": request.form.get('group_name'),
                     "email": request.form.get('group_email')
                 }
             }
