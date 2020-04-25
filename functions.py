@@ -162,10 +162,11 @@ def parse_data(request, group_code_form):
         data['date_election_day'] = '   '.join('03')
         data['date_election_month'] = '   '.join('11')
 
+    data['full_election_date'] =                        data[date_election_month].replace(' ', '') + ' ' + data[date_election_day].replace(' ', '') + ' ' + data[date_election_year].replace(' ', '')
+
     return data
 
 def set_session_keys(data):
-    # id is first 10 characters of MD5 hash of dictionary
     id = hashlib.md5(repr(data).encode('utf-8')).hexdigest()[: 10]
     name = data['first_name'] + \
         ' ' + data['middle_name'] + \
@@ -272,8 +273,8 @@ def email_registrar(data):
     )
 
 def build_report_data(data):
-    data_for_report = [
-        session['name'],
+    personal_report_data = [
+        data['full_name'],
         str(datetime.datetime.now().strftime("%m-%d-%y %H:%M:%S")),
         data['reason_code'].replace(' ', ''),
         data['supporting'],
@@ -286,12 +287,27 @@ def build_report_data(data):
         session['application_id'],
         data['campaign_code'],
         data['group_code'],
-        data['registrar_address']
+        data['registrar_address'],
+        data['full_election_date']
     ]
 
-    append_to_report(data_for_report, data['group_code'])
+    org_report_data = [
+        data['full_name'],
+        str(datetime.datetime.now().strftime("%m-%d-%y %H:%M:%S")),
+        data['registered_to_vote'],
+        data['email'],
+        data['telephone'],
+        data['full_address'],
+        data['full_delivery_address'],
+        session['application_id'],
+        data['group_code'],
+        data['full_election_date']
+    ]
 
-def append_to_report(data_for_report, group_code):
+
+    append_to_report(personal_report_data, data['group_code'], org_report_data)
+
+def append_to_report(personal_report_data, group_code, org_report_data):
     """Add a row to the Excel spreadsheet with data from the application.
     If the spreadsheet doesn't already exist, create it. """
 
@@ -301,7 +317,7 @@ def append_to_report(data_for_report, group_code):
         create_personal_report(report_path)
     report = load_workbook(filename=report_path)
     worksheet = report.active
-    worksheet.append(data_for_report)
+    worksheet.append(personal_report_data)
     report.save(report_path)
 
     # APPENDING TO TODAYS SPREADSHEET
@@ -311,26 +327,21 @@ def append_to_report(data_for_report, group_code):
         create_personal_report(report_path)
     report = load_workbook(filename=report_path)
     worksheet = report.active
-    worksheet.append(data_for_report)
+    worksheet.append(personal_report_data)
     report.save(report_path)
 
     # APPENDING TO GROUP SPREADSHEET
     if group_code != '':
         report_path = f'reports/{group_code}.xlsx'
-
         if not os.path.isfile(report_path):
             create_org_report(report_path)
-
         report = load_workbook(filename=report_path)
         worksheet = report.active
-        group_data = data_for_report[0:2] + data_for_report[4:]
-        worksheet.append(group_data)
+        worksheet.append(org_report_data)
         report.save(report_path)
 
 
 def create_personal_report(file_path):
-    today_date = date.today().strftime("%m-%d-%y")
-
     report = openpyxl.Workbook()
     sh = report.active
     sh['A1'] = 'Applicant Name'
@@ -344,18 +355,14 @@ def create_personal_report(file_path):
     sh['I1'] = 'Residence Address'
     sh['J1'] = 'IP Submitted From'
     sh['K1'] = 'Form ID'
-    sh['L1'] = 'Campaign Code'
     sh['M1'] = 'Group Code'
     sh['N1'] = 'Locality Email'
+    sh['O1'] = 'Election Date'
 
-    report_path = file_path
-
-    report.save(report_path)
+    report.save(file_path)
     return report_path
 
 def create_org_report(file_path):
-    today_date = date.today().strftime("%m-%d-%y")
-
     report = openpyxl.Workbook()
     sh = report.active
     sh['A1'] = 'Applicant Name'
@@ -365,15 +372,11 @@ def create_org_report(file_path):
     sh['E1'] = 'Telephone Number'
     sh['F1'] = 'Address'
     sh['G1'] = 'Residence Address'
-    sh['J1'] = 'IP Submitted From'
-    sh['K1'] = 'Form ID'
-    sh['L1'] = 'Campaign Code'
-    sh['M1'] = 'Group Code'
-    sh['N1'] = 'Locality Email'
+    sh['H1'] = 'Form ID'
+    sh['I1'] = 'Group Code'
+    sh['J1'] = 'Election Date'
 
-    report_path = file_path
-
-    report.save(report_path)
+    report.save(file_path)
     return report_path
 
 
@@ -428,7 +431,6 @@ def get_ids_and_counties(campaign_code):
 
 
 def email_report_alltime_api(request):
-    # today_date: str = date.today().strftime("%m-%d-%y")
     report_path = f'reports/all_time.xlsx'
     report = load_workbook(filename=report_path)
     worksheet = report.active
