@@ -52,7 +52,8 @@
         </b>
       </p> <!-- Link rot - check yearly -->
       <p>
-        You can apply to vote absentee-by-mail as early as one year before the election. Ballots will be sent as directed at earliest 45 days before Election Day. The deadline for online receipt of your Absentee-by-Mail Ballot Application is 5:00 PM the Tuesday before Election Day.
+        You can apply to vote absentee-by-mail as early as one year before the election. Ballots will be sent as directed at earliest 45 days before Election Day. The deadline for online receipt of your Absentee-by-Mail Ballot Application is 5:00 PM
+        the Tuesday before Election Day.
         <!-- You can contact the Virginia Department of Elections at <a href="tel:8048648901">804-864-8901</a> or <a href="mailto:info@elections.virginia.gov">info@elections.virginia.gov</a>. -->
         <!-- If you'd like to print out and mail your application yourself, you can do so <a href="/printform">here</a> -->
       </p>
@@ -114,18 +115,18 @@
               <div class="radio">
                 <label>
                   <input name="election__type" type="radio" checked="checked" value="TE" required />
-                  Town Elections | Tuesday, May 5, 2020
+                  Town Elections | Tuesday, May 19, 2020
                 </label>
               </div>
 
-              <!-- <div class="radio">
+              <div class="radio">
                 <label>
-                  <input name="election__type" type="radio" checked="checked" value="DP" required />
+                  <input name="election__type" type="radio" value="DP" required />
                   Democratic Congressional Primary | Tuesday, June 9, 2020
                 </label>
-              </div> -->
+              </div>
 
-              <!-- <div class="radio">
+              <div class="radio">
                 <label>
                   <input name="election__type" type="radio" value="RP" required />
                   Republican Congressional Primary | Tuesday, June 9, 2020
@@ -137,31 +138,17 @@
                   <input name="election__type" type="radio" value="PE" required />
                   Presidential Election | Tuesday, November 3, 2020
                 </label>
-              </div> -->
-
-              <!-- <div class="radio">
-                <label>
-                  <input name="election__type" type="radio" value="Republican Primary" required />
-                  Republican Primary
-                </label>
-              </div> -->
-            </div>
-
-            <!-- <div>
-            <div id="election__date" class="form-inline date">
-              <label class="control-label">Date of Election</label>
-
-              <input type="date" name="election__date" placeholder="MM/DD/YY" value="2020-03-03" required readonly />
+              </div>
 
             </div>
-          </div> -->
+
 
             <div id="election__locality" class="form-group form-inline">
               <label for="election__locality_gnis" class="control-label">I am registered to vote in</label>
 
               <input type="hidden" name="election__locality" />
               <select name="election__locality_gnis" id="election__locality_gnis" type="text" class="form-control" required>
-                <!-- <option value="" selected>Choose your residence&hellip;</option> -->
+                <option value="" selected>Choose your residence&hellip;</option>
                 {% for id, name in ids_and_counties.items() %}
                 <option value={{id}} selected> {{ name }} </option>
                 {% endfor %}
@@ -177,14 +164,14 @@
           <p> Due to COVID-19, the Virginia Board of Elections suggests all registered voters vote by mail to avoid crowds. All voters are permitted to select reason 2A.</p>
           <div class="radio" hidden>
             <label>
-              <input name="reason__code" type="radio" value="2A" checked/> Reason 2A
+              <input name="reason__code" type="radio" value="2A" checked /> Reason 2A
             </label>
           </div>
 
           <!-- <div class="form-group"> -->
-            <!-- <div class="col"> -->
-            <!-- <p> <b> Commonly Cited Reasons </b> </p> -->
-            <!-- <p> <b>I plan to be out of County/City for some part of Election Day for: </b> </p>
+          <!-- <div class="col"> -->
+          <!-- <p> <b> Commonly Cited Reasons </b> </p> -->
+          <!-- <p> <b>I plan to be out of County/City for some part of Election Day for: </b> </p>
             <div class="radio">
               <label>
                 <input name="reason__code" type="radio" value="1D" /> Personal business or vacation outside County/City of residence on election day
@@ -201,13 +188,13 @@
               </label>
             </div>
             <br> -->
-            <!-- <p> <b> Health reasons</b> </p>
+          <!-- <p> <b> Health reasons</b> </p>
             <div class="radio">
               <label>
                 <input name="reason__code" type="radio" value="2A" /> 2A: I have a disability or illness
               </label>
             </div> -->
-            <!-- <div class="radio">
+          <!-- <div class="radio">
               <label>
                 <input name="reason__code" type="radio" value="2C" /> I'm pregnant
               </label>
