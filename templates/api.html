@@ -14,15 +14,6 @@
       <meta name="viewport" content="width=device-width,initial-scale=1">
 
       <script type="text/javascript">
-            function campaign() {
-                  var checkBox = document.getElementById("campaigncheckbox");
-                  var text = document.getElementById("campaigndiv");
-                  if (checkBox.checked == true) {
-                        text.style.display = "block";
-                  } else {
-                        text.style.display = "none";
-                  }
-            }
 
             function group() {
                   var checkBox = document.getElementById("groupcheckbox");
@@ -52,34 +43,9 @@
       <h3>{{confirmation}}</h3>
 
 
-      <p>Add a Campaign: <input type="checkbox" name="campaigncheckbox" id="campaigncheckbox" onclick="campaign()" value="0" /></p>
       <p>Add a Group: <input type="checkbox" name="groupcheckbox" id="groupcheckbox" onclick="group()" value="0" /></p>
       <p>Download Spreadsheet: <input type="checkbox" name="spreadsheetcheckbox" id="spreadsheetcheckbox" onclick="spreadsheet()" value="0" /></p>
 
-
-      <div id="campaigndiv" style="display:none">
-            <h1>Add a New Campaign</h1>
-            <form method="POST" action="">
-                  <p>Please enter your unique API key:</p>
-                  API Key: <input type="text" id="api_key" name="api_key">
-
-                  <p>Please enter the actual name of the campaign. Can be anything, just make it different from the campaign code. </p>
-                  Campaign Name: <input type="text" id="campaign_name" name="campaign_name"><br>
-
-                  <p>Please enter the name you wish to assign the campaign code (not the actual name of the campaign.) Again, this should be something like SD15. A short code which symbolizes the campaign name.</p>
-                  Campaign Code: <input type="text" id="campaign_code" name="campaign_code"><br>
-
-                  <p>Please enter ALL the emails of the campaign, separated by spaces. Be sure to double check the email, as this can not be changed. Again, emails separated by spaces.</p>
-                  Campaign Email: <input type="text" id="campaign_email" name="campaign_email"><br>
-
-                  <p> A list of counties can be found <a href="/listcounty">here</a>.</p>
-                  <p>Pick all the counties which are being campaigned in, and enter their 3 digit number ID's in the below input, <b> separated by spaces. </b></p>
-
-                  County Codes: <input type="text" id="county_codes" name="county_codes"><br>
-
-                  <input type="submit" value="Submit">
-            </form>
-      </div>
 
 
       <div id="groupdiv" style="display:none">
