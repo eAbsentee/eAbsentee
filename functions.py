@@ -284,8 +284,7 @@ def build_report_data(data):
         data['full_address'],
         data['full_delivery_address'],
         data['application_ip'],
-        session['application_id'],
-        data['campaign_code'],
+        session['application_id']
         data['group_code'],
         data['registrar_address'],
         data['full_election_date']
@@ -378,34 +377,30 @@ def create_org_report(file_path):
     report.save(file_path)
 
 
-def add_to_campaign(request):
+def add_to_groups(request):
     call("git pull", shell=True)
     if request.form.get('api_key') != API_KEY:
         return
 
-    if request.form.get('campaign_name'):
-        with open('static/campaigns.json') as file:
-            campaigns = json.load(file)
-            list_counties = request.form.get('county_codes').split()
-            list_emails = request.form.get('campaign_email').split()
-            new_campaign = {
-                request.form.get('campaign_code'): {
-                    "county_nums": list_counties,
-                    "emails": list_emails
-                }
-            }
-            campaigns.update(new_campaign)
-            with open('static/campaigns.json', 'w') as f:
-                json.dump(campaigns, f, indent=4, sort_keys=True)
-
     if request.form.get('group_code'):
         with open('static/groups.json') as file:
             groups = json.load(file)
-            new_group = {
-                request.form.get('group_code'): {
-                    "email": request.form.get('group_email')
+
+            new_group = None
+            if request.form.get('county_codes'):
+                new_group = {
+                    request.form.get('group_code'): {
+                        "email": request.form.get('group_email'),
+                        "county_nums": request.form.get('county_codes').split()
+                    }
                 }
-            }
+            else:
+                new_group = {
+                    request.form.get('group_code'): {
+                        "email": request.form.get('group_email')
+                    }
+                }
+
             groups.update(new_group)
             with open('static/groups.json', 'w') as f:
                 json.dump(groups, f, indent=4, sort_keys=True)
@@ -415,17 +410,27 @@ def add_to_campaign(request):
     call("git push origin master", shell=True)
 
 
-def get_ids_and_counties(campaign_code):
+def get_ids_and_counties(group_code):
     ids_and_names = {}
-    with open('static/campaigns.json') as file:
-        campaigns = json.load(file)
-        campaign_id = campaigns[campaign_code]
-        campaign_counties = campaign_id['county_nums']
-        with open('static/localities_info.json') as localities_file:
-            localities = json.load(localities_file)
-            for county in campaign_counties:
-                ids_and_names[county] = localities[county]['locality']
-    return ids_and_names
+    with open('static/groups.json') as file:
+        groups = json.load(file)
+        group = groups[group_code]
+
+        # If a group has counties which it has selected to limit its form to
+        if 'county_nums' in group:
+            with open('static/localities_info.json') as localities_file:
+                localities = json.load(localities_file)
+                for county_num_id in group['county_nums']:
+                    ids_and_names[county_num_id] = localities[county_num_id]['locality']
+            return ids_and_names
+        # Otherwise, return all counties found in the group 'allcounties'
+        else:
+            with open('static/localities_info.json') as localities_file:
+                localities = json.load(localities_file)
+                for county_num_id in groups['allcounties']['county_nums']:
+                    ids_and_names[county_num_id] = localities[county_num_id]['locality']
+            return ids_and_names
+
 
 
 def email_report_alltime_api(request):
