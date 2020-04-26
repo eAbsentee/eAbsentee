@@ -106,7 +106,6 @@ def bounceback_email(final_list) -> None:
     for pair in final_list:
         yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
             to=('raunakdaga@gmail.com', 'lerouvelas@gmail.com'),
-            # to='info@elections.virginia.gov',
             subject=f'Absentee Ballot Request (Bounceback) - Applicant-ID' + \
             f': {pair[1]}',
             contents='This email is being automatically delivered by the ' + \
