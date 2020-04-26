@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, session
 from flask import send_file, make_response, send_from_directory
-from functions import application_process, add_to_campaign, get_ids_and_counties, email_report_alltime_api
+from functions import application_process, add_to_groups, get_ids_and_counties, email_report_alltime_api
 from fcdc_functions import add_group
 from keys import SECRET_KEY, API_KEY, API_KEY_FCDC
 import os
@@ -27,24 +27,21 @@ def home():
     return render_template('index.html')
 
 
-# Error
 @app.route('/error/')
 def error_page():
     return render_template('formerror.html')
 
 
-# Credits
 @app.route('/credits/', methods=['GET'])
 def credits_page():
     return render_template('credits.html')
 
-# List of Counties for API
+# List of Counties w/ Matching number ID's for API information
 @app.route('/listcounty/')
 def list_of_counties():
     return(render_template('list_of_counties.html'))
 
 
-# About
 @app.route('/about/')
 def about():
     return(render_template('about.html'))
@@ -67,22 +64,22 @@ def hb1():
 
 # Bills
 
-# @app.route('/hb201/')
+# @app.route('/bills/hb201/')
 # def hb201():
 #     return render_template("hb201.html")
 #
 #
-# @app.route('/hb207/')
+# @app.route('/bills/hb207/')
 # def hb207():
 #     return render_template("hb207.html")
 #
 #
-# @app.route('/hb220/')
+# @app.route('/bills/hb220/')
 # def hb220():
 #     return render_template("hb220.html")
 #
 #
-# @app.route('/hb238/')
+# @app.route('/bills/hb238/')
 # def hb238():
 #     return render_template("hb238.html")
 
@@ -123,71 +120,41 @@ def privacy():
         open('static/pdf/privacy_policy.pdf', 'rb'), attachment_filename='privacy_policy.pdf'
     )
 
-# 404
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
 
 
 ''' FORM ROUTES '''
-
-
 @app.route('/form/', methods=['POST', 'GET'])
 def process_form():
-    """ Form Route: Returns form when requested, collects data from user when inputted. The data is sent to
-    functions.py, where it is parsed and converted, built into the PDF, and emailed to the respective registar. If
+    """ Form Route: Returns form when requested, collects data from user when inputted. The data is sent to functions.py, where it is parsed and converted, built into the PDF, and emailed to the respective registar. If
     unable to send the PDF, an error page is returned. """
     if request.method == 'POST':
-        # try:
-        application_process(request)
-        # except(Exception):
-            # return redirect('/error/')
+        try:
+            application_process(request)
+        except(Exception):
+            return redirect('/error/')
         return redirect('/confirmation/')
     else:
-        # return render_template('formclosed.html')
         ids_and_counties = get_ids_and_counties('allcounties')
-        if 'campaign' in request.cookies:
-            ids_and_counties = get_ids_and_counties(
-                request.cookies.get('campaign'))
         return render_template('form.html', ids_and_counties=ids_and_counties)
 
 
 @app.route('/form/<group>/', methods=['POST', 'GET'])
-def form_group(group: str):
+def form_group(group):
     if request.method == 'POST':
-        # try:
-        application_process(request, group)
-        # except(Exception):
-            # return redirect('/error/')
+        try:
+            application_process(request, group)
+        except(Exception):
+            return redirect('/error/')
         return redirect('/confirmation/')
     else:
-        if group == 'fcdc':
-            return render_template('form_fcdc.html', ids_and_counties=get_ids_and_counties('fcdc'))
-        return render_template('form.html', ids_and_counties=get_ids_and_counties('allcounties'))
+        return render_template('form.html', ids_and_counties=get_ids_and_counties(group))
 
-
-@app.route('/formdev/', methods=['POST', 'GET'])
-def form_dev():
-    if request.method == 'POST':
-        application_process(request)
-        return redirect('/confirmation/')
-    else:
-        ids_and_counties = get_ids_and_counties('dagaprez')
-        return render_template('form.html', ids_and_counties=ids_and_counties)
 
 
 ''' COOKIE ROUTES '''
-
-
-@app.route('/c/<campaign>')
-def home_with_campaign(campaign: str):
-    """This route sets the county cookies. It is used to determine which form
-    to display. The different forms can have different counties displayed."""
-    response = make_response(redirect('/'))
-    response.set_cookie('campaign', campaign, max_age=60 * 60 * 24 * 365)
-    return response
-
-
 @app.route('/g/<group>')
 def set_group(group: str):
     """This route sets the group cookies."""
@@ -195,19 +162,15 @@ def set_group(group: str):
     response.set_cookie('group', group, max_age=60 * 60 * 24 * 365)
     return response
 
-
 ''' API ROUTES '''
-
-
 @app.route('/api/', methods=['POST', 'GET'])
 def api():
     if request.method == 'POST':
-        if request.form.get('group_code') or request.form.get('campaign_name'):
-            add_to_campaign(request)
+        if request.form.get('group_code'):
+            add_to_groups(request)
             return render_template('api.html')
         elif request.form.get('email_spreadsheet'):
-            if request.form.get('api_key') == API_KEY:
-                email_report_alltime_api(request)
+            email_report_alltime_api(request)
             return render_template('api.html')
         return render_template('api.html')
     else:
@@ -223,8 +186,6 @@ def api_fcdc():
 
 
 ''' FAVICONS '''
-
-
 @app.route('/apple-touch-icon.png', methods=['GET'])
 def apple_touch_icon():
     return send_from_directory(os.path.join(app.root_path, 'static'),
