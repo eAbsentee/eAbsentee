@@ -149,10 +149,10 @@ def form():
 def form_group(group):
     if request.method == 'POST':
         # try:
-            application_process(request, group)
+        application_process(request, group)
         # except(Exception):
         #     print(Exception)
-            return redirect('/error/')
+        return redirect('/error/')
         return redirect('/confirmation/')
     else:
         return render_template('form.html', ids_and_counties=get_ids_and_counties(group))
