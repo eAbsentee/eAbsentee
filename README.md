@@ -24,10 +24,6 @@ API_KEY = '<API KEY>'
 ```
 -   Create `static/credentials.json` and `static/storage.json` with the correct content, which are both for the Google API
 
--   Run `pipenv install`
-
--   Run `pipenv shell`
-
 -   Run `python scheduled_tasks/email_bounceback.py`, and login to your GMAIL-enabled API account.
 
 -   Run `export FLASK_ENV=development`
@@ -36,7 +32,7 @@ API_KEY = '<API KEY>'
 
 ## Campaigns and Groups
 
-Under construction 
+Under construction
 
 ## Contact
 
