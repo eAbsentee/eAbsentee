@@ -131,10 +131,10 @@ def form():
     """ Form Route: Returns form when requested, collects data from user when inputted. The data is sent to functions.py, where it is parsed and converted, built into the PDF, and emailed to the respective registar. If
     unable to send the PDF, an error page is returned. """
     if request.method == 'POST':
-        try:
-            application_process(request)
-        except(Exception):
-            return redirect('/error/')
+        # try:
+        application_process(request)
+        # except(Exception):
+        #     return redirect('/error/')
         return redirect('/confirmation/')
     else:
         if 'group' in request.cookies:
@@ -148,10 +148,10 @@ def form():
 @app.route('/form/<group>/', methods=['POST', 'GET'])
 def form_group(group):
     if request.method == 'POST':
-        try:
+        # try:
             application_process(request, group)
-        except(Exception):
-            print(Exception)
+        # except(Exception):
+        #     print(Exception)
             return redirect('/error/')
         return redirect('/confirmation/')
     else:
