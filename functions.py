@@ -34,13 +34,6 @@ def parse_data(request, group_code_form):
     into a dict format to allow it to be passed to the PDF filling methods."""
     today_date = date.today().strftime("%m%d%y")
 
-    campaign_name = ''
-    if request.cookies.get('campaign'):
-        with open('static/campaigns.json') as file:
-            campaigns = json.load(file)
-            campaign_id = campaigns[request.cookies.get('campaign')]
-            campaign_name = campaign_id['name']
-
     group_code = ''
     if group_code_form is not None:
         group_code = group_code_form
@@ -136,7 +129,6 @@ def parse_data(request, group_code_form):
             'date_today_year': '   '.join(today_date[4:6]),
             'application_ip': request.environ.get('HTTP_X_REAL_IP', request.remote_addr),
             'email_me': request.form.get('email_me'),
-            'campaign_code': campaign_name,
             'group_code': group_code,
             'registrar_address': localities[request.form['election__locality_gnis']]['email'],
             'emails_to_be_sent_to': emails_to_be_sent_to
@@ -406,7 +398,7 @@ def add_to_groups(request):
                 json.dump(groups, f, indent=4, sort_keys=True)
 
     call("git add .", shell=True)
-    call("git commit -m \"Added new campaign/group\"", shell=True)
+    call("git commit -m \"Added new /group\"", shell=True)
     call("git push origin master", shell=True)
 
 
@@ -463,8 +455,6 @@ def create_maps():
     for cell in worksheet['H']:
         str_value = str(cell.value)
         str_value = str_value.replace('   ', '')
-        if '|' in str_value:
-            str_value = str_value[0: str_value.find('|')]
         geocode_result = gmaps.geocode(str_value)[0]
         lat, lng = geocode_result['geometry']['location']['lat'], geocode_result['geometry']['location']['lng']
         gmap_plotter.marker(lat, lng)

@@ -127,7 +127,7 @@ def page_not_found(e):
 
 ''' FORM ROUTES '''
 @app.route('/form/', methods=['POST', 'GET'])
-def process_form():
+def form():
     """ Form Route: Returns form when requested, collects data from user when inputted. The data is sent to functions.py, where it is parsed and converted, built into the PDF, and emailed to the respective registar. If
     unable to send the PDF, an error page is returned. """
     if request.method == 'POST':
@@ -137,8 +137,12 @@ def process_form():
             return redirect('/error/')
         return redirect('/confirmation/')
     else:
-        ids_and_counties = get_ids_and_counties('allcounties')
-        return render_template('form.html', ids_and_counties=ids_and_counties)
+        if 'group' in request.cookies:
+            ids_and_counties = get_ids_and_counties(request.cookies.get('group'))
+            return render_template('form.html', ids_and_counties=ids_and_counties)
+        else:
+            ids_and_counties = get_ids_and_counties('allcounties')
+            return render_template('form.html', ids_and_counties=ids_and_counties)
 
 
 @app.route('/form/<group>/', methods=['POST', 'GET'])
