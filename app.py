@@ -57,13 +57,13 @@ def confirmation_page():
 def form_closed():
     return render_template("formclosed.html")
 
-
-@app.route('/hb1/')
-def hb1():
-    return render_template("hb1.html")
-
 # Bills
-
+#
+# @app.route('/bills/hb1/')
+# def hb1():
+#     return render_template("hb1.html")
+#
+#
 # @app.route('/bills/hb201/')
 # def hb201():
 #     return render_template("hb201.html")
@@ -151,6 +151,7 @@ def form_group(group):
         try:
             application_process(request, group)
         except(Exception):
+            print(Exception)
             return redirect('/error/')
         return redirect('/confirmation/')
     else:
@@ -159,7 +160,7 @@ def form_group(group):
 
 
 ''' COOKIE ROUTES '''
-@app.route('/g/<group>')
+@app.route('/g/<group>/')
 def set_group(group: str):
     """This route sets the group cookies."""
     response = make_response(redirect('/'))
