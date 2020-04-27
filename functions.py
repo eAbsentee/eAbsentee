@@ -276,7 +276,7 @@ def build_report_data(data):
         data['full_address'],
         data['full_delivery_address'],
         data['application_ip'],
-        session['application_id']
+        session['application_id'],
         data['group_code'],
         data['registrar_address'],
         data['full_election_date']
