@@ -139,7 +139,7 @@ def parse_data(request, group_code_form):
     data['gen_spec_check'] = ''
     if request.form['election__type'] == 'TE':
         data['gen_spec_check'] = 'X'
-        data['date_election_day'] = '   '.join('05')
+        data['date_election_day'] = '   '.join('19')
         data['date_election_month'] = '   '.join('05')
     elif request.form['election__type'] == 'DP':
         data['dem_prim_check'] = 'X'
