@@ -132,13 +132,16 @@ def form_group(group):
     else:
         return render_template('form.html', ids_and_counties=get_ids_and_counties(group))
 
-
+@app.route('/newform/', methods=['POST', 'GET'])
+def new_form():
+    if request.method == 'GET':
+        return render_template('formnew.html')
 
 ''' Cookie Routes '''
 @app.route('/g/<group>/')
 def set_group(group: str):
     '''This route sets the group cookies. This is later checked in the form route. If a group cookie is present, it will attempt to open that group's limited counties. If a group doesn't have any limited counties, it will open all the counties.'''
-    response = make_response(redirect('/'))
+    response = make_response(render_template('index.html'))
     response.set_cookie('group', group, max_age=60 * 60 * 24 * 365)
     return response
 
