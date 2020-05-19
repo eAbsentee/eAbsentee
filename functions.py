@@ -137,11 +137,7 @@ def parse_data(request, group_code_form):
     data['dem_prim_check'] = ''
     data['rep_prim_check'] = ''
     data['gen_spec_check'] = ''
-    if request.form['election__type'] == 'TE':
-        data['gen_spec_check'] = 'X'
-        data['date_election_day'] = '   '.join('19')
-        data['date_election_month'] = '   '.join('05')
-    elif request.form['election__type'] == 'DP':
+    if request.form['election__type'] == 'DP':
         data['dem_prim_check'] = 'X'
         data['date_election_day'] = '   '.join('23')
         data['date_election_month'] = '   '.join('06')
@@ -153,6 +149,10 @@ def parse_data(request, group_code_form):
         data['gen_spec_check'] = 'X'
         data['date_election_day'] = '   '.join('03')
         data['date_election_month'] = '   '.join('11')
+    elif request.form['election__type'] == 'AG':
+        data['gen_spec_check'] = 'X'
+        data['date_election_day'] = '   '.join('07')
+        data['date_election_month'] = '   '.join('07')
 
     data['full_election_date'] =                        data['date_election_month'].replace(' ', '') + ' ' + data['date_election_day'].replace(' ', '') + ' ' + data['date_election_year'].replace(' ', '')
 
