@@ -1,0 +1,118 @@
+{% from "macros.html" import favicon %}
+<!DOCTYPE HTML>
+<html>
+
+<head>
+      {{ favicon() }}
+      <title>eAbsentee</title>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+      <meta name="description" content="" />
+      <meta name="keywords" content="" />
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}" />
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+</head>
+
+<body class="is-preload">
+
+      <!-- Header -->
+      <header id="header">
+            <a class="logo" href="/">eAbsentee</a>
+            <nav>
+                  <a href="#menu">Menu</a>
+            </nav>
+      </header>
+
+      <!-- Nav -->
+      <nav id="menu">
+            <ul class="links">
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/form">Apply</a></li>
+                  <li><a href="/about">About</a></li>
+            </ul>
+      </nav>
+
+      <!-- Banner -->
+      <section id="faq">
+            <div class="inner">
+              <!-- Form -->
+               </br>
+                <h3>Form</h3>
+                <form method="post" action="#">
+                  <div class="row gtr-uniform">
+                    <div class="col-6 col-12-xsmall">
+                      <input type="text" name="name" id="name" value="" placeholder="Name" />
+                    </div>
+                    <div class="col-6 col-12-xsmall">
+                      <input type="email" name="email" id="email" value="" placeholder="Email" />
+                    </div>
+                    <!-- Break -->
+                    <div class="col-12">
+                      <select name="category" id="category">
+                        <option value="">- Select -</option>
+                        <option value="alpha">Option alpha</option>
+                        <option value="beta">Option beta</option>
+                        <option value="gamma">Option gamma</option>
+                        <option value="delta">Option delta</option>
+                        <option value="epsilon">Option epsilon</option>
+                        <option value="zeta">Option zeta</option>
+                        <option value="eta">Option eta</option>
+                        <option value="theta">Option theta</option>
+                      </select>
+                    </div>
+                    <!-- Break -->
+                    <div class="col-4 col-12-small">
+                      <input type="radio" id="radio-alpha" name="radio" checked>
+                      <label for="radio-alpha">Radio alpha</label>
+                    </div>
+                    <div class="col-4 col-12-small">
+                      <input type="radio" id="radio-beta" name="radio">
+                      <label for="radio-beta">Radio beta</label>
+                    </div>
+                    <div class="col-4 col-12-small">
+                      <input type="radio" id="radio-gamma" name="radio">
+                      <label for="radio-gamma">Radio gamma</label>
+                    </div>
+                    <!-- Break -->
+                    <div class="col-6 col-12-small">
+                      <input type="checkbox" id="checkbox-alpha" name="checkbox">
+                      <label for="checkbox-alpha">Checkbox alpha</label>
+                    </div>
+                    <div class="col-6 col-12-small">
+                      <input type="checkbox" id="checkbox-beta" name="checkbox" checked>
+                      <label for="checkbox-beta">Checkbox beta</label>
+                    </div>
+                    <!-- Break -->
+                    <div class="col-12">
+                      <textarea name="textarea" id="textarea" placeholder="Alpha beta gamma delta" rows="6"></textarea>
+                    </div>
+                    <!-- Break -->
+                    <div class="col-12">
+                      <ul class="actions">
+                        <li><input type="submit" value="Submit Form" class="primary" /></li>
+                        <li><input type="reset" value="Reset" /></li>
+                      </ul>
+                    </div>
+                  </div>
+                </form>
+            </div>
+      </section>
+
+      <!-- Footer -->
+      <footer id="footer">
+            <div class="copyright">
+                  <p style="color:white;"> Contact us at <a href="mailto:contact@eabsentee.org">contact@eabsentee.org</a> | Paid for and authorized by Vote Absentee Virginia </p>
+            </div>
+      </footer>
+      <!-- Scripts -->
+
+      <!-- Scripts -->
+      <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/browser.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/breakpoints.min.js')}}">  </script>
+      <script src="{{ url_for('static', filename='js/util.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+</body>
+
+</html>
