@@ -36,8 +36,7 @@
       <section id="banner">
             <div class="inner">
                   <h1> Application Confirmed </h1>
-                  <p>Thank you for applying for an absentee ballot, {{session['name']}}! Your absentee ballot application has been emailed to the {{ session['registrar_locality'] }} registrar at <a
-                              href="mailto:{{ session['registrar_email'] }}">{{ session['registrar_email'] }}</a>. No further action is required on your part.</p>
+                  <p>Thank you for applying for an absentee ballot, {{session['name']}}!. No further action is required on your part.</p>
                   <p>You can download your application file <a href="../{{ session['output_file'] }}"><u>by clicking here</u></a>.</p>
                   <a href="/"><u>Home Page</u></a>.
             </div>
@@ -51,14 +50,10 @@
             </div>
       </footer>
       <!-- Scripts -->
-
-      <!-- Scripts -->
       <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
       <script src="{{ url_for('static', filename='js/browser.min.js') }}"></script>
       <script src="{{ url_for('static', filename='js/breakpoints.min.js') }}"></script>
       <script src="{{ url_for('static', filename='js/util.min.js') }}"></script>
       <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-
 </body>
-
 </html>
