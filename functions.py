@@ -102,12 +102,6 @@ def parse_data(request, group_code_form):
                 'delivery__to') == 'mailing address' else '',
             'deliver_email': 'X' if request.form.get(
                 'delivery__to') == 'email' else '',
-            # 'gen_spec_check': 'X' if request.form[
-            #     'election__type'] == 'General or Special Election' else '',
-            # 'dem_prim_check': 'X' if request.form[
-            #     'election__type'] == 'Democratic Primary' else '',
-            # 'rep_prim_check': 'X' if request.form[
-            #     'election__type'] == 'Republican Primary' else '',
             'county_check': 'X' if 'County' in localities[
                 request.form['election__locality_gnis']
             ]['locality'] else '',
@@ -117,13 +111,6 @@ def parse_data(request, group_code_form):
             'date_moved_month': '   '.join(request.form.get('change__date_moved')[5:7]),
             'date_moved_day': '   '.join(request.form.get('change__date_moved')[8:10]),
             'date_moved_year': '   '.join(request.form.get('change__date_moved')[2:4]),
-            # 'date_election_month': '   '.join('05' if request.form['election__type'] == 'General or Special Election' else '06'),
-            # 'date_election_month': '   '.join(request.form.get('election__date')[5:7]),
-            # 'date_election_day': '   '.join('05' if request.form[
-            #     'election__type'] == 'General or Special Election' else '09'),
-            # 'date_election_day': '   '.join(request.form.get('election__date')[8:10]),
-            # 'date_election_year': '   '.join('20'),
-            # 'date_election_year': '   '.join(request.form.get('election__date')[2:4]),
             'date_today_month': '   '.join(today_date[0:2]),
             'date_today_day': '   '.join(today_date[2:4]),
             'date_today_year': '   '.join(today_date[4:6]),
