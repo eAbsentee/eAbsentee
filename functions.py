@@ -393,7 +393,9 @@ def get_ids_and_counties(group_code):
     ids_and_names = {}
     with open('static/groups.json') as file:
         groups = json.load(file)
-        group = groups[group_code]
+        group = ''
+        if group_code in groups:
+            group = groups[group_code]
 
         # If a group has counties which it has selected to limit its form to
         if 'county_nums' in group:
