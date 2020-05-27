@@ -38,7 +38,7 @@ def application_process(request, group_code_form=None):
 def parse_data(request, group_code_form):
     """ Parse data from the form using the Flask request object and convert it
     into a dict format to allow it to be passed to the PDF filling methods."""
-    today_date = date.today().strftime("%m%d%y")
+    today_date = date.today().strftime('%m%d%y')
 
     group_code = ''
     if group_code_form is not None:
@@ -164,7 +164,7 @@ def set_session_keys(data):
     session['registrar_locality'] = data['registered_to_vote']
     session['registrar_email'] = data['registrar_address']
 
-    today_date = date.today().strftime("%m-%d-%y")
+    today_date = date.today().strftime('%m-%d-%y')
     session['report_file'] = f'reports/{today_date}.xlsx'
 
 
@@ -237,13 +237,13 @@ def write_pdf(data):
     can.save()
     packet.seek(0)
     new_pdf = PdfFileReader(packet)
-    existing_pdf = PdfFileReader('static/pdf/blank_app.pdf', "rb")
+    existing_pdf = PdfFileReader('static/pdf/blank_app.pdf', 'rb')
     output = PdfFileWriter()
     page = existing_pdf.getPage(0)
     page.mergePage(new_pdf.getPage(0))
     output.addPage(page)
 
-    output.write(open(session['output_file'], "wb"))
+    output.write(open(session['output_file'], 'wb'))
 
 
 def email_registrar(data):
@@ -251,16 +251,16 @@ def email_registrar(data):
     yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
         to=([email for email in data['emails_to_be_sent_to']]),
         subject='Absentee Ballot Request - Applicant-ID: ' +
-        f'{session["application_id"]}',
+        f'{session['application_id']}',
         contents='Please find attached an absentee ballot request ' +
-        f'submitted on behalf of {session["name"]} - from eAbsentee.org',
+        f'submitted on behalf of {session['name']} - from eAbsentee.org',
         attachments=session['output_file']
     )
 
 def build_report_data(data):
     personal_report_data = [
         data['full_name'],
-        str(datetime.datetime.now().strftime("%m-%d-%y %H:%M:%S")),
+        str(datetime.datetime.now().strftime('%m-%d-%y %H:%M:%S')),
         data['reason_code'].replace(' ', ''),
         data['supporting'],
         data['registered_to_vote'],
@@ -277,7 +277,7 @@ def build_report_data(data):
 
     org_report_data = [
         data['full_name'],
-        str(datetime.datetime.now().strftime("%m-%d-%y %H:%M:%S")),
+        str(datetime.datetime.now().strftime('%m-%d-%y %H:%M:%S')),
         data['registered_to_vote'],
         data['email'],
         data['telephone'],
@@ -305,7 +305,7 @@ def append_to_report(personal_report_data, group_code, org_report_data):
     report.save(report_path)
 
     # APPENDING TO TODAYS SPREADSHEET
-    today_date = date.today().strftime("%m-%d-%y")
+    today_date = date.today().strftime('%m-%d-%y')
     report_path = f'reports/dailyreports/{today_date}.xlsx'
     if not os.path.isfile(report_path):
         create_personal_report(report_path)
@@ -375,14 +375,14 @@ def add_to_groups(request):
             if request.form.get('county_codes'):
                 new_group = {
                     request.form.get('group_code'): {
-                        "email": request.form.get('group_email'),
-                        "county_nums": request.form.get('county_codes').split()
+                        'email': request.form.get('group_email'),
+                        'county_nums': request.form.get('county_codes').split()
                     }
                 }
             else:
                 new_group = {
                     request.form.get('group_code'): {
-                        "email": request.form.get('group_email')
+                        'email': request.form.get('group_email')
                     }
                 }
 
@@ -437,7 +437,7 @@ def email_report_alltime_api(request):
 
 def create_maps():
     MAPS_API_KEY = ''
-    today_date = date.today().strftime("%m-%d-%y")
+    today_date = date.today().strftime('%m-%d-%y')
     report_path = f'reports/{today_date}.xlsx'
     report = load_workbook(filename=report_path)
     worksheet = report.active
