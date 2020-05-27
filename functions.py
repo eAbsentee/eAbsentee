@@ -250,10 +250,10 @@ def email_registrar(data):
     """Email the form to the registrar of the applicant's locality. """
     yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
         to=([email for email in data['emails_to_be_sent_to']]),
-        subject='Absentee Ballot Request - Applicant-ID: ' +
-        f'{session['application_id']}',
+        subject=('Absentee Ballot Request - Applicant-ID: ' +
+        f'{session["application_id"]}'),
         contents='Please find attached an absentee ballot request ' +
-        f'submitted on behalf of {session['name']} - from eAbsentee.org',
+        f'submitted on behalf of {session["name"]} - from eAbsentee.org',
         attachments=session['output_file']
     )
 
