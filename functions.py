@@ -25,7 +25,13 @@ def application_process(request, group_code_form=None):
     data = parse_data(request, group_code_form=group_code_form)
     set_session_keys(data)
     write_pdf(data)
-    build_report_data(data)
+    try:
+        build_report_data(data)
+    except:
+        yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
+            to='raunak@eAbsentee.org',
+            subject='Broken spreadsheet'
+        )
     email_registrar(data)
 
 
