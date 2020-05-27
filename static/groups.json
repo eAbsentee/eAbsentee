@@ -278,6 +278,12 @@
             "1000"
         ]
     },
+    "bvote": {
+        "email": "jayohai@cox.net"
+    },
+    "dvre": {
+        "email": "jayohai@cox.net"
+    },
     "ea": {
         "email": "jayohai@cox.net"
     },
@@ -299,16 +305,25 @@
         ],
         "email": "jack@fairfaxdemocrats.org"
     },
+    "mvr": {
+        "email": "jayohai@cox.net"
+    },
     "nvr": {
         "email": "jayohai@cox.net"
     },
     "pvb": {
         "email": "jayohai@cox.net"
     },
+    "pvr": {
+        "email": "jayohai@cox.net"
+    },
     "pwcdc": {
         "email": "dpala@vademocrats.org"
     },
     "sap": {
+        "email": "jayohai@cox.net"
+    },
+    "srw": {
         "email": "jayohai@cox.net"
     },
     "ssp": {
@@ -319,6 +334,9 @@
     },
     "vahdc": {
         "email": "trevor@vahousedems.org"
+    },
+    "vote2020": {
+        "email": "jayohai@cox.net"
     },
     "vre": {
         "email": "jayohaicox.net jack@fairfaxdemocrats.org toddthurwachter@hotmail.com"
