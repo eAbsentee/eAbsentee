@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, session
 from flask import send_file, make_response, send_from_directory
 from functions import application_process, add_to_groups, get_ids_and_counties, email_report_alltime_api
+from fcdc_functions import add_group
 from keys import SECRET_KEY, API_KEY, API_KEY_FCDC
 import os
 import time
