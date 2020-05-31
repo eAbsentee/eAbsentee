@@ -45,40 +45,24 @@
   </div>
 
   <div class="wrapper">
-    <header style="color: #106FDB;">
-      <!-- <h1>Virginia Absentee Ballot Application</h1> -->
-      <!-- <br> <br>
-      <div style="text-align: center;">
-        <a href="/#faq" class="btn-lg btn-default" style="color: #ffffff; background-color: #106FDB;" />Home Page (FAQ)</a>
-        <br></br>
-        <a href="/about" class="btn-lg btn-default" style="color: #ffffff; background-color: #106FDB;" />About Vote Absentee</a>
-      </div>
-      <br>
-      <br> -->
-    </header>
     <br>
 
     <section id="instructions">
       <div style="text-align: center; color: black; font-size: 24px"> <b>Request Your Absentee Ballot NOW! </b> </div>
       <br>
       <ul>
-        <li> Request your mail-in ballot up to a year before the election. Virginia Board of Elections urges voters to request ballot early to allow time for processing and mail delivery. </li>
-        <li> Expect to receive your ballot around 10 days after your request is received, but no earlier than 45 days before the election.   </li>
-        <li> The last day to request your mail-in ballot online is 5pm the Tuesday before the Election Day. With <u>unprecedented</u> demand, apply for your mail-in ballot EARLY.</li>
+        <li> Request your mail-in ballot up to a year before the election.</li>
+        <!-- <li> Expect to receive your ballot around 10 days after your request is received, but no earlier than 45 days before the election.   </li> -->
+        <li> The last day to request your mail-in ballot online is 5pm the Tuesday before the Election Day. </li>
+        <li> With <u>unprecedented</u> demand, apply for your mail-in ballot EARLY.</li>
         <li> Your returned ballot must be received by the Registrar by 7pm Election Day. </li>
+        <br>
         <li>Are you already registered to vote? If not, click <a href="https://www.elections.virginia.gov/citizen-portal/"> here</a>.</li>
         <li>If your voter registration needs to be updated for a change in name/residence, please indicate your former name or resident address at the end of this form.</li>
       </ul>
       <br>
     </section>
-    <div id="failure-message" role="alert" class="hidden panel panel-danger">
-      <div class="panel-heading">
-        <h3 class="panel-title">&nbsp;Error</h3>
-      </div>
-      <div class="panel-body">
-        Your application has not been submitted. Please correct the following: {{ERROR}}
-      </div>
-    </div>
+
 
     <section id="absentee-form" class="form-horizontal">
       <form method="POST" action="">
@@ -120,14 +104,6 @@
           <b style="color:red">Not all districts have June primaries. Click <a target="_blank" href="https://www.elections.virginia.gov/media/castyourballot/candidatelist/June-2020-Primary-Candidates-List-5.6.pdf">here</a> to see if you do.</b>
           <div class="form-group">
             <div id="election__type" class="radio-group">
-              <!-- <p>I am applying to vote in:</p> -->
-              <!-- <div class="radio">
-                <label>
-                  <input name="election__type" type="radio"  value="TE" required />
-                  Town Elections | Tuesday, May 19, 2020
-                </label>
-              </div> -->
-
               <div class="radio">
                 <label>
                   <input name="election__type" type="radio"  value="DP" required />
@@ -156,12 +132,6 @@
                 </label>
               </div>
 
-              <!-- <div class="radio">
-                <label>
-                  <input name="election__type" type="radio" value="Republican Primary" required />
-                  Republican Primary
-                </label>
-              </div> -->
             </div>
 
             <!-- <div>
@@ -186,142 +156,11 @@
             </label>
           </div>
 
-
-
-          <!-- <a href="#reason" onclick="openOtherReasons()" class="btn-lg btn-default" style="color: #ffffff; background-color: #106FDB"/>Open Other Reasons</a> -->
-
-
-
-          <!-- <div class="form-group" id="reasons" style="display: block;">
-            <div class="col">
-            <p> <b> Commonly Cited Reasons </b> </p>
-            <p> <b>I plan to be out of County/City for some part of Election Day for: </b> </p>
-            <div class="radio">
-              <label>
-                <input name="reason__code" type="radio" value="1D" /> Personal business or vacation outside County/City of residence on election day
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <input name="reason__code" type="radio" value="1C" /> Business outside County/City of residence on election day
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <input name="reason__code" type="radio" value="1A" required /> I am a student attending college or university outside of locality of residence in Virginia
-              </label>
-            </div>
-            <br>
-            <p> <b> Health reasons</b> </p>
-            <div class="radio">
-              <label>
-                <input name="reason__code" type="radio" value="2A" /> I have a disability or illness
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <input name="reason__code" type="radio" value="2C" /> I'm pregnant
-              </label>
-            </div>
-            <br>
-            <p> <b> Location reasons</b> </p>
-            <div class="radio">
-              <label>
-                <input name="reason__code" type="radio" value="1B" /> I am a spouse of student attending college or university outside of locality of residence in Virginia
-              </label>
-            </div>
-
-            <div class="radio">
-              <label>
-                <input name="reason__code" type="radio" value="6C" /> I am temporarily residing outside of US
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <input name="reason__code" type="radio" value="6D" /> I am temporarily residing outside of US for employment or spouse or dependent residing with employee
-              </label>
-            </div>
-            <br>
-            <p> <b> Work conflicts or other obligations</b> </p>
-
-            <div class="radio">
-              <label>
-                <input name="reason__code" type="radio" value="2B" /> I am primarily and personally responsible for the care of a disabled/ill family member confined at home
-              </label>
-            </div>
-
-            <div class="radio">
-              <label>
-                <input name="reason__code" type="radio" value="1E" /> I am working and commuting to/from home for 11 or more hours between 6:00 AM and 7:00 PM on election day
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <input name="reason__code" type="radio" value="1F" /> I am a first responder (member of law enforcement, fire fighter, emergency technician, search and rescue)
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <input name="reason__code" type="radio" value="4A" /> I am an electoral board member, registrar, officer of election, or custodian of voting equipment
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <input name="reason__code" type="radio" value="5A" /> I have a religious obligation
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <input name="reason__code" type="radio" value="6A" /> I am an Active Duty Merchant Marine or Armed Forces
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <input name="reason__code" type="radio" value="6B" /> I am a spouse or dependent living with a member of the Armed Forces or Active Duty Merchant Marine
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <input name="reason__code" type="radio" value="8A" /> I am an authorized representative of candidate or party serving inside the polling place
-              </label>
-            </div>
-            <br>
-            <p> <b> Other </b> </p>
-
-            <div class="radio">
-              <label>
-                <input name="reason__code" type="radio" value="3A" /> I am confined and awaiting trial
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <input name="reason__code" type="radio" value="3B" /> I am confined and convicted of a misdemeanor
-              </label>
-            </div>
-
-
-            <div class="radio">
-              <label>
-                <input name="reason__code" type="radio" value="7A" /> I am requesting a ballot for presidential and vice-presidential electors only
-              </label>
-            </div>
-
-            <div class="radio">
-              <label>
-                <input name="reason__code" type="radio" value="9A" /> I am granted a protective order issued by or under the authority of a court of competent jurisdiction
-              </label>
-            </div>
-
-          </div> -->
-
           <div id="reason__documentation" class="form-group">
             <label for="reason__documentation_field" class="control-label">Supporting Information</label>
             <textarea name="reason__documentation" id="reason__documentation_field" class="form-control" maxlength="1024"></textarea>
           </div>
         </fieldset>
-
-
-
 
         <!-- Section 5: Residence Address -->
         <fieldset id="address">
