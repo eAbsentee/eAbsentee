@@ -281,6 +281,12 @@
     "bvote": {
         "email": "jayohai@cox.net"
     },
+    "bvote2020": {
+        "email": "jayohai@cox.net"
+    },
+    "dvote2020": {
+        "email": "jayohai@cox.net"
+    },
     "dvre": {
         "email": "jayohai@cox.net"
     },
@@ -305,6 +311,15 @@
         ],
         "email": "jack@fairfaxdemocrats.org"
     },
+    "hvote2020": {
+        "email": "jayohai@cox.net"
+    },
+    "lvote2020": {
+        "email": "jayohai@cox.net"
+    },
+    "mvote2020": {
+        "email": "jayohai@cox.net"
+    },
     "mvr": {
         "email": "jayohai@cox.net"
     },
@@ -312,6 +327,9 @@
         "email": "jayohai@cox.net"
     },
     "pvb": {
+        "email": "jayohai@cox.net"
+    },
+    "pvote2020": {
         "email": "jayohai@cox.net"
     },
     "pvr": {
@@ -332,6 +350,12 @@
     "surovell": {
         "email": "lerouvelas@gmail.com philipscranage@gmail.com ssurovell@gmail.com"
     },
+    "svote2020": {
+        "email": "jayohai@cox.net"
+    },
+    "tk": {
+        "email": "izzie@takisforarlington.com"
+    },
     "vahdc": {
         "email": "trevor@vahousedems.org"
     },
@@ -340,5 +364,11 @@
     },
     "vre": {
         "email": "jayohaicox.net jack@fairfaxdemocrats.org toddthurwachter@hotmail.com"
+    },
+    "vvote2020": {
+        "email": "jayohai@cox.net"
+    },
+    "yvote2020": {
+        "email": "jayohai@cox.net"
     }
 }
