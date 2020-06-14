@@ -250,7 +250,7 @@
 
             <div id="country" class="form-group">
               <label for="country_field" class="control-label">Country</label>
-              <select name="country" id="country_field" class="form-control" autocomplete="new-password">
+              <select name="delivery_country" id="country_field" class="form-control" autocomplete="new-password">
                 <option value="Afghanistan">Afghanistan</option>
                 <option value="Åland Islands">Åland Islands</option>
                 <option value="Albania">Albania</option>
@@ -804,8 +804,6 @@
   <!-- Use Bootstrap's JavaScript. -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-  <!-- this is where we put our custom functions -->
-  <!-- don't forget to concatenate and minify if needed -->
   <script src="{{ url_for('static', filename='js/functions.js') }}"></script>
 
 </body>

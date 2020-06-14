@@ -78,11 +78,12 @@ def parse_data(request, group_code_form):
             'zip_code': '   '.join(request.form['address__zip']),
             'state': request.form['address__state'],
             'full_address': request.form['address__street'] +                 ((' ' + request.form['address__unit']) if request.form['address__unit'] else ' ') + ', ' + request.form['address__city'] + ', ' + request.form['address__state'] +  ' ' + request.form['address__zip'],
-            'full_delivery_address': request.form['delivery__street'] +      ((' ' + request.form['delivery__unit']) if request.form['delivery__unit'] else ' ') + ', ' + request.form['delivery__city'] + ', ' + request.form['delivery_state'] +  ' ' + request.form['delivery__zip'],
+            'full_delivery_address': request.form['delivery__street'] +      ((' ' + request.form['delivery__unit']) if request.form['delivery__unit'] else ' ') + ', ' + request.form['delivery__city'] + ', ' + request.form['delivery_state'] +  ' ' + request.form['delivery__zip'] + ' ' + request.form['delivery_country'],
             'delivery_address': request.form.get('delivery__street'),
             'delivery_city': request.form.get('delivery__city'),
             'delivery_apt': request.form.get('delivery__unit'),
             'delivery_zip': '   '.join(request.form.get( 'delivery__zip').replace('-', '')),
+            'delivery_country': request.form['delivery_country'],
             'delivery_state': request.form.get('delivery_state'),
             'former_fullname': request.form.get('change__former_name'),
             'former_address': request.form.get('change__former_address'),
@@ -211,7 +212,10 @@ def write_pdf(data):
     can.drawString(168, 392, data['delivery_address'])
     can.drawString(532, 392, data['delivery_apt'])
     can.drawString(154, 372, data['delivery_city'])
-    can.drawString(317, 372, data['delivery_state'])
+    if 'delivery_country' in data:
+        can.drawString(317, 372, data['delivery_country'])
+    else:
+        can.drawString(317, 372, data['delivery_state'])
     can.drawString(442, 372, data['delivery_zip'])
 
     can.drawString(205, 340, data['former_fullname'])
@@ -404,12 +408,12 @@ def get_ids_and_counties(group_code):
             group = groups[group_code]
 
         # If a group has counties which it has selected to limit its form to
-        if 'county_nums' in group:
-            with open('static/localities_info.json') as localities_file:
-                localities = json.load(localities_file)
-                for county_num_id in group['county_nums']:
-                    ids_and_names[county_num_id] = localities[county_num_id]['locality']
-            return ids_and_names
+            if 'county_nums' in group:
+                with open('static/localities_info.json') as localities_file:
+                    localities = json.load(localities_file)
+                    for county_num_id in group['county_nums']:
+                        ids_and_names[county_num_id] = localities[county_num_id]['locality']
+                return ids_and_names
         # Otherwise, return all counties found in the group 'allcounties'
         else:
             with open('static/localities_info.json') as localities_file:
