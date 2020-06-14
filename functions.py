@@ -33,6 +33,7 @@ def application_process(request, group_code_form=None):
             subject='Broken spreadsheet'
         )
     email_registrar(data)
+    email_voter(data)
 
 
 def parse_data(request, group_code_form):
@@ -51,9 +52,9 @@ def parse_data(request, group_code_form):
         localities = json.load(file)
         emails_to_be_sent_to = [
             localities[request.form['election__locality_gnis']]['email']]
-        if request.form.get('email_me') == 'true':
+        if request.form.get('email'):
             emails_to_be_sent_to.append(
-                request.form.get('more_info__email_fax'))
+                request.form.get('email'))
 
     phonenumber = request.form.get('more_info__telephone').replace(
         '-', '').replace('(', '').replace(')', '').replace(' ', '').replace('+1', '').replace('-', '').replace('.', '').replace('+', '')
@@ -71,7 +72,7 @@ def parse_data(request, group_code_form):
             'reason_code': '     '.join(request.form['reason__code']),
             'registered_to_vote': localities[request.form['election__locality_gnis']]['locality'],
             'supporting': request.form['reason__documentation'],
-            'email': request.form['more_info__email_fax'],
+            'email': request.form['email'],
             'address': request.form['address__street'],
             'apt': request.form['address__unit'],
             'city': request.form['address__city'],
@@ -122,7 +123,7 @@ def parse_data(request, group_code_form):
             'date_today_day': '   '.join(today_date[2:4]),
             'date_today_year': '   '.join(today_date[4:6]),
             'application_ip': request.environ.get('HTTP_X_REAL_IP', request.remote_addr),
-            'email_me': request.form.get('email_me'),
+            # 'email_me': request.form.get('email_me'),
             'group_code': group_code,
             'registrar_address': localities[request.form['election__locality_gnis']]['email'],
             'emails_to_be_sent_to': emails_to_be_sent_to
@@ -258,6 +259,14 @@ def email_registrar(data):
         f'{session["application_id"]}'),
         contents='Please find attached an absentee ballot request ' +
         f'submitted on behalf of {session["name"]} - from eAbsentee.org',
+        attachments=session['output_file']
+    )
+
+def email_voter(data):
+    yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
+        to=(data['email']),
+        subject=('Absentee Ballot Request'),
+        contents='Please find attached a copy of your absentee ballot request. This request will be digitally processed by your local registrar and you will receive an absentee ballot in the mail after some time. You can check on the status of your application by visiting the state elections website at https://www.elections.virginia.gov.',
         attachments=session['output_file']
     )
 
