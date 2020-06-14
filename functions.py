@@ -413,23 +413,22 @@ def get_ids_and_counties(group_code):
     with open('static/groups.json') as file:
         groups = json.load(file)
         group = ''
+        # If a group has counties which it has selected to limit its form to
         if group_code in groups:
             group = groups[group_code]
-
-        # If a group has counties which it has selected to limit its form to
             if 'county_nums' in group:
                 with open('static/localities_info.json') as localities_file:
                     localities = json.load(localities_file)
                     for county_num_id in group['county_nums']:
                         ids_and_names[county_num_id] = localities[county_num_id]['locality']
+                print(ids_and_names)
                 return ids_and_names
         # Otherwise, return all counties found in the group 'allcounties'
-        else:
-            with open('static/localities_info.json') as localities_file:
-                localities = json.load(localities_file)
-                for county_num_id in groups['allcounties']['county_nums']:
-                    ids_and_names[county_num_id] = localities[county_num_id]['locality']
-            return ids_and_names
+        with open('static/localities_info.json') as localities_file:
+            localities = json.load(localities_file)
+            for county_num_id in groups['allcounties']['county_nums']:
+                ids_and_names[county_num_id] = localities[county_num_id]['locality']
+        return ids_and_names
 
 
 
