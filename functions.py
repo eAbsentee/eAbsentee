@@ -33,7 +33,10 @@ def application_process(request, group_code_form=None):
             subject='Broken spreadsheet'
         )
     email_registrar(data)
-    email_voter(data)
+    try:
+        email_voter(data)
+    except:
+        pass
 
 
 def parse_data(request, group_code_form):
