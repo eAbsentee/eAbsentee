@@ -41,6 +41,9 @@
     "FCDC": {
         "email": "jack@fairfaxdemocrats.org"
     },
+    "FCDCVotingInfo": {
+        "email": "jayohai@cox.net toddthurwachter@cox.net jack@fairfaxdemocrats.org"
+    },
     "GC4Ce": {
         "email": "donald.brownlee@gmail.com"
     },
@@ -89,6 +92,9 @@
     "MCDCw": {
         "email": "jenni_gallagher@yahoo.com"
     },
+    "MCp": {
+        "email": "jenni_gallagher@yahoo.com"
+    },
     "MVDCe": {
         "email": "VoteAbsentee@QueNosPasa.org"
     },
@@ -97,6 +103,18 @@
     },
     "MVDCw": {
         "email": "VoteAbsentee@QueNosPasa.org"
+    },
+    "NNe": {
+        "email": "networkvirginia@gmail.com"
+    },
+    "NNf": {
+        "email": "networkvirginia@gmail.com"
+    },
+    "NNi": {
+        "email": "networkvirginia@gmail.com"
+    },
+    "NNw": {
+        "email": "networkvirginia@gmail.com"
     },
     "NextGenVA": {
         "email": "adin.lenchner@nextgenamerica.org"
@@ -131,6 +149,9 @@
     "VHDw": {
         "email": "erin@vahousedems.org"
     },
+    "VOTE2020": {
+        "email": "jayohai@cox.net"
+    },
     "VOTEJUN": {
         "email": "jayohai@cox.net toddthurwachter@hotmail.com jack@fairfaxdemocrats.org"
     },
@@ -139,6 +160,18 @@
     },
     "VW4C": {
         "email": "field1@vangieforcongress.com"
+    },
+    "ZMe": {
+        "email": "info@zainabmohsini.com"
+    },
+    "ZMf": {
+        "email": "info@zainabmohsini.com"
+    },
+    "ZMi": {
+        "email": "info@zainabmohsini.com"
+    },
+    "ZMw": {
+        "email": "info@zainabmohsini.com"
     },
     "allcounties": {
         "county_nums": [
@@ -296,6 +329,9 @@
     "ejc": {
         "email": "jayohai@cox.net"
     },
+    "emm": {
+        "email": "jayohai@cox.net"
+    },
     "esm": {
         "email": "jayohai@cox.net"
     },
@@ -305,17 +341,35 @@
     "f": {
         "email": "robert@eabsentee.org"
     },
+    "fcVOTE2020": {
+        "email": "jayohai@cox.net"
+    },
     "fcdc": {
         "county_nums": [
             "059"
         ],
         "email": "jack@fairfaxdemocrats.org"
     },
+    "fvre": {
+        "email": "jayohai@cox.net"
+    },
     "hvote2020": {
+        "email": "jayohai@cox.net"
+    },
+    "ivre": {
         "email": "jayohai@cox.net"
     },
     "lvote2020": {
         "email": "jayohai@cox.net"
+    },
+    "mcdce": {
+        "email": "jenni_gallagher@yahoo.com"
+    },
+    "mcdcw": {
+        "email": "jenni_gallagher@yahoo.com"
+    },
+    "mcp": {
+        "email": "jenni_gallagher@yahoo.com"
     },
     "mvote2020": {
         "email": "jayohai@cox.net"
@@ -356,6 +410,9 @@
     "tk": {
         "email": "izzie@takisforarlington.com"
     },
+    "ttvre": {
+        "email": "jayohai@cox.net"
+    },
     "vahdc": {
         "email": "trevor@vahousedems.org"
     },
@@ -366,6 +423,9 @@
         "email": "jayohaicox.net jack@fairfaxdemocrats.org toddthurwachter@hotmail.com"
     },
     "vvote2020": {
+        "email": "jayohai@cox.net"
+    },
+    "wvre": {
         "email": "jayohai@cox.net"
     },
     "yvote2020": {
