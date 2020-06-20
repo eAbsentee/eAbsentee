@@ -9,10 +9,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   <meta name="description" content="" />
   <meta name="keywords" content="" />
+
   <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}" />
   <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
   <link rel="stylesheet" href="{{ url_for('static', filename='css/newform.css') }}" />
+
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/functions_newform.js') }}"></script>
 </head>
 
 <body class="is-preload">
@@ -35,37 +40,46 @@
     </ul>
   </nav>
 
-
   <div class="container col-lg-8 col-md-8 col-sm-12 col-xs-12 mx-auto">
     <div class="card form-group border-dark mx-auto my-2">
       <div class="card-body rounded-top card-body col-lg-12" style="background: #0052A5">
         <h3 class="text-capitalize text-center text-light"> Apply for an Absentee Ballot </h3>
+        <h6 class="text-center text-light">Your Presidential Election absentee ballot will be mailed out in early September/October.</h6>
       </div>
       <form>
         <div class="card-body rounded-0 border-dark">
+
+          <!-- Personal Information -->
           <div class="form-group row mx-auto">
             <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <h3 class="text-center text-capitalize">Personal Information</h3>
             </div>
-            <div class="form-group mx-auto col-lg-6 col-md-6 col-sm-6 col-xs-12 text-center">
+            <div class="form-group mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
               <label>First Name</label>
               <input type="text" class="form-control" id="name_last">
               <!-- <small class="form-text text-muted">We'll never share your email with anyone else.</small> -->
             </div>
-            <div class="form-group mx-auto col-lg-6 col-md-6 col-sm-6 col-xs-12 text-center">
+            <div class="form-group mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
               <label>Last Name</label>
               <input type="text" class="form-control" id="name_last">
             </div>
-            <div class="form-group mx-auto col-lg-6 col-md-6 col-sm-6 col-xs-12 text-center">
+            <div class="form-group mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
               <label>Middle Name</label>
               <input type="text" class="form-control" id="name_last">
             </div>
-            <div class="form-group mx-auto col-lg-6 col-md-6 col-sm-6 col-xs-12 text-center">
-              <label>Suffix</label>
+            <div class="form-group mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
+              <label>Suffix (i.e. Jr., Sr., II)</label>
               <input type="text" class="form-control" id="name_suffix">
+            </div>
+            <div class="form-group mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
+              <label>SSN (Last 4 Digits)</label>
+              <input type="text" class="form-control" id="ssn">
+              <small class="form-text text-muted"><a href="/#faq_ssn">Why?</a></small>
             </div>
           </div>
         </div>
+
+        <!-- Registered to Vote Address -->
         <hr style="border-top: dotted 1px;" />
         <div class="card-body border-dark rounded-0">
           <div class="form-group row mx-auto">
@@ -92,14 +106,114 @@
               <label>Zip Code</label>
               <input type="text" class="form-control" id="zip">
             </div>
+
+            <div class="form-group mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
+              <label>I am registered to vote in:</label>
+              <select class="form-control" id="registered_county">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+              </select>
+            </div>
           </div>
         </div>
         <hr style="border-top: dotted 1px;" />
+
+        <!-- Where to Deliver? -->
         <div class="card-body border-dark rounded-0">
           <div class="form-group row mx-auto">
-            <!-- <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <h3 class="text-center text-capitalize">Where are you registered to vote?</h3>
-            </div> -->
+            <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <h3 class="text-center text-capitalize">Different Delivery Address</h3>
+            </div>
+            <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <p class="text-center">Would you like your absentee ballot to be delivered to the address where you're registered to vote, or a different address?</p>
+            </div>
+            <div class="form-check mx-auto">
+              <input class="form-check-input" type="radio" name="where_deliver" id="rtv_address" value="rtv_address" checked>
+              <label class="form-check-label" for="rtv_address">
+                Registered to Vote Address
+              </label>
+            </div>
+            <div class="form-check mx-auto">
+              <input class="form-check-input" type="radio" name="where_deliver" id="diff_address" value="diff_address">
+              <label class="form-check-label" for="diff_address">
+                Different Address
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group row mx-auto" id="different_address">
+            <div class="form-group mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
+              <label class=>Street Address</label>
+              <input type="text" class="form-control" id="different_address" autocomplete="new-password">
+            </div>
+            <div class="form-group mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+              <label>Apartment</label>
+              <input type="text" class="form-control" id="different_apt" autocomplete="new-password">
+            </div>
+            <div class="form-group mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
+              <label>City</label>
+              <input type="text" class="form-control" id="different_city" autocomplete="new-password">
+            </div>
+            <div class="form-group mx-auto col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center">
+              <label>State</label>
+              <input type="text" class="form-control" id="state" autocomplete="new-password">
+            </div>
+            <div class="form-group mx-auto col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center">
+              <label>Zip Code</label>
+              <input type="text" class="form-control" id="zip" autocomplete="new-password">
+            </div>
+          </div>
+          <hr style="border-top: dotted 1px;" />
+        </div>
+
+        <!-- Applicant Signature -->
+        <div class="card-body border-dark rounded-0">
+          <div class="form-group row mx-auto">
+            <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <h3 class="text-center text-capitalize">Assistance to Vote</h3>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="assistance_check" name="assistance_check">
+              <label class="form-check-label" for="assistance_check">
+                I will need assistance in completing my ballot due to a disability, blindness, or inability to read or write. If checked, assistance form will be provided with ballot.
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group row mx-auto" id="assistance_div">
+            <div class="form-group mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
+              <label class=>Assistant Street Address</label>
+              <input type="text" class="form-control" id="different_address" autocomplete="new-password">
+            </div>
+            <div class="form-group mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+              <label>Asisstant Apartment</label>
+              <input type="text" class="form-control" id="different_apt" autocomplete="new-password">
+            </div>
+            <div class="form-group mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
+              <label>Asisstant City</label>
+              <input type="text" class="form-control" id="different_city" autocomplete="new-password">
+            </div>
+            <div class="form-group mx-auto col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center">
+              <label>Asisstant State</label>
+              <input type="text" class="form-control" id="state" autocomplete="new-password">
+            </div>
+            <div class="form-group mx-auto col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center">
+              <label>Asisstant Zip Code</label>
+              <input type="text" class="form-control" id="zip" autocomplete="new-password">
+            </div>
+          </div>
+
+          <hr style="border-top: dotted 1px;" />
+        </div>
+
+        <!-- More Info -->
+        <div class="card-body border-dark rounded-0">
+          <div class="form-group row mx-auto">
+            <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <h3 class="text-center text-capitalize">More Info</h3>
+            </div>
             <div class="form-group mx-auto col-lg-10 col-md-10 col-sm-12 col-xs-12 text-center">
               <label class=>Email Address</label>
               <input type="text" class="form-control" id="email">
@@ -111,6 +225,8 @@
           </div>
         </div>
         <hr style="border-top: dotted 1px;" />
+
+        <!-- Applicant Signature -->
         <div class="card-body border-dark rounded-0">
           <div class="form-group row mx-auto">
             <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -120,18 +236,19 @@
               <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
               <label class="form-check-label" for="defaultCheck1">
                 I swear/affirm, under felony penalty for making willfully false material statements, that by pressing the Submit button and submitting this information that (1) the information I have provided on this form is true, (2) I am not
-                  requesting a ballot or voting in any other jurisdiction in the U.S., except the jurisdiction to which this application relates, and (3) that I am the person named in this absentee application.
+                requesting a ballot or voting in any other jurisdiction in the U.S., except the jurisdiction to which this application relates, and (3) that I am the person named in this absentee application.
               </label>
             </div>
-              <div class="form-group mx-auto col-lg-10 col-md-10 col-sm-12 col-xs-12 text-center">
-                <label class=>Applicant Name</label>
-                <input type="text" class="form-control" id="signature">
-              </div>
-
+            <div class="form-group mx-auto col-lg-10 col-md-10 col-sm-12 col-xs-12 text-center">
+              <label class=>Applicant Name</label>
+              <input type="text" class="form-control" id="signature" name="signature">
+            </div>
           </div>
         </div>
-        <hr style="border-top: dotted 1px;" />
-        <div class="card border-dark rounded-0 w-50 mx-auto" style="background: #0052A5">
+
+
+        <!-- <hr style="border-top: dotted 1px;" /> -->
+        <div class="card border-dark rounded-bottom w-50 mx-auto" style="background: #0052A5">
           <button type="submit" class="form-control btn text-light">Submit</button>
         </div>
 
@@ -142,8 +259,8 @@
 
   <!-- Footer -->
   <footer id="footer" style="background: black">
-    <div class="copyright">
-      <p style="color:white;"> Contact us at <a href="mailto:contact@eabsentee.org">contact@eabsentee.org</a> | Paid for and authorized by Vote Absentee Virginia </p>
+    <div class="mx-auto text-center">
+      <small style="color:white;"> Paid for and Authorized by Vote Absentee Virginia </small>
     </div>
   </footer>
 
