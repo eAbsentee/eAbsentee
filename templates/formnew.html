@@ -44,7 +44,7 @@
     <div class="card form-group border-dark mx-auto my-2">
       <div class="card-body rounded-top card-body col-lg-12" style="background: #0052A5">
         <h3 class="text-capitalize text-center text-light"> Apply for an Absentee Ballot </h3>
-        <h6 class="text-center text-light">Your Presidential Election absentee ballot will be mailed out in early September/October.</h6>
+        <h6 class="text-center text-light">Your November absentee ballot will be mailed out in early September/October.</h6>
       </div>
       <form>
         <div class="card-body rounded-0 border-dark">
@@ -56,12 +56,12 @@
             </div>
             <div class="form-group mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
               <label>First Name</label>
-              <input type="text" class="form-control" id="name_last">
+              <input type="text" class="form-control" id="name_last" required>
               <!-- <small class="form-text text-muted">We'll never share your email with anyone else.</small> -->
             </div>
             <div class="form-group mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
               <label>Last Name</label>
-              <input type="text" class="form-control" id="name_last">
+              <input type="text" class="form-control" id="name_last" required>
             </div>
             <div class="form-group mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
               <label>Middle Name</label>
@@ -71,9 +71,9 @@
               <label>Suffix (i.e. Jr., Sr., II)</label>
               <input type="text" class="form-control" id="name_suffix">
             </div>
-            <div class="form-group mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
+            <div class="form-group mx-auto col-lg-4 col-md-4 col-sm-6 col-xs-6 text-center">
               <label>SSN (Last 4 Digits)</label>
-              <input type="text" class="form-control" id="ssn">
+              <input type="password" class="form-control" id="ssn" minlength="4" maxlength="4" pattern="^([0-9]{4})$" autocomplete="new-password" required digits>
               <small class="form-text text-muted"><a href="/#faq_ssn">Why?</a></small>
             </div>
           </div>
@@ -88,7 +88,7 @@
             </div>
             <div class="form-group mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
               <label class=>Street Address</label>
-              <input type="text" class="form-control" id="address">
+              <input type="text" class="form-control" id="address" autocomplete="street-address" required>
             </div>
             <div class="form-group mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
               <label>Apartment</label>
@@ -96,15 +96,15 @@
             </div>
             <div class="form-group mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
               <label>City</label>
-              <input type="text" class="form-control" id="city">
+              <input type="text" class="form-control" id="city" autocomplete="address-level2" required >
             </div>
             <div class="form-group mx-auto col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center">
               <label>State</label>
-              <input type="text" class="form-control" id="state" value="Virginia" placeholder="Virginia" disabled>
+              <input type="text" class="form-control" id="state" value="Virginia" placeholder="Virginia" disabled required>
             </div>
             <div class="form-group mx-auto col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center">
               <label>Zip Code</label>
-              <input type="text" class="form-control" id="zip">
+              <input type="text" class="form-control" id="zip" minlength="5" maxlength="5" pattern="^(\d{5})$" digits autocomplete="postal-code" required>
             </div>
 
             <div class="form-group mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
@@ -114,6 +114,7 @@
                 <option>2</option>
                 <option>3</option>
                 <option>4</option>
+                
               </select>
             </div>
           </div>
@@ -126,10 +127,16 @@
             <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <h3 class="text-center text-capitalize">Different Delivery Address</h3>
             </div>
-            <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <!-- <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <p class="text-center">Would you like your absentee ballot to be delivered to the address where you're registered to vote, or a different address?</p>
+            </div> -->
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="different_address_check" name="where_deliver">
+              <label class="form-check-label" for="different_address_check">
+                I'd like for my absentee ballot to be delivered to a different address than the address where I'm registered to vote.
+              </label>
             </div>
-            <div class="form-check mx-auto">
+            <!-- <div class="form-check mx-auto">
               <input class="form-check-input" type="radio" name="where_deliver" id="rtv_address" value="rtv_address" checked>
               <label class="form-check-label" for="rtv_address">
                 Registered to Vote Address
@@ -140,7 +147,7 @@
               <label class="form-check-label" for="diff_address">
                 Different Address
               </label>
-            </div>
+            </div> -->
           </div>
 
           <div class="form-group row mx-auto" id="different_address">
