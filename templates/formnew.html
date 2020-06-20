@@ -3,115 +3,157 @@
 <html>
 
 <head>
-      {{ favicon() }}
-      <title>eAbsentee</title>
-      <meta charset="utf-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-      <meta name="description" content="" />
-      <meta name="keywords" content="" />
-      <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}" />
-      <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+  {{ favicon() }}
+  <title>eAbsentee</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <meta name="description" content="" />
+  <meta name="keywords" content="" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/newform.css') }}" />
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
 
 <body class="is-preload">
 
-      <!-- Header -->
-      <header id="header">
-            <a class="logo" href="/">eAbsentee</a>
-            <nav>
-                  <a href="#menu">Menu</a>
-            </nav>
-      </header>
 
-      <!-- Nav -->
-      <nav id="menu">
-            <ul class="links">
-                  <li><a href="/">Home</a></li>
-                  <li><a href="/form">Apply</a></li>
-                  <li><a href="/about">About</a></li>
-            </ul>
-      </nav>
+  <!-- Header -->
+  <header id="header">
+    <a class="logo" href="/">eAbsentee</a>
+    <nav>
+      <a href="#menu">Menu</a>
+    </nav>
+  </header>
 
-      <!-- Banner -->
-      <section id="faq">
-            <div class="inner">
-              <!-- Form -->
-               </br>
-                <h3>Form</h3>
-                <form method="post" action="#">
-                  <div class="row gtr-uniform">
-                    <div class="col-6 col-12-xsmall">
-                      <input type="text" name="name" id="name" value="" placeholder="Name" />
-                    </div>
-                    <div class="col-6 col-12-xsmall">
-                      <input type="email" name="email" id="email" value="" placeholder="Email" />
-                    </div>
-                    <!-- Break -->
-                    <div class="col-12">
-                      <select name="category" id="category">
-                        <option value="">- Select -</option>
-                        <option value="alpha">Option alpha</option>
-                        <option value="beta">Option beta</option>
-                        <option value="gamma">Option gamma</option>
-                        <option value="delta">Option delta</option>
-                        <option value="epsilon">Option epsilon</option>
-                        <option value="zeta">Option zeta</option>
-                        <option value="eta">Option eta</option>
-                        <option value="theta">Option theta</option>
-                      </select>
-                    </div>
-                    <!-- Break -->
-                    <div class="col-4 col-12-small">
-                      <input type="radio" id="radio-alpha" name="radio" checked>
-                      <label for="radio-alpha">Radio alpha</label>
-                    </div>
-                    <div class="col-4 col-12-small">
-                      <input type="radio" id="radio-beta" name="radio">
-                      <label for="radio-beta">Radio beta</label>
-                    </div>
-                    <div class="col-4 col-12-small">
-                      <input type="radio" id="radio-gamma" name="radio">
-                      <label for="radio-gamma">Radio gamma</label>
-                    </div>
-                    <!-- Break -->
-                    <div class="col-6 col-12-small">
-                      <input type="checkbox" id="checkbox-alpha" name="checkbox">
-                      <label for="checkbox-alpha">Checkbox alpha</label>
-                    </div>
-                    <div class="col-6 col-12-small">
-                      <input type="checkbox" id="checkbox-beta" name="checkbox" checked>
-                      <label for="checkbox-beta">Checkbox beta</label>
-                    </div>
-                    <!-- Break -->
-                    <div class="col-12">
-                      <textarea name="textarea" id="textarea" placeholder="Alpha beta gamma delta" rows="6"></textarea>
-                    </div>
-                    <!-- Break -->
-                    <div class="col-12">
-                      <ul class="actions">
-                        <li><input type="submit" value="Submit Form" class="primary" /></li>
-                        <li><input type="reset" value="Reset" /></li>
-                      </ul>
-                    </div>
-                  </div>
-                </form>
+  <!-- Nav -->
+  <nav id="menu">
+    <ul class="links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/form">Apply</a></li>
+      <li><a href="/about">About</a></li>
+    </ul>
+  </nav>
+
+
+  <div class="container col-lg-8 col-md-8 col-sm-12 col-xs-12 mx-auto">
+    <div class="card form-group border-dark mx-auto my-2">
+      <div class="card-body rounded-top card-body col-lg-12" style="background: #0052A5">
+        <h3 class="text-capitalize text-center text-light"> Apply for an Absentee Ballot </h3>
+      </div>
+      <form>
+        <div class="card-body rounded-0 border-dark">
+          <div class="form-group row mx-auto">
+            <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <h3 class="text-center text-capitalize">Personal Information</h3>
             </div>
-      </section>
-
-      <!-- Footer -->
-      <footer id="footer">
-            <div class="copyright">
-                  <p style="color:white;"> Contact us at <a href="mailto:contact@eabsentee.org">contact@eabsentee.org</a> | Paid for and authorized by Vote Absentee Virginia </p>
+            <div class="form-group mx-auto col-lg-6 col-md-6 col-sm-6 col-xs-12 text-center">
+              <label>First Name</label>
+              <input type="text" class="form-control" id="name_last">
+              <!-- <small class="form-text text-muted">We'll never share your email with anyone else.</small> -->
             </div>
-      </footer>
-      <!-- Scripts -->
+            <div class="form-group mx-auto col-lg-6 col-md-6 col-sm-6 col-xs-12 text-center">
+              <label>Last Name</label>
+              <input type="text" class="form-control" id="name_last">
+            </div>
+            <div class="form-group mx-auto col-lg-6 col-md-6 col-sm-6 col-xs-12 text-center">
+              <label>Middle Name</label>
+              <input type="text" class="form-control" id="name_last">
+            </div>
+            <div class="form-group mx-auto col-lg-6 col-md-6 col-sm-6 col-xs-12 text-center">
+              <label>Suffix</label>
+              <input type="text" class="form-control" id="name_suffix">
+            </div>
+          </div>
+        </div>
+        <hr style="border-top: dotted 1px;" />
+        <div class="card-body border-dark rounded-0">
+          <div class="form-group row mx-auto">
+            <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <h3 class="text-center text-capitalize">Where are you registered to vote?</h3>
+            </div>
+            <div class="form-group mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
+              <label class=>Street Address</label>
+              <input type="text" class="form-control" id="address">
+            </div>
+            <div class="form-group mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+              <label>Apartment</label>
+              <input type="text" class="form-control" id="apt">
+            </div>
+            <div class="form-group mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
+              <label>City</label>
+              <input type="text" class="form-control" id="city">
+            </div>
+            <div class="form-group mx-auto col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center">
+              <label>State</label>
+              <input type="text" class="form-control" id="state" value="Virginia" placeholder="Virginia" disabled>
+            </div>
+            <div class="form-group mx-auto col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center">
+              <label>Zip Code</label>
+              <input type="text" class="form-control" id="zip">
+            </div>
+          </div>
+        </div>
+        <hr style="border-top: dotted 1px;" />
+        <div class="card-body border-dark rounded-0">
+          <div class="form-group row mx-auto">
+            <!-- <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <h3 class="text-center text-capitalize">Where are you registered to vote?</h3>
+            </div> -->
+            <div class="form-group mx-auto col-lg-10 col-md-10 col-sm-12 col-xs-12 text-center">
+              <label class=>Email Address</label>
+              <input type="text" class="form-control" id="email">
+            </div>
+            <div class="form-group mx-auto col-lg-10 col-md-10 col-sm-12 col-xs-12 text-center">
+              <label>Phone Number</label>
+              <input type="text" class="form-control" id="phonenumber">
+            </div>
+          </div>
+        </div>
+        <hr style="border-top: dotted 1px;" />
+        <div class="card-body border-dark rounded-0">
+          <div class="form-group row mx-auto">
+            <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <h3 class="text-center text-capitalize">Applicant Signature</h3>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+              <label class="form-check-label" for="defaultCheck1">
+                I swear/affirm, under felony penalty for making willfully false material statements, that by pressing the Submit button and submitting this information that (1) the information I have provided on this form is true, (2) I am not
+                  requesting a ballot or voting in any other jurisdiction in the U.S., except the jurisdiction to which this application relates, and (3) that I am the person named in this absentee application.
+              </label>
+            </div>
+              <div class="form-group mx-auto col-lg-10 col-md-10 col-sm-12 col-xs-12 text-center">
+                <label class=>Applicant Name</label>
+                <input type="text" class="form-control" id="signature">
+              </div>
 
-      <!-- Scripts -->
-      <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
-      <script src="{{ url_for('static', filename='js/browser.min.js') }}"></script>
-      <script src="{{ url_for('static', filename='js/breakpoints.min.js')}}">  </script>
-      <script src="{{ url_for('static', filename='js/util.min.js') }}"></script>
-      <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+          </div>
+        </div>
+        <hr style="border-top: dotted 1px;" />
+        <div class="card border-dark rounded-0 w-50 mx-auto" style="background: #0052A5">
+          <button type="submit" class="form-control btn text-light">Submit</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+  <footer id="footer" style="background: black">
+    <div class="copyright">
+      <p style="color:white;"> Contact us at <a href="mailto:contact@eabsentee.org">contact@eabsentee.org</a> | Paid for and authorized by Vote Absentee Virginia </p>
+    </div>
+  </footer>
+
+
+  <!-- Scripts -->
+  <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/browser.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/breakpoints.min.js')}}"> </script>
+  <script src="{{ url_for('static', filename='js/util.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 
 </body>
 
