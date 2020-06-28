@@ -25,6 +25,8 @@ def application_process(request, group_code_form=None):
     data = parse_data(request, group_code_form=group_code_form)
     set_session_keys(data)
     write_pdf(data)
+
+    # Please fix these two jesus this is so ugly
     try:
         build_report_data(data)
     except:
@@ -38,6 +40,71 @@ def application_process(request, group_code_form=None):
     except:
         pass
 
+def new_form_application_process(request):
+    data = new_parse_data(request)
+    set_session_keys(data)
+    write_pdf(data)
+
+def new_parse_data(request):
+    data = {}  # Create outside of scope
+    with open('static/localities_info.json') as file:
+        localities = json.load(file)
+        data = {
+            'first_name': request.form['name_first'],
+            'middle_name': request.form['name_middle'],
+            'last_name': request.form['name_last'],
+            'suffix': request.form['name_suffix'],
+            'full_name': request.form['name_first'] + ' ' + request.form['name_middle'] + ' ' + request.form['name_last'],
+            'ssn': '  '.join(request.form['ssn']),
+            'registered_to_vote': localities[request.form['registered_county']]['locality'],
+            'email': request.form['email'],
+            'address': request.form['address'],
+            'apt': request.form['apt'],
+            'city': request.form['city'],
+            'zip_code': '   '.join(request.form['zip']),
+            'state': 'VA',
+            'full_address': request.form['address'] + ((' ' + request.form['apt']) if request.form['apt'] else ' ') + ', ' + request.form['city'] + ', ' + 'VA' +  ' ' + request.form['zip'],
+            'full_delivery_address': request.form['different_address'] +      ((' ' + request.form['different_apt']) if request.form['different_apt'] else ' ') + ', ' + request.form['different_city'] + ', ' + request.form['different_state'] +  ' ' + request.form['different_zip'] + ' ' + request.form['different_country'],
+            'delivery_address': request.form.get('different_address'),
+            'delivery_city': request.form.get('different_city'),
+            'delivery_apt': request.form.get('different_apt'),
+            'delivery_zip': '   '.join(request.form.get( 'different_zip').replace('-', '')),
+            'delivery_country': request.form['different_country'],
+            'delivery_state': request.form.get('different_state'),
+            'signature': '/S/ ' + request.form[
+                'signature'].replace('/S/', '', 1).strip(),
+            # 'first_three_telephone': '   '.join(phonenumber[0:3]),
+            # 'second_three_telephone': '   '.join(phonenumber[3:6]),
+            # 'last_four_telephone': '   '.join(phonenumber[6:10]),
+            # 'telephone': phonenumber,
+            'assistant_check': 'X' if request.form.get(
+                'assistance_check') == 'true' else '',
+            'assistant_fullname': request.form.get('assistant_name'),
+            'assistant_address': request.form.get('assistant_address'),
+            'assistant_signature': request.form.get('assistant_name'),
+            'assistant_apt': request.form.get('assistant_apt'),
+            'assistant_city': request.form.get('assistant_city'),
+            'assistant_state': request.form.get('assistant_state'),
+            'assistant_zip': '   '.join(request.form.get(
+                'assistant_zip').replace('-', '')),
+            'deliver_residence': 'X' if request.form.get(
+                'different_address_check') == 'false' else '',
+            'deliver_mailing': 'X' if request.form.get(
+                'different_address_check') == 'true' else '',
+            'county_check': 'X' if 'County' in localities[
+                request.form['registered_county']]['locality'] else '',
+            'city_check': 'X' if 'City' in localities[
+                request.form['registered_county']]['locality'] else '',
+            # 'date_today_month': '   '.join(today_date[0:2]),
+            # 'date_today_day': '   '.join(today_date[2:4]),
+            # 'date_today_year': '   '.join(today_date[4:6]),
+            'application_ip': request.environ.get('HTTP_X_REAL_IP', request.remote_addr),
+            # 'email_me': request.form.get('email_me'),
+            # 'group_code': group_code,
+            'registrar_address': localities[request.form['registered_county']]['email'],
+            # 'emails_to_be_sent_to': emails_to_be_sent_to
+        }
+    print(data)
 
 def parse_data(request, group_code_form):
     """ Parse data from the form using the Flask request object and convert it
@@ -135,15 +202,7 @@ def parse_data(request, group_code_form):
     data['dem_prim_check'] = ''
     data['rep_prim_check'] = ''
     data['gen_spec_check'] = ''
-    if request.form['election__type'] == 'DP':
-        data['dem_prim_check'] = 'X'
-        data['date_election_day'] = '   '.join('23')
-        data['date_election_month'] = '   '.join('06')
-    elif request.form['election__type'] == 'RP':
-        data['rep_prim_check'] = 'X'
-        data['date_election_day'] = '   '.join('23')
-        data['date_election_month'] = '   '.join('06')
-    elif request.form['election__type'] == 'PE':
+    if request.form['election__type'] == 'PE':
         data['gen_spec_check'] = 'X'
         data['date_election_day'] = '   '.join('03')
         data['date_election_month'] = '   '.join('11')
@@ -424,7 +483,6 @@ def get_ids_and_counties(group_code):
                     localities = json.load(localities_file)
                     for county_num_id in group['county_nums']:
                         ids_and_names[county_num_id] = localities[county_num_id]['locality']
-                print(ids_and_names)
                 return ids_and_names
         # Otherwise, return all counties found in the group 'allcounties'
         with open('static/localities_info.json') as localities_file:
