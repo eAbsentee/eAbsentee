@@ -1,0 +1,37 @@
+{% from "macros.html" import favicon %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="{{ url_for('static', filename='js/tempforms.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/tempforms.css') }}">
+  </head>
+
+  <body>
+    <div class="content-white us-autocomplete-pro-example">
+      <div class="container">
+        <div class="us-autocomplete-pro-input-container">
+          <input id="us-autocomplete-pro-address-input" placeholder="Enter Address" />
+          <ul class="us-autocomplete-pro-menu" style="display:none;"></ul>
+        </div>
+        <div class="data-container">
+          <div class="sub-container inline">
+            <div class="data inline align-left">
+              <span id="data-street"></span><br>
+              <span id="data-city-state-zip"></span>
+            </div>
+          </div>
+          <div class="sub-container inline">
+            <div class="data inline align-left">
+              <span id="data-lat"></span><br>
+              <span id="data-lon"></span><br>
+              <span id="data-county"></span><br>
+              <span id="data-time-zone"></span>
+            </div>
+          </div>
+        </div>
+    </div>
+  </body>
+</html>

@@ -1,7 +1,9 @@
 // remap jQuery to $
+
 (function($) {
   /* trigger when page is ready */
   $(document).ready(function() {
+    
     // Hide different delivery address by default
     // Show it if a change is found in where to deliver
     $("#different_address").hide();
@@ -23,7 +25,7 @@
         $("#assistance_div").slideUp();
       }
     });
-    
+
     // If an assistant has signed the form, note that in the applicant signature field.
     $("input[name=\"assistant__signed\"]").change(function() {
       if (this.checked) {
@@ -67,9 +69,5 @@
   $(window).load(function() {
     $("input:submit").attr("enabled", true);
   });
-
-  // $(window).resize(function() {
-  //
-  // });
 
 })(window.jQuery);

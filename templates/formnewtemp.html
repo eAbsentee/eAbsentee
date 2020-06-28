@@ -13,11 +13,18 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}" />
   <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
   <link rel="stylesheet" href="{{ url_for('static', filename='css/newform.css') }}" />
-
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/tempforms.css') }}">
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
   <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
   <script src="{{ url_for('static', filename='js/functions_newform.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/tempforms.js') }}"></script>
+
+
+
+
 </head>
 
 <body class="is-preload">
@@ -38,14 +45,6 @@
     </ul>
   </nav>
 
-
-
-  <input type="text" oninput="autocomplete()">
-  <script type="text/javascript">
-    function autocomplete() {
-      alert("The value of the input field was changed.");
-    }
-  </script>
 
   <div class="container col-lg-8 col-md-8 col-sm-12 col-xs-12 mx-auto">
     <div class="card form-group border-dark mx-auto my-2">
@@ -93,29 +92,36 @@
               <h3 class="text-center text-capitalize">Where are you registered to vote?</h3>
             </div>
             <div class="form-group mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
-              <label class=>Street Address</label>
-              <input type="text" class="form-control" id="address" autocomplete="street-address" required>
+              <label>Address Autocomplete</label>
+              <input type="text" class="form-control" id="us-autocomplete-pro-address-input" name="us-autocomplete-pro-address-input" autocomplete="new-password">
+              <ul class="us-autocomplete-pro-menu" style="display:none; position:absolute; z-index:2;"></ul>
+            </div>
+            <div class="form-group mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
+              <label>Street Address</label>
+              <input type="text" class="form-control" id="address" name="address" autocomplete="street-address" required>
             </div>
             <div class="form-group mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
               <label>Apartment</label>
-              <input type="text" class="form-control" id="apt">
+              <input type="text" class="form-control" id="apt" name="apt">
             </div>
-            <div class="form-group mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
+            <div class="form-group mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
               <label>City</label>
-              <input type="text" class="form-control" id="city" autocomplete="address-level2" required>
+              <input type="text" class="form-control" id="city" name="city" autocomplete="address-level2" required>
             </div>
-            <div class="form-group mx-auto col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center">
-              <label>State</label>
-              <input type="text" class="form-control" id="state" value="Virginia" placeholder="Virginia" disabled required>
-            </div>
-            <div class="form-group mx-auto col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center">
+            <!-- <div class="form-group mx-auto col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center">
+              <label for="state">State</label>
+              <select class="form-control" id="state" name="state">
+                <option value="VA" selected>Virginia</option>
+              </select>
+            </div> -->
+            <div class="form-group mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
               <label>Zip Code</label>
-              <input type="text" class="form-control" id="zip" minlength="5" maxlength="5" pattern="^(\d{5})$" digits autocomplete="postal-code" required>
+              <input type="text" class="form-control" id="zip" name="zip" minlength="5" maxlength="5" pattern="^(\d{5})$" digits autocomplete="postal-code" required>
             </div>
 
             <div class="form-group mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
               <label>I am registered to vote in:</label>
-              <select class="form-control" id="registered_county">
+              <select class="form-control" id="registered_county" name="registered_county">
                 <option value="" selected>Choose your residence&hellip;</option>
                 {% for id, name in ids_and_counties.items() %}
                 <option value={{id}}> {{ name }} </option>
@@ -134,8 +140,8 @@
               <h3 class="text-center text-capitalize">Different Delivery Address</h3>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="different_address_check" name="where_deliver">
-              <label class="form-check-label" for="different_address_check">
+              <input class="form-check-input" type="checkbox" value="" id="where_deliver" name="where_deliver">
+              <label class="form-check-label" for="where_deliver">
                 I'd like for my absentee ballot to be delivered to a different address than the address where I'm registered to vote.
               </label>
             </div>
@@ -144,23 +150,23 @@
           <div class="form-group row mx-auto" id="different_address">
             <div class="form-group mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
               <label class=>Street Address</label>
-              <input type="text" class="form-control" id="different_address" autocomplete="new-password">
+              <input type="text" class="form-control" id="different_address" name="different_address" autocomplete="new-password">
             </div>
             <div class="form-group mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
               <label>Apartment</label>
-              <input type="text" class="form-control" id="different_apt" autocomplete="new-password">
+              <input type="text" class="form-control" id="different_apt" name="different_apt" autocomplete="new-password">
             </div>
             <div class="form-group mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
               <label>City</label>
-              <input type="text" class="form-control" id="different_city" autocomplete="new-password">
+              <input type="text" class="form-control" id="different_city" name="different_city" autocomplete="new-password">
             </div>
             <div class="form-group mx-auto col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center">
               <label>State</label>
-              <input type="text" class="form-control" id="different_state" autocomplete="new-password">
+              <input type="text" class="form-control" id="different_state" name="different_state" autocomplete="new-password">
             </div>
             <div class="form-group mx-auto col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center">
               <label>Zip Code</label>
-              <input type="text" class="form-control" id="different_zip" autocomplete="new-password">
+              <input type="text" class="form-control" id="different_zip" name="different_zip" autocomplete="new-password">
             </div>
           </div>
           <hr style="border-top: dotted 1px;" />
@@ -183,27 +189,27 @@
           <div class="form-group row mx-auto" id="assistance_div">
             <div class="form-group mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
               <label class=>Assistant Full Name</label>
-              <input type="text" class="form-control" id="assistant_name" autocomplete="new-password">
+              <input type="text" class="form-control" id="assistant_name" name="assistant_name" autocomplete="new-password">
             </div>
             <div class="form-group mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
               <label class=>Assistant Street Address</label>
-              <input type="text" class="form-control" id="assistant_address" autocomplete="new-password">
+              <input type="text" class="form-control" id="assistant_address" name="assistant_address" autocomplete="new-password">
             </div>
             <div class="form-group mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
               <label>Assistant Apartment</label>
-              <input type="text" class="form-control" id="assistant_apt" autocomplete="new-password">
+              <input type="text" class="form-control" id="assistant_apt" name="assistant_apt" autocomplete="new-password">
             </div>
             <div class="form-group mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
               <label>Assistant City</label>
-              <input type="text" class="form-control" id="assistant_city" autocomplete="new-password">
+              <input type="text" class="form-control" id="assistant_city" name="assistant_city" autocomplete="new-password">
             </div>
             <div class="form-group mx-auto col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center">
               <label>Assistant State</label>
-              <input type="text" class="form-control" id="assistant_state" autocomplete="new-password">
+              <input type="text" class="form-control" id="assistant_state" name="assistant_state" autocomplete="new-password">
             </div>
             <div class="form-group mx-auto col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center">
               <label>Assistant Zip Code</label>
-              <input type="text" class="form-control" id="assistant_zip" autocomplete="new-password minlength=" 5" maxlength="5" pattern="^(\d{5})$" digits">
+              <input type="text" class="form-control" id="assistant_zip" name="assistant_zip" autocomplete="new-password minlength=" 5" maxlength="5" pattern="^(\d{5})$" digits">
             </div>
             <div class="form-check">
               <input class="form-check-input" type="checkbox" value="" id="assistance_signature_check" name="assistance_signature_check">
@@ -225,11 +231,11 @@
             </div>
             <div class="form-group mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
               <label class=>Email Address</label>
-              <input type="text" class="form-control" id="email">
+              <input type="text" class="form-control" id="email" name="email">
             </div>
             <div class="form-group mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
               <label>Phone Number</label>
-              <input type="text" class="form-control" id="phonenumber">
+              <input type="text" class="form-control" id="phonenumber" name="phonenumber">
             </div>
           </div>
         </div>
@@ -242,8 +248,8 @@
               <h3 class="text-center text-capitalize">Applicant Signature</h3>
             </div>
             <div class="form-check">
-              <input class="form-check-input form-control" type="checkbox" value="" id="defaultCheck1">
-              <label class="form-check-label" for="defaultCheck1">
+              <input class="form-check-input form-control" type="checkbox" value="" id="sig_check" name="sig_check">
+              <label class="form-check-label" for="sig_check">
                 I swear/affirm, under felony penalty for making willfully false material statements, that by pressing the Submit button and submitting this information that (1) the information I have provided on this form is true, (2) I am not
                 requesting a ballot or voting in any other jurisdiction in the U.S., except the jurisdiction to which this application relates, and (3) that I am the person named in this absentee application.
               </label>

@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, session
 from flask import send_file, make_response, send_from_directory
-from functions import application_process, add_to_groups, get_ids_and_counties, email_report_alltime_api
+from functions import application_process, add_to_groups, get_ids_and_counties, email_report_alltime_api, new_form_application_process
 from fcdc_functions import add_group
 from keys import SECRET_KEY, API_KEY, API_KEY_FCDC
 import os
@@ -134,8 +134,17 @@ def form_group(group):
 
 @app.route('/newform/', methods=['POST', 'GET'])
 def new_form():
-    if request.method == 'GET':
-        return render_template('formnew.html')
+    if request.method == 'POST':
+        # print('yeet')
+        print(request.form)
+        new_form_application_process(request)
+        return redirect('/confirmation/')
+    else:
+        return render_template('formnewtemp.html', ids_and_counties=get_ids_and_counties('allcounties'))
+
+@app.route('/temp/', methods=['POST', 'GET'])
+def temp():
+    return render_template('temp.html')
 
 ''' Cookie Routes '''
 @app.route('/g/<group>/')
