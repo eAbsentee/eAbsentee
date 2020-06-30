@@ -134,7 +134,7 @@ reports/*
 
 credentials.json
 storage.json
-groups.json
+static/groups.json
 
 # PythonAnywhere
 activate/
