@@ -438,7 +438,7 @@ def create_org_report(file_path):
 
 
 def add_to_groups(request):
-    call("git pull", shell=True)
+    # call("git pull", shell=True)
     if request.form.get('api_key') != API_KEY:
         return
 
@@ -465,9 +465,9 @@ def add_to_groups(request):
             with open('static/groups.json', 'w') as f:
                 json.dump(groups, f, indent=4, sort_keys=True)
 
-    call("git add .", shell=True)
-    call("git commit -m \"Added new /group\"", shell=True)
-    call("git push origin master", shell=True)
+    # call("git add .", shell=True)
+    # call("git commit -m \"Added new /group\"", shell=True)
+    # call("git push origin master", shell=True)
 
 
 def get_ids_and_counties(group_code):
