@@ -36,9 +36,10 @@ $(function() {
       dataType: "jsonp",
       success: function(data) {
         console.log(data);
-        $("#address").html(data[0].delivery_line_1);
-        $("#zip").html(data[0].components.zipcode);
-        $("#city").html(data[0].components.city_name);;
+        // $("#address").html(data[0].delivery_line_1);
+        $('input[name=address]').val(data[0].delivery_line_1);
+        $('input[name=zip]').val(data[0].components.zipcode);
+        $('input[name=city]').val(data[0].components.city_name);
       },
       error: function(error) {
         return error;
@@ -48,9 +49,9 @@ $(function() {
 
   // Understood
   function clearAddressData() {
-    $("#address").empty();
-    $("#zip").empty();
-    $("#city").empty();
+    $("#address").val('');
+    $("#zip").val('');
+    $("#city").val('');
   }
 
   // Understood
@@ -107,7 +108,6 @@ $(function() {
         $(".us-autocomplete-pro-menu").hide();
         getSingleAddressData(address);
       } else {
-        console.log('yeet');
         $("#us-autocomplete-pro-address-input").val(address[0] + " ");
         address.splice(1, 0, "*");
         address = address.join(" ");
@@ -118,8 +118,7 @@ $(function() {
 
   $("#us-autocomplete-pro-address-input").keyup(function(event) {
     var menu = $(".us-autocomplete-pro-menu");
-    // console.log($("#data-street")[0].innerText);
-    if ($("#address")[0].innerText) clearAddressData();
+    if ($("#address").val()) clearAddressData();
     if (event.key === "ArrowDown") {
       menu.focus();
       menu.menu("focus", null, menu.menu().find(".ui-menu-item"));
