@@ -45,13 +45,13 @@ def new_form_application_process(request, group_code_form=None):
     set_new_session_keys(data)
     new_write_pdf(data)
 
-    try:
-        build_report_data(data)
-    except:
-        yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
-            to='raunak@eAbsentee.org',
-            subject='Broken spreadsheet'
-        )
+    # try:
+    build_report_data(data)
+    # except:
+    #     yagmail.SMTP(GMAIL_SENDER_ADDRESS, GMAIL_SENDER_PASSWORD).send(
+    #         to='raunak@eAbsentee.org',
+    #         subject='Broken spreadsheet'
+    #     )
     email_registrar(data)
     try:
         email_voter(data)
@@ -106,10 +106,7 @@ def new_parse_data(request, group_code_form):
             'delivery_state': request.form.get('different_state'),
             'signature': '/S/ ' + request.form[
                 'signature'].replace('/S/', '', 1).strip(),
-            # 'first_three_telephone': '   '.join(phonenumber[0:3]),
-            # 'second_three_telephone': '   '.join(phonenumber[3:6]),
-            # 'last_four_telephone': '   '.join(phonenumber[6:10]),
-            # 'telephone': phonenumber,
+            'phonenumber': phonenumber,
             'assistant_check': 'X' if request.form.get(
                 'assistance_check') == 'true' else '',
             'assistant_fullname': request.form.get('assistant_name'),
@@ -132,12 +129,18 @@ def new_parse_data(request, group_code_form):
             'date_today_day': today_date[2:4],
             'date_today_year': today_date[4:6],
             'application_ip': request.environ.get('HTTP_X_REAL_IP', request.remote_addr),
-            # 'email_me': request.form.get('email_me'),
-            # 'group_code': group_code,
+            'group_code': group_code,
             'registrar_address': localities[request.form['registered_county']]['email'],
-            'emails_to_be_sent_to': emails_to_be_sent_to
+            'emails_to_be_sent_to': emails_to_be_sent_to,
+            'dem_prim_check': '',
+            'rep_prim_check': '',
+            'gen_spec_check': '',
+            'date_election_year': '   '.join('20'),
+            'date_election_day': '   '.join('03'),
+            'date_election_month': '   '.join('11'),
+            'full_election_date': '11 03 20'
         }
-    # print(data)
+
     return data
 
 def set_new_session_keys(data):
@@ -438,11 +441,11 @@ def build_report_data(data):
     personal_report_data = [
         data['full_name'],
         str(datetime.datetime.now().strftime('%m-%d-%y %H:%M:%S')),
-        data['reason_code'].replace(' ', ''),
-        data['supporting'],
+        # data['reason_code'].replace(' ', ''),
+        # data['supporting'],
         data['registered_to_vote'],
         data['email'],
-        data['telephone'],
+        data['phonenumber'],
         data['full_address'],
         data['full_delivery_address'],
         data['application_ip'],
@@ -457,7 +460,7 @@ def build_report_data(data):
         str(datetime.datetime.now().strftime('%m-%d-%y %H:%M:%S')),
         data['registered_to_vote'],
         data['email'],
-        data['telephone'],
+        data['phonenumber'],
         data['full_address'],
         data['full_delivery_address'],
         session['application_id'],
