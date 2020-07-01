@@ -136,11 +136,27 @@ def form_group(group):
 def new_form():
     if request.method == 'POST':
         # print('yeet')
-        print(request.form)
+        # print(request.form)
         new_form_application_process(request)
         return redirect('/confirmation/')
     else:
-        return render_template('formnewtemp.html', ids_and_counties=get_ids_and_counties('allcounties'))
+        if 'group' in request.cookies:
+            ids_and_counties = get_ids_and_counties(request.cookies.get('group'))
+            return render_template('formnewtemp.html', ids_and_counties=ids_and_counties)
+        else:
+            ids_and_counties = get_ids_and_counties('allcounties')
+            return render_template('formnewtemp.html', ids_and_counties=ids_and_counties)
+
+@app.route('/newform/<group>/', methods=['POST', 'GET'])
+def new_form_group(group):
+    if request.method == 'POST':
+        try:
+            application_process(request, group)
+        except(Exception):
+            return redirect('/error/')
+        return redirect('/confirmation/')
+    else:
+        return render_template('formnewtemp.html', ids_and_counties=get_ids_and_counties(group))
 
 @app.route('/temp/', methods=['POST', 'GET'])
 def temp():
