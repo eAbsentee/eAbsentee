@@ -108,29 +108,29 @@ unable to send the PDF, an error page is returned. '''
 def form():
     if request.method == 'POST':
         try:
-            application_process(request)
+            new_form_application_process(request)
         except(Exception):
             return redirect('/error/')
         return redirect('/confirmation/')
     else:
         if 'group' in request.cookies:
             ids_and_counties = get_ids_and_counties(request.cookies.get('group'))
-            return render_template('form.html', ids_and_counties=ids_and_counties)
+            return render_template('formnewtemp.html', ids_and_counties=ids_and_counties)
         else:
             ids_and_counties = get_ids_and_counties('allcounties')
-            return render_template('form.html', ids_and_counties=ids_and_counties)
+            return render_template('formnewtemp.html', ids_and_counties=ids_and_counties)
 
 
 @app.route('/form/<group>/', methods=['POST', 'GET'])
 def form_group(group):
     if request.method == 'POST':
         try:
-            application_process(request, group)
+            new_form_application_process(request, group)
         except(Exception):
             return redirect('/error/')
         return redirect('/confirmation/')
     else:
-        return render_template('form.html', ids_and_counties=get_ids_and_counties(group))
+        return render_template('formnewtemp.html', ids_and_counties=get_ids_and_counties(group))
 
 @app.route('/newform/', methods=['POST', 'GET'])
 def new_form():
