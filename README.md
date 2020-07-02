@@ -6,8 +6,8 @@ Absentee ballot request forms may be submitted electronically in Virginia under 
 
 ### How it Works
 
--   Creates JSON object from user input data
--   Uses `pdfrw` to populate a PDF template using Cartesian coordinates
+-   Creates dictionary from user input data
+-   Populate a PDF template using Cartesian coordinates
 -   Sends the PDF to the state registrar of the appropriate locality
 -   If the email bounces, it's sent to a catch email, where we then forward it to the appropriate registrar
 -   Tracks data for reporting to groups
@@ -34,13 +34,7 @@ API_KEY = '<API KEY>'
 
 Under construction
 
-## Contact
 
--   If you have questions, please email raunak@eAbsentee.org
+## Unit Tests
 
-
-## Testing
-
--   Verify form works
--   Verify data is logged in report
--   Verify all forms remain the same visually
+Under construction
