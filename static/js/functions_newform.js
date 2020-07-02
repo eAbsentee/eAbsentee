@@ -3,7 +3,7 @@
 (function($) {
   /* trigger when page is ready */
   $(document).ready(function() {
-    
+
     // Hide different delivery address by default
     // Show it if a change is found in where to deliver
     $("#different_address").hide();
@@ -23,6 +23,16 @@
       }
       else {
         $("#assistance_div").slideUp();
+      }
+    });
+
+    $("#change_div").hide();
+    $("input[name=\"change_check\"]").change(function() {
+      if ($('input[name="change_check"]:checked').length > 0) {
+        $("#change_div").slideDown();
+      }
+      else {
+        $("#change_div").slideUp();
       }
     });
 
