@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, session
 from flask import send_file, make_response, send_from_directory
-from functions import application_process, add_to_groups, get_ids_and_counties, email_report_alltime_api, new_form_application_process
+from functions import application_process, add_to_groups, get_ids_and_counties, email_report_alltime_api
 from fcdc_functions import add_group
 from keys import SECRET_KEY, API_KEY, API_KEY_FCDC
 import os
@@ -108,7 +108,7 @@ unable to send the PDF, an error page is returned. '''
 def form():
     if request.method == 'POST':
         try:
-            new_form_application_process(request)
+            application_process(request)
         except(Exception):
             return redirect('/error/')
         return redirect('/confirmation/')
@@ -117,38 +117,11 @@ def form():
             ids_and_counties = get_ids_and_counties(request.cookies.get('group'))
             return render_template('formnewtemp.html', ids_and_counties=ids_and_counties)
         else:
-            ids_and_counties = get_ids_and_counties('allcounties')
-            return render_template('formnewtemp.html', ids_and_counties=ids_and_counties)
+            return render_template('formnewtemp.html', ids_and_counties=get_ids_and_counties('allcounties'))
 
 
 @app.route('/form/<group>/', methods=['POST', 'GET'])
 def form_group(group):
-    if request.method == 'POST':
-        try:
-            new_form_application_process(request, group)
-        except(Exception):
-            return redirect('/error/')
-        return redirect('/confirmation/')
-    else:
-        return render_template('formnewtemp.html', ids_and_counties=get_ids_and_counties(group))
-
-@app.route('/newform/', methods=['POST', 'GET'])
-def new_form():
-    if request.method == 'POST':
-        # print('yeet')
-        # print(request.form)
-        new_form_application_process(request)
-        return redirect('/confirmation/')
-    else:
-        if 'group' in request.cookies:
-            ids_and_counties = get_ids_and_counties(request.cookies.get('group'))
-            return render_template('formnewtemp.html', ids_and_counties=ids_and_counties)
-        else:
-            ids_and_counties = get_ids_and_counties('allcounties')
-            return render_template('formnewtemp.html', ids_and_counties=ids_and_counties)
-
-@app.route('/newform/<group>/', methods=['POST', 'GET'])
-def new_form_group(group):
     if request.method == 'POST':
         try:
             application_process(request, group)
@@ -157,6 +130,11 @@ def new_form_group(group):
         return redirect('/confirmation/')
     else:
         return render_template('formnewtemp.html', ids_and_counties=get_ids_and_counties(group))
+
+@app.route('/oldform/', methods=['GET'])
+def old_form():
+    return render_template('form.html', ids_and_counties=get_ids_and_counties('allcounties'))
+
 
 @app.route('/temp/', methods=['POST', 'GET'])
 def temp():
