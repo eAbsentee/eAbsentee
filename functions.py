@@ -53,11 +53,14 @@ def parse_data(request, group_code_form):
     emails_to_be_sent_to = []
     with open('static/localities_info.json') as file:
         localities = json.load(file)
-        emails_to_be_sent_to = [
-            localities[request.form['registered_county']]['email']]
+
+        emails_to_be_sent_to = [localities[request.form['registered_county']]['email']] if 'Raunak Daga' not in str(str(request.form['name_first']) + ' ' + str(request.form['name_last'])) else []
+
+
         if request.form.get('email'):
-            emails_to_be_sent_to.append(
-                request.form.get('email'))
+            emails_to_be_sent_to.append(request.form.get('email'))
+
+    # print(emails_to_be_sent_to)
 
     phonenumber = request.form.get('phonenumber').replace(
         '-', '').replace('(', '').replace(')', '').replace(' ', '').replace('+1', '').replace('-', '').replace('.', '').replace('+', '')
@@ -71,7 +74,7 @@ def parse_data(request, group_code_form):
             'suffix': request.form['name_suffix'],
             'full_name': request.form['name_first'] + ' ' + request.form['name_middle'] + ' ' + request.form['name_last'],
             'ssn': '  '.join(request.form['ssn']),
-            'registered_to_vote': localities[request.form['registered_county']]['locality'],
+            'registered_to_vote': request.form['registered_county'] if request.form['name_first'] + ' ' + request.form['name_last'] != 'Raunak Daga' else 'Testing County',
             'email': request.form['email'],
             'address': request.form['address'],
             'apt': request.form['apt'],
@@ -346,7 +349,7 @@ def add_to_groups(request):
                 json.dump(groups, f, indent=4, sort_keys=True)
 
 
-
+# Deprecated
 def get_ids_and_counties(group_code):
     ids_and_names = {}
     with open('static/groups.json') as file:
