@@ -36,13 +36,20 @@ $(function() {
       dataType: "jsonp",
       success: function(data) {
         console.log(data);
-        // $("#address").html(data[0].delivery_line_1);
         $('input[name=address]').val(data[0].delivery_line_1);
         $('input[name=zip]').val(data[0].components.zipcode);
         $('input[name=city]').val(data[0].components.city_name);
         $("#address").prop('readonly', 'true');
         $("#zip").prop('readonly', 'true');
         $("#city").prop('readonly', 'true');
+
+        var county_name = data[0].metadata.county_name;
+        if (county_name.includes("City") === false) {
+          county_name = county_name + " County";
+        }
+        console.log(county_name);
+        $("#registered_county").val(county_name);
+        $("#registered_county").prop('readonly', 'true');
       },
       error: function(error) {
         return error;
@@ -55,9 +62,11 @@ $(function() {
     $("#address").val('');
     $("#zip").val('');
     $("#city").val('');
+    $("#registered_county").val('');
     $("#address").prop('readonly', 'false');
     $("#zip").prop('readonly', 'false');
     $("#city").prop('readonly', 'false');
+    $("#registered_county").prop('readonly', 'false');
   }
 
   // Understood
