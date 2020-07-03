@@ -3197,7 +3197,7 @@ ul.icons li .icon:before {
 }
 
 #banner:after {
-  background: linear-gradient(135deg, #ce1b28 0%, #111111 74%);
+  background: linear-gradient(135deg, #0052A5 0%, #ffffff 74%);
   content: ' ';
   display: block;
   height: 100%;
