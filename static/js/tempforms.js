@@ -40,6 +40,9 @@ $(function() {
         $('input[name=address]').val(data[0].delivery_line_1);
         $('input[name=zip]').val(data[0].components.zipcode);
         $('input[name=city]').val(data[0].components.city_name);
+        $("#address").prop('readonly', 'true');
+        $("#zip").prop('readonly', 'true');
+        $("#city").prop('readonly', 'true');
       },
       error: function(error) {
         return error;
@@ -52,6 +55,9 @@ $(function() {
     $("#address").val('');
     $("#zip").val('');
     $("#city").val('');
+    $("#address").prop('readonly', 'false');
+    $("#zip").prop('readonly', 'false');
+    $("#city").prop('readonly', 'false');
   }
 
   // Understood
