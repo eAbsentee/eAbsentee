@@ -126,13 +126,8 @@
 
             <div class="form-group mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
               <label>I am registered to vote in:</label>
-              <select class="form-control" id="registered_county" name="registered_county" autocomplete="new-password">
-                <option value="" selected>Choose your residence&hellip;</option>
-                {% for id, name in ids_and_counties.items() %}
-                <option value={{id}}> {{ name }} </option>
-                {% endfor %}
-
-              </select>
+              <input type="text" class="form-control" id="registered_county" name="registered_county" required>
+              
             </div>
           </div>
         </div>
