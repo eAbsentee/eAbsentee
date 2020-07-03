@@ -11,29 +11,6 @@
 	<meta name="keywords" content="" />
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}" />
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
-
-
-	<style>
-		.embed-container {
-			position: relative;
-			padding-bottom: 56.25%;
-			height: 0;
-			overflow: hidden;
-			max-width: 100%;
-		}
-
-		.embed-container iframe,
-		.embed-container object,
-		.embed-container embed {
-			position: absolute;
-			top: 0;
-			left: 0;
-			padding-left: 10%;
-			padding-right: 10%;
-			width: 100%;
-			height: 100%;
-		}
-	</style>
 </head>
 
 <body class="is-preload">
@@ -68,7 +45,7 @@
 			<h1>Vote Absentee Virginia</h1>
 			<p></p>
 			<ul class="actions fit">
-				<li><a href="/form" class="button primary fit small" style="font-size:24px">Apply for Absentee Ballot</a></li>
+				<li><a href="/form" class="button primary fit small" style="font-size:24px">Vote by Mail</a></li>
 			</ul>
 		</div>
 		<!-- <video poster="static/thumbnail.png" autoplay playsinline src="static/vid.mp4"></video> -->
@@ -125,6 +102,12 @@
 					<br>
 					By Virginia law, any registered voter can request a mail-in ballot. Because of Covid-19, Virginia has authorized anyone to qualify for an absentee ballot by using reason 2A,
 					so every voter can vote from the safely of their residence.
+				</p>
+				<hr />
+				<p>
+					<b>What changes have been made to the absentee voting process?</b>
+					<br>
+					In 2020, the Virginia General Assembly passed several laws relating to voting, including <a href="https://lis.virginia.gov/cgi-bin/legp604.exe?ses=201&typ=bil&val=hb1">HB 1</a>, which allows all registered Virginia voters to vote absentee without an excuse. Additionally, the registration deadlines have been extended and absentee ballots will be counted as long as they are postmarked by Election Day. As a result of these changes, our form design has changed a bit from prior implementations.
 				</p>
 				<hr />
 				<p>
@@ -256,7 +239,9 @@
 		<!-- Footer -->
 		<footer id="footer">
 			<div class=" copyright">
-				<p style="color:white;"><a href="mailto:applications@eabsentee.org">Contact</a> | Paid For and Authorized by Vote Absentee Virginia </p>
+				<p style="color:white;">
+					Paid For and Authorized by Vote Absentee Virginia
+				</p>
 			</div>
 
 		</footer>
