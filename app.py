@@ -113,11 +113,7 @@ def form():
             return redirect('/error/')
         return redirect('/confirmation/')
     else:
-        if 'group' in request.cookies:
-            ids_and_counties = get_ids_and_counties(request.cookies.get('group'))
-            return render_template('form.html', ids_and_counties=ids_and_counties)
-        else:
-            return render_template('form.html', ids_and_counties=get_ids_and_counties('allcounties'))
+        return render_template('form.html')
 
 
 @app.route('/form/<group>/', methods=['POST', 'GET'])
@@ -129,11 +125,11 @@ def form_group(group):
             return redirect('/error/')
         return redirect('/confirmation/')
     else:
-        return render_template('formnewtemp.html', ids_and_counties=get_ids_and_counties(group))
+        return render_template('form.html')
 
 @app.route('/oldform/', methods=['GET'])
 def old_form():
-    return render_template('form.html', ids_and_counties=get_ids_and_counties('allcounties'))
+    return render_template('archive/oldform.html', ids_and_counties=get_ids_and_counties('allcounties'))
 
 
 @app.route('/temp/', methods=['POST', 'GET'])
