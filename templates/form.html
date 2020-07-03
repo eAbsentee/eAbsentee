@@ -1,256 +1,241 @@
 {% from "macros.html" import favicon %}
-<!DOCTYPE html>
-<html class="no-js" lang="en">
+<!DOCTYPE HTML>
+<html>
 
 <head>
   {{ favicon() }}
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Virginia Absentee Ballot Application</title>
+  <title>eAbsentee</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   <meta name="description" content="" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/form.css') }}" />
-  <script src="{{ url_for('static', filename='js/prefixfree.min.js') }}"></script>
+  <meta name="keywords" content="" />
 
-  <style>
-    body {
-      font-size: 150%;
-      font-family: Arial;
-      color: black;
-      background: white;
-    }
-  </style>
-  <script type="text/javascript">
-    function group() {
-      var checkBox = document.getElementById("groupcheckbox");
-      var text = document.getElementById("groupdiv");
-      if (checkBox.checked == true) {
-        text.style.display = "block";
-      } else {
-        text.style.display = "none";
-      }
-    }
-  </script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/newform.css') }}" />
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+  <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script src="{{ url_for('static', filename='js/functions_newform.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/tempforms.js') }}"></script>
 </head>
 
-<br>
+<body class="is-preload">
+  <!-- Header -->
+  <header id="header">
+    <a class="logo" href="/"><img width="32" height="32" src="{{ url_for('static', filename='img/eabsentee.svg/') }}"></img> eAbsentee</a>
+    <nav>
+      <a href="#menu">Menu</a>
+    </nav>
+  </header>
 
-<body style="background-color: #ffffff;">
-  <div id="coronavirus_banner">
-    <div id="coronavirus_banner_content" style="background-color:#106FDB; text-align: center; color: white; font-size: 18px">
-      <div style="font-size:48px">VOTE by MAIL!</div>
-      <div style="font-size:24px"> Virginia Board of Elections urges voters: </div>
-      <div style="font-size:30px"> Use Reason Code 2A and vote absentee due to COVID19 </div>
-    </div>
-  </div>
-
-  <div class="wrapper">
-    <br>
-
-    <section id="instructions">
-      <div style="text-align: center; color: black; font-size: 24px"> <b>Request Your Absentee Ballot NOW! </b> </div>
-      <br>
-      <ul>
-        <li> Request your mail-in ballot up to a year before the election.</li>
-        <!-- <li> Expect to receive your ballot around 10 days after your request is received, but no earlier than 45 days before the election.   </li> -->
-        <li> The last day to request your mail-in ballot online is 5pm the Tuesday before the Election Day. </li>
-        <li> With <u>unprecedented</u> demand, apply for your mail-in ballot EARLY.</li>
-        <li> Your returned ballot must be received by the Registrar by 7pm Election Day. </li>
-        <br>
-        <li>Are you already registered to vote? If not, click <a href="https://www.elections.virginia.gov/citizen-portal/"> here</a>.</li>
-        <li>If your voter registration needs to be updated for a change in name/residence, please indicate your former name or resident address at the end of this form.</li>
-      </ul>
-      <br>
-    </section>
+  <!-- Nav -->
+  <nav id="menu">
+    <ul class="links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/form">Apply</a></li>
+      <li><a href="/about">About</a></li>
+    </ul>
+  </nav>
 
 
-    <section id="absentee-form" class="form-horizontal">
-      <form method="POST" action="">
-        <!-- Section 1: Name & SSN -->
-        <fieldset id="name">
+  <div class="container col-lg-8 col-md-8 col-sm-12 col-xs-12 mx-auto">
+    <div class="card form-group border-dark mx-auto my-2">
+      <div class="card-body rounded-top card-body col-lg-12" style="background: #0052A5">
+        <h1 class="text-capitalize text-center text-light"> Apply for an Absentee Ballot</h1>
+        <ul>
+          <h6 class="text-center text-light"><i>Anybody</i> can request an absentee ballot without a reason. Your absentee ballot will be mailed out in September/October.</h6>
+          <h6 class="text-center text-light">Request your mail-in ballot up to a year before the election.</h6>
+          <h6 class="text-center text-light">With <u>unprecedented demand</u>, apply for your mail-in ballot EARLY.</h6>
+          <h6 class="text-center text-light">Your returned ballot must be received by the Registrar by 7pm Election Day.</h6>
+          <br/>
+          <h6 class="text-center text-light">Are you already registered to vote? If not, click <u><a href="https://www.elections.virginia.gov/citizen-portal/" target="_blank">here</a></u>.</h6>
+        </ul>
 
-          <h3 style="color: #106FDB; text-align: center;">Your Name and Last 4 Digits of SSN</h3>
+      </div>
 
-          <div id="first_middle" class="form-group">
-            <label for="name__first" class="control-label">First Name</label>
-            <input name="name__first" id="name__first" type="text" class="form-control" autocomplete="given-name" required />
-
-            <label for="name__middle" class="control-label">Middle Name</label>
-            <input name="name__middle" id="name__middle" type="text" class="form-control" autocomplete="new-password" />
+      <form action="" method="POST">
+        <div class="card-body rounded-0 border-dark">
+          <!-- Personal Information -->
+          <div class="form-group row mx-auto">
+            <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <h3 class="text-center text-capitalize">Personal Information</h3>
+            </div>
+            <div class="form-group mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
+              <label>First Name</label>
+              <input type="text" class="form-control" id="name_first" name="name_first" required>
+            </div>
+            <div class="form-group mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
+              <label>Last Name</label>
+              <input type="text" class="form-control" id="name_last" name="name_last" required>
+            </div>
+            <div class="form-group mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
+              <label>Middle Name</label>
+              <input type="text" class="form-control" id="name_middle" name="name_middle">
+            </div>
+            <div class="form-group mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
+              <label>Suffix (i.e. Jr., Sr., II)</label>
+              <input type="text" class="form-control" id="name_suffix" name="name_suffix">
+            </div>
+            <div class="form-group mx-auto col-lg-4 col-md-4 col-sm-6 col-xs-6 text-center">
+              <label>SSN (Last 4 Digits)</label>
+              <input type="password" class="form-control" id="ssn" name="ssn" minlength="4" maxlength="4" pattern="^([0-9]{4})$" autocomplete="new-password" required digits>
+              <small class="form-text text-muted"><a href="/#faq_ssn">Why?</a></small>
+            </div>
           </div>
+        </div>
 
-          <div id="last_suffix" class="form-group">
-            <label for="name__last" class="control-label">Last Name</label>
-            <input name="name__last" id="name__last" type="text" class="form-control" autocomplete="family-name" required />
-
-            <label for="name__suffix" class="control-label">Suffix</label>
-            <input name="suffix" id="suffix" type="text" class="form-control" autocomplete="new-password" />
-          </div>
-
-          <div id="name__ssn" class="form-group">
-            <label for="name__ssn_field" class="control-label">Social Security # <u><a href="https://www.eabsentee.org/#faq_ssn">Why?</a></u> (last&nbsp;4) </label>
-            <input name="name__ssn" id="name__ssn_field" type="password" class="form-control" style="max-width: 9em;" minlength="4" maxlength="4" pattern="^([0-9]{4})$" autocomplete="new-password" required digits />
-            <img width="40" height="40" src="{{ url_for('static', filename='img/ssl-lock.png') }}"></img>
-          </div>
-
-
-
-        </fieldset>
-
-
-        <!-- Section 2: Election -->
-        <fieldset id="election">
-          <h3 style="color: #106FDB; text-align: center;">I Am Applying to Vote In:</h3>
-          <!-- <b style="color:red">Not all districts have June primaries. Click <a target="_blank" href="https://www.elections.virginia.gov/media/castyourballot/candidatelist/June-2020-Primary-Candidates-List-5.6.pdf">here</a> to see if you do.</b> -->
-          <div class="form-group">
-            <div id="election__type" class="radio-group">
-              <!-- <div class="radio">
-                <label>
-                  <input name="election__type" type="radio"  value="DP" required />
-                  Democratic U.S. House Primaries | Tuesday, June 23, 2020
-                </label>
-              </div>
-
-              <div class="radio">
-                <label>
-                  <input name="election__type" type="radio" value="RP" required />
-                  Republican U.S. House and Senate Primaries | Tuesday, June 23, 2020
-                </label>
-              </div> -->
-
-              <div class="radio">
-                <label>
-                  <input name="election__type" type="radio" value="PE" required />
-                  Presidential Election | Tuesday, November 3, 2020
-                </label>
-              </div>
-
-              <!-- <div class="radio">
-                <label>
-                  <input name="election__type" type="radio"  value="AG" required />
-                  Arlington County Special | Tuesday, July 7, 2020
-                </label> -->
-              </div>
-
+        <!-- Registered to Vote Address -->
+        <hr style="border-top: dotted 1px;" />
+        <div class="card-body border-dark rounded-0">
+          <div class="form-group row mx-auto">
+            <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <h3 class="text-center text-capitalize">Where are you registered to vote?</h3>
+              <h6 class="text-center">Your residence address is where you live (with the intent to remain indefinitely) and are registered to vote.</h6>
+              <h6 class="text-center">Begin typing and select your address from the autocomplete field.</h6>
+            </div>
+            <div class="form-group mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
+              <!-- <label>Address Autocomplete</label> -->
+              <input type="text" class="form-control" id="us-autocomplete-pro-address-input" name="us-autocomplete-pro-address-input" autocomplete="new-password" placeholder="Full Address">
+              <ul class="us-autocomplete-pro-menu" style="display:none; position:absolute; z-index:2;"></ul>
+            </div>
+            <div class="form-group mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
+              <label>Street Address</label>
+              <input type="text" class="form-control" id="address" name="address" autocomplete="street-address" required>
+            </div>
+            <div class="form-group mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+              <label>Apartment (Optional)</label>
+              <input type="text" class="form-control" id="apt" name="apt">
+            </div>
+            <div class="form-group mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
+              <label>City</label>
+              <input type="text" class="form-control" id="city" name="city" autocomplete="address-level2" required>
+            </div>
+            <!-- <div class="form-group mx-auto col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center">
+              <label for="state">State</label>
+              <select class="form-control" id="state" name="state">
+                <option value="VA" selected>Virginia</option>
+              </select>
+            </div> -->
+            <div class="form-group mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+              <label>Zip Code</label>
+              <input type="text" class="form-control" id="zip" name="zip" minlength="5" maxlength="5" pattern="^(\d{5})$" digits autocomplete="postal-code" required>
             </div>
 
-            <!-- <div>
-            <div id="election__date" class="form-inline date">
-              <label class="control-label">Date of Election</label>
+            <div class="form-group mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
+              <label>I am registered to vote in:</label>
+              <select class="form-control" id="registered_county" name="registered_county" autocomplete="new-password">
+                <option value="" selected>Choose your residence&hellip;</option>
+                {% for id, name in ids_and_counties.items() %}
+                <option value={{id}}> {{ name }} </option>
+                {% endfor %}
 
-              <input type="date" name="election__date" placeholder="MM/DD/YY" value="2020-03-03" required readonly />
-
+              </select>
             </div>
-          </div> -->
-        </fieldset>
-
-
-        <!-- Section 3: Reason for Absentee Ballot -->
-        <fieldset id="reason">
-          <h3 style="color: #106FDB; text-align: center;">Reason for Absentee Ballot</h3>
-
-          <p> Due to COVID-19, the Virginia Board of Elections suggests all registered voters vote by mail to avoid crowds. All voters are permitted to select reason 2A.</p>
-          <div class="radio" hidden>
-            <label>
-              <input name="reason__code" type="radio" value="2A" checked/> Reason 2A
-            </label>
           </div>
+        </div>
+        <hr style="border-top: dotted 1px;" />
 
-          <div id="reason__documentation" class="form-group">
-            <label for="reason__documentation_field" class="control-label">Supporting Information</label>
-            <textarea name="reason__documentation" id="reason__documentation_field" class="form-control" maxlength="1024"></textarea>
-          </div>
-        </fieldset>
-
-        <!-- Section 5: Residence Address -->
-        <fieldset id="address">
-          <h3 style="color: #106FDB; text-align: center;">Residence Address</h3>
-          <p>Your residence address is where you live with the intent to remain indefinitely.</p>
-
-          <div id="election__locality" class="form-group form-inline">
-            <label for="election__locality_gnis" class="control-label">I am registered to vote in</label>
-
-            <input type="hidden" name="election__locality" />
-            <select name="election__locality_gnis" id="election__locality_gnis" type="text" class="form-control" required>
-              <option value="" selected>Choose your residence&hellip;</option>
-              {% for id, name in ids_and_counties.items() %}
-              <option value={{id}}> {{ name }} </option>
-              {% endfor %}
-            </select>
-          </div>
-
-          <div id="address__street" class="form-group form-inline">
-            <label for="address__street_field" class="control-label address">Address</label>
-            <input name="address__street" id="address__street_field" type="text" class="form-control address" autocomplete="street-address" required />
-
-            <label for="address__unit_field" class="control-label apt">Apt./Suite</label>
-            <input name="address__unit" id="address__unit_field" type="text" class="form-control apt" />
-          </div>
-
-          <div id="address__city" class="form-group">
-            <label for="address__city_field" class="control-label city">City</label>
-            <input name="address__city" id="address__city_field" type="text" class="form-control city" autocomplete="address-level2" required />
-          </div>
-
-          <div id="address__statezip" class="form-group state">
-            <label for="address__state" class="control-label state">State</label>
-            <select name="address__state" id="address__state" class="form-control state" autocomplete="address-level1" readonly required>
-              <option value="VA" selected>Virginia</option>
-            </select>
-
-            <label for="address__zip" class="control-label zip">ZIP Code</label>
-            <input name="address__zip" id="address__zip" type="text" class="form-control zip" minlength="5" maxlength="5" pattern="^(\d{5})$" digits autocomplete="postal-code" required />
-          </div>
-        </fieldset>
-
-
-        <!-- Section 6: Delivery of Ballot -->
-        <fieldset id="delivery">
-          <h3 style="color: #106FDB; text-align: center;">I Would Like My Ballot Delivered To:</h3>
-
-          <div class="form-group">
-            <div id="ballot_delivery" class="radio-group">
-              <div class="radio">
-                <label>
-                  <input name="delivery__to" type="radio" value="residence address" required />
-                  Residence Address
-                </label>
-              </div>
-
-              <div class="radio">
-                <label>
-                  <input name="delivery__to" type="radio" value="mailing address" />
-                  Different Mailing Address
-                </label>
-              </div>
-
-              <div class="radio" id="delivery_email">
-                <label>
-                  <input name="delivery__to" type="radio" value="email" />
-                  Email
-                </label>
-              </div>
+        <!-- Where to Deliver? -->
+        <div class="card-body border-dark rounded-0">
+          <div class="form-group row mx-auto">
+            <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <h3 class="text-center text-capitalize">Different Delivery Address</h3>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="where_deliver" name="where_deliver">
+              <label class="form-check-label" for="where_deliver">
+                I'd like for my absentee ballot to be delivered to a different address than the address where I'm registered to vote.
+              </label>
             </div>
           </div>
 
-          <div id="delivery_address">
-
-            <div id="delivery__street" class="form-group form-inline">
-              <label for="delivery__street_field" class="control-label address">Address</label>
-              <input name="delivery__street" id="delivery__street_field" type="text" class="form-control address" autocomplete="new-password" />
-
-              <label for="delivery__unit_field" class="control-label apt">Apt/Suite</label>
-              <input name="delivery__unit" id="delivery__unit_field" type="text" class="form-control apt" autocomplete="new-password" />
+          <div class="form-group row mx-auto" id="different_address">
+            <div class="form-group mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
+              <label class=>Street Address</label>
+              <input type="text" class="form-control" id="different_address" name="different_address" autocomplete="new-password">
             </div>
-
-            <div id="delivery__city" class="form-group city">
-              <label for="delivery__city_field" class="control-label city">City</label>
-              <input name="delivery__city" id="delivery__city_field" type="text" class="form-control" autocomplete="new-password" />
+            <div class="form-group mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+              <label>Apartment</label>
+              <input type="text" class="form-control" id="different_apt" name="different_apt" autocomplete="new-password">
             </div>
-
-            <div id="country" class="form-group">
-              <label for="country_field" class="control-label">Country</label>
-              <select name="delivery_country" id="country_field" class="form-control" autocomplete="new-password">
+            <div class="form-group mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
+              <label>City</label>
+              <input type="text" class="form-control" id="different_city" name="different_city" autocomplete="new-password">
+            </div>
+            <div class="form-group mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+              <label>Zip Code</label>
+              <input type="text" class="form-control" id="different_zip" name="different_zip" autocomplete="new-password">
+            </div>
+            <div class="form-group mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+              <label for="different_state" class="control-label state">State</label>
+              <select name="different_state" id="different_state" class="form-control state" autocomplete="new-password">
+                <option value="">Choose state&hellip;</option>
+                <option value="AL">Alabama</option>
+                <option value="AK">Alaska</option>
+                <option value="AS">American Samoa</option>
+                <option value="AZ">Arizona</option>
+                <option value="AR">Arkansas</option>
+                <option value="CA">California</option>
+                <option value="CO">Colorado</option>
+                <option value="CT">Connecticut</option>
+                <option value="DE">Delaware</option>
+                <option value="DC">District of Columbia</option>
+                <option value="FL">Florida</option>
+                <option value="GA">Georgia</option>
+                <option value="GU">Guam</option>
+                <option value="HI">Hawaii</option>
+                <option value="ID">Idaho</option>
+                <option value="IL">Illinois</option>
+                <option value="IN">Indiana</option>
+                <option value="IA">Iowa</option>
+                <option value="KS">Kansas</option>
+                <option value="KY">Kentucky</option>
+                <option value="LA">Louisiana</option>
+                <option value="ME">Maine</option>
+                <option value="MD">Maryland</option>
+                <option value="MH">Marshall Islands</option>
+                <option value="MA">Massachusetts</option>
+                <option value="MI">Michigan</option>
+                <option value="FM">Micronesia</option>
+                <option value="MN">Minnesota</option>
+                <option value="MS">Mississippi</option>
+                <option value="MO">Missouri</option>
+                <option value="MT">Montana</option>
+                <option value="NE">Nebraska</option>
+                <option value="NV">Nevada</option>
+                <option value="NH">New Hampshire</option>
+                <option value="NJ">New Jersey</option>
+                <option value="NM">New Mexico</option>
+                <option value="NY">New York</option>
+                <option value="NC">North Carolina</option>
+                <option value="ND">North Dakota</option>
+                <option value="MP">Northern Marianas</option>
+                <option value="OH">Ohio</option>
+                <option value="OK">Oklahoma</option>
+                <option value="OR">Oregon</option>
+                <option value="PW">Palau</option>
+                <option value="PA">Pennsylvania</option>
+                <option value="RI">Rhode Island</option>
+                <option value="SC">South Carolina</option>
+                <option value="SD">South Dakota</option>
+                <option value="TN">Tennessee</option>
+                <option value="TX">Texas</option>
+                <option value="UT">Utah</option>
+                <option value="VT">Vermont</option>
+                <option value="VA">Virginia</option>
+                <option value="VI">Virgin Islands</option>
+                <option value="WA">Washington</option>
+                <option value="WV">West Virginia</option>
+                <option value="WI">Wisconsin</option>
+                <option value="WY">Wyoming</option>
+              </select>
+            </div>
+            <div class="form-group mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+              <label for="different_country" class="control-label">Country</label>
+              <select name="different_country" id="different_country" class="form-control" autocomplete="new-password">
                 <option value="Afghanistan">Afghanistan</option>
                 <option value="Åland Islands">Åland Islands</option>
                 <option value="Albania">Albania</option>
@@ -502,309 +487,152 @@
                 <option value="Zimbabwe">Zimbabwe</option>
               </select>
             </div>
+          </div>
+          <hr style="border-top: dotted 1px;" />
+        </div>
 
-            <div id="delivery__statezip" class="form-group state">
-              <label for="deliv-state" class="control-label state">State</label>
-              <select name="delivery_state" id="delivery_state" class="form-control state" autocomplete="new-password">
-                <option value="">Choose state&hellip;</option>
-                <option value="AL">Alabama</option>
-                <option value="AK">Alaska</option>
-                <option value="AS">American Samoa</option>
-                <option value="AZ">Arizona</option>
-                <option value="AR">Arkansas</option>
-                <option value="CA">California</option>
-                <option value="CO">Colorado</option>
-                <option value="CT">Connecticut</option>
-                <option value="DE">Delaware</option>
-                <option value="DC">District of Columbia</option>
-                <option value="FL">Florida</option>
-                <option value="GA">Georgia</option>
-                <option value="GU">Guam</option>
-                <option value="HI">Hawaii</option>
-                <option value="ID">Idaho</option>
-                <option value="IL">Illinois</option>
-                <option value="IN">Indiana</option>
-                <option value="IA">Iowa</option>
-                <option value="KS">Kansas</option>
-                <option value="KY">Kentucky</option>
-                <option value="LA">Louisiana</option>
-                <option value="ME">Maine</option>
-                <option value="MD">Maryland</option>
-                <option value="MH">Marshall Islands</option>
-                <option value="MA">Massachusetts</option>
-                <option value="MI">Michigan</option>
-                <option value="FM">Micronesia</option>
-                <option value="MN">Minnesota</option>
-                <option value="MS">Mississippi</option>
-                <option value="MO">Missouri</option>
-                <option value="MT">Montana</option>
-                <option value="NE">Nebraska</option>
-                <option value="NV">Nevada</option>
-                <option value="NH">New Hampshire</option>
-                <option value="NJ">New Jersey</option>
-                <option value="NM">New Mexico</option>
-                <option value="NY">New York</option>
-                <option value="NC">North Carolina</option>
-                <option value="ND">North Dakota</option>
-                <option value="MP">Northern Marianas</option>
-                <option value="OH">Ohio</option>
-                <option value="OK">Oklahoma</option>
-                <option value="OR">Oregon</option>
-                <option value="PW">Palau</option>
-                <option value="PA">Pennsylvania</option>
-                <option value="RI">Rhode Island</option>
-                <option value="SC">South Carolina</option>
-                <option value="SD">South Dakota</option>
-                <option value="TN">Tennessee</option>
-                <option value="TX">Texas</option>
-                <option value="UT">Utah</option>
-                <option value="VT">Vermont</option>
-                <option value="VA">Virginia</option>
-                <option value="VI">Virgin Islands</option>
-                <option value="WA">Washington</option>
-                <option value="WV">West Virginia</option>
-                <option value="WI">Wisconsin</option>
-                <option value="WY">Wyoming</option>
-              </select>
-
-              <label for="delivery__zip" class="control-label zip">ZIP Code</label>
-              <input name="delivery__zip" id="delivery__zip" type="text" class="form-control zip" minlength="5" maxlength="5" pattern="^(\d{5})$" digits autocomplete="new-password" />
-
-
+        <!-- Assistance -->
+        <div class="card-body border-dark rounded-0">
+          <div class="form-group row mx-auto">
+            <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <h3 class="text-center text-capitalize">Assistance to Vote</h3>
             </div>
-          </div>
-
-        </fieldset>
-
-
-        <!-- Section 7: Change of Name/Address -->
-        <fieldset id="change">
-          <h3 style="color: #106FDB; text-align: center;">Change of Name/Address</h3>
-          <p>If changing registration name/address.</p>
-          <div id="change__former_name" class="form-group">
-            <label for="change__former_name_field" class="control-label">Former Full Name</label>
-            <input name="change__former_name" id="change__former_name_field" type="text" class="form-control" autocomplete="new-password"  />
-          </div>
-
-          <div id="change__former_address" class="form-group">
-            <label for="change__former_address_field" class="control-label">Former Address</label>
-            <input name="change__former_address" id="change__former_address_field" type="text" class="form-control" autocomplete="new-password"  />
-          </div>
-
-          <div id="change__date_moved" class="form-group form-inline date">
-            <label class="control-label">Date Moved</label>
-            <input type="date" name="change__date_moved" placeholder="MM/DD/YY" autocomplete="false" />
-          </div>
-        </fieldset>
-
-
-        <!-- Section 8: Assistance to Vote -->
-        <fieldset id="assistance">
-          <h3 style="color: #106FDB; text-align: center;">Assistance To Vote</h3>
-          <div class="form-group">
-            <div class="checkbox">
-              <label><input name="assistance__assistance" type="checkbox" value="true" />
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="assistance_check" name="assistance_check">
+              <label class="form-check-label" for="assistance_check">
                 I will need assistance in completing my ballot due to a disability, blindness, or inability to read or write. If checked, assistance form will be provided with ballot.
               </label>
             </div>
           </div>
-        </fieldset>
 
-
-        <!-- Section 9: Assistant's Statement -->
-        <fieldset id="assistant">
-          <h3 style="color: #106FDB; text-align: center;">Assistant’s Statement/Info</h3>
-
-          <div class="form-group">
-            <div class="checkbox">
-              <label><input name="assistant__signed" type="checkbox" value="true" />
-                I swear/affirm, under felony penalty for making willfully false material statements, that the information I have provided on this form is true and I have written on the Applicant’s signature line
-                “Applicant Unable to Sign.”
+          <div class="form-group row mx-auto" id="assistance_div">
+            <div class="form-group mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
+              <label class=>Assistant Full Name</label>
+              <input type="text" class="form-control" id="assistant_name" name="assistant_name" autocomplete="new-password">
+            </div>
+            <div class="form-group mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
+              <label class=>Assistant Street Address</label>
+              <input type="text" class="form-control" id="assistant_address" name="assistant_address" autocomplete="new-password">
+            </div>
+            <div class="form-group mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+              <label>Assistant Apartment</label>
+              <input type="text" class="form-control" id="assistant_apt" name="assistant_apt" autocomplete="new-password">
+            </div>
+            <div class="form-group mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
+              <label>Assistant City</label>
+              <input type="text" class="form-control" id="assistant_city" name="assistant_city" autocomplete="new-password">
+            </div>
+            <div class="form-group mx-auto col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center">
+              <label>Assistant State</label>
+              <input type="text" class="form-control" id="assistant_state" name="assistant_state" autocomplete="new-password">
+            </div>
+            <div class="form-group mx-auto col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center">
+              <label>Assistant Zip Code</label>
+              <input type="text" class="form-control" id="assistant_zip" name="assistant_zip" autocomplete="new-password minlength=" 5" maxlength="5" pattern="^(\d{5})$" digits">
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="assistance_signature_check" name="assistance_signature_check">
+              <label class="form-check-label" for="assistance_signature_check">
+                I swear/affirm, under felony penalty for making willfully false material statements, that the information I have provided on this form is true and I have written on the Applicant’s signature line “Applicant Unable to Sign.”
               </label>
             </div>
           </div>
-          ￼
-          <div id="assistant__name" class="form-group">
-            <p>Provide Information of Assistant</p>
 
-            <label for="assistant__name_field" class="control-label">Full Name</label>
-            <input name="assistant__name" id="assistant__name_field" type="text" class="form-control" />
-          </div>
+          <hr style="border-top: dotted 1px;" />
+        </div>
 
-          <div id="assistant__street" class="form-group form-inline">
-            <label for="assistant__street_field" class="control-label address">Address</label>
-            <input name="assistant__street" id="assistant__street_field" type="text" class="form-control address" />
-
-            <label for="assistant__unit_field" class="control-label apt">Apt./Suite</label>
-            <input name="assistant__unit" id="assistant__unit_field" type="text" class="form-control apt" />
-          </div>
-
-          <div id="assistant__city" class="form-group">
-            <label for="assistant__city_field" class="control-label city">City</label>
-            <input name="assistant__city" id="assistant__city_field" type="text" class="form-control city" />
-          </div>
-
-          <div id="assistant__statezip" class="form-group">
-            <label for="assistant__state" class="control-label state">State</label>
-            <select name="assistant__state" id="assistant__state" class="form-control state">
-              <option value="">Choose state&hellip;</option>
-              <option value="AL">Alabama</option>
-              <option value="AK">Alaska</option>
-              <option value="AS">American Samoa</option>
-              <option value="AZ">Arizona</option>
-              <option value="AR">Arkansas</option>
-              <option value="CA">California</option>
-              <option value="CO">Colorado</option>
-              <option value="CT">Connecticut</option>
-              <option value="DE">Delaware</option>
-              <option value="DC">District of Columbia</option>
-              <option value="FL">Florida</option>
-              <option value="GA">Georgia</option>
-              <option value="GU">Guam</option>
-              <option value="HI">Hawaii</option>
-              <option value="ID">Idaho</option>
-              <option value="IL">Illinois</option>
-              <option value="IN">Indiana</option>
-              <option value="IA">Iowa</option>
-              <option value="KS">Kansas</option>
-              <option value="KY">Kentucky</option>
-              <option value="LA">Louisiana</option>
-              <option value="ME">Maine</option>
-              <option value="MD">Maryland</option>
-              <option value="MH">Marshall Islands</option>
-              <option value="MA">Massachusetts</option>
-              <option value="MI">Michigan</option>
-              <option value="FM">Micronesia</option>
-              <option value="MN">Minnesota</option>
-              <option value="MS">Mississippi</option>
-              <option value="MO">Missouri</option>
-              <option value="MT">Montana</option>
-              <option value="NE">Nebraska</option>
-              <option value="NV">Nevada</option>
-              <option value="NH">New Hampshire</option>
-              <option value="NJ">New Jersey</option>
-              <option value="NM">New Mexico</option>
-              <option value="NY">New York</option>
-              <option value="NC">North Carolina</option>
-              <option value="ND">North Dakota</option>
-              <option value="MP">Northern Marianas</option>
-              <option value="OH">Ohio</option>
-              <option value="OK">Oklahoma</option>
-              <option value="OR">Oregon</option>
-              <option value="PW">Palau</option>
-              <option value="PA">Pennsylvania</option>
-              <option value="RI">Rhode Island</option>
-              <option value="SC">South Carolina</option>
-              <option value="SD">South Dakota</option>
-              <option value="TN">Tennessee</option>
-              <option value="TX">Texas</option>
-              <option value="UT">Utah</option>
-              <option value="VT">Vermont</option>
-              <option value="VA">Virginia</option>
-              <option value="VI">Virgin Islands</option>
-              <option value="WA">Washington</option>
-              <option value="WV">West Virginia</option>
-              <option value="WI">Wisconsin</option>
-              <option value="WY">Wyoming</option>
-            </select>
-
-            <label for="assistant__zip" class="control-label zip">ZIP Code</label>
-            <input name="assistant__zip" id="assistant__zip" type="text" class="form-control zip" minlength="5" maxlength="5" pattern="^(\d{5})$" digits />
-          </div>
-
-          <div id="assistant__sig" class="form-group">
-            <label for="assistant__sig" class="control-label">Name (In Lieu of Signature)</label>
-            <input name="assistant__sig" id="assistant__sig" type="text" class="form-control" />
-          </div>
-        </fieldset>
-
-        <!-- Section 4: More Info -->
-        <fieldset id="more_info">
-          <h3 style="color: #106FDB; text-align: center;">More Info</h3>
-
-
-          <!-- <div class="form-group">
-            <div class="checkbox">
-              <label><input name="email_me" type="checkbox" value="true" />
-                I would like a copy of my application e-mailed to me.
+        <div class="card-body rounded-0 border-dark">
+          <div class="form-group row mx-auto">
+            <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <h3 class="text-center text-capitalize">Change to Address/Name</h3>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="change_check" name="change_check">
+              <label class="form-check-label" for="change_check">
+                I have changed my residence address or my legal name since the last time I voted.
               </label>
             </div>
-          </div> -->
-
-          <div id="email" class="form-group">
-            <label for="more_info__email_fax" class="control-label">Email</label>
-            <input name="email" id="more_info__email_fax" type="email" class="form-control" autocomplete="email" />
-          </div>
-
-          <div id="more_info__telephone" class="form-group form-inline phone">
-            <label for="more_info__telephone_field" class="control-label optional">Telephone</label>
-            <input type="tel" name="more_info__telephone" id="more_info__telephone_field" class="form-control" minlength="10" maxlength="14" pattern="^(.{10,14})$" autocomplete="tel" />
-          </div>
-
-          <!--<div id="fax" class="form-group form-inline phone">
-            <label for="fax" class="control-label optional">Fax</label>
-            <input type="tel" name="more_info__email_fax" class="form-control" minlength="10" maxlength="14" />
-          </div>-->
-
-        </fieldset>
-
-
-
-        <!-- Section 11: Applicant Signature -->
-        <fieldset id="signature">
-          <h3 style="color: #106FDB; text-align: center;">Applicant Signature</h3>
-
-          <div class="form-group">
-
-            <div class="checkbox">
-              <label><input name="checkbox" type="checkbox" value="true" required />
-                I swear/affirm, under felony penalty for making willfully false material statements, that by pressing the Submit button and submitting this information that (1) the information I have provided on this
-                form is true, (2) I am not requesting a ballot or voting in any other jurisdiction in the U.S., except the jurisdiction to which this application relates, and (3) that I am the person named in this
-                absentee application.
-              </label>
-
-              <input type="hidden" name="signature__date" value="" />
+            <div class="form-group row mx-auto" id="change_div">
+              <div class="form-group mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                <label>Former Full Name</label>
+                <input type="text" class="form-control" id="former_name" name="former_name" autocomplete="new-password">
+              </div>
+              <div class="form-group mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                <label>Former Address</label>
+                <input type="text" class="form-control" id="former_address" name="former_address" autocomplete="new-password">
+              </div>
+              <div class="form-group mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                <label>Date Moved</label>
+                <input type="date" class="form-control" id="date_moved" name="date_moved" autocomplete="new-password" placeholder="MM/DD/YY" autocomplete="new-password" />
+              </div>
             </div>
-
-            <label for="signature-signed" class="control-label">Applicant Name (In Lieu of Signature)</label>
-            <input name="signature__signed" id="signature-signed" type="text" class="form-control" minlength="3" required />
-
           </div>
+          <hr style="border-top: dotted 1px;" />
+        </div>
 
-          <div style="text-align: center; margin-top: 2em;">
-            <input type="submit" value="Submit Application" class="btn-lg btn-default" />
-            </br>
-            <img width="120" height="100" src="{{ url_for('static', filename='img/ssl-image.svg') }}"></img>
+
+        <!-- More Info -->
+        <div class="card-body border-dark rounded-0">
+          <div class="form-group row mx-auto">
+            <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <h3 class="text-center text-capitalize">More Info</h3>
+            </div>
+            <div class="form-group mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
+              <label class=>Email Address</label>
+              <input type="text" class="form-control" id="email" name="email">
+            </div>
+            <div class="form-group mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+              <label>Phone Number</label>
+              <input type="text" class="form-control" id="phonenumber" name="phonenumber">
+            </div>
           </div>
-        </fieldset>
+        </div>
+        <hr style="border-top: dotted 1px;" />
 
+        <!-- Applicant Signature -->
+        <div class="card-body border-dark rounded-0">
+          <div class="form-group row mx-auto">
+            <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <h3 class="text-center text-capitalize">Applicant Signature</h3>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input form-control" type="checkbox" value="" id="sig_check" name="sig_check" required>
+              <label class="form-check-label" for="sig_check">
+                I swear/affirm, under felony penalty for making willfully false material statements, that by pressing the Submit button and submitting this information that (1) the information I have provided on this form is true, (2) I am not
+                requesting a ballot or voting in any other jurisdiction in the U.S., except the jurisdiction to which this application relates, and (3) that I am the person named in this absentee application.
+              </label>
+            </div>
+            <div class="form-group mx-auto col-lg-10 col-md-10 col-sm-12 col-xs-12 text-center">
+              <label class=>Applicant Name</label>
+              <input type="text" class="form-control" id="signature" name="signature" required>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- <hr style="border-top: dotted 1px;" /> -->
+        <div class="card border-dark rounded-bottom w-50 mx-auto" style="background: #0052A5">
+          <input type="submit" value="Submit" class="btn-lg btn-default" />
+        </div>
 
       </form>
-    </section>
-
-    <div id="success-message" class="hidden">
-      <div class="jumbotron bg-success" style="padding: 0 2em;">
-        <h1>Application Submitted</h1>
-        <p>Your absentee ballot application has been emailed to the {{REGISTRAR_LOCALITY}} registrar, at {{REGISTRAR_EMAIL}}. No further action is required on your part.</p>
-
-        <p><a class="btn btn-primary btn-lg" href="{{PDF_URL}}" role="button">Download PDF</a></p>
-      </div>
     </div>
-
-    <footer>Contact us at <a href="mailto:applications@eabsentee.org">applications@eabsentee.org</a> | Paid for and authorized by Vote Absentee Virginia</footer>
-
   </div>
 
-  <!-- Grab Google CDN's jQuery. fall back to local if necessary -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-  <script>
-    window.jQuery || document.write("<script src='{{ url_for('static', filename='js/jquery.min.js') }}'>\x3C/script>")
-  </script>
 
-  <!-- Use Bootstrap's JavaScript. -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <!-- Footer -->
+  <footer id="footer" style="background: black">
+    <div class="mx-auto text-center">
+      <small style="color:white;"> Paid for and Authorized by Vote Absentee Virginia </small>
+    </div>
+  </footer>
 
-  <script src="{{ url_for('static', filename='js/functions.js') }}"></script>
+
+  <!-- Scripts -->
+  <script src="{{ url_for('static', filename='js/browser.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/breakpoints.min.js')}}"> </script>
+  <script src="{{ url_for('static', filename='js/util.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 
 </body>
 

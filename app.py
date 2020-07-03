@@ -115,9 +115,9 @@ def form():
     else:
         if 'group' in request.cookies:
             ids_and_counties = get_ids_and_counties(request.cookies.get('group'))
-            return render_template('formnewtemp.html', ids_and_counties=ids_and_counties)
+            return render_template('form.html', ids_and_counties=ids_and_counties)
         else:
-            return render_template('formnewtemp.html', ids_and_counties=get_ids_and_counties('allcounties'))
+            return render_template('form.html', ids_and_counties=get_ids_and_counties('allcounties'))
 
 
 @app.route('/form/<group>/', methods=['POST', 'GET'])
