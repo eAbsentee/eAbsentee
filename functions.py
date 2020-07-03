@@ -324,25 +324,15 @@ def create_org_report(file_path):
 def add_to_groups(request):
     if request.form.get('api_key') != API_KEY:
         return
-
     if request.form.get('group_code'):
         with open('static/groups.json') as file:
             groups = json.load(file)
 
-            new_group = None
-            if request.form.get('county_codes'):
-                new_group = {
-                    request.form.get('group_code'): {
-                        'email': request.form.get('group_email'),
-                        'county_nums': request.form.get('county_codes').split()
+            new_group = {
+                request.form.get('group_code'): {
+                    'email': request.form.get('group_email')
                     }
-                }
-            else:
-                new_group = {
-                    request.form.get('group_code'): {
-                        'email': request.form.get('group_email')
-                    }
-                }
+            }
 
             groups.update(new_group)
             with open('static/groups.json', 'w') as f:
