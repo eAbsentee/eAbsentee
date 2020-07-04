@@ -45,9 +45,9 @@
     <div class="card form-group border-dark mx-auto my-2">
       <div class="card-body rounded-top card-body col-lg-12" style="background: #0052A5">
         <h1 class="text-capitalize text-center text-light"> Vote by Mail!</h1>
-        <h3 class="text-capitalize text-center text-light"> Apply for an Absentee Ballot</h3>
+        <h3 class="text-capitalize text-center text-light"> Apply for Your Absentee-By-Mail Ballot Today</h3>
         <ul>
-          <h6 class="text-center text-light"><i>Any registered voter</i> can request a mail-in ballot. Your ballot will be mailed out in September.</h6>
+          <h6 class="text-center text-light"><i>Any registered voter</i> can request a mail-in ballot. Your ballot will be mailed to you in September.</h6>
           <h6 class="text-center text-light">Deadline: The last day to request your mail-in absentee ballot is <b style="color:white">5pm Tuesday, October 27th</b>.</h6>
           <h6 class="text-center text-light">With <u>unprecedented demand</u>, apply for your mail-in ballot <b style="color:white">NOW to be first in line and beat the rush!</b></h6>
           <h6 class="text-center text-light">Your mail-in ballot must be postmarked by Election Day, so mail it back early, with plenty of time to spare.</h6>
@@ -59,10 +59,10 @@
 
       <form action="" method="POST">
         <div class="card-body rounded-0 border-dark">
-          <!-- Personal Information -->
+          <!-- Your Information -->
           <div class="form-group row mx-auto">
             <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <h3 class="text-center text-capitalize">Personal Information</h3>
+              <h3 class="text-center text-capitalize">Your Information</h3>
             </div>
             <div class="form-group mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
               <label>First Name</label>
@@ -87,9 +87,28 @@
             </div>
           </div>
         </div>
+        <hr style="border-top: dotted 1px;" />
+
+        <!-- Contact Info -->
+        <div class="card-body border-dark rounded-0">
+          <div class="form-group row mx-auto">
+            <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <h3 class="text-center text-capitalize">Contact Info</h3>
+              <h6 class="text-center">Your email address is required to send you a copy of your application.</h6>
+            </div>
+            <div class="form-group mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
+              <label class=>Email Address</label>
+              <input type="text" class="form-control" id="email" name="email">
+            </div>
+            <div class="form-group mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+              <label>Phone Number</label>
+              <input type="text" class="form-control" id="phonenumber" name="phonenumber">
+            </div>
+          </div>
+        </div>
+        <hr style="border-top: dotted 1px;" />
 
         <!-- Registered to Vote Address -->
-        <hr style="border-top: dotted 1px;" />
         <div class="card-body border-dark rounded-0">
           <div class="form-group row mx-auto">
             <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -107,19 +126,13 @@
               <input type="text" class="form-control" id="address" name="address" autocomplete="street-address" required>
             </div>
             <div class="form-group mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
-              <label>Apartment (Optional)</label>
+              <label>Apartment</label>
               <input type="text" class="form-control" id="apt" name="apt">
             </div>
             <div class="form-group mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
               <label>City</label>
               <input type="text" class="form-control" id="city" name="city" autocomplete="address-level2" required>
             </div>
-            <!-- <div class="form-group mx-auto col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center">
-              <label for="state">State</label>
-              <select class="form-control" id="state" name="state">
-                <option value="VA" selected>Virginia</option>
-              </select>
-            </div> -->
             <div class="form-group mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
               <label>Zip Code</label>
               <input type="text" class="form-control" id="zip" name="zip" minlength="5" maxlength="5" pattern="^(\d{5})$" digits autocomplete="postal-code" required>
@@ -567,24 +580,7 @@
         </div>
 
 
-        <!-- More Info -->
-        <div class="card-body border-dark rounded-0">
-          <div class="form-group row mx-auto">
-            <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <h3 class="text-center text-capitalize">More Info</h3>
-              <h6 class="text-center">Your email address is required to send you a copy of your application.</h6>
-            </div>
-            <div class="form-group mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
-              <label class=>Email Address</label>
-              <input type="text" class="form-control" id="email" name="email">
-            </div>
-            <div class="form-group mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
-              <label>Phone Number</label>
-              <input type="text" class="form-control" id="phonenumber" name="phonenumber">
-            </div>
-          </div>
-        </div>
-        <hr style="border-top: dotted 1px;" />
+
 
         <!-- Applicant Signature -->
         <div class="card-body border-dark rounded-0">
