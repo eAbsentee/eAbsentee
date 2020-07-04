@@ -30,17 +30,13 @@ def home():
 '''Form Error Route: users are directed here if an error is encountered during the processing of their application'''
 @app.route('/error/')
 def error_page():
-    return render_template('formerror.html')
+    return render_template('error.html')
 
 '''Credits Route: credits for the template, developers, and team behind the website'''
 @app.route('/credits/', methods=['GET'])
 def credits_page():
     return render_template('credits.html')
 
-'''List of Counties Route: displays all counties and their matching numerical ID as information for the API'''
-@app.route('/listcounty/')
-def list_of_counties():
-    return(render_template('list_of_counties.html'))
 
 '''About Route: displays information about eAbsentee and Vote Absentee Virginia.'''
 @app.route('/about/')
@@ -61,27 +57,6 @@ def form_closed():
 
 '''Static PDF Routes'''
 
-'''Fillable Form'''
-@app.route('/fillableform/')
-def render_fillableform_pdf():
-    return send_file(
-        open('static/pdf/blank_app_fillable.pdf', 'rb'), attachment_filename='blank_app_fillable.pdf'
-    )
-
-'''Printable Form'''
-@app.route('/printform/')
-def render_printform_pdf():
-    return send_file(
-        open('static/pdf/blank_app_printable.pdf', 'rb'), attachment_filename='blank_app_printable.pdf'
-    )
-
-@app.route('/videocredits/')
-def render_videocredits_pdf():
-    return send_file(
-        open('static/pdf/credits.pdf', 'rb'), attachment_filename='credits.pdf'
-    )
-
-
 '''Displays application using session variables set in functions.py'''
 @app.route('/applications/<id>.pdf')
 def render_pdf(id):
@@ -94,6 +69,7 @@ def privacy():
     return send_file(
         open('static/pdf/privacy_policy.pdf', 'rb'), attachment_filename='privacy_policy.pdf'
     )
+
 
 @app.errorhandler(404)
 def page_not_found(e):
@@ -127,19 +103,10 @@ def form_group(group):
     else:
         return render_template('form.html')
 
-@app.route('/oldform/', methods=['GET'])
-def old_form():
-    return render_template('archive/oldform.html', ids_and_counties=get_ids_and_counties('allcounties'))
-
-
-@app.route('/temp/', methods=['POST', 'GET'])
-def temp():
-    return render_template('temp.html')
-
 ''' Cookie Routes '''
 @app.route('/g/<group>/')
 def set_group(group: str):
-    '''This route sets the group cookies. This is later checked in the form route. If a group cookie is present, it will attempt to open that group's limited counties. If a group doesn't have any limited counties, it will open all the counties.'''
+    '''This route sets the group cookies. This is later checked in the form route. '''
     response = make_response(render_template('index.html'))
     response.set_cookie('group', group, max_age=60 * 60 * 24 * 365)
     return response
@@ -150,10 +117,8 @@ def api():
     if request.method == 'POST':
         if request.form.get('group_code'):
             add_to_groups(request)
-            return render_template('api.html')
         elif request.form.get('email_spreadsheet'):
             email_report_alltime_api(request)
-            return render_template('api.html')
         return render_template('api.html')
     else:
         return render_template('api.html')
