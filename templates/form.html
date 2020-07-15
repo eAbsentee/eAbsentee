@@ -117,31 +117,34 @@
               <h6 class="text-center">Begin typing and select your address from the autocomplete field.</h6>
             </div>
             <div class="form-group mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
-              <!-- <label>Address Autocomplete</label> -->
-              <input type="text" class="form-control" id="us-autocomplete-pro-address-input" name="us-autocomplete-pro-address-input" autocomplete="new-password" placeholder="Full Address">
+              <label>Full Address</label>
+              <input type="text" class="form-control" id="us-autocomplete-pro-address-input" name="us-autocomplete-pro-address-input" autocomplete="new-password" placeholder="Example: 123 Main St, Fairfax, VA 12345">
               <ul class="us-autocomplete-pro-menu" style="display:none; position:absolute; z-index:2;"></ul>
-            </div>
-            <div class="form-group mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
-              <label>Street Address</label>
-              <input type="text" class="form-control" id="address" name="address" autocomplete="street-address" required>
             </div>
             <div class="form-group mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
               <label>Apartment</label>
-              <input type="text" class="form-control" id="apt" name="apt">
-            </div>
-            <div class="form-group mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
-              <label>City</label>
-              <input type="text" class="form-control" id="city" name="city" autocomplete="address-level2" required>
-            </div>
-            <div class="form-group mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
-              <label>Zip Code</label>
-              <input type="text" class="form-control" id="zip" name="zip" minlength="5" maxlength="5" pattern="^(\d{5})$" digits autocomplete="postal-code" required>
+              <input type="text" class="form-control" id="apt" name="apt" autocomplete="new-password">
             </div>
 
-            <div class="form-group mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
-              <label>I am registered to vote in:</label>
-              <input type="text" class="form-control" id="registered_county" name="registered_county" required>
+            <div class="address_div" style="display:none;">
+              <div class="form-group mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
+                <label>Street Address</label>
+                <input type="text" class="form-control" id="address" name="address" autocomplete="new-password" required>
+              </div>
+              <div class="form-group mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
+                <label>City</label>
+                <input type="text" class="form-control" id="city" name="city" autocomplete="new-password" required>
+              </div>
+              <div class="form-group mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+                <label>Zip Code</label>
+                <input type="text" class="form-control" id="zip" name="zip" minlength="5" maxlength="5" pattern="^(\d{5})$" digits autocomplete="new-password" required>
+              </div>
 
+              <div class="form-group mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
+                <label>I am registered to vote in:</label>
+                <input type="text" class="form-control" id="registered_county" name="registered_county" autocomplete="new-password" required>
+
+              </div>
             </div>
           </div>
         </div>

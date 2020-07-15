@@ -36,6 +36,16 @@
       }
     });
 
+    $("#address_div").hide();
+    // $("input[name=\"change_check\"]").change(function() {
+    //   if ($('input[name="change_check"]:checked').length > 0) {
+    //     $("#change_div").slideDown();
+    //   }
+    //   else {
+    //     $("#change_div").slideUp();
+    //   }
+    // });
+
     // If an assistant has signed the form, note that in the applicant signature field.
     $("input[name=\"assistant__signed\"]").change(function() {
       if (this.checked) {
