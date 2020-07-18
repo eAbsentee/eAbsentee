@@ -124,14 +124,13 @@ dmypy.json
 .pyre/
 
 .DS_Store
-keys.py
 
-applications/*
-!applications/.gitkeep
 
 reports/*
 !reports/.gitkeep
 
+
+# Important jsons
 credentials.json
 storage.json
 groups.json
