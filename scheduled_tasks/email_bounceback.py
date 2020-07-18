@@ -46,7 +46,7 @@ def bounceback_check() -> List:
     except(Exception):
         return []
 
-    final_list: List = []  # Final list of undeliverable messages
+    final_list = []  # Final list of undeliverable messages
 
     for message in message_list:
         message_id = message['id']
