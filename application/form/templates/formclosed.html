@@ -1,0 +1,97 @@
+{% from "macros.html" import favicon %}
+<!DOCTYPE HTML>
+<html>
+
+<head>
+      <title>Form Closed</title>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+      <meta name="description" content="" />
+      <meta name="keywords" content="" />
+
+      {{ favicon() }}
+
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}" />
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+</head>
+
+<body class="is-preload">
+
+      <!-- Header -->
+      <header id="header">
+            <a class="logo" href="/">eAbsentee</a>
+            <nav>
+                  <a href="#menu">Menu</a>
+            </nav>
+      </header>
+
+      <!-- Nav -->
+      <nav id="menu">
+            <ul class="links">
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/form">Apply</a></li>
+                  <li><a href="/about">About</a></li>
+            </ul>
+      </nav>
+
+      <!-- Banner -->
+      <section id="banner">
+            <div class="inner">
+                  <h1>
+                        The period for absentee ballot applications has closed.
+                  </h1>
+
+            </div>
+      </section>
+
+      <!-- Main -->
+      <section id="faq" class="wrapper">
+            <div class="inner">
+                  <div class="content">
+                        <header class="special">
+                              <h2>Absentee Ballot Information</h2>
+                        </header>
+                        <p>
+                              If you need to follow up with your local registrar regarding
+                              your absentee ballot application, contact information can be found
+                              <a href="https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup"> <u>here</u>. </a>
+                        </p>
+                        <p>
+                              Key upcoming deadlines. All absentee ballots must be received by election officials by 7 p.m. on Election Day. Absentee ballots can be returned by mail or delivered to your local voter registration office.
+                        </p>
+                        <!-- <p>Absentee voters have until November 2 to visit their local voter registration office
+                              and vote in-person absentee. The local offices will be open Saturday, October 26,
+                              and Saturday, November 2, for individuals wishing to cast
+                              their absentee ballots in person. </p>
+                        <p>Voters also may visit their local voter registration office during regular business
+                              hours through November 2 to vote absentee in-person.</p>
+                        <p>All absentee ballots - including those mailed back - must be received by 7 p.m. on
+                              Election Day, November 5, in order to be counted</p> -->
+                        <p>In-person absentee voting is often also available before Election Day. Check   <a href="https://www.elections.virginia.gov/"> here </a> for details!</p>
+                        <!-- <a href="https://www.elections.virginia.gov/new-releases/applications-for-mail-absentee-ballots-due-tuesday-october-29-in-person-absentee-voting-ends-november-2.html">More Details</a> -->
+
+
+
+
+                  </div>
+            </div>
+      </section>
+
+      <footer id="footer">
+            <div class="copyright">
+                  <p style="color:white;"> Contact us at <a href="mailto:applications@eabsentee.org">applications@eabsentee.org</a> | Paid for and authorized by Vote Absentee Virginia </p>
+            </div>
+
+      </footer>
+
+
+      <!-- Scripts -->
+      <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/browser.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/breakpoints.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/util.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+</body>
+
+</html>

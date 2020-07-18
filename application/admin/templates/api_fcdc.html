@@ -1,0 +1,58 @@
+{% from "macros.html" import favicon %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>API</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <script type="text/javascript">
+    function group() {
+      var checkBox = document.getElementById("groupcheckbox");
+      var text = document.getElementById("groupdiv");
+      if (checkBox.checked == true) {
+        text.style.display = "block";
+      } else {
+        text.style.display = "none";
+      }
+    }
+  </script>
+
+  {{ favicon() }}
+</head>
+
+<body>
+  <h3>{{confirmation}}</h3>
+
+
+
+  <p>Add a Group: <input type="checkbox" name="groupcheckbox" id="groupcheckbox" onclick="group()" value="0" /></p>
+
+  <div id="groupdiv" style="display:none">
+    <h1>Add a New Group</h1>
+    <form method="POST" action="">
+      <p>Please enter your unique API key:</p>
+      API Key: <input type="text" id="api_key" name="api_key">
+
+      <ul>
+        <li>1st position: media alpha A-Z</li>
+        <li>2nd position: District/Org alpha A-Z</li>
+        <li>3rd/4th position: date/year numeric 01-12 for 2020, 13-24 for 2021, etc</li>
+        <li>5th position marketing copy alpha A-Z</li>
+        <li>6th position list alpha A-Z</li>
+      </ul>
+
+      <p>Please enter desired keycode following format found above. </p>
+      Keycode: <input type="text" id="keycode" name="keycode"><br>
+
+
+      <p>Please enter the emails where you wish reports to be sent, separated by spaces. If you enter the emails incorrectly, please redo the whole process, and the emails will be updated.</p>
+      Keycode Emails: <input type="text" id="group_email" name="group_email"><br>
+
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+</body>
+</html>
