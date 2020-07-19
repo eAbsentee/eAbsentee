@@ -2,7 +2,7 @@ import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
-from application.config import Config
+from eAbsentee.config import Config
 
 
 load_dotenv()
@@ -15,13 +15,13 @@ def create_app():
     db.init_app(app)
 
     with app.app_context():
-        from application.form.models import User
+        from eAbsentee.form.models import User
 
         db.create_all()
 
-        from application.form import form
-        from application.home import home
-        from application.admin import admin
+        from eAbsentee.form import form
+        from eAbsentee.home import home
+        from eAbsentee.admin import admin
 
         app.register_blueprint(form.form_bp)
         app.register_blueprint(home.home_bp)
