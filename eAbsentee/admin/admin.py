@@ -1,7 +1,7 @@
-from flask import Blueprint
-from flask import render_template, request, make_response
-from .utils import add_to_groups, email_report_alltime_api, add_group_fcdc
+from flask import Blueprint, render_template, request, make_response, flash, redirect, session, url_for
+from flask_login import login_required, logout_user, current_user, login_user
 from ..form.models import User
+from .models import AdminUser, db
 
 admin_bp = Blueprint(
     'admin_bp',
@@ -17,29 +17,43 @@ def set_group(group: str):
     response.set_cookie('group', group, max_age=60 * 60 * 24 * 365)
     return response
 
-@admin_bp.route('/admin/interface/')
+@admin_bp.route('/interface/')
 def admin_interface():
-    return render_template(
-        'interface.html',
-        users=User.query.all()
-    )
+    # return render_template('signup.html')
+    return render_template('interface.html', users=User.query.all())
 
-''' API ROUTES '''
-@admin_bp.route('/api/', methods=['POST', 'GET'])
-def api():
-    if request.method == 'POST':
-        if request.form.get('group_code'):
-            add_to_groups(request)
-        elif request.form.get('email_spreadsheet'):
-            email_report_alltime_api(request)
-        return render_template('api.html')
-    else:
-        return render_template('api.html')
+@admin_bp.route('/login/', methods=['GET', 'POST'])
+def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('admin_bp.admin_interface'))
 
-@admin_bp.route('/api_fcdc/', methods=['POST', 'GET'])
-def api_fcdc():
     if request.method == 'POST':
-        add_group(request)
-        return render_template('api_fcdc.html')
-    else:
-        return render_template('api_fcdc.html')
+        user = AdminUser.query.filter_by(email=request.form['email']).first()
+        if user and user.check_password(password=request.form['password']):
+            login_user(user)
+            return redirect(url_for('admin_bp.admin_interface'))
+        else:
+            flash('Invalid username/password combination')
+            return redirect(url_for('admin_bp.login'))
+    elif request.method == 'GET':
+        return render_template('login.html')
+
+@admin_bp.route('/signup/', methods=['GET', 'POST'])
+def signup():
+    if request.method == 'POST':
+        existing_user = AdminUser.query.filter_by(id=request.form['email']).first()
+        if existing_user is None:
+            new_admin = AdminUser(
+                id=request.form['email']
+            )
+            new_admin.set_password(request.form['password'])
+            db.session.add(new_admin)
+            db.session.commit()
+            login_user(new_admin)
+            print('woo')
+            return redirect('/interface/')
+        else:
+            flash('A user already exists with that email address.')
+            return render_template('signup.html')
+    elif request.method == 'GET':
+        return render_template('signup.html')
