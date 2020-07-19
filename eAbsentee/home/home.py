@@ -51,76 +51,65 @@ def apple_touch_icon():
 
 @home_bp.route('/android-chrome-192x192.png', methods=['GET'])
 def android_chrome_192x192():
-    return send_from_directory(os.path.join(app.root_path, 'static'),
-                               'favicons/android-chrome-192x192.png',
+    return send_from_directory('static/favicons/android-chrome-192x192.png',
                                mimetype='image/png')
 
 
 @home_bp.route('/android-chrome-512x512.png', methods=['GET'])
 def android_chrome_512x512():
-    return send_from_directory(os.path.join(app.root_path, 'static'),
-                               'favicons/android-chrome-512x512.png',
+    return send_from_directory('static/favicons/android-chrome-512x512.png',
                                mimetype='image/png')
 
 
 @home_bp.route('/mstile-70x70.png', methods=['GET'])
 def mstile_70x70():
-    return send_from_directory(os.path.join(app.root_path, 'static'),
-                               'favicons/mstile-70x70.png',
+    return send_from_directory('static/favicons/mstile-70x70.png',
                                mimetype='image/png')
 
 
 @home_bp.route('/mstile-144x144.png', methods=['GET'])
 def mstile_144x144():
-    return send_from_directory(os.path.join(app.root_path, 'static'),
-                               'favicons/mstile-144x144.png',
+    return send_from_directory('static/favicons/mstile-144x144.png',
                                mimetype='image/png')
 
 
 @home_bp.route('/mstile-150x150.png', methods=['GET'])
 def mstile_150x150():
-    return send_from_directory(os.path.join(app.root_path, 'static'),
-                               'favicons/mstile-150x150.png',
+    return send_from_directory('static/favicons/mstile-150x150.png',
                                mimetype='image/png')
 
 
 @home_bp.route('/mstile-310x150.png', methods=['GET'])
 def mstile_310x150():
-    return send_from_directory(os.path.join(app.root_path, 'static'),
-                               'favicons/mstile-310x150.png',
+    return send_from_directory('static/favicons/mstile-310x150.png',
                                mimetype='image/png')
 
 
 @home_bp.route('/mstile-310x310.png', methods=['GET'])
 def mstile_310x310():
-    return send_from_directory(os.path.join(app.root_path, 'static'),
-                               'favicons/mstile-310x310.png',
+    return send_from_directory('static/favicons/mstile-310x310.png',
                                mimetype='image/png')
 
 
 @home_bp.route('/safari-pinned-tab.svg', methods=['GET'])
 def safar_pinned_tab():
-    return send_from_directory(os.path.join(app.root_path, 'static'),
-                               'favicons/safari-pinned-tab.svg',
+    return send_from_directory('static/favicons/safari-pinned-tab.svg',
                                mimetype='image/png')
 
 
 @home_bp.route('/favicon.ico', methods=['GET'])
 def favicon():
-    return send_from_directory(os.path.join(app.root_path, 'static'),
-                               'favicons/favicon.ico',
+    return send_from_directory('static/favicons/favicon.ico',
                                mimetype='image/vnd.microsoft.icon')
 
 
 @home_bp.route('/favicon-16x16.png', methods=['GET'])
 def favicon_16x16():
-    return send_from_directory(os.path.join(app.root_path, 'static'),
-                               'favicons/favicon-16x16.png',
+    return send_from_directory('static/favicons/favicon-16x16.png',
                                mimetype='image/png')
 
 
 @home_bp.route('/favicon-32x32.png', methods=['GET'])
 def favicon_32x32():
-    return send_from_directory(os.path.join(app.root_path, 'static'),
-                               'favicons/favicon-32x32.png',
+    return send_from_directory('static/favicons/favicon-32x32.png',
                                mimetype='image/png')
