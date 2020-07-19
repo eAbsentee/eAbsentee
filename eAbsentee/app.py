@@ -6,18 +6,18 @@ from eAbsentee.config import Config
 
 
 load_dotenv()
-db = SQLAlchemy()
+# db = SQLAlchemy()
 
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
 
-    db.init_app(app)
+    # db.init_app(app)
 
     with app.app_context():
         from eAbsentee.form.models import User
 
-        db.create_all()
+        # db.create_all()
 
         from eAbsentee.form import form
         from eAbsentee.home import home
