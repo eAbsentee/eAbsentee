@@ -18,6 +18,8 @@ def create_app():
     db.init_app(app)
     login_manager.init_app(app)
 
+    sys.path.append(os.path.join(os.path.dirname(__file__)))
+    
     with app.app_context():
         from eAbsentee.form.models import User
         from eAbsentee.admin.models import AdminUser
