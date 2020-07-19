@@ -21,7 +21,7 @@ def create_app():
         db.create_all()
 
         from eAbsentee.form import form
-        from eAbsentee.home import home
+        # from eAbsentee.home import home
         from eAbsentee.admin import admin
 
         app.register_blueprint(form.form_bp)
