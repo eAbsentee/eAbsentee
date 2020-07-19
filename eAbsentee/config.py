@@ -12,7 +12,8 @@ class Config:
     # General Config
     SECRET_KEY = environ.get("SECRET_KEY")
     DEBUG = environ.get("FLASK_DEBUG")
-    FLASK_APP = environ.get("FLASK_APP")
+    if environ.get("FLASK_APP"):
+        FLASK_APP = environ.get("FLASK_APP")
 
     TEMPLATES_AUTO_RELOAD = True
     ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
