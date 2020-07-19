@@ -10,11 +10,12 @@
   <meta name="description" content="" />
   <meta name="keywords" content="" />
 
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}" />
   <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
   <link rel="stylesheet" href="{{ url_for('static', filename='css/newform.css') }}" />
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <
 
   <script src="{{ url_for('static', filename='js/form_functions.js') }}"></script>
   <script src="{{ url_for('static', filename='js/form_autofill.js') }}"></script>
@@ -51,12 +52,12 @@
         <ul>
           <br/>
           <h6 class="text-light">• Any registered Virginia voter can request a mail-in ballot, no reason or excuse required! Your ballot will be mailed to you in September.</h6>
-          <h6 class="text-light">• Deadline: The last day to request your mail-in absentee ballot is 5pm Tuesday, October 23rd.</h6>
-          <h6 class="text-light">• With unprecedented demand, apply for your mail-in ballot NOW to be first in line and beat the rush!</h6>
+          <h6 class="text-light">• You can request your ballot up to a year before the election; they are mailed out beginning 45 days before the election.</h6>
+          <h6 class="text-light">• Application Deadline:  5pm Tuesday, October 27th. With unprecedented demand, apply NOW to be first in line and beat the rush!</h6>
           <h6 class="text-light">• Your mail-in ballot must be postmarked by Election Day, and received by 12pm Nov 6, so mail it back early, with plenty of time to spare.</h6>
-          <!-- <h6 class="text-light">• Witness Requirement? Anyone, including non-Americans, 18 or older, can witness your ballot, as required. </h6> -->
+          <h6 class="text-light">• Witness Requirement? Anyone, including non-Americans, 18 or older, can witness your ballot, as required. </h6>
           <!-- <br/> -->
-          <h6 class="text-light">• Check your voter registration status or register to vote <u><a href="https://www.elections.virginia.gov/citizen-portal/" target="_blank">here</a></u>, then return to complete this application (updating the address or name on your voter registration can be done below). </h6>
+          <h6 class="text-light">• If you are not registered to vote, register to vote <u><a href="https://www.elections.virginia.gov/citizen-portal/" target="_blank">here</a></u>, then return to complete this application (updating the address or name on your voter registration can be done below).</h6>
         </ul>
 
       </div>
@@ -622,8 +623,17 @@
   <!-- Footer -->
   <footer id="footer" style="background: black">
     <div class="mx-auto text-center">
-      <small style="color:white;">eAbsentee is sponsored by Vote Absentee Virginia, a not-for-profit 501(c)4 organization established to help broaden voter access across all parties in Virginia.</small>
+      <small style="color:white;">eAbsentee is sponsored by Vote Absentee Virginia, a not-for-profit, non-partisan 501(c)4 organization established to help broaden voter access across all parties in Virginia.</small>
       </br>
+    </br>
+      <a href="mailto:applcations@eabsentee.org">
+        <i class="fas fa-envelope"></i>
+      </a>
+      &nbsp;
+      <a href="https://www.facebook.com/voteabsenteeva">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <br/>
       <!-- <small style="color:white;"> Paid for and Authorized by Vote Absentee Virginia.</small> -->
       <!-- </br> -->
       <!-- <small style="color:white;">Authorized by the Virginia State Board of Elections to provide online applications for Virginia voters to vote absentee by mail.</small> -->
