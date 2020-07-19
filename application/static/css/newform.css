@@ -3,6 +3,15 @@
 }
 
 input{
-    background-color:#FFFFFF !important;
+    background-color: #FFFFFF !important;
     color: #000000 !important;
+		/* border: 2px !important; */
+		border-color: #000000 !important;
+}
+
+
+
+.form-control:focus {
+		border-color: blue !important;
+		box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.5) inset, 0px 0px 8px rgba(255, 255, 255, 0.5) !important;
 }

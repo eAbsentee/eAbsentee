@@ -12,13 +12,16 @@
 
   <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
   <link rel="stylesheet" href="{{ url_for('static', filename='css/newform.css') }}" />
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 
-  <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
   <script src="{{ url_for('static', filename='js/form_functions.js') }}"></script>
   <script src="{{ url_for('static', filename='js/form_autofill.js') }}"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script src="https://unpkg.com/bootstrap-show-password@1.2.1/dist/bootstrap-show-password.min.js"></script>
+
 </head>
 
 <body class="is-preload">
@@ -44,15 +47,16 @@
     <div class="card form-group border-dark mx-auto my-2">
       <div class="card-body rounded-top card-body col-lg-12" style="background: #0052A5">
         <h1 class="text-capitalize text-center text-light"> Vote by Mail!</h1>
-        <h3 class="text-capitalize text-center text-light"> Apply for Your Absentee-By-Mail Ballot Today</h3>
+        <h3 class="text-center text-light"> Apply for Your Absentee Ballot Today</h3>
         <ul>
           <br/>
-          <h6 class="text-light">• Any registered Virginia voter can request a mail-in ballot. Your ballot will be mailed to you in September.</h6>
+          <h6 class="text-light">• Any registered Virginia voter can request a mail-in ballot, no reason or excuse required! Your ballot will be mailed to you in September.</h6>
           <h6 class="text-light">• Deadline: The last day to request your mail-in absentee ballot is 5pm Tuesday, October 23rd.</h6>
           <h6 class="text-light">• With unprecedented demand, apply for your mail-in ballot NOW to be first in line and beat the rush!</h6>
-          <h6 class="text-light">• Your mail-in ballot must be postmarked by Election Day, so mail it back early, with plenty of time to spare.</h6>
+          <h6 class="text-light">• Your mail-in ballot must be postmarked by Election Day, and received by 12pm Nov 6, so mail it back early, with plenty of time to spare.</h6>
+          <!-- <h6 class="text-light">• Witness Requirement? Anyone, including non-Americans, 18 or older, can witness your ballot, as required. </h6> -->
           <!-- <br/> -->
-          <!-- <h6 class="text-light">• Check your voter registration status or register to vote <u><a href="https://www.elections.virginia.gov/citizen-portal/" target="_blank">here</a></u>, then return to complete this application.</h6> -->
+          <h6 class="text-light">• Check your voter registration status or register to vote <u><a href="https://www.elections.virginia.gov/citizen-portal/" target="_blank">here</a></u>, then return to complete this application (updating the address or name on your voter registration can be done below). </h6>
         </ul>
 
       </div>
@@ -82,8 +86,7 @@
             </div>
             <div class="form-group mx-auto col-lg-4 col-md-4 col-sm-6 col-xs-6 text-center">
               <label>SSN (Last 4 Digits)</label>
-              <input type="password" class="form-control" id="ssn" name="ssn" minlength="4" maxlength="4" pattern="^([0-9]{4})$" autocomplete="new-password" required digits>
-              <!-- <img src="{{ url_for('static', filename='img/ssl-lock.png') }}" alt=""> -->
+              <input data-toggle="password" class="form-control" type="password" id="ssn" name="ssn" minlength="4" maxlength="4" pattern="^([0-9]{4})$" autocomplete="new-password" required digits>
               <small class="form-text text-muted"><a href="/#faq_ssn">Why?</a></small>
             </div>
           </div>
@@ -622,7 +625,7 @@
       <small style="color:white;">eAbsentee is sponsored by Vote Absentee Virginia, a not-for-profit 501(c)4 organization established to help broaden voter access across all parties in Virginia.</small>
       </br>
       <!-- <small style="color:white;"> Paid for and Authorized by Vote Absentee Virginia.</small> -->
-    <!-- </br> -->
+      <!-- </br> -->
       <!-- <small style="color:white;">Authorized by the Virginia State Board of Elections to provide online applications for Virginia voters to vote absentee by mail.</small> -->
     </div>
   </footer>
