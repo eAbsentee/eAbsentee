@@ -1,4 +1,5 @@
 import os
+import sys
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
@@ -13,7 +14,7 @@ def create_app():
     app.config.from_object(Config)
 
     # db.init_app(app)
-
+    sys.path.append(os.path.join(os.path.dirname(__file__)))
     with app.app_context():
         from eAbsentee.form.models import User
 
