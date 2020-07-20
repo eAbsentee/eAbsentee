@@ -13,6 +13,7 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 from dotenv import load_dotenv
 from .models import db, User
+from sqlalchemy.exc import IntegrityError
 
 # Change current working directory to directory 'functions.py' is in.
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
@@ -211,6 +212,9 @@ def add_to_database_all_voters():
                 ip=row[6],
                 group_code=row[7]
             )
-
-            db.session.add(new_voter)
-            db.session.commit()
+            try:
+                db.session.add(new_voter)
+                db.session.commit()
+            except IntegrityError:
+                db.session.rollback()
+                print("Duplicate entry detected!")
