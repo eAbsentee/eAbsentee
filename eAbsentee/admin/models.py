@@ -1,29 +1,21 @@
 import os
 import sys
 from flask_login import UserMixin
-from werkzeug.security import generate_password_hash, check_password_hash
 from ..app import db, login_manager
 
-# sys.path.append(os.path.join(os.path.dirname(__file__)))
+
 @login_manager.user_loader
-class AdminUser(UserMixin, db.Model):
+def load_user(user_id):
+    return AdminUser.query.get(int(user_id))
+
+class AdminUser(db.Model, UserMixin):
     """Data model for voters and their information."""
 
-    __tablename__ = 'admin_users'
+    __tablename__ = 'new_admin_users'
 
-    id = db.Column(db.String(128), primary_key=True, unique=True) # email
-    password = db.Column(db.String(256), index=False, nullable=False, unique=False)
-
-    def set_password(self, password):
-        """Create hashed password."""
-        self.password = generate_password_hash(
-            password,
-            method='sha256'
-        )
-
-    def check_password(self, password):
-        """Check hashed password."""
-        return check_password_hash(self.password, password)
+    id = db.Column(db.Integer, primary_key=True) # ID
+    email = db.Column(db.String(128), unique=True, nullable=False)
+    password = db.Column(db.String(256), nullable=False, unique=False)
 
 
     def __repr__(self):
