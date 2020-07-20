@@ -191,7 +191,7 @@ def email_registrar(data):
 def add_to_database_all_voters():
     filename = '../static/voters.csv'
 
-    with open(filename, 'r') as csvfile:
+    with open(filename, 'r', encoding='cp1252') as csvfile:
         csvreader = csv.reader(csvfile)
         fields = next(csvreader)
 
