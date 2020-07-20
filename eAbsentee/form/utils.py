@@ -30,9 +30,9 @@ def parse_data(request, group_code_form):
 
     group_code = ''
     if group_code_form:
-        group_code = group_code_form
+        group_code = lower(group_code_form)
     elif request.cookies.get('group'):
-        group_code = request.cookies.get('group')
+        group_code = lower(request.cookies.get('group'))
 
     emails_to_be_sent_to = []
     with open('../static/localities_info.json') as file:
@@ -66,7 +66,7 @@ def parse_data(request, group_code_form):
             'city': request.form['city'],
             'zip_code': '   '.join(request.form['zip']),
             'state': 'VA',
-            'full_address': request.form['address'] + ((' ' + request.form['apt']) if request.form['apt'] else ' ') + ', ' + request.form['city'] + ', ' + 'VA' +  ' ' + request.form['zip'],
+            'full_address': request.form['address'] + ((' ' + request.form['apt']) if request.form['apt'] else '') + ', ' + request.form['city'] + ', ' + 'VA' +  ' ' + request.form['zip'],
             'full_delivery_address': request.form['different_address'] +      ((' ' + request.form['different_apt']) if request.form['different_apt'] else ' ') + ', ' + request.form['different_city'] + ', ' + request.form['different_state'] +  ' ' + request.form['different_zip'] + ' ' + request.form['different_country'],
             'delivery_address': request.form.get('different_address'),
             'delivery_city': request.form.get('different_city'),
