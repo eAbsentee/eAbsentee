@@ -19,10 +19,10 @@ def set_group(group: str):
     response.set_cookie('group', group, max_age=60 * 60 * 24 * 365)
     return response
 
-@login_required
-@admin_bp.route('/interface/')
-def admin_interface():
-    return render_template('interface.html', users=User.query.all())
+# @login_required
+# @admin_bp.route('/interface/')
+# def admin_interface():
+#     return render_template('interface.html', users=User.query.all())
 
 @admin_bp.route('/login/', methods=['GET', 'POST'])
 def login():
