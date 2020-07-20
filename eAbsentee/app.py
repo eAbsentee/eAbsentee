@@ -3,6 +3,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_bcrypt import Bcrypt
+from flask_migrate import Migrate
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -30,6 +31,7 @@ def init_apps(app):
     login_manager.init_app(app)
     bcrypt.init_app(app)
     login_manager.login_view = 'login'
+    migrate = Migrate(app, db)
 
 def database_models(db):
     from eAbsentee.form.models import User

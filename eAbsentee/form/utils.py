@@ -4,8 +4,10 @@ import os
 import json
 import datetime
 import io
+import csv
 from flask import request
 from datetime import date
+from datetime import datetime
 from PyPDF2 import PdfFileWriter, PdfFileReader
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
@@ -184,3 +186,31 @@ def email_registrar(data):
         f'submitted on behalf of {data["full_name"]} from eAbsentee.org',
         attachments=data['output_file']
     )
+
+
+def add_to_database_all_voters():
+    filename = '../static/voters.csv'
+
+    with open(filename, 'r') as csvfile:
+        csvreader = csv.reader(csvfile)
+        fields = next(csvreader)
+
+        for row in csvreader:
+            from dateutil import parser
+            # datetime_object = datetime.strptime(row[1], '%m/%d/%Y %H:%S')
+            # print(type(parser.parse(row[1])))
+            # print(row)
+            new_voter = User(
+                application_id=row[7],
+                name=row[0],
+                submission_time=parser.parse(row[1]),
+                county=row[2],
+                email=row[3],
+                phonenumber=row[4],
+                full_address=row[5],
+                ip=row[6],
+                group_code=row[7]
+            )
+
+            db.session.add(new_voter)
+            db.session.commit()
