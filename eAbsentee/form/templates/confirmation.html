@@ -3,59 +3,80 @@
 <html>
 
 <head>
-      {{ favicon() }}
-      <title>eAbsentee</title>
-      <meta charset="utf-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-      <meta name="description" content="" />
-      <meta name="keywords" content="" />
-      <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}" />
-      <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+  {{ favicon() }}
+  <title>eAbsentee</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <meta name="description" content="" />
+  <meta name="keywords" content="" />
+
+
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-social.css') }}" />
 </head>
 
 <body class="is-preload">
 
-      <!-- Header -->
-      <header id="header">
-            <a class="logo" href="/">eAbsentee</a>
-            <nav>
-                  <a href="#menu">Menu</a>
-            </nav>
-      </header>
+  <!-- Header -->
+  <header id="header">
+    <a class="logo" href="/">eAbsentee</a>
+    <nav>
+      <a href="#menu">Menu</a>
+    </nav>
+  </header>
 
-      <!-- Nav -->
-      <nav id="menu">
-            <ul class="links">
-                  <li><a href="/">Home</a></li>
-                  <li><a href="/form">Apply</a></li>
-                  <li><a href="/about">About</a></li>
-            </ul>
-      </nav>
+  <!-- Nav -->
+  <nav id="menu">
+    <ul class="links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/form">Apply</a></li>
+      <li><a href="/about">About</a></li>
+    </ul>
+  </nav>
 
-      <!-- Banner -->
-      <section id="banner">
-            <div class="inner">
-                  <h1> Application Confirmed </h1>
-                  <p>Thank you for applying for an absentee ballot! No further action is required on your part. An absentee ballot will be sent via mail to your residence soon.
-                  </p>
-                  <p>
-                    To check on the status of your application, visit <a href="https://www.elections.virginia.gov"> <u>the state elections website</u></a>.
-                  </p>
-            </div>
-      </section>
+  <!-- Banner -->
+  <section id="banner">
+    <div class="inner">
+      <h1> Application Confirmed </h1>
+      <p>Thank you for applying for an absentee ballot! No further action is required on your part. An absentee ballot will be sent via mail to your residence soon.
+      </p>
+      <p>
+        To check on the status of your application, visit <a href="https://www.elections.virginia.gov"> <u>the state elections website</u></a>.
+      </p>
 
-      <!-- Footer -->
-      <footer id="footer">
-            <div class="copyright">
-                  <p style="color:white;"> Contact us at <a href="mailto:contact@eabsentee.org">contact@eabsentee.org</a> | Paid for and authorized by Vote Absentee Virginia </p>
-            </div>
-            </div>
-      </footer>
-      <!-- Scripts -->
-      <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
-      <script src="{{ url_for('static', filename='js/browser.min.js') }}"></script>
-      <script src="{{ url_for('static', filename='js/breakpoints.min.js') }}"></script>
-      <script src="{{ url_for('static', filename='js/util.min.js') }}"></script>
-      <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+
+
+      <div style="max-width:200px; margin:auto">
+        <a class="btn btn-block btn-social btn-twitter" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.eabsentee.org&text=I&lsquo;m%20voting%20from%20home%20this%20November%3A%20I%20just%20applied%20online%20to%20receive%20to%20receive%20a%20Virginia%20absentee%20ballot%20at">
+          <span class="fa fa-twitter"></span> Share on Twitter
+        </a>
+
+        <a class="btn btn-block btn-social btn-facebook" href="https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&sdk=joey&u=https%3A%2F%2Fwww.eabsentee.org%2F&display=popup&ref=plugin&src=share_button">
+          <span class="fa fa-facebook"></span> Share on Facebook
+        </a>
+      </div>
+
+
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="copyright">
+      <p style="color:white;"> Contact us at <a href="mailto:contact@eabsentee.org">contact@eabsentee.org</a> | Paid for and authorized by Vote Absentee Virginia </p>
+    </div>
+    </div>
+  </footer>
+  <!-- Scripts -->
+  <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/browser.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/breakpoints.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/util.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
+
 </html>
