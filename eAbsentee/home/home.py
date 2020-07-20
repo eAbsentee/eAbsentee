@@ -33,7 +33,7 @@ def privacy():
 @home_bp.route('/g/<group>/')
 def set_group(group: str):
     response = make_response(render_template('index.html'))
-    response.set_cookie('group', group, max_age=60 * 60 * 24 * 365)
+    response.set_cookie('group', lower(group), max_age=60 * 60 * 24 * 365)
     return response
 
 
