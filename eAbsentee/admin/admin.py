@@ -1,30 +1,21 @@
 from flask import Blueprint, render_template, request, make_response, flash, redirect, session, url_for
 from flask_login import login_required, logout_user, current_user, login_user
-from ..app import db, bcrypt
+from ..app import db, bcrypt, login_manager
 from ..form.models import User
 from .models import AdminUser
 
-
 admin_bp = Blueprint(
-    'admin_bp',
-    __name__,
-    template_folder='templates',
-    static_folder='static'
+    'admin_bp', __name__, template_folder='templates', static_folder='static'
 )
 
-''' Cookie Routes '''
-@admin_bp.route('/g/<group>/')
-def set_group(group: str):
-    response = make_response(render_template('index.html'))
-    response.set_cookie('group', group, max_age=60 * 60 * 24 * 365)
-    return response
+@admin_bp.route('/interface/', methods=['GET', 'POST'])
+@login_required
+def admin_interface():
+    return render_template('interface.html', users=User.query.all())
 
-# @login_required
-# @admin_bp.route('/interface/')
-# def admin_interface():
-#     return render_template('interface.html', users=User.query.all())
 
 @admin_bp.route('/login/', methods=['GET', 'POST'])
+@login_manager.unauthorized_handler
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('admin_bp.admin_interface'))
@@ -41,7 +32,7 @@ def login():
         return render_template('login.html')
 
 @admin_bp.route('/register/', methods=['GET', 'POST'])
-def signup():
+def register():
     if current_user.is_authenticated:
         return redirect(url_for('admin_bp.admin_interface'))
 
@@ -55,7 +46,7 @@ def signup():
             db.session.add(new_admin)
             db.session.commit()
             login_user(new_admin, remember=True)
-            return redirect('admin_bp.admin_interface')
+            return redirect('/interface/')
         else:
             flash('A user already exists with that email address.', 'danger')
             return render_template('register.html')

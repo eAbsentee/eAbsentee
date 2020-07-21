@@ -33,9 +33,9 @@ def parse_data(request, group_code_form):
 
     group_code = ''
     if group_code_form:
-        group_code = lower(group_code_form)
+        group_code = group_code_form.lower()
     elif request.cookies.get('group'):
-        group_code = lower(request.cookies.get('group'))
+        group_code = request.cookies.get('group').lower()
 
     emails_to_be_sent_to = []
     with open('../static/localities_info.json') as file:
