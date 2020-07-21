@@ -36,7 +36,7 @@ def init_apps(app):
 def database_models(db):
     from eAbsentee.form.models import User
     from eAbsentee.admin.models import AdminUser
-    if os.environ['TESTING_MODE']:
+    if os.environ['FLASK_DEBUG']:
         db.create_all()
 
 def register_blueprints(app):

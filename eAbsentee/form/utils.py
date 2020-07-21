@@ -41,7 +41,7 @@ def parse_data(request, group_code_form):
     with open('../static/localities_info.json') as file:
         localities = json.load(file)
 
-        if os.environ["TESTING_MODE"] == True:
+        if os.environ["FLASK_DEBUG"] == True:
             emails_to_be_sent_to = ['applications@eabsentee.org']
         else:
             emails_to_be_sent_to = [localities[request.form['registered_county']]['email']]
