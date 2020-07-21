@@ -24,7 +24,8 @@ def application_process(request, group_code_form=None):
     data = parse_data(request, group_code_form=group_code_form)
     write_pdf(data)
     add_to_database(data)
-    email_registrar(data)
+    if not os.environ["DEBUG_MODE"]:
+        email_registrar(data)
     os.remove(data['application_id'] + '.pdf')
 
 def parse_data(request, group_code_form):
