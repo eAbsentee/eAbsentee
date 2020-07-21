@@ -160,7 +160,8 @@ def write_pdf(data):
     page.mergePage(new_pdf.getPage(0))
     output.addPage(page)
 
-    output.write(open(data['output_file'], 'wb'))
+    with open(data['output_file'], 'wb') as output_pdf_file:
+        output.write(output_pdf_file)
 
 def add_to_database(data):
     new_voter = User(
