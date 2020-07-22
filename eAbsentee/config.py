@@ -15,9 +15,6 @@ class Config:
     if environ.get("FLASK_APP"):
         FLASK_APP = environ.get("FLASK_APP")
 
-    if environ.get("FLASK_DEBUG"):
-        EXPLAIN_TEMPLATE_LOADING = True
-
     TEMPLATES_AUTO_RELOAD = True
     ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
 
