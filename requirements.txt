@@ -7,6 +7,7 @@ et-xmlfile==1.0.1
 Flask==1.1.1
 flask_sqlalchemy==2.4.4
 flask-migrate==2.5.3
+gmplot==1.4.1
 google-api-python-client==1.7.11
 google-auth==1.6.3
 google-auth-httplib2==0.0.3
