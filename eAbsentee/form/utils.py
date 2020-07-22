@@ -197,7 +197,7 @@ def add_to_database_long_lat():
     auth_id = os.environ['SMARTY_AUTH_ID']
     auth_token = os.environ['SMARTY_AUTH_TOKEN']
 
-    for user in User.query.all():
+    for user in User.query.filter(User.lat == None):
         address = user.get_address()
         string = f"https://us-street.api.smartystreets.com/street-address?auth-id=" + str(auth_id) + "&auth-token=" + str(auth_token) + "&street=" + address.replace(' ', '+').replace(',', '')
         try:
@@ -206,4 +206,4 @@ def add_to_database_long_lat():
             user.long = metadata['latitude']
             db.session.commit()
         except:
-            sys.stderr.write(user.get_address() + " did not work!")
+            continue
