@@ -1,7 +1,7 @@
 import os
 from flask import Blueprint
 from flask import render_template, request, redirect
-from .utils import application_process, add_to_database_all_voters
+from .utils import application_process, add_to_database_long_lat
 from dotenv import load_dotenv
 
 form_bp = Blueprint(
@@ -23,9 +23,9 @@ def confirmation_page():
 def form_closed():
     return render_template('formclosed.html')
 
-@form_bp.route('/db/')
+@form_bp.route('/longlat/')
 def add_to_database():
-    add_to_database_all_voters()
+    add_to_database_long_lat()
     return render_template('formclosed.html')
 
 @form_bp.route('/form/', methods=['POST', 'GET'])

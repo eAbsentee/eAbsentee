@@ -191,32 +191,19 @@ def email_registrar(data):
     )
 
 
-def add_to_database_all_voters():
-    filename = '../static/voters.csv'
+def add_to_database_long_lat():
+    import requests
 
-    with open(filename, 'r', encoding='cp1252') as csvfile:
-        csvreader = csv.reader(csvfile)
-        fields = next(csvreader)
+    auth_id = os.environ['SMARTY_AUTH_ID']
+    auth_token = os.environ['SMARTY_AUTH_TOKEN']
 
-        for row in csvreader:
-            from dateutil import parser
-            # datetime_object = datetime.strptime(row[1], '%m/%d/%Y %H:%S')
-            # print(type(parser.parse(row[1])))
-            # print(row)
-            new_voter = User(
-                application_id=row[7],
-                name=row[0],
-                submission_time=parser.parse(row[1]),
-                county=row[2],
-                email=row[3],
-                phonenumber=row[4],
-                full_address=row[5],
-                ip=row[6],
-                group_code=row[7]
-            )
-            try:
-                db.session.add(new_voter)
-                db.session.commit()
-            except IntegrityError:
-                db.session.rollback()
-                print("Duplicate entry detected!")
+    for user in User.query.all():
+        address = user.get_address()
+        string = f"https://us-street.api.smartystreets.com/street-address?auth-id=" + str(auth_id) + "&auth-token=" + str(auth_token) + "&street=" + address.replace(' ', '+').replace(',', '')
+        try:
+            metadata = requests.request("GET", string).json()[0]['metadata']
+            user.lat = metadata['longitude']
+            user.long = metadata['latitude']
+            db.session.commit()
+        except:
+            sys.stderr.write(user.get_address() + " did not work!")
