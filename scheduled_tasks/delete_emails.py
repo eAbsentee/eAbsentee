@@ -9,7 +9,6 @@ import base64
 import os
 import sys
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 # Change current working directory, only needed for Atom
@@ -18,14 +17,14 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 def delete_emails() -> List:
     # Gets authentication json if it's been implemented before
-    store = file.Storage('../static/storage.json')
+    store = file.Storage('storage.json')
     creds = store.get()
 
     # If the credits don't work or don't exist, create them, and store them
     SCOPES = 'https://mail.google.com/'
     if not creds or creds.invalid:
         flow = client.flow_from_clientsecrets(
-            '../static/credentials.json', SCOPES)
+            'credentials.json', SCOPES)
         creds = tools.run_flow(flow, store)
 
     # Builds connection to gmail client
@@ -39,14 +38,13 @@ def delete_emails() -> List:
     sent_messages = GMAIL.users().messages().list(
         userId=user_id, labelIds=[label_id_one], maxResults=1000).execute()
 
-    try:
-        message_list = sent_messages['messages']
-    except(Exception):
-        return []
+    print(sent_messages)
+    message_list = sent_messages['messages']
 
-    to_delete: List = []  # Final list of undeliverable messages
+    to_delete = []  # Final list of undeliverable messages
 
     for message in message_list:
+        print(message)
         message_id = message['id']
 
         message = GMAIL.users().messages().get(
