@@ -1,7 +1,7 @@
-import os, sys
+import os
 from flask import Blueprint
 from flask import render_template, request, redirect
-from .utils import application_process, add_to_database_long_lat
+from .utils import application_process
 from dotenv import load_dotenv
 
 form_bp = Blueprint(

@@ -189,21 +189,3 @@ def email_registrar(data):
         f'submitted on behalf of {data["full_name"]} from eAbsentee.org',
         attachments=data['output_file']
     )
-
-
-def add_to_database_long_lat():
-    import requests
-
-    auth_id = os.environ['SMARTY_AUTH_ID']
-    auth_token = os.environ['SMARTY_AUTH_TOKEN']
-
-    for user in User.query.filter(User.lat == None):
-        address = user.get_address()
-        string = f"https://us-street.api.smartystreets.com/street-address?auth-id=" + str(auth_id) + "&auth-token=" + str(auth_token) + "&street=" + address.replace(' ', '+').replace(',', '')
-        try:
-            metadata = requests.request("GET", string).json()[0]['metadata']
-            user.lat = metadata['longitude']
-            user.long = metadata['latitude']
-            db.session.commit()
-        except:
-            continue
