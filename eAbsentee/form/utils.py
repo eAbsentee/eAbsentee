@@ -104,7 +104,9 @@ def parse_data(request, group_code_form):
             'date_today_year': today_date[4:6],
             'application_ip': request.environ.get('HTTP_X_REAL_IP', request.remote_addr),
             'group_code': group_code,
-            'emails_to_be_sent_to': emails_to_be_sent_to
+            'emails_to_be_sent_to': emails_to_be_sent_to,
+            'lat': request.form.get('lat'),
+            'long': request.form.get('long')
         }
 
     data['application_id'] = hashlib.md5(repr(data).encode('utf-8')).hexdigest()[: 24]
@@ -173,11 +175,14 @@ def add_to_database(data):
         phonenumber=data['phonenumber'],
         full_address=data['full_address'],
         ip=data['application_ip'],
-        group_code=data['group_code']
+        group_code=data['group_code'],
+        lat=data['lat'],
+        long=data['long']
     )
 
     db.session.add(new_voter)
     db.session.commit()
+
 
 def email_registrar(data):
     """Email the form to the registrar of the applicant's locality. """

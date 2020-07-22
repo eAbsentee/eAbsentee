@@ -39,15 +39,18 @@ $(function() {
         $('input[name=address]').val(data[0].delivery_line_1);
         $('input[name=zip]').val(data[0].components.zipcode);
         $('input[name=city]').val(data[0].components.city_name);
+        $('input[name=lat]').val(data[0].metadata.latitude);
+        $('input[name=long]').val(data[0].metadata.longitude);
         $("#address").prop('readonly', 'true');
         $("#zip").prop('readonly', 'true');
         $("#city").prop('readonly', 'true');
+        $("#lat").prop('readonly', 'true');
+        $("#long").prop('readonly', 'true');
 
         var county_name = data[0].metadata.county_name;
         if (county_name.includes("City") === false) {
           county_name = county_name + " County";
         }
-        console.log(county_name);
         $("#registered_county").val(county_name);
         $("#registered_county").prop('readonly', 'true');
       },
@@ -57,19 +60,21 @@ $(function() {
     });
   }
 
-  // Understood
   function clearAddressData() {
     $("#address").val('');
     $("#zip").val('');
     $("#city").val('');
+    $("#lat").val('');
+    $("#long").val('');
     $("#registered_county").val('');
     $("#address").prop('readonly', 'false');
     $("#zip").prop('readonly', 'false');
     $("#city").prop('readonly', 'false');
     $("#registered_county").prop('readonly', 'false');
+    $("#lat").prop('readonly', 'false');
+    $("#long").prop('readonly', 'false');
   }
 
-  // Understood
   function noSuggestions() {
     var menu = $(".us-autocomplete-pro-menu");
     menu.empty();
@@ -78,7 +83,6 @@ $(function() {
   }
 
   function buildAddress(suggestion) {
-    // console.log(suggestion)
     var whiteSpace = "";
     if (suggestion.secondary || suggestion.entries > 1) {
       if (suggestion.entries > 1) {
