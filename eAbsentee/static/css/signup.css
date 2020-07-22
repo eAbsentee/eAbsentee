@@ -23,16 +23,16 @@ html {
   border-radius: 5px;
 }
 
-.brand_logo_container {
+/* .brand_logo_container {
   position: absolute;
   height: 170px;
   width: 170px;
-  top: -75px;
+  top: -150px;
   border-radius: 50%;
   background: #60a3bc;
   padding: 10px;
   text-align: center;
-}
+} */
 
 .brand_logo {
   height: 150px;
