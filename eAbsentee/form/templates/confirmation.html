@@ -3,38 +3,28 @@
 <html>
 
 <head>
-  {{ favicon() }}
-  <title>eAbsentee</title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-  <meta name="description" content="" />
-  <meta name="keywords" content="" />
-
-
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+	{{ favicon() }}
+	<title>eAbsentee</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-social.css') }}" />
 </head>
 
 <body class="is-preload">
 
-  <!-- Header -->
   <header id="header">
-    <a class="logo" href="/">eAbsentee</a>
-    <nav>
-      <a href="#menu">Menu</a>
-    </nav>
-  </header>
-
-  <!-- Nav -->
-  <nav id="menu">
-    <ul class="links">
-      <li><a href="/">Home</a></li>
-      <li><a href="/form">Apply</a></li>
-      <li><a href="/about">About</a></li>
-    </ul>
-  </nav>
+		<a class="logo" href="/"><img width="32" height="32" src="{{ url_for('static', filename='img/eabsentee.svg/') }}"></img> eAbsentee</a>
+		<nav>
+			<a href="/form/">Apply</a>
+			<a href="/about/">About Us</a>
+			<a href="/privacy/">Privacy Policy</a>
+		</nav>
+	</header>
 
   <!-- Banner -->
   <section id="banner">
@@ -64,11 +54,19 @@
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer id="footer">
-    <div class="copyright">
-      <p style="color:white;"> Contact us at <a href="mailto:contact@eabsentee.org">contact@eabsentee.org</a> | Paid for and authorized by Vote Absentee Virginia </p>
-    </div>
+  <footer id="footer" style="background: black">
+    <div class="mx-auto text-center">
+      <small style="color:white;">eAbsentee is sponsored by Vote Absentee Virginia, a not-for-profit, non-partisan 501(c)4 organization established to help broaden voter access across all parties in Virginia.</small>
+      </br>
+      </br>
+      <a href="mailto:applications@eabsentee.org">
+        <i class="fa fa-envelope fa-2x"></i>
+      </a>
+      &nbsp;
+      <a href="https://www.facebook.com/voteabsenteeva">
+        <i class="fa fa-facebook-square fa-2x"></i>
+      </a>
+      <br />
     </div>
   </footer>
   <!-- Scripts -->
