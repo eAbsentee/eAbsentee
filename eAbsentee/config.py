@@ -11,7 +11,7 @@ class Config:
 
     # General Config
     SECRET_KEY = environ.get("SECRET_KEY")
-    DEBUG = environ.get("FLASK_DEBUG")
+    FLASK_DEBUG = environ.get("FLASK_DEBUG")
     if environ.get("FLASK_APP"):
         FLASK_APP = environ.get("FLASK_APP")
 
