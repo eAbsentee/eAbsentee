@@ -24,8 +24,7 @@ def application_process(request, group_code_form=None):
     data = parse_data(request, group_code_form=group_code_form)
     write_pdf(data)
     add_to_database(data)
-    if not os.environ["FLASK_DEBUG"]:
-        email_registrar(data)
+    email_registrar(data)
     os.remove(data['application_id'] + '.pdf')
 
 def parse_data(request, group_code_form):
@@ -41,12 +40,10 @@ def parse_data(request, group_code_form):
     emails_to_be_sent_to = []
     with open('../static/localities_info.json') as file:
         localities = json.load(file)
-
         if os.environ["FLASK_DEBUG"] == True:
             emails_to_be_sent_to = ['applications@eabsentee.org']
         else:
             emails_to_be_sent_to = [localities[request.form['registered_county']]['email']]
-
 
         if request.form.get('email'):
             emails_to_be_sent_to.append(request.form.get('email'))
