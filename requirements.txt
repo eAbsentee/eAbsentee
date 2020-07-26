@@ -5,8 +5,9 @@ Click==7.0
 DateTime==4.3
 et-xmlfile==1.0.1
 Flask==1.1.1
-flask_sqlalchemy==2.4.4
+flask-sqlalchemy==2.4.4
 flask-migrate==2.5.3
+flask-talisman==0.7.0
 gmplot==1.4.1
 google-api-python-client==1.7.11
 google-auth==1.6.3
