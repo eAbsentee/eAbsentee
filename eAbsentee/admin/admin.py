@@ -3,6 +3,7 @@ from flask_login import login_required, logout_user, current_user, login_user
 from ..app import db, bcrypt, login_manager
 from ..form.models import User
 from .models import AdminUser
+from .utils import create_map
 
 admin_bp = Blueprint(
     'admin_bp', __name__, template_folder='templates', static_folder='static'
@@ -13,6 +14,11 @@ admin_bp = Blueprint(
 # def admin_interface():
 #     return render_template('interface.html', users=User.query.all())
 
+# @admin_bp.route('/test/', methods=['GET', 'POST'])
+# @login_required
+# def test():
+#     create_map()
+#     return render_template('test.html')
 
 @admin_bp.route('/login/', methods=['GET', 'POST'])
 @login_manager.unauthorized_handler
