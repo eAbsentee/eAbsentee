@@ -35,7 +35,7 @@ $(function() {
       },
       dataType: "jsonp",
       success: function(data) {
-        console.log(data);
+        // console.log(data);
         $('input[name=address]').val(data[0].delivery_line_1);
         $('input[name=zip]').val(data[0].components.zipcode);
         $('input[name=city]').val(data[0].components.city_name);
