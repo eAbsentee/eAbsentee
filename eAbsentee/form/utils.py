@@ -24,7 +24,9 @@ def application_process(request, group_code_form=None):
     data = parse_data(request, group_code_form=group_code_form)
     write_pdf(data)
     add_to_database(data)
-    email_registrar(data)
+    if not os.environ["FLASK_DEBUG"]:
+        print('Emialed')
+        email_registrar(data)
     os.remove(data['application_id'] + '.pdf')
 
 def parse_data(request, group_code_form):
@@ -34,9 +36,11 @@ def parse_data(request, group_code_form):
     group_code = ''
     if group_code_form:
         group_code = group_code_form.lower()
+        print(' group ' + group_code)
     elif request.cookies.get('group'):
         group_code = request.cookies.get('group').lower()
 
+    print(group_code)
     emails_to_be_sent_to = []
     with open('../static/localities_info.json') as file:
         localities = json.load(file)
@@ -176,6 +180,8 @@ def add_to_database(data):
         lat=data['lat'],
         long=data['long']
     )
+
+    print(new_voter)
 
     db.session.add(new_voter)
     db.session.commit()
