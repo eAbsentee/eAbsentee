@@ -4,6 +4,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_bcrypt import Bcrypt
 from flask_migrate import Migrate
+from flask_talisman import Talisman
+from flask_seasurf import SeaSurf
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -12,6 +14,9 @@ sys.path.append(os.path.join(os.path.dirname(__file__)))
 db = SQLAlchemy()
 bcrypt = Bcrypt()
 login_manager = LoginManager()
+# csrf = SeaSurf()
+migrate = Migrate()
+# talisman = Talisman()
 
 def create_app():
     app = Flask(__name__)
@@ -29,9 +34,32 @@ def set_config(app):
 def init_apps(app):
     db.init_app(app)
     login_manager.init_app(app)
-    bcrypt.init_app(app)
     login_manager.login_view = 'login'
-    migrate = Migrate(app, db)
+    bcrypt.init_app(app)
+    # csrf.init_app(app)
+    migrate.init_app(app, db)
+    # talisman.init_app(app, content_security_policy=get_csp())
+
+def get_csp():
+    return {
+        'default-src': [
+            '\'self\'',
+            '\'unsafe-inline\'',
+            '*.cloudflare.com',
+            '*.bootstrapcdn.com',
+            '*.jquery.com',
+            '*.googleapis.com',
+            '*.gstatic.com'
+        ],
+        'script-src': [
+            '\'self\'',
+            '*.jquery.com',
+            '*.googleapis.com',
+            'unpkg.com',
+            '*.api.smartystreets.com',
+            '*.bootstrapcdn.com'
+        ]
+    }
 
 def database_models(db):
     from eAbsentee.form.models import User
