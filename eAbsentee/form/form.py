@@ -4,6 +4,8 @@ from flask import render_template, request, redirect
 from .utils import application_process
 from dotenv import load_dotenv
 
+load_dotenv()
+
 form_bp = Blueprint(
     'form_bp',
     __name__,
@@ -46,7 +48,7 @@ def form():
 def form_group(group):
     if request.method == 'POST':
         if os.environ["FLASK_DEBUG"]:
-            application_process(request)
+            application_process(request, group)
         else:
             try:
                 application_process(request, group)

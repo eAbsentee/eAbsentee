@@ -20,27 +20,26 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 load_dotenv()
 
 
-def application_process(request, group_code_form=None):
-    data = parse_data(request, group_code_form=group_code_form)
+def application_process(request, group_code=None):
+    data = parse_data(request, group_code=group_code)
     write_pdf(data)
     add_to_database(data)
     if not os.environ["FLASK_DEBUG"]:
-        print('Emialed')
         email_registrar(data)
-    os.remove(data['application_id'] + '.pdf')
+    os.remove(data['output_file'])
 
-def parse_data(request, group_code_form):
+def parse_data(request, group_code):
     data = {}
     today_date = date.today().strftime('%m%d%y')
 
-    group_code = ''
-    if group_code_form:
-        group_code = group_code_form.lower()
-        print(' group ' + group_code)
+    if group_code is not None:
+        group_code = group_code.lower()
     elif request.cookies.get('group'):
         group_code = request.cookies.get('group').lower()
+    elif group_code is None:
+        group_code = ''
 
-    print(group_code)
+
     emails_to_be_sent_to = []
     with open('../static/localities_info.json') as file:
         localities = json.load(file)
