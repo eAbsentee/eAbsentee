@@ -132,10 +132,11 @@ def email_registrar(application_id, request):
         if request.form.get('email'):
             emails_to_send.append(request.form.get('email'))
 
-    yagmail.SMTP(os.environ["GMAIL_SENDER_ADDRESS"], os.environ["GMAIL_SENDER_PASSWORD"]).send(
-        to=([email for email in emails_to_send]),
-        subject=('Absentee Ballot Request - Applicant-ID: ' +
-        f'{application_id}'),
-        contents='Please find attached an absentee ballot request submitted from eAbsentee.org',
-        attachments=(application_id + '.pdf')
-    )
+    if len(emails_to_send) > 0:
+        yagmail.SMTP(os.environ["GMAIL_SENDER_ADDRESS"], os.environ["GMAIL_SENDER_PASSWORD"]).send(
+            to=([email for email in emails_to_send]),
+            subject=('Absentee Ballot Request - Applicant-ID: ' +
+            f'{application_id}'),
+            contents='Please find attached an absentee ballot request submitted from eAbsentee.org',
+            attachments=(application_id + '.pdf')
+        )
