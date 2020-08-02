@@ -1,20 +1,24 @@
 import os
-from gmplot import gmplot
+from flask_googlemaps import Map
 from ..form.models import User
 from dotenv import load_dotenv
 load_dotenv()
 
 
 # 40.3, -75, 6 creates a default zoom over the entire state of Virginia
-def create_map():
-    gmap_plotter_client = gmplot.GoogleMapPlotter(38.2, -79.5, 8)
-    gmap_plotter_client.apikey = os.environ["GOOGLE_API_KEY"]
+def get_users(group, date):
+    markers = []
+    for user in User.query.filter_by(group_code=group).all():
+        markers.append({
+            'icon': 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
+            'lat': user.lat,
+            'lng': user.long,
+            'name': user.name
+        })
+    return markers
 
-    amt = 0
-    for user in User.query.all():
-        if amt > 3:
-            break
-        gmap_plotter_client.marker(float(user.long), float(user.lat))
-        amt = amt + 1
-
-    gmap_plotter_client.draw('templates/test.html')
+def get_groups():
+    group_codes = []
+    for group in User.query.with_entities(User.group_code).distinct().all():
+        group_codes.append(group.group_code)
+    return group_codes
