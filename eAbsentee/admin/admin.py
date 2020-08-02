@@ -38,13 +38,13 @@ def maps():
 @login_manager.unauthorized_handler
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('admin_bp.admin_interface'))
+        return redirect(url_for('admin_bp.maps'))
 
     if request.method == 'POST':
         user = AdminUser.query.filter_by(email=request.form['email']).first()
         if user and bcrypt.check_password_hash(user.password, request.form['password']):
             login_user(user, remember=True)
-            return redirect(url_for('admin_bp.admin_interface'))
+            return redirect(url_for('admin_bp.maps'))
         else:
             flash('Invalid username/password combination')
             return redirect(url_for('admin_bp.login'))
