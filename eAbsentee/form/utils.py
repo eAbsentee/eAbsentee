@@ -22,7 +22,7 @@ def application_process(request, group_code=None):
     write_pdf(application_id, request)
     add_to_database(application_id, request, group_code=group_code)
     email_registrar(application_id, request)
-    os.remove(application_id + '.pdf')
+    os.remove(f'{application_id}.pdf')
 
 def write_pdf(application_id, request):
     today_date = date.today().strftime('%m%d%y')
@@ -81,7 +81,7 @@ def write_pdf(application_id, request):
     can.drawString(558, 548, request.form['different_country'] if request.form['different_city'] else '')
 
     can.drawString(175, 509, request.form['email'])
-    can.drawString(275, 115, '/s/ ' + request.form['signature'].strip())
+    can.drawString(275, 115, f'/s/ {request.form["signature"].strip()}')
     can.drawString(485, 115, today_date[0:2])
     can.drawString(525, 115, today_date[2:4])
     can.drawString(565, 115, today_date[4:6])
@@ -95,7 +95,7 @@ def write_pdf(application_id, request):
     page.mergePage(new_pdf.getPage(0))
     output.addPage(page)
 
-    with open(application_id + '.pdf', 'wb') as output_pdf_file:
+    with open(f'{application_id}.pdf', 'wb') as output_pdf_file:
         output.write(output_pdf_file)
 
 def add_to_database(application_id, request, group_code):
@@ -108,7 +108,7 @@ def add_to_database(application_id, request, group_code):
 
     new_voter = User(
         application_id=application_id,
-        name=(request.form['name_first'] + ' ' + request.form['name_middle'] + ' ' + request.form['name_last']).replace('  ', ' ').strip(),
+        name=(f'{request.form["name_first"]} {request.form["name_middle"]} {request.form["name_last"]}').replace('  ', ' ').strip(),
         county=request.form['registered_county'],
         email=request.form['email'],
         phonenumber=request.form['phonenumber'],
@@ -135,8 +135,7 @@ def email_registrar(application_id, request):
     if len(emails_to_send) > 0:
         yagmail.SMTP(os.environ["GMAIL_SENDER_ADDRESS"], os.environ["GMAIL_SENDER_PASSWORD"]).send(
             to=([email for email in emails_to_send]),
-            subject=('Absentee Ballot Request - Applicant-ID: ' +
-            f'{application_id}'),
+            subject=(f'Absentee Ballot Request - Applicant-ID: {application_id}'),
             contents='Please find attached an absentee ballot request submitted from eAbsentee.org',
-            attachments=(application_id + '.pdf')
+            attachments=(f'{application_id}.pdf')
         )
