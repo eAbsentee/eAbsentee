@@ -1,5 +1,4 @@
 import os
-from flask_googlemaps import Map
 from ..form.models import User
 from dotenv import load_dotenv
 load_dotenv()
