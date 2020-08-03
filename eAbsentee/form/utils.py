@@ -127,8 +127,7 @@ def email_registrar(application_id, request):
     emails_to_send = []
     with open('../static/localities_info.json') as file:
         localities = json.load(file)
-        if not os.environ["FLASK_DEBUG"]:
-            emails_to_send.append(localities[request.form['registered_county']]['email'])
+        emails_to_send.append(localities[request.form['registered_county']]['email'])
         if request.form.get('email'):
             emails_to_send.append(request.form.get('email'))
 
