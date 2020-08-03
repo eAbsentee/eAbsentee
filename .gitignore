@@ -129,3 +129,5 @@ groups.json
 
 # PythonAnywhere
 activate/
+
+*.csv
