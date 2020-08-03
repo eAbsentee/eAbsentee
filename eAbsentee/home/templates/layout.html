@@ -17,7 +17,6 @@
 
 <body class="is-preload">
 
-      <!-- Header -->
       <header id="header">
             <a class="logo" href="/">eAbsentee Voting</a>
             <nav>
@@ -25,7 +24,6 @@
             </nav>
       </header>
 
-      <!-- Nav -->
       <nav id="menu">
             <ul class="links">
                   <li><a href="/">Home</a></li>
@@ -34,28 +32,17 @@
             </ul>
       </nav>
 
-      <!-- Banner -->
       <section id="banner">
             <div class="inner">
-                  <p>
-                    {% for user in users %}
-                      {{ user.name }}
-                      {{ user.email }}
-                      {{ user.full_address }}
-                    </br>
-                    {% endfor %}
-                  </p>
             </div>
-      </section> <!-- Footer -->
+      </section>
       <footer id="footer">
             <div class="copyright">
                   Paid for and authorized by Vote Absentee Virginia </p>
             </div>
             </div>
       </footer>
-      <!-- Scripts -->
 
-      <!-- Scripts -->
       <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
       <script src="{{ url_for('static', filename='js/browser.min.js') }}"></script>
       <script src="{{ url_for('static', filename='js/breakpoints.min.js') }}"></script>
