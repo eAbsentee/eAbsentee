@@ -12,17 +12,6 @@ admin_bp = Blueprint(
     'admin_bp', __name__, template_folder='templates', static_folder='static'
 )
 
-# @admin_bp.route('/interface/', methods=['GET', 'POST'])
-# @login_required
-# def admin_interface():
-#     return render_template('interface.html', users=User.query.all())
-
-# @admin_bp.route('/test/', methods=['GET', 'POST'])
-# @login_required
-# def test():
-#     create_map()
-#     return render_template('test.html')
-
 @admin_bp.route('/maps/', methods=['GET', 'POST'])
 @login_required
 def maps():
