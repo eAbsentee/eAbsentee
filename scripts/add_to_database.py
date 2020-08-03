@@ -31,7 +31,6 @@ with sshtunnel.SSHTunnelForwarder(
     Session = sessionmaker(bind=engine)
     session = Session()
 
-
     class User(Base):
         """Data model for voters and their information."""
 
@@ -63,9 +62,24 @@ with sshtunnel.SSHTunnelForwarder(
 
     filename = 'INSERT'
 
-    with open(filename, 'w', encoding='cp1252', newline='') as csvfile:
-        csvreader = csv.writer(csvfile)
-        query = session.query(User).order_by(asc(User.submission_time)).all()
-        for user in query:
-            row = [user.application_id, user.name, user.county, str(user.submission_time), user.email, user.phonenumber, user.full_address, user.ip, user.group_code, user.lat, user.long]
-            csvreader.writerow(row)
+    with open(filename, 'r') as csvfile:
+        csvreader = csv.reader(csvfile)
+
+        for row in csvreader:
+            from dateutil import parser
+            new_voter = User(
+                application_id=row[0],
+                name=row[1],
+                submission_time=parser.parse(row[3]),
+                county=row[2],
+                email=row[4],
+                phonenumber=row[5],
+                full_address=row[6],
+                ip=row[7],
+                group_code=row[8],
+                lat=row[9],
+                long=row[10]
+            )
+
+            session.add(new_voter)
+            session.commit()
