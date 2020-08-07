@@ -10,50 +10,49 @@
   <meta name="description" content="" />
   <meta name="keywords" content="" />
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
   <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/newform.css') }}" />
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
-  <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
   <script src="{{ url_for('static', filename='js/form_functions.js') }}"></script>
   <script src="{{ url_for('static', filename='js/form_autofill.js') }}"></script>
+
 </head>
 
-<body class="is-preload">
-  <!-- Header -->
+<body>
   <header id="header">
     <a class="logo" href="/"><img width="32" height="32" src="{{ url_for('static', filename='img/eabsentee.svg/') }}"></img> eAbsentee</a>
     <nav>
-      <a href="#menu">Menu</a>
+      <a href="/form/">Aplicar</a>
+      <a href="/about/">Sobre Nosotros</a>
+      <a href="/form/">English</a>
+      <!-- <a href="/privacy/">Privacy Policy</a> -->
     </nav>
   </header>
 
-  <!-- Nav -->
-  <nav id="menu">
-    <ul class="links">
-      <li><a href="/">Home</a></li>
-      <li><a href="/form">Apply</a></li>
-      <li><a href="/about">About</a></li>
-    </ul>
-  </nav>
 
 
-  <div class="container col-lg-8 col-md-8 col-sm-12 col-xs-12 mx-auto">
+  <div class="container col-xl-5 col-lg-5 col-md-8 col-sm-12 col-xs-12 mx-auto">
     <div class="card form-group border-dark mx-auto my-2">
       <div class="card-body rounded-top card-body col-lg-12" style="background: #0052A5">
-        <h1 class="text-capitalize text-center text-light"> Vote by Mail!</h1>
-        <h3 class="text-capitalize text-center text-light"> Apply for Your Absentee-By-Mail Ballot Today</h3>
-        <ul>
-          <br/>
-          <h6 class="text-light">• Any registered voter can request a mail-in ballot. Your ballot will be mailed to you in September.</h6>
-          <h6 class="text-light">• Deadline: The last day to request your mail-in absentee ballot is 5pm Tuesday, October 27th.</h6>
-          <h6 class="text-light">• With unprecedented demand, apply for your mail-in ballot NOW to be first in line and beat the rush!</h6>
-          <h6 class="text-light">• Your mail-in ballot must be postmarked by Election Day, so mail it back early, with plenty of time to spare.</h6>
-          <!-- <br/> -->
-          <!-- <h6 class="text-light">• Check your voter registration status or register to vote <u><a href="https://www.elections.virginia.gov/citizen-portal/" target="_blank">here</a></u>, then return to complete this application.</h6> -->
-        </ul>
+        <h1 class="text-capitalize text-center text-light"> Votar por Correo </h1>
+        <h3 class="text-center text-light"> Solicite Hoy su Boleta para Votar en Ausencia</h3>
+        <div class="">
+          <ul>
+            <br />
+            <p class="text-light font-weight-bold mb-1">• Efectivo el 1 de julio del 2020, todo votante en Virginia puede solicitar su boleta por correo. ¡No se necesita una razón!</p>
+            <p class="text-light font-weight-bold mb-1">• Ahora es el momento para solicitar su boleta por correo para evitar la prisa. Las boletas para la elección del 3 de noviembre se enviarán empezando el 18 de septiembre.</p>
+            <p class="text-light font-weight-bold mb-1">• La fecha límite para enviar este formulario es el viernes, 23 de octubre, a las 5 pm. Con la demanda altísima, solicite ahora para evitar retrasos.</p>
+            <p class="text-light font-weight-bold mb-1">• Devuelva su boleta completa por correo a la oficina de registro de votantes tan pronto como sea posible. La última fecha para enviarla es el 3 de noviembre y se necesita recibirla antes del 6 de noviembre.</p>
+            <p class="text-light font-weight-bold mb-1">• ¿Necesita actualizar su registro de votante, cambio de nombre o dirección? Puede hacerlo al final de este formulario.</p>
+            <p class="text-light font-weight-bold mb-1">• Si no esté registrado para votar, primero regístrese <u><a href="https://www.elections.virginia.gov/es/portal-del-ciudadano/" target="_blank">aquí</a></u>, luego vuelva a eAbsentee para acabar su solicitud.</p>
+          </ul>
+        </div>
+
 
       </div>
 
@@ -62,127 +61,118 @@
           <!-- Your Information -->
           <div class="form-group row mx-auto">
             <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <h3 class="text-center text-capitalize">Your Information</h3>
+              <h3 class="text-center text-capitalize">Su Información</h3>
             </div>
             <div class="form-group mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
-              <label>First Name</label>
+              <label>Nombre</label>
               <input type="text" class="form-control" id="name_first" name="name_first" required>
             </div>
             <div class="form-group mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
-              <label>Last Name</label>
+              <label>Apellido</label>
               <input type="text" class="form-control" id="name_last" name="name_last" required>
             </div>
             <div class="form-group mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
-              <label>Middle Name</label>
+              <label>Segundo nombre</label>
               <input type="text" class="form-control" id="name_middle" name="name_middle">
             </div>
             <div class="form-group mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
-              <label>Suffix (i.e. Jr., Sr., II)</label>
+              <label>Sufijo</label>
               <input type="text" class="form-control" id="name_suffix" name="name_suffix">
             </div>
             <div class="form-group mx-auto col-lg-4 col-md-4 col-sm-6 col-xs-6 text-center">
-              <label>SSN (Last 4 Digits)</label>
-              <input type="password" class="form-control" id="ssn" name="ssn" minlength="4" maxlength="4" pattern="^([0-9]{4})$" autocomplete="new-password" required digits>
-              <small class="form-text text-muted"><a href="/#faq_ssn">Why?</a></small>
+              <label>NSS (últimos 4 dígitos)</label>
+              <input type="text" class="form-control" id="ssn" name="ssn" minlength="4" maxlength="4" pattern="^([0-9]{4})$" autocomplete="new-password" required digits>
+              <small class="form-text text-muted"><a href="/#faq_ssn" target="_blank">Why?</a></small>
             </div>
           </div>
+          <hr style="border-top: dotted 1px;" />
         </div>
-        <hr style="border-top: dotted 1px;" />
 
-        <!-- Contact Info -->
-        <div class="card-body border-dark rounded-0">
-          <div class="form-group row mx-auto">
-            <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <h3 class="text-center text-capitalize">Contact Info</h3>
-              <h6 class="text-center">Your email address is required to send you a copy of your application.</h6>
-            </div>
-            <div class="form-group mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
-              <label class=>Email Address</label>
-              <input type="text" class="form-control" id="email" name="email">
-            </div>
-            <div class="form-group mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
-              <label>Phone Number</label>
-              <input type="text" class="form-control" id="phonenumber" name="phonenumber">
-            </div>
-          </div>
-        </div>
-        <hr style="border-top: dotted 1px;" />
 
         <!-- Registered to Vote Address -->
         <div class="card-body border-dark rounded-0">
           <div class="form-group row mx-auto">
-            <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <h3 class="text-center text-capitalize">Where are you registered to vote?</h3>
-              <h6 class="text-center">Your residence address is where you live (with the intent to remain indefinitely) and are registered to vote.</h6>
-              <h6 class="text-center">Begin typing and select your address from the autocomplete field.</h6>
+            <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+              <h3 class="text-capitalize">¿Dónde se está Registrado para Votar?</h3>
+              <p>Su dirección domiciliaria es donde vive y está registrado para votar.</p>
             </div>
-            <div class="form-group mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
-              <label>Full Address</label>
-              <input type="text" class="form-control" id="us-autocomplete-pro-address-input" name="us-autocomplete-pro-address-input" autocomplete="new-password" placeholder="Example: 123 Main St, Fairfax, VA 12345">
+            <div class="form-group mx-auto col-lg-9 col-md-9 col-sm-12 col-xs-12 text-center">
+              <label>Dirección Completa</label>
+              <input type="text" class="form-control" id="us-autocomplete-pro-address-input" name="us-autocomplete-pro-address-input" autocomplete="new-password" placeholder="Ejemplo: 123 Main St, Fairfax, VA 12345">
               <ul class="us-autocomplete-pro-menu" style="display:none; position:absolute; z-index:2;"></ul>
             </div>
-            <div class="form-group mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
-              <label>Apartment</label>
+            <div class="form-group mx-auto col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center">
+              <label>Apartamento</label>
               <input type="text" class="form-control" id="apt" name="apt" autocomplete="new-password">
             </div>
 
             <div class="address_div" style="display:none;">
               <div class="form-group mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
-                <label>Street Address</label>
+                <label>Dirección</label>
                 <input type="text" class="form-control" id="address" name="address" autocomplete="new-password" required>
               </div>
               <div class="form-group mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
-                <label>City</label>
+                <label>Ciudad</label>
                 <input type="text" class="form-control" id="city" name="city" autocomplete="new-password" required>
               </div>
               <div class="form-group mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
-                <label>Zip Code</label>
+                <label>Código Postal</label>
                 <input type="text" class="form-control" id="zip" name="zip" minlength="5" maxlength="5" pattern="^(\d{5})$" digits autocomplete="new-password" required>
               </div>
 
               <div class="form-group mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
-                <label>I am registered to vote in:</label>
+                <label>Estoy registrado para votar en:</label>
                 <input type="text" class="form-control" id="registered_county" name="registered_county" autocomplete="new-password" required>
+              </div>
 
+              <div class="form-group mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
+                <label>Latitud</label>
+                <input type="text" class="form-control" id="lat" name="lat" autocomplete="new-password">
+              </div>
+
+              <div class="form-group mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
+                <label>Longitud</label>
+                <input type="text" class="form-control" id="long" name="long" autocomplete="new-password">
               </div>
             </div>
           </div>
+          <hr style="border-top: dotted 1px;" />
         </div>
-        <hr style="border-top: dotted 1px;" />
+
 
         <!-- Where to Deliver? -->
         <div class="card-body border-dark rounded-0">
           <div class="form-group row mx-auto">
-            <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <!-- <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <h3 class="text-center text-capitalize">Different Delivery Address</h3>
-            </div>
+            </div> -->
             <div class="form-check">
               <input class="form-check-input" type="checkbox" value="" id="where_deliver" name="where_deliver">
               <label class="form-check-label" for="where_deliver">
-                I'd like for my absentee ballot to be delivered to a different address than the address where I'm registered to vote.
+                Quisiera que mi boleta por correo se entregara a una dirección diferente a la que estoy registrado para votar.
               </label>
             </div>
           </div>
 
           <div class="form-group row mx-auto" id="different_address">
             <div class="form-group mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
-              <label class=>Street Address</label>
+              <label class=>Dirección</label>
               <input type="text" class="form-control" id="different_address" name="different_address" autocomplete="new-password">
             </div>
             <div class="form-group mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
-              <label>Apartment</label>
+              <label>Apartamento</label>
               <input type="text" class="form-control" id="different_apt" name="different_apt" autocomplete="new-password">
             </div>
             <div class="form-group mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
-              <label>City</label>
+              <label>Ciudad</label>
               <input type="text" class="form-control" id="different_city" name="different_city" autocomplete="new-password">
             </div>
             <div class="form-group mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
-              <label>Zip Code</label>
+              <label>Código Postal</label>
               <input type="text" class="form-control" id="different_zip" name="different_zip" autocomplete="new-password">
             </div>
             <div class="form-group mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
-              <label for="different_state" class="control-label state">State</label>
+              <label for="different_state" class="control-label state">Estado</label>
               <select name="different_state" id="different_state" class="form-control state" autocomplete="new-password">
                 <option value="">Choose state&hellip;</option>
                 <option value="AL">Alabama</option>
@@ -246,7 +236,7 @@
               </select>
             </div>
             <div class="form-group mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
-              <label for="different_country" class="control-label">Country</label>
+              <label for="different_country" class="control-label">País</label>
               <select name="different_country" id="different_country" class="form-control" autocomplete="new-password">
                 <option value="Afghanistan">Afghanistan</option>
                 <option value="Åland Islands">Åland Islands</option>
@@ -506,46 +496,46 @@
         <!-- Assistance -->
         <div class="card-body border-dark rounded-0">
           <div class="form-group row mx-auto">
-            <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <!-- <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <h3 class="text-center text-capitalize">Assistance to Vote</h3>
-            </div>
+            </div> -->
             <div class="form-check">
               <input class="form-check-input" type="checkbox" value="" id="assistance_check" name="assistance_check">
               <label class="form-check-label" for="assistance_check">
-                I will need assistance in completing my ballot due to a disability, blindness, or inability to read or write. If checked, assistance form will be provided with ballot.
+                Necesito ayuda para completar mi boleta debido a una discapacidad, ceguera o incapacidad para leer o escribir. Si se marca, se enviará un formulario de asistencia con la boleta.
               </label>
             </div>
           </div>
 
           <div class="form-group row mx-auto" id="assistance_div">
             <div class="form-group mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
-              <label class=>Assistant Full Name</label>
+              <label class=>Nombre Completo del Asistente</label>
               <input type="text" class="form-control" id="assistant_name" name="assistant_name" autocomplete="new-password">
             </div>
             <div class="form-group mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
-              <label class=>Assistant Street Address</label>
+              <label class=>Dirección del Asistente</label>
               <input type="text" class="form-control" id="assistant_address" name="assistant_address" autocomplete="new-password">
             </div>
             <div class="form-group mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
-              <label>Assistant Apartment</label>
+              <label>Apartamento del Asistente</label>
               <input type="text" class="form-control" id="assistant_apt" name="assistant_apt" autocomplete="new-password">
             </div>
             <div class="form-group mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
-              <label>Assistant City</label>
+              <label>Ciudad del Asistente	</label>
               <input type="text" class="form-control" id="assistant_city" name="assistant_city" autocomplete="new-password">
             </div>
             <div class="form-group mx-auto col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center">
-              <label>Assistant State</label>
+              <label>Estado del Asistente</label>
               <input type="text" class="form-control" id="assistant_state" name="assistant_state" autocomplete="new-password">
             </div>
             <div class="form-group mx-auto col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center">
-              <label>Assistant Zip Code</label>
+              <label>Código Postal del Asistente</label>
               <input type="text" class="form-control" id="assistant_zip" name="assistant_zip" autocomplete="new-password minlength=" 5" maxlength="5" pattern="^(\d{5})$" digits">
             </div>
             <div class="form-check">
               <input class="form-check-input" type="checkbox" value="" id="assistance_signature_check" name="assistance_signature_check">
               <label class="form-check-label" for="assistance_signature_check">
-                I swear/affirm, under felony penalty for making willfully false material statements, that the information I have provided on this form is true and I have written on the Applicant’s signature line “Applicant Unable to Sign.”
+                Juro/afirmo, sujeto a sanciones por delitos graves por hacer declaraciones falsas, que la información proporcionada en este formulario es verdadera y he escrito "Solicitante no puede firmar" en la línea de firma del solicitante.
               </label>
             </div>
           </div>
@@ -555,26 +545,26 @@
 
         <div class="card-body rounded-0 border-dark">
           <div class="form-group row mx-auto">
-            <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <!-- <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <h3 class="text-center text-capitalize">Change to Address/Name</h3>
-            </div>
+            </div> -->
             <div class="form-check">
               <input class="form-check-input" type="checkbox" value="" id="change_check" name="change_check">
               <label class="form-check-label" for="change_check">
-                I have changed my residence address or legal name since the last time I voted.
+                He cambiado mi dirección domiciliaria o mi nombre legal desde la vez más reciente que voté.
               </label>
             </div>
             <div class="form-group row mx-auto" id="change_div">
               <div class="form-group mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-                <label>Former Full Name</label>
+                <label>Nombre Completo Anterior</label>
                 <input type="text" class="form-control" id="former_name" name="former_name" autocomplete="new-password">
               </div>
               <div class="form-group mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-                <label>Former Address</label>
+                <label>Dirección Anterior</label>
                 <input type="text" class="form-control" id="former_address" name="former_address" autocomplete="new-password">
               </div>
               <div class="form-group mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-                <label>Date Moved</label>
+                <label>Fecha de Mudanza</label>
                 <input type="date" class="form-control" id="date_moved" name="date_moved" autocomplete="new-password" placeholder="MM/DD/YY" autocomplete="new-password" />
               </div>
             </div>
@@ -584,22 +574,39 @@
 
 
 
+        <!-- Contact Info -->
+        <div class="card-body border-dark rounded-0">
+          <div class="form-group row mx-auto">
+            <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+              <h3 class="text-capitalize">Info de Contacto</h3>
+              <p>Se necesita su dirección de correo electrónico para enviarle una copia de su solicitud.</p>
+            </div>
+            <div class="form-group mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
+              <label class=>Dirección de Correo Electrónico</label>
+              <input type="text" class="form-control" id="email" name="email">
+            </div>
+            <div class="form-group mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+              <label>Número de Teléfono</label>
+              <input type="text" class="form-control" id="phonenumber" name="phonenumber" minlength="10" maxlength="10" pattern="^([0-9]{10})$" digits>
+            </div>
+          </div>
+          <hr style="border-top: dotted 1px;" />
+        </div>
 
         <!-- Applicant Signature -->
         <div class="card-body border-dark rounded-0">
           <div class="form-group row mx-auto">
             <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <h3 class="text-center text-capitalize">Applicant Signature</h3>
+              <h3 class="text-center text-capitalize">Firma de Solicitante</h3>
             </div>
             <div class="form-check">
               <input class="form-check-input form-control" type="checkbox" value="" id="sig_check" name="sig_check" required>
               <label class="form-check-label" for="sig_check">
-                I swear/affirm, under felony penalty for making willfully false material statements, that by pressing the Submit button and submitting this information that (1) the information I have provided on this form is true, (2) I am not
-                requesting a ballot or voting in any other jurisdiction in the U.S., except the jurisdiction to which this application relates, and (3) that I am the person named in this absentee application.
+                Juro/afirmo, sujeto a sanciones por delitos graves por hacer declaraciones falsas, que al pulsar el botón de Enviar, (1) la información proporcionada en este formulario es verdadera, (2) no estoy solicitando una boleta o voto en ninguna otra jurisdicción en los EE.UU., excepto la jurisdicción a que esta solicitud pertenece, y (3) soy la persona nombrada en esta solicitud.
               </label>
             </div>
             <div class="form-group mx-auto col-lg-10 col-md-10 col-sm-12 col-xs-12 text-center">
-              <label class=>Applicant Name</label>
+              <label class=>Nombre de Solicitante</label>
               <input type="text" class="form-control" id="signature" name="signature" required>
             </div>
           </div>
@@ -608,7 +615,7 @@
 
         <!-- <hr style="border-top: dotted 1px;" /> -->
         <div class="card border-dark rounded-bottom w-50 mx-auto" style="background: #0052A5">
-          <input type="submit" value="Submit" class="btn-lg btn-default" />
+          <input type="submit" value="Enviar" class="btn-lg btn-default" />
         </div>
 
       </form>
@@ -616,16 +623,25 @@
   </div>
 
 
-  <!-- Footer -->
-  <footer id="footer" style="background: black">
-    <div class="mx-auto text-center">
-      <small style="color:white;">eAbsentee is sponsored by Vote Absentee Virginia, a not-for-profit 501(c)4 organization established to help broaden voter access across all parties in Virginia.</small>
-      </br>
-      <!-- <small style="color:white;"> Paid for and Authorized by Vote Absentee Virginia.</small> -->
-    <!-- </br> -->
-      <!-- <small style="color:white;">Authorized by the Virginia State Board of Elections to provide online applications for Virginia voters to vote absentee by mail.</small> -->
+  <footer id="footer" class="bg-black">
+    <div class="container-fluid text-center">
+      <div class="row">
+        <div class="col-xl-4 col-l-4 col-m-12 col-s-12 col-xs-12 mx-auto">
+          <small style="color:white;">La Oficina de Elecciones de Virginia se acepta eAbsentee para enviar una solicitud de boleta en ausencia. eAbsentee es patrocinado por Vote Absentee Virginia, una organización 501(c)4 sin fines de lucro ni partido establecido para ampliar acceso de voto por todos partidos en Virginia.</small>
+        </br>
+          <a href="mailto:applications@eabsentee.org">
+            <i class="fa fa-envelope fa-2x"></i>
+          </a>
+          &emsp;
+          <a href="https://www.facebook.com/voteabsenteeva">
+            <i class="fa fa-facebook-square fa-2x"></i>
+          </a>
+        </div>
+      </div>
     </div>
   </footer>
+
+
 
 
   <!-- Scripts -->

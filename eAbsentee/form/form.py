@@ -1,8 +1,8 @@
 import os
 from flask import Blueprint
 from flask import render_template, request, redirect
-from .utils import application_process
 from dotenv import load_dotenv
+from eAbsentee.form.utils import application_process
 
 load_dotenv()
 
@@ -57,3 +57,31 @@ def form_group(group):
         return redirect('/confirmation/')
     else:
         return render_template('form.html')
+
+@form_bp.route('/spanishform/', methods=['POST', 'GET'])
+def form_spanish():
+    if request.method == 'POST':
+        if os.environ["FLASK_DEBUG"]:
+            application_process(request)
+        else:
+            try:
+                application_process(request)
+            except(Exception):
+                return redirect('/error/')
+        return redirect('/confirmation/')
+    else:
+        return render_template('formspanish.html')
+
+@form_bp.route('/spanishform/<group>/', methods=['POST', 'GET'])
+def form_spanish_group(group):
+    if request.method == 'POST':
+        if os.environ["FLASK_DEBUG"]:
+            application_process(request, group)
+        else:
+            try:
+                application_process(request, group)
+            except(Exception):
+                return redirect('/error/')
+        return redirect('/confirmation/')
+    else:
+        return render_template('formspanish.html')
