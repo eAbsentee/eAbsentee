@@ -64,14 +64,15 @@ def write_pdf(application_id, request):
     can.drawString(128, 301, 'X' if request.form.get(
         'assistance_check') == 'true' else '',)
     can.drawString(210, 258, request.form['assistant_name'])
-    # can.drawString(510, 258, 'Asssitant Phone')
+    # can.drawString(510, 258, 'Assistant Phone')
     can.drawString(210, 240, request.form['assistant_address'])
     can.drawString(560, 240, request.form['assistant_apt'])
     can.drawString(150, 226, request.form['assistant_city'])
     can.drawString(385, 226, request.form['assistant_state'])
     can.drawString(482, 226, '     '.join(request.form['assistant_zip']))
     can.drawString(210, 176, request.form['assistant_name'])
-    can.drawString(460, 176, today_date)
+    if request.form['assistant_name']:
+        can.drawString(460, 176, today_date)
 
     can.drawString(165, 565, request.form['different_address'])
     can.drawString(545, 565, request.form['different_apt'])
