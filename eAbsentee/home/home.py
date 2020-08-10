@@ -36,6 +36,11 @@ def set_group(group: str):
     response.set_cookie('group', group.lower(), max_age=60 * 60 * 24 * 365)
     return response
 
+@home_bp.route('/2020/')
+def set_group_2020():
+    response = make_response(render_template('index.html'))
+    response.set_cookie('group', '2020', max_age=60 * 60 * 24 * 365)
+    return response
 
 @home_bp.app_errorhandler(404)
 def page_not_found(e):
