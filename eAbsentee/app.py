@@ -64,8 +64,7 @@ def get_csp():
 def database_models(db):
     from eAbsentee.form.models import User
     from eAbsentee.admin.models import AdminUser
-    # if os.environ['FLASK_DEBUG']:
-    #     db.create_all()
+    db.create_all()
 
 def register_blueprints(app):
     from eAbsentee.form import form
