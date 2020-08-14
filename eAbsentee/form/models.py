@@ -1,10 +1,8 @@
 import os
 import sys
 from datetime import datetime
-
+from eAbsentee.app import db
 sys.path.append(os.path.join(os.path.dirname(__file__)))
-
-from ..app import db
 
 class User(db.Model):
     """Data model for voters and their information."""

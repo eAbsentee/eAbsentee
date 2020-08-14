@@ -100,8 +100,8 @@
       }).addTo(mymap);
 
       var googleIcon = L.icon({
-        iconUrl: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
-        shadowUrl: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
+        iconUrl: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png',
+        shadowUrl: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png',
 
         iconSize: [20, 20], // size of the icon
         shadowSize: [0, 0], // size of the shadow
@@ -113,7 +113,7 @@
       {% for user in users %}
         var marker = L.marker(["{{ user['lat'] }}", "{{ user['lng'] }}"], {
           icon: googleIcon
-        }).bindPopup("<b>{{ user['name'] }}</b><br>I am a popup.").addTo(mymap);
+        }).bindPopup("<b>{{ user['name'] }}</b>").addTo(mymap);
       {% endfor %}
     </script>
   {% endif %}

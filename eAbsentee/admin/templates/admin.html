@@ -1,0 +1,60 @@
+{% from "macros.html" import favicon %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  <style>
+    html,
+    body {
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/list/">Superadmin Dashboard</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/maps/">Maps</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/list/">List of Voters</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/">Create a Register Link</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <div class="col-xl-2 mx-auto pt-3 pb-0">
+    <form action="" method="POST">
+
+
+
+      <div class="text-center">
+        <input type="submit" value="Create a Link" class="btn-default" />
+      </div>
+
+      {% if links %}
+        {% for link in links%}
+          <p>Link: <a href="{{ link }}"> {{ link }}</a></p>
+        {% endfor %}
+      {% endif %}
+
+    </form>
+
+  </div>
+
+</body>
+
+</html>

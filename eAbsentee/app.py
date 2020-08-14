@@ -14,8 +14,8 @@ sys.path.append(os.path.join(os.path.dirname(__file__)))
 db = SQLAlchemy()
 bcrypt = Bcrypt()
 login_manager = LoginManager()
-# csrf = SeaSurf()
 migrate = Migrate()
+# csrf = SeaSurf()
 # talisman = Talisman()
 
 def create_app():
@@ -36,8 +36,8 @@ def init_apps(app):
     login_manager.init_app(app)
     login_manager.login_view = 'login'
     bcrypt.init_app(app)
-    # csrf.init_app(app)
     migrate.init_app(app, db)
+    # csrf.init_app(app)
     # talisman.init_app(app, content_security_policy=get_csp())
 
 def get_csp():
@@ -64,8 +64,7 @@ def get_csp():
 def database_models(db):
     from eAbsentee.form.models import User
     from eAbsentee.admin.models import AdminUser
-    if os.environ['FLASK_DEBUG']:
-        db.create_all()
+    db.create_all()
 
 def register_blueprints(app):
     from eAbsentee.form import form

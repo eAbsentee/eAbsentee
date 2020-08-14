@@ -1,9 +1,9 @@
 import os
 import csv
-from eAbsentee.form.models import User
-from dotenv import load_dotenv
 from dateutil import parser
 from datetime import datetime
+from dotenv import load_dotenv
+from eAbsentee.form.models import User
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 load_dotenv()
@@ -14,10 +14,10 @@ def get_users(group, date_first, date_second):
     date_second = parser.parse(date_second)
     for user in User.query.filter_by(group_code=group).filter(User.submission_time >= date_first).filter(User.submission_time <= date_second).all():
         markers.append({
-            'icon': 'https://maps.google.com/mapfiles/ms/icons/red-dot.png',
             'lat': user.lat,
             'lng': user.long,
-            'name': user.name
+            'name': user.name,
+            'submission_time': user.submission_time
         })
     return markers
 
@@ -44,10 +44,10 @@ def create_csv(group, date_first, date_second):
                 user.name,
                 user.county,
                 user.submission_time,
-                user.email,
-                user.phonenumber,
+                user.email if user.email else '',
+                user.phonenumber if user.phonenumber else '',
                 user.full_address,
-                user.group_code
+                user.group_code if user.group_code else ''
             ])
         csvwriter.writerows(voters)
     return filename
