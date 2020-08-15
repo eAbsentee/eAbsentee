@@ -22,16 +22,16 @@ def application_process(request, group_code=None):
     write_pdf(application_id, request)
     add_to_database(application_id, request, group_code=group_code)
     email_registrar(application_id, request)
-    os.remove(f'{application_id}.pdf')
+    # os.remove(f'{application_id}.pdf')
 
 def write_pdf(application_id, request):
     today_date = date.today().strftime('%m%d%y')
 
     packet = io.BytesIO()
     can = canvas.Canvas(packet, pagesize=letter)
-    can.drawString(180, 732, request.form['name_last'])
-    can.drawString(410, 732, request.form['name_first'])
-    can.drawString(190, 715, request.form['name_middle'])
+    can.drawString(180, 732, request.form['name_last'].title())
+    can.drawString(410, 732, request.form['name_first'].title())
+    can.drawString(190, 715, request.form['name_middle'].title())
     can.drawString(405, 715, request.form['name_suffix'])
 
     can.drawString(525, 698, '  '.join(request.form['ssn'])) # SSN
@@ -82,7 +82,7 @@ def write_pdf(application_id, request):
     can.drawString(558, 548, request.form['different_country'] if request.form['different_city'] else '')
 
     can.drawString(175, 509, request.form['email'])
-    can.drawString(275, 115, f'/s/ {request.form["signature"].strip()}')
+    can.drawString(275, 115, f'/s/ {request.form["signature"].strip().title()}')
     can.drawString(485, 115, today_date[0:2])
     can.drawString(525, 115, today_date[2:4])
     can.drawString(565, 115, today_date[4:6])
@@ -109,7 +109,7 @@ def add_to_database(application_id, request, group_code):
 
     new_voter = User(
         application_id=application_id,
-        name=(f'{request.form["name_first"]} {request.form["name_middle"]} {request.form["name_last"]}').replace('  ', ' ').strip(),
+        name=(f'{request.form["name_first"].title()} {request.form["name_middle"].title()} {request.form["name_last"].title()}').replace('  ', ' ').strip(),
         county=request.form['registered_county'],
         email=request.form['email'],
         phonenumber=request.form['phonenumber'],
@@ -128,7 +128,8 @@ def email_registrar(application_id, request):
     emails_to_send = []
     with open('../static/localities_info.json') as file:
         localities = json.load(file)
-        emails_to_send.append(localities[request.form['registered_county']]['email'])
+        if 'localhost' not in request.url_root:
+            emails_to_send.append(localities[request.form['registered_county']]['email'])
         if request.form.get('email'):
             emails_to_send.append(request.form.get('email'))
 
