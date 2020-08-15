@@ -43,7 +43,7 @@ def set_group_2020():
     return response
 
 @home_bp.route('/2020Vote/')
-def set_group_2020():
+def set_group_2020_caps():
     response = make_response(render_template('index.html'))
     response.set_cookie('group', '2020vote', max_age=60 * 60 * 24 * 365)
     return response
