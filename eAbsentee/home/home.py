@@ -39,7 +39,13 @@ def set_group(group: str):
 @home_bp.route('/2020vote/')
 def set_group_2020():
     response = make_response(render_template('index.html'))
-    response.set_cookie('group', '2020', max_age=60 * 60 * 24 * 365)
+    response.set_cookie('group', '2020vote', max_age=60 * 60 * 24 * 365)
+    return response
+
+@home_bp.route('/2020Vote/')
+def set_group_2020():
+    response = make_response(render_template('index.html'))
+    response.set_cookie('group', '2020vote', max_age=60 * 60 * 24 * 365)
     return response
 
 @home_bp.app_errorhandler(404)
