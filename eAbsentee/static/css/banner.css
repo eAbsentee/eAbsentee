@@ -1,0 +1,361 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway:200,300,400,500,600");
+
+/* Banner */
+#banner {
+  -ms-flex-align: center;
+  -ms-flex-pack: center;
+  background-color: #111111;
+  color: rgba(255, 255, 255, 0.5);
+  -moz-align-items: center;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  -moz-justify-content: center;
+  -webkit-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-top: 0;
+  display: -ms-flexbox;
+  height: 35rem !important;
+  min-height: 35rem;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+#banner input, #banner select, #banner textarea {
+  color: #ffffff;
+}
+
+#banner a {
+  color: #ce1b28;
+}
+
+#banner strong, #banner b {
+  color: #ffffff;
+}
+
+#banner h1, #banner h2, #banner h3, #banner h4, #banner h5, #banner h6 {
+  color: #ffffff;
+}
+
+#banner blockquote {
+  border-left-color: rgba(255, 255, 255, 0.25);
+}
+
+#banner code {
+  background: rgba(255, 255, 255, 0.075);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+#banner hr {
+  border-bottom-color: rgba(255, 255, 255, 0.25);
+}
+
+#banner input[type="submit"],
+#banner input[type="reset"],
+#banner input[type="button"],
+#banner button,
+#banner .button {
+  background-color: transparent;
+  box-shadow: inset 0 0 0 1px #ffffff;
+  color: #ffffff !important;
+}
+
+#banner input[type="submit"]:hover,
+#banner input[type="reset"]:hover,
+#banner input[type="button"]:hover,
+#banner button:hover,
+#banner .button:hover {
+  box-shadow: inset 0 0 0 1px #ce1b28;
+  color: #ce1b28 !important;
+}
+
+#banner input[type="submit"]:hover:active,
+#banner input[type="reset"]:hover:active,
+#banner input[type="button"]:hover:active,
+#banner button:hover:active,
+#banner .button:hover:active {
+  background-color: rgba(206, 27, 40, 0.25);
+}
+
+#banner input[type="submit"].primary,
+#banner input[type="reset"].primary,
+#banner input[type="button"].primary,
+#banner button.primary,
+#banner .button.primary {
+  box-shadow: none;
+  background-color: #ce1b28;
+  color: #ffffff !important;
+}
+
+#banner input[type="submit"].primary:hover,
+#banner input[type="reset"].primary:hover,
+#banner input[type="button"].primary:hover,
+#banner button.primary:hover,
+#banner .button.primary:hover {
+  background-color: #e2212f;
+  box-shadow: none;
+}
+
+#banner input[type="submit"].primary:hover:active,
+#banner input[type="reset"].primary:hover:active,
+#banner input[type="button"].primary:hover:active,
+#banner button.primary:hover:active,
+#banner .button.primary:hover:active {
+  background-color: #b71824;
+}
+
+#banner label {
+  color: #ffffff;
+}
+
+#banner input[type="text"],
+#banner input[type="password"],
+#banner input[type="email"],
+#banner input[type="tel"],
+#banner input[type="search"],
+#banner input[type="url"],
+#banner select,
+#banner textarea {
+  background-color: rgba(255, 255, 255, 0.075);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+#banner input[type="text"]:focus,
+#banner input[type="password"]:focus,
+#banner input[type="email"]:focus,
+#banner input[type="tel"]:focus,
+#banner input[type="search"]:focus,
+#banner input[type="url"]:focus,
+#banner select:focus,
+#banner textarea:focus {
+  border-color: #ce1b28;
+  box-shadow: 0 0 0 1px #ce1b28;
+}
+
+#banner select {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' preserveAspectRatio='none' viewBox='0 0 40 40'%3E%3Cpath d='M9.4,12.3l10.4,10.4l10.4-10.4c0.2-0.2,0.5-0.4,0.9-0.4c0.3,0,0.6,0.1,0.9,0.4l3.3,3.3c0.2,0.2,0.4,0.5,0.4,0.9 c0,0.4-0.1,0.6-0.4,0.9L20.7,31.9c-0.2,0.2-0.5,0.4-0.9,0.4c-0.3,0-0.6-0.1-0.9-0.4L4.3,17.3c-0.2-0.2-0.4-0.5-0.4-0.9 c0-0.4,0.1-0.6,0.4-0.9l3.3-3.3c0.2-0.2,0.5-0.4,0.9-0.4S9.1,12.1,9.4,12.3z' fill='rgba(255, 255, 255, 0.25)' /%3E%3C/svg%3E");
+}
+
+#banner select option {
+  color: rgba(255, 255, 255, 0.5);
+  background-color: #111111;
+}
+
+#banner input[type="checkbox"]+label,
+#banner input[type="radio"]+label {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+#banner input[type="checkbox"]+label:before,
+#banner input[type="radio"]+label:before {
+  background: rgba(255, 255, 255, 0.075);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+#banner input[type="checkbox"]:checked+label:before,
+#banner input[type="radio"]:checked+label:before {
+  background-color: #ce1b28;
+  border-color: #ce1b28;
+  color: #ffffff;
+}
+
+#banner input[type="checkbox"]:focus+label:before,
+#banner input[type="radio"]:focus+label:before {
+  border-color: #ce1b28;
+  box-shadow: 0 0 0 1px #ce1b28;
+}
+
+#banner ::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.4) !important;
+}
+
+#banner :-moz-placeholder {
+  color: rgba(255, 255, 255, 0.4) !important;
+}
+
+#banner ::-moz-placeholder {
+  color: rgba(255, 255, 255, 0.4) !important;
+}
+
+#banner :-ms-input-placeholder {
+  color: rgba(255, 255, 255, 0.4) !important;
+}
+
+#banner ul.alt li {
+  border-top-color: rgba(255, 255, 255, 0.25);
+}
+
+#banner table tbody tr {
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+#banner table tbody tr:nth-child(2n + 1) {
+  background-color: rgba(255, 255, 255, 0.075);
+}
+
+#banner table th {
+  color: #ffffff;
+}
+
+#banner table thead {
+  border-bottom-color: rgba(255, 255, 255, 0.25);
+}
+
+#banner table tfoot {
+  border-top-color: rgba(255, 255, 255, 0.25);
+}
+
+#banner table.alt tbody tr td {
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+#banner .highlights .content {
+  background: #111111;
+  box-shadow: 0px 0px 4px 1px rgba(255, 255, 255, 0.025);
+}
+
+#banner .testimonials .content {
+  background: #111111;
+  box-shadow: 0px 0px 4px 1px rgba(255, 255, 255, 0.025);
+}
+
+#banner .testimonials .content .credit strong {
+  color: #ce1b28;
+}
+
+#banner>.inner {
+  -moz-transform: scale(1.0);
+  -webkit-transform: scale(1.0);
+  -ms-transform: scale(1.0);
+  transform: scale(1.0);
+  -moz-transition: opacity 1s ease, -moz-transform 1s ease;
+  -webkit-transition: opacity 1s ease, -webkit-transform 1s ease;
+  -ms-transition: opacity 1s ease, -ms-transform 1s ease;
+  transition: opacity 1s ease, transform 1s ease;
+  opacity: 1;
+  position: relative;
+  z-index: 3;
+}
+
+#banner>.inner> :last-child {
+  margin-bottom: 0;
+}
+
+#banner h1 {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+#banner p {
+  font-size: 1.5rem;
+}
+
+#banner a {
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+}
+
+#banner a:hover {
+  color: #ffffff;
+}
+
+#banner video {
+  -moz-transform: translateX(50%) translateY(50%);
+  -webkit-transform: translateX(50%) translateY(50%);
+  -ms-transform: translateX(50%) translateY(50%);
+  transform: translateX(50%) translateY(50%);
+  bottom: 50%;
+  height: auto;
+  min-height: 100%;
+  min-width: 100%;
+  overflow: hidden;
+  position: absolute;
+  right: 50%;
+  width: auto;
+}
+
+#banner:before {
+  -moz-transition: opacity 3s ease;
+  -webkit-transition: opacity 3s ease;
+  -ms-transition: opacity 3s ease;
+  transition: opacity 3s ease;
+  -moz-transition-delay: 1.25s;
+  -webkit-transition-delay: 1.25s;
+  -ms-transition-delay: 1.25s;
+  transition-delay: 1.25s;
+  background: #111111;
+  content: '';
+  display: block;
+  height: 100%;
+  left: 0;
+  opacity: 0.45;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+#banner:after {
+  background: linear-gradient(135deg, #0052A5 0%, #ffffff 74%);
+  content: ' ';
+  display: block;
+  height: 100%;
+  left: 0;
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  /* webkit-linear-gradient: 100%; */
+  width: 100%;
+  z-index: 1;
+}
+
+#banner.small {
+  height: 30vh !important;
+  min-height: 30vh;
+}
+
+@media screen and (max-width: 1280px) {
+  #banner video {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 736px) {
+  #banner {
+    height: auto !important;
+    min-height: 0;
+    padding: 4rem 2rem 4rem 2rem;
+  }
+
+  #banner .inner {
+    width: 100%;
+  }
+
+  #banner h1 {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0;
+  }
+
+  #banner p {
+    font-size: 1.25rem;
+  }
+
+  #banner br {
+    display: none;
+  }
+
+  #banner .button {
+    width: 100%;
+  }
+}
