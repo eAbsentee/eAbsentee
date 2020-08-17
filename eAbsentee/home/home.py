@@ -22,6 +22,10 @@ def credits_page():
 def about():
     return(render_template('about.html'))
 
+@home_bp.route('/layout/')
+def layout():
+    return(render_template('layout.html'))
+
 # FIX LINK TO PRIVACY POLICY
 @home_bp.route('/privacy/')
 def privacy():
