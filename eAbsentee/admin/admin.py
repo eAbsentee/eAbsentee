@@ -37,7 +37,7 @@ def superadmin():
 @admin_bp.route('/maps/', methods=['GET', 'POST'])
 @login_required
 def maps():
-    groups = get_groups()
+    groups = get_groups(current_user)
     mapbox_key = os.environ["MAPBOX_KEY"]
     if request.method == 'POST':
         users = get_users(group=request.form["group"], date_first=request.form["date_first"], date_second=request.form["date_second"])
@@ -48,7 +48,7 @@ def maps():
 @admin_bp.route('/list/', methods=['GET', 'POST'])
 @login_required
 def list():
-    groups = get_groups()
+    groups = get_groups(current_user)
     if request.method == 'POST':
         filename = create_csv(group=request.form["group"], date_first=request.form["date_first"], date_second=request.form["date_second"])
         cwd = os.getcwd()

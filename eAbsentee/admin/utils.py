@@ -1,5 +1,6 @@
 import os
 import csv
+import json
 from dateutil import parser
 from datetime import datetime
 from dotenv import load_dotenv
@@ -21,12 +22,18 @@ def get_users(group, date_first, date_second):
         })
     return markers
 
-def get_groups():
-    group_codes = []
-    for group in User.query.with_entities(User.group_code).distinct().all():
-        group_codes.append(group.group_code)
-    group_codes = sorted(group_codes)
-    return group_codes
+def get_groups(current_user):
+    if current_user.is_admin():
+        group_codes = []
+        for group in User.query.with_entities(User.group_code).distinct().all():
+            group_codes.append(group.group_code)
+        group_codes = sorted(group_codes)
+        return group_codes
+    else:
+        with open('../static/temp_user_groups.json') as file:
+            user_groups = json.load(file)
+            return sorted(user_groups[current_user.email]["group_codes"])
+
 
 def create_csv(group, date_first, date_second):
     date_first = str(parser.parse(date_first).date()).replace(' ', '')
