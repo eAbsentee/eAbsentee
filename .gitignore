@@ -131,4 +131,5 @@ groups.json
 activate/
 
 *.csv
+eAbsentee/static/temp_user_groups.json
 eAbsentee/admin/*.pdf
