@@ -39,6 +39,8 @@ def create_csv(group, date_first, date_second):
     date_first = str(parser.parse(date_first).date()).replace(' ', '')
     date_second = str(parser.parse(date_second).date()).replace(' ', '')
 
+    group = group.lower()
+
     fields = ['Name', 'County', 'Submission Time', 'Email', 'Phone Number', 'Full Address', 'Group Code']
     filename =  f'csv/{group}_{date_first}_{date_second}.csv'
     with open (filename, 'w', newline='\n') as csvfile:

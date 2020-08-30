@@ -18,7 +18,7 @@ admin_bp = Blueprint(
 
 @admin_bp.route('/admin/', methods=['GET', 'POST'])
 @login_required
-def superadmin():
+def admin():
     if current_user.is_admin():
         link_keys = [request.url_root + 'register/' + link.link for link in RegisterLink.query.all()]
         if request.method == 'POST':
@@ -60,13 +60,13 @@ def list():
 @login_manager.unauthorized_handler
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('admin_bp.maps'))
+        return redirect(url_for('admin_bp.list'))
 
     if request.method == 'POST':
         user = AdminUser.query.filter_by(email=request.form['email']).first()
         if user and bcrypt.check_password_hash(user.password, request.form['password']):
             login_user(user, remember=True)
-            return redirect(url_for('admin_bp.maps'))
+            return redirect(url_for('admin_bp.list'))
         else:
             flash('Invalid username/password combination')
             return redirect(url_for('admin_bp.login'))
@@ -76,7 +76,7 @@ def login():
 @admin_bp.route('/register/<key>', methods=['GET', 'POST'])
 def register(key):
     if current_user.is_authenticated:
-        return redirect(url_for('admin_bp.maps'))
+        return redirect(url_for('admin_bp.list'))
 
     if RegisterLink.query.filter_by(link=key).scalar() is not None:
         if request.method == 'POST':
@@ -95,7 +95,7 @@ def register(key):
                 db.session.delete(register_link)
 
                 db.session.commit()
-                return redirect(url_for('admin_bp.maps'))
+                return redirect(url_for('admin_bp.list'))
             else:
                 flash('A user already exists with that email address.', 'danger')
                 return render_template('register.html')
