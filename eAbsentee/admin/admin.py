@@ -20,10 +20,10 @@ admin_bp = Blueprint(
 @login_required
 def admin():
     if current_user.is_admin():
-        link_keys = [request.url_root + 'register/' + link.link for link in RegisterLink.query.all()]
+        link_keys = [f'{request.url_root}register/{link.link}' for link in RegisterLink.query.all()]
         if request.method == 'POST':
             new_link = RegisterLink(
-                link=''.join(random.choice(string.ascii_lowercase + string.digits) for _ in range(32))
+                link=''.join(random.choices(string.ascii_lowercase + string.digits, k=32))
             )
             db.session.add(new_link)
             db.session.commit()
