@@ -51,7 +51,7 @@ def delete_emails() -> List:
         # Subject of Email
         for parts_of_header in header:
             if parts_of_header['name'] == 'Subject':
-                if 'Report' in parts_of_header['value']:
+                if 'Request' in parts_of_header['value']:
                     to_delete.append(message_id)
 
         snippet = message['snippet']
