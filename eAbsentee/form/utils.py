@@ -16,15 +16,19 @@ from .models import db, User
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 load_dotenv()
 
+file_paths = {
+    'en': '../static/pdf/form.pdf',
+    'es': '../static/pdf/spanish_form.pdf'
+}
 
-def application_process(request, group_code=None):
+def application_process(request, group_code=None, lang=None):
     application_id = ''.join(random.choice(string.ascii_lowercase + string.digits) for _ in range(24))
-    write_pdf(application_id, request)
+    write_pdf(application_id, request, lang)
     add_to_database(application_id, request, group_code=group_code)
     email_registrar(application_id, request)
     # os.remove(f'{application_id}.pdf')
 
-def write_pdf(application_id, request):
+def write_pdf(application_id, request, lang):
     today_date = date.today().strftime('%m%d%y')
 
     packet = io.BytesIO()
@@ -90,7 +94,7 @@ def write_pdf(application_id, request):
     can.save()
     packet.seek(0)
     new_pdf = PdfFileReader(packet)
-    existing_pdf = PdfFileReader('../static/pdf/form.pdf', 'rb')
+    existing_pdf = PdfFileReader(file_paths[lang], 'rb')
     output = PdfFileWriter()
     page = existing_pdf.getPage(0)
     page.mergePage(new_pdf.getPage(0))
@@ -137,6 +141,8 @@ def email_registrar(application_id, request):
         yagmail.SMTP(os.environ["GMAIL_SENDER_ADDRESS"], os.environ["GMAIL_SENDER_PASSWORD"]).send(
             to=([email for email in emails_to_send]),
             subject=(f'Absentee Ballot Request - Applicant-ID: {application_id}'),
-            contents='Please find attached an absentee ballot request submitted from eAbsentee.org',
+            contents='Registrar, attached is a voter application for absentee ballot. The voter sent it through eAbsentee.org and the voter is cc\'d here.' +
+            'Voter, no further action is required on your part. An absentee ballot will be mailed soon to the address you designated.' +
+            'To check on the status of your application, visit the Virginia elections website. Please allow the registrar at least five days to process it.',
             attachments=(f'{application_id}.pdf')
         )
