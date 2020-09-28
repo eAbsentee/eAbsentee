@@ -86,6 +86,8 @@ def write_pdf(application_id, request, lang):
     can.drawString(558, 548, request.form['different_country'] if request.form['different_city'] else '')
     can.drawString(175, 509, request.form['email'])
     can.drawString(275, 115, f'/s/ {request.form["signature"].strip().title()}')
+    can.setFont('Helvetica', 10)
+    can.drawString(320, 135, 'This absentee ballot request contains an electronic signature.')
     can.drawString(485, 115, today_date[0:2])
     can.drawString(525, 115, today_date[2:4])
     can.drawString(565, 115, today_date[4:6])
