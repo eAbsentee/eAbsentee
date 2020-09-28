@@ -27,7 +27,7 @@ def application_process(request, group_code=None, lang=None):
     write_pdf(application_id, request, lang)
     add_to_database(application_id, request, group_code=group_code)
     email_registrar(application_id, request)
-    # os.remove(f'{application_id}.pdf')
+    os.remove(f'{application_id}.pdf')
 
 def write_pdf(application_id, request, lang):
     today_date = date.today().strftime('%m%d%y')
@@ -83,15 +83,9 @@ def write_pdf(application_id, request, lang):
     can.drawString(145, 548, request.form['different_city'])
     can.drawString(322, 548, request.form['different_state'])
     can.drawString(418, 548, '   '.join(request.form['different_zip']))
-    can.drawString(
-        558, 548,
-        request.form['different_country'] if request.form['different_city']
-        else '',
-    )
-
+    can.drawString(558, 548, request.form['different_country'] if request.form['different_city'] else '')
     can.drawString(175, 509, request.form['email'])
-    can.drawString(
-        275, 115, f'/s/ {request.form["signature"].strip().title()}')
+    can.drawString(275, 115, f'/s/ {request.form["signature"].strip().title()}')
     can.drawString(485, 115, today_date[0:2])
     can.drawString(525, 115, today_date[2:4])
     can.drawString(565, 115, today_date[4:6])
@@ -124,8 +118,7 @@ def add_to_database(application_id, request, group_code):
         county=request.form['registered_county'],
         email=request.form['email'],
         phonenumber=request.form['phonenumber'],
-        full_address=(request.form['address'] + ((' ' + request.form['apt']) if request.form['apt']
-                                                 else '') + ', ' + request.form['city'] + ', ' + 'VA' + ' ' + request.form['zip']),
+        full_address=(request.form['address'] + ((' ' + request.form['apt']) if request.form['apt'] else '') + ', ' + request.form['city'] + ', ' + 'VA' + ' ' + request.form['zip']),
         ip=request.environ.get('HTTP_X_REAL_IP', request.remote_addr),
         group_code=group_code,
         lat=request.form['lat'],
@@ -152,11 +145,11 @@ def email_registrar(application_id, request):
             subject=(
                 f'Absentee Ballot Request - Applicant-ID: {application_id}'),
             contents="""
-Registrar, attached is a voter application for absentee ballot. The voter sent it through eAbsentee.org and the voter is CC'd here.
-<br />
-Voter, no further action is required on your part. An absentee ballot will be mailed soon to the address you designated. To check on the status of your application, visit the <a href="https://vote.elections.virginia.gov/VoterInformation/Lookup/status">Virginia elections website</a>. Please allow the registrar at least five days to process it.
-<br />
-Votante, no necesita hacer nada m&aacute;s. Una papeleta para votar en ausencia ser&aacute; pronto enviada por correo al lugar designado. Para checar el estado de su aplicaci&oacute;n, visite la p&aacute;gina de las <a href="https://vote.elections.virginia.gov/VoterInformation/Lookup/status">elecciones de Virginia</a>. Favor de permitir al registrador, al m&iacute;nimo, cinco d&iacute;as para tratarla.
-""",
+            Registrar, attached is a voter application for absentee ballot. The voter sent it through eAbsentee.org and the voter is CC'd here.
+            <br />
+            Voter, no further action is required on your part. An absentee ballot will be mailed soon to the address you designated. To check on the status of your application, visit the <a href="https://vote.elections.virginia.gov/VoterInformation/Lookup/status">Virginia elections website</a>. Please allow the registrar at least five days to process it.
+            <br />
+            Votante, no necesita hacer nada más. Una papeleta para votar en ausencia será pronto enviada por correo al lugar designado. Para checar el estado de su aplicación, visite la página de las <a href="https://vote.elections.virginia.gov/VoterInformation/Lookup/status">elecciones de Virginia</a>. Favor de permitir al registrador, al mínimo, cinco días para tratarla.
+            """,
             attachments=(f'{application_id}.pdf')
         )

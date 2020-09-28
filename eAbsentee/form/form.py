@@ -21,6 +21,10 @@ def error_page():
 def confirmation_page():
     return render_template('confirmation.html')
 
+@form_bp.route('/spanishconfirmation/')
+def spanish_confirmation_page():
+    return render_template('confirmationspanish.html')
+
 @form_bp.route('/formclosed/')
 def form_closed():
     return render_template('formclosed.html')
@@ -34,10 +38,10 @@ def add_to_database():
 def form():
     if request.method == 'POST':
         if os.environ["FLASK_DEBUG"]:
-            application_process(request)
+            application_process(request, lang='en')
         else:
             try:
-                application_process(request)
+                application_process(request, lang='en')
             except(Exception):
                 return redirect('/error/')
         return redirect('/confirmation/')
@@ -48,10 +52,10 @@ def form():
 def form_group(group):
     if request.method == 'POST':
         if os.environ["FLASK_DEBUG"]:
-            application_process(request, group)
+            application_process(request, group, lang='en')
         else:
             try:
-                application_process(request, group)
+                application_process(request, lang='en')
             except(Exception):
                 return redirect('/error/')
         return redirect('/confirmation/')
@@ -62,13 +66,13 @@ def form_group(group):
 def form_spanish():
     if request.method == 'POST':
         if os.environ["FLASK_DEBUG"]:
-            application_process(request)
+            application_process(request, lang='es')
         else:
             try:
-                application_process(request)
+                application_process(request, lang='es')
             except(Exception):
                 return redirect('/error/')
-        return redirect('/confirmation/')
+        return redirect('/spanishconfirmation/')
     else:
         return render_template('formspanish.html')
 
@@ -76,12 +80,12 @@ def form_spanish():
 def form_spanish_group(group):
     if request.method == 'POST':
         if os.environ["FLASK_DEBUG"]:
-            application_process(request, group)
+            application_process(request, group, lang='es')
         else:
             try:
-                application_process(request, group)
+                application_process(request, group, lang='es')
             except(Exception):
                 return redirect('/error/')
-        return redirect('/confirmation/')
+        return redirect('/spanishconfirmation/')
     else:
         return render_template('formspanish.html')

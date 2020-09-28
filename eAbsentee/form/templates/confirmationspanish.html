@@ -1,0 +1,81 @@
+{% from "macros.html" import favicon %}
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	{{ favicon() }}
+	<title>eAbsentee</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-social.css') }}" />
+</head>
+
+<body class="is-preload">
+
+  <header id="header">
+		<a class="logo" href="/"><img width="32" height="32" src="{{ url_for('static', filename='img/eabsentee.svg/') }}"></img> eAbsentee</a>
+		<nav>
+			<a href="/form/">Apply</a>
+			<a href="/about/">About Us</a>
+			<!-- <a href="/privacy/">Privacy Policy</a> -->
+		</nav>
+	</header>
+
+  <!-- Banner -->
+  <section id="banner">
+    <div class="inner">
+      <h1> Su aplicación ha sido confirmada. </h1>
+      <p>Gracias por solicitar una papeleta para votar en ausencia.  No necesita hacer nada más.
+				Una papeleta para votar en ausencia será pronto enviada por correo a su residencia.
+      </p>
+      <p>
+				Para checar el estado de su aplicación, visite <a href="https://www.elections.virginia.gov"> <u>la página de las elecciones del estado.</u></a>.
+      </p>
+
+
+
+
+      <div style="max-width:250px; margin:auto">
+        <a class="btn btn-block btn-social btn-twitter" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.eabsentee.org&text=I&lsquo;m%20voting%20from%20home%20this%20November%3A%20I%20just%20applied%20online%20to%20receive%20to%20receive%20a%20Virginia%20absentee%20ballot%20at">
+          <span class="fa fa-twitter"></span> Comparta en Twitter
+        </a>
+
+        <a class="btn btn-block btn-social btn-facebook" href="https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&sdk=joey&u=https%3A%2F%2Fwww.eabsentee.org%2F&display=popup&ref=plugin&src=share_button">
+          <span class="fa fa-facebook"></span> Comparta en Facebook
+        </a>
+      </div>
+
+
+
+    </div>
+  </section>
+
+  <footer id="footer" style="background: black">
+    <div class="mx-auto text-center">
+      <small style="color:white;">eAbsentee is sponsored by Vote Absentee Virginia, a not-for-profit, non-partisan 501(c)4 organization established to help broaden voter access across all parties in Virginia.</small>
+      </br>
+      </br>
+      <a href="mailto:applications@eabsentee.org">
+        <i class="fa fa-envelope fa-2x"></i>
+      </a>
+      &nbsp;
+      <a href="https://www.facebook.com/voteabsenteeva">
+        <i class="fa fa-facebook-square fa-2x"></i>
+      </a>
+      <br />
+    </div>
+  </footer>
+  <!-- Scripts -->
+  <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/browser.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/breakpoints.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/util.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+
+</html>
