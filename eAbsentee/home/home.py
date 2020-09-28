@@ -52,6 +52,20 @@ def set_group_2020_caps():
     response.set_cookie('group', '2020vote', max_age=60 * 60 * 24 * 365)
     return response
 
+@home_bp.route('/2020vote/')
+def set_group_2020_vote_lowercase():
+    response = make_response(render_template('index.html'))
+    response.set_cookie('group', '2020vote', max_age=60 * 60 * 24 * 365)
+    return response
+
+@home_bp.route('/AllVote2020/')
+def set_group_allvote2020():
+    response = make_response(render_template('index.html'))
+    response.set_cookie('group', 'AllVote2020', max_age=60 * 60 * 24 * 365)
+    return response
+
+
+
 @home_bp.app_errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
