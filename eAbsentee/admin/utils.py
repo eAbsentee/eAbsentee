@@ -1,10 +1,11 @@
 import os
 import csv
-import json
+import yagmail
 from dateutil import parser
 from datetime import datetime
 from dotenv import load_dotenv
 from eAbsentee.form.models import User
+from eAbsentee.admin.models import GroupReference
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 load_dotenv()
@@ -23,17 +24,15 @@ def get_users(group, date_first, date_second):
     return markers
 
 def get_groups(current_user):
+    group_codes = []
     if current_user.is_admin():
-        group_codes = []
         for group in User.query.with_entities(User.group_code).distinct().all():
             group_codes.append(group.group_code)
-        group_codes = sorted(group_codes)
-        return group_codes
     else:
-        with open('../static/temp_user_groups.json') as file:
-            user_groups = json.load(file)
-            return sorted(user_groups[current_user.email]["group_codes"])
-
+        for group_reference in GroupReference.query.filter_by(email=current_user.email).all():
+            group_codes.append(group_reference.group_code)
+    group_codes = sorted(group_codes)
+    return group_codes
 
 def create_csv(group, date_first, date_second):
     date_first = str(parser.parse(date_first).date()).replace(' ', '')
@@ -60,3 +59,12 @@ def create_csv(group, date_first, date_second):
             ])
         csvwriter.writerows(voters)
     return filename
+
+def email_reminder(email):
+    yagmail.SMTP(os.environ['GMAIL_SENDER_ADDRESS'], os.environ['GMAIL_SENDER_PASSWORD']).send(
+        to=email,
+        subject=f'Reminder to check eAbsentee data portal',
+        contents=f'New absentee ballot applications were submitted ' +
+        'recently using your eAbsentee.org group codes. ' +
+        'Please email raunak@eAbsentee.org with any questions.'
+    )
