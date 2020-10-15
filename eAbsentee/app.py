@@ -63,7 +63,7 @@ def get_csp():
 
 def database_models(db):
     from eAbsentee.form.models import User
-    from eAbsentee.admin.models import AdminUser
+    from eAbsentee.admin.models import AdminUser, RegisterLink, GroupReference
     db.create_all()
 
 def register_blueprints(app):
