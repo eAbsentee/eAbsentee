@@ -1,13 +1,15 @@
 import os
 import random
 import string
-from flask import Blueprint, render_template, request, make_response, flash, redirect, session, url_for, send_file, send_from_directory, current_app
+from dateutil import parser
+from datetime import date, timedelta
+from flask import Blueprint, render_template, request, make_response, flash, redirect, session, url_for, send_file, send_from_directory, current_app, jsonify, Response
 from flask_login import login_required, logout_user, current_user, login_user
 from dotenv import load_dotenv
 from eAbsentee.app import db, bcrypt, login_manager
 from eAbsentee.form.models import User
-from eAbsentee.admin.models import AdminUser, RegisterLink
-from eAbsentee.admin.utils import get_users, get_groups, create_csv
+from eAbsentee.admin.models import AdminUser, RegisterLink, GroupReference
+from eAbsentee.admin.utils import get_users, get_groups, create_csv, email_reminder
 load_dotenv()
 
 
@@ -50,7 +52,10 @@ def maps():
 def list():
     groups = get_groups(current_user)
     if request.method == 'POST':
-        filename = create_csv(group=request.form["group"], date_first=request.form["date_first"], date_second=request.form["date_second"])
+        if request.form['all_group'] == 'true':
+            filename = create_csv(group='all_group', date_first=request.form['date_first'], date_second=request.form['date_second'])
+        else:
+            filename = create_csv(group=request.form['group'], date_first=request.form['date_first'], date_second=request.form['date_second'])
         cwd = os.getcwd()
         return send_file(os.path.join(os.path.dirname(os.path.abspath(__file__)), filename), as_attachment=True)
     if request.method == 'GET':
@@ -90,10 +95,8 @@ def register(key):
 
                 db.session.add(new_admin)
                 login_user(new_admin, remember=True)
-
                 register_link = RegisterLink.query.filter_by(link=key).first()
                 db.session.delete(register_link)
-
                 db.session.commit()
                 return redirect(url_for('admin_bp.list'))
             else:
@@ -106,3 +109,37 @@ def register(key):
                 return redirect(url_for('home_bp.home'))
     else:
         return redirect(url_for('home_bp.home'))
+
+@admin_bp.route('/api/remind/', methods=['POST'])
+def api_remind():
+    if request.method == 'POST' and request.args.get('API_KEY') == os.environ['API_KEY']:
+        today = parser.parse(str(date.today() + timedelta(days=2)))
+        yesterday = parser.parse(str(date.today()))
+        users = User.query.filter(User.submission_time >= yesterday).filter(User.submission_time <= today).all()
+        group_codes = [x for x in set([user.group_code for user in users])]
+
+
+        for group_code in group_codes:
+            for group_reference in GroupReference.query.filter_by(group_code=group_code).all():
+                if 'localhost' not in request.url_root:
+                    email_reminder(group_reference.email)
+                else:
+                    email_reminder(group_reference.email)
+
+        return Response('', status=200, mimetype='application/json')
+    else:
+        return Response('', status=401, mimetype='application/json')
+
+@admin_bp.route('/api/addgroupreference/', methods=['POST'])
+def add_group_reference():
+    if request.method == 'POST' and request.args.get('API_KEY') == os.environ['API_KEY']:
+        new_group_reference = GroupReference(
+            email=request.args.get('email'),
+            group_code=request.args.get('group_code')
+        )
+        db.session.add(new_group_reference)
+        db.session.commit()
+        return Response('', status=200, mimetype='application/json')
+    else:
+        print('hello')
+        return Response('', status=401, mimetype='application/json')
