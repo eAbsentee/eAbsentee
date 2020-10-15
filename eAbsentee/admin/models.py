@@ -30,6 +30,18 @@ class AdminUser(db.Model, UserMixin):
     def is_admin(self):
         return self.access == ACCESS['admin']
 
+class GroupReference(db.Model):
+    """Data model for admin user to list of emails"""
+
+    __tablename__ = 'group_references'
+
+    id = db.Column(db.Integer(), primary_key=True) # ID PK
+    email = db.Column(db.String(128)) # Email from AdminUser
+    group_code = db.Column(db.String(128))
+
+    def __repr__(self):
+        return '<Email ' + self.email + ', Group Code ' + self.group_code + '>'
+
 class RegisterLink(db.Model):
     """Currently created register links"""
 
