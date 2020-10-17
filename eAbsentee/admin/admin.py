@@ -52,10 +52,10 @@ def maps():
 def list():
     groups = get_groups(current_user)
     if request.method == 'POST':
-        if request.form['all_group'] == 'true':
-            filename = create_csv(group='all_group', date_first=request.form['date_first'], date_second=request.form['date_second'])
-        else:
-            filename = create_csv(group=request.form['group'], date_first=request.form['date_first'], date_second=request.form['date_second'])
+        # if request.form['all_group'] == 'true':
+        #     filename = create_csv(group='all_group', date_first=request.form['date_first'], date_second=request.form['date_second'])
+        # else:
+        filename = create_csv(group=request.form['group'], date_first=request.form['date_first'], date_second=request.form['date_second'])
         cwd = os.getcwd()
         return send_file(os.path.join(os.path.dirname(os.path.abspath(__file__)), filename), as_attachment=True)
     if request.method == 'GET':
