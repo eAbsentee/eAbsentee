@@ -125,11 +125,9 @@ dmypy.json
 # Important jsons
 credentials.json
 storage.json
-groups.json
 
 # PythonAnywhere
 activate/
 
 *.csv
-eAbsentee/static/temp_user_groups.json
 eAbsentee/admin/*.pdf
