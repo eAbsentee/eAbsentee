@@ -36,6 +36,7 @@ def add_to_database():
 
 @form_bp.route('/form/', methods=['POST', 'GET'])
 def form():
+    return redirect('/formclosed/')
     if request.method == 'POST':
         if os.environ["FLASK_DEBUG"]:
             application_process(request, lang='en')
@@ -50,6 +51,7 @@ def form():
 
 @form_bp.route('/form/<group>/', methods=['POST', 'GET'])
 def form_group(group):
+    return redirect('/formclosed/')
     if request.method == 'POST':
         if os.environ["FLASK_DEBUG"]:
             application_process(request, group, lang='en')
@@ -64,6 +66,7 @@ def form_group(group):
 
 @form_bp.route('/spanishform/', methods=['POST', 'GET'])
 def form_spanish():
+    return redirect('/formclosed/')
     if request.method == 'POST':
         if os.environ["FLASK_DEBUG"]:
             application_process(request, lang='es')
@@ -78,6 +81,7 @@ def form_spanish():
 
 @form_bp.route('/spanishform/<group>/', methods=['POST', 'GET'])
 def form_spanish_group(group):
+    return redirect('/formclosed/')
     if request.method == 'POST':
         if os.environ["FLASK_DEBUG"]:
             application_process(request, group, lang='es')
