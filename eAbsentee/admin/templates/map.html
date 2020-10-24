@@ -32,6 +32,13 @@
         </li>
       </ul>
     </div>
+
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/logout/">Logout</a>
+      </li>
+    </ul>
+
   </nav>
 
 
@@ -42,43 +49,44 @@
           <span class="input-group-text">Group Name</span>
         </div>
         <select class="form-control" id="group" name="group">
+          <option>Select a group</option>
           {% for group in groups %}
-            <option>{{ group }}</option>
+          <option>{{ group }}</option>
           {% endfor %}
         </select>
       </div>
 
+      <!-- <input type="checkbox" id="all_group" name="all_group">
+      <label for="checkbox">Check this box to download information for all group codes, rather than one at a time.</label> -->
+      </br>
       <label for="">Date Range</label>
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <span class="input-group-text">First Date</span>
         </div>
-          <input class="form-control" type="date" value="2019-01-01" id="date_first" name="date_first">
+        <input class="form-control" type="date" value="2019-01-01" id="date_first" name="date_first">
       </div>
-
 
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <span class="input-group-text">Second Date</span>
         </div>
-          <input class="form-control" type="date" value="2020-08-31" id="date_second" name="date_second">
-          <small>Click on the calendar icons to select dates.</small>
-        </div>
-
-        <!-- Set second date range to today. -->
-        <script type="text/javascript">
-          document.getElementById('date_second').valueAsDate = new Date();
-        </script>
-
+        <input class="form-control" type="date" value="2020-08-31" id="date_second" name="date_second">
       </div>
+      <small>Click on the calendar icons to select dates.</small>
+
+      <!-- Set second date range to today. -->
+      <script type="text/javascript">
+        document.getElementById('date_second').valueAsDate = new Date();
+      </script>
 
       <div class="text-center">
         <input type="submit" value="Submit" class="btn-default" />
       </div>
 
-    </form>
-
+      </form>
   </div>
+
 
 
   {% if users %}

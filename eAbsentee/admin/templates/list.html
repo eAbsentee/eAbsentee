@@ -33,6 +33,12 @@
         </li>
       </ul>
     </div>
+
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/logout/">Logout</a>
+      </li>
+    </ul>
   </nav>
 
 
@@ -50,8 +56,12 @@
         </select>
       </div>
 
-      <!-- <input type="checkbox" id="all_group" name="all_group">
-      <label for="checkbox">Check this box to download information for all group codes, rather than one at a time.</label> -->
+      {% if current_user.is_admin() %}
+        <input type="checkbox" id="all_group" name="all_group">
+        <label for="checkbox">Check this box to download information for all group codes, rather than one at a time.</label>
+
+      {% endif %}
+
       </br>
       <label for="">Date Range</label>
       <div class="input-group mb-3">
