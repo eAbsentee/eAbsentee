@@ -4,7 +4,7 @@ import string
 from dateutil import parser
 from datetime import date, timedelta
 from flask import Blueprint, render_template, request, make_response, flash, redirect, session, url_for, send_file, send_from_directory, current_app, jsonify, Response
-from flask_login import login_required, logout_user, current_user, login_user
+from flask_login import login_required, logout_user, current_user, login_user, logout_user
 from dotenv import load_dotenv
 from eAbsentee.app import db, bcrypt, login_manager
 from eAbsentee.form.models import User
@@ -13,9 +13,11 @@ from eAbsentee.admin.utils import get_users, get_groups, create_csv, email_remin
 load_dotenv()
 
 
-
 admin_bp = Blueprint(
-    'admin_bp', __name__, template_folder='templates', static_folder='static'
+    'admin_bp',
+    __name__,
+    template_folder='templates',
+    static_folder='static'
 )
 
 @admin_bp.route('/admin/', methods=['GET', 'POST'])
@@ -52,10 +54,16 @@ def maps():
 def list():
     groups = get_groups(current_user)
     if request.method == 'POST':
-        # if request.form['all_group'] == 'true':
-        #     filename = create_csv(group='all_group', date_first=request.form['date_first'], date_second=request.form['date_second'])
-        # else:
-        filename = create_csv(group=request.form['group'], date_first=request.form['date_first'], date_second=request.form['date_second'])
+        filename = None
+        if request.form['all_group'] == 'on':
+            filename = create_csv('all_group',
+            request.form['date_first'],
+            request.form['date_second'],
+            current_user)
+        else:
+            filename = create_csv(request.form['group'], request.form['date_first'],
+            request.form['date_second'],
+            current_user)
         cwd = os.getcwd()
         return send_file(os.path.join(os.path.dirname(os.path.abspath(__file__)), filename), as_attachment=True)
     if request.method == 'GET':
@@ -77,6 +85,12 @@ def login():
             return redirect(url_for('admin_bp.login'))
     elif request.method == 'GET':
         return render_template('login.html')
+
+@admin_bp.route("/logout/")
+@login_required
+def logout():
+    logout_user()
+    return redirect('/')
 
 @admin_bp.route('/register/<key>', methods=['GET', 'POST'])
 def register(key):
