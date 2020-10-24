@@ -34,20 +34,28 @@ def get_groups(current_user):
     group_codes = sorted(group_codes)
     return group_codes
 
-def create_csv(group, date_first, date_second):
+def create_csv(group, date_first, date_second, current_user):
     date_first = str(parser.parse(date_first).date()).replace(' ', '')
     date_second = str(parser.parse(date_second).date()).replace(' ', '')
 
+    # TODO: Standardize lower-casing of groups... tsktsk too much technical debt
     group = group.lower()
 
     fields = ['Name', 'County', 'Submission Time', 'Email', 'Phone Number', 'Full Address', 'Group Code']
     filename =  f'csv/{group}_{date_first}_{date_second}.csv'
     with open (filename, 'w', newline='\n') as csvfile:
         csvwriter = csv.writer(csvfile)
-        csvwriter.writerow([f'Spreadsheet Generated for Group {group}'])
+        csvwriter.writerow([f'Spreadsheet Generated for User {current_user.email}'])
         csvwriter.writerow(fields)
+
+        possible_users = None
+        if current_user.is_admin() and group == 'all_group':
+            possible_users = User.query.filter(User.submission_time >= date_first).filter(User.submission_time <= date_second).order_by(User.submission_time.asc()).all()
+        else:
+            possible_users = User.query.filter_by(group_code=group).filter(User.submission_time >= date_first).filter(User.submission_time <= date_second).order_by(User.submission_time.asc()).all()
+
         voters = []
-        for user in User.query.filter_by(group_code=group).filter(User.submission_time >= date_first).filter(User.submission_time <= date_second).order_by(User.submission_time.asc()).all():
+        for user in possible_users:
             voters.append([
                 user.name,
                 user.county,
@@ -57,6 +65,7 @@ def create_csv(group, date_first, date_second):
                 user.full_address,
                 user.group_code if user.group_code else ''
             ])
+
         csvwriter.writerows(voters)
     return filename
 
