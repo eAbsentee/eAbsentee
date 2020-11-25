@@ -33,6 +33,9 @@ def privacy():
         open('../static/pdf/privacy_policy.pdf', 'rb'), attachment_filename='privacy_policy.pdf'
     )
 
+@home_bp.route('/mobileweb/')
+def mobileweb():
+    return 'Hi Mr.Kosek'
 
 @home_bp.route('/g/<group>/')
 def set_group(group: str):
