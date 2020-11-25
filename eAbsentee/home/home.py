@@ -35,7 +35,7 @@ def privacy():
 
 @home_bp.route('/mobileweb/')
 def mobileweb():
-    return 'Hi Mr.Kosek'
+    return 'Temp'
 
 @home_bp.route('/g/<group>/')
 def set_group(group: str):
