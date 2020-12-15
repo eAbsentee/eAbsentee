@@ -3847,15 +3847,6 @@ body:before {
 #header>nav>a[href="#menu"]:before {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  font-family: FontAwesome;
-  font-style: normal;
-  font-weight: normal;
-  text-transform: none !important;
-}
-
-#header>nav>a[href="#menu"]:before {
-  content: '\f0c9';
-  margin: 0 0.5rem 0 0;
 }
 
 #header>nav>a+a[href="#menu"]:last-child {
@@ -3918,8 +3909,7 @@ body:before {
   -webkit-justify-content: center;
   -ms-justify-content: center;
   justify-content: center;
-  background-image: linear-gradient(rgba(17, 17, 17, 0.25), rgba(17, 17, 17, 0.25))
-  background-position: center;
+  background-image: linear-gradient(rgba(17, 17, 17, 0.25), rgba(17, 17, 17, 0.25)) background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   border-top: 0;
@@ -4344,15 +4334,6 @@ body:before {
 #menu .close:before {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  font-family: FontAwesome;
-  font-style: normal;
-  font-weight: normal;
-  text-transform: none !important;
-}
-
-#menu .close:before {
-  content: '\f00d';
-  font-size: 1.25rem;
 }
 
 #menu .close:hover {
@@ -4380,6 +4361,7 @@ body.is-menu-visible #menu {
   box-shadow: 0 0 1.5rem 0 rgba(0, 0, 0, 0.2);
   visibility: visible;
 }
+
 /*
 .video-close-button {
   background-color: grey;
@@ -4390,8 +4372,6 @@ body.is-menu-visible #menu {
   background-color: rgb(225, 0, 0);
   color: white;
 } */
-
-
 .coronavirus_banner {
   background-color: red;
   height: 100px;

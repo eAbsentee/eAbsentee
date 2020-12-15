@@ -39,6 +39,7 @@ python-dateutil==2.8.1
 python-dotenv==0.14.0
 python-editor==1.0.4
 pytz==2019.2
+reportlab==3.5.56
 requests==2.24.0
 rsa==4.0
 six==1.12.0
