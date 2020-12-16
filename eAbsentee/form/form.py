@@ -66,7 +66,7 @@ def form_group(group):
 
 @form_bp.route('/spanishform/', methods=['POST', 'GET'])
 def form_spanish():
-    return redirect('/formclosed/')
+    # return redirect('/formclosed/')
     if request.method == 'POST':
         if os.environ["FLASK_DEBUG"]:
             application_process(request, lang='es')
