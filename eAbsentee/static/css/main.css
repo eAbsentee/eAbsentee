@@ -565,10 +565,10 @@ input[type="checkbox"]+label:before,
 input[type="radio"]+label:before {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  font-family: FontAwesome;
+  font-family: "Font Awesome 5 Free";
   font-style: normal;
-  font-weight: normal;
   text-transform: none !important;
+  font-weight: 900;
 }
 
 input[type="checkbox"]+label:before,
@@ -2772,7 +2772,7 @@ ul.actions.fit.stacked {
 .icon:before {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  font-family: FontAwesome;
+  font-family: "Font Awesome 5 Free";
   font-style: normal;
   font-weight: normal;
   text-transform: none !important;
