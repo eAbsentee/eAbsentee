@@ -1,3 +1,9 @@
+"""
+This script is a scheduled call to the remind web endpoint. That endpoint emails group heads who have had their group code used in the past 24 hours with a reminder email to check the dashboard. You can follow through the code in the admin blueprint.
+
+This script should be scheduled daily.
+"""
+
 import os
 import sys
 import requests

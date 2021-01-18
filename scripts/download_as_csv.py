@@ -1,3 +1,8 @@
+"""
+This script is used to SSH into the PythonAnywhere host, and download all user information from our MySQL database into a .CSV. What this script was used for, I do not know.
+- Raunak Daga 1/17/21
+"""
+
 import csv
 import os
 import sshtunnel

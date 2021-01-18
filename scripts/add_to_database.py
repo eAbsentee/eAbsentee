@@ -1,3 +1,8 @@
+"""
+This script is used to manually add voters from a spreadsheet file. When I used it, it was for the initial import of our .xlsx database into an actual MySQL database.
+- Raunak Daga 1/17/21
+"""
+
 import csv
 import os
 import sshtunnel
@@ -16,6 +21,7 @@ user = os.environ["PA_USER"]
 passwd = os.environ["PA_DB_PWD"]
 db = os.environ["PA_DB"]
 
+# This SSH is configured for the PythonAnywhere host
 with sshtunnel.SSHTunnelForwarder(
     ('ssh.pythonanywhere.com'),
     ssh_password=os.environ["SSH_PWD"],
@@ -60,6 +66,7 @@ with sshtunnel.SSHTunnelForwarder(
         def get_long(self):
             return self.long
 
+    # Insert your spreadsheet name here
     filename = 'INSERT'
 
     with open(filename, 'r') as csvfile:

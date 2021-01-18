@@ -1,13 +1,20 @@
-from typing import List
+"""
+This script is used to delete sent emails from your Gmail inbox.
+It is better explained through a Medium post I wrote - however, that Medium post is for checking for bounce-backed emails. This script is used to delete sent emails for user privacy.
+https://medium.com/@raunakdaga/how-to-check-for-bounce-backed-emails-in-python-3-7-6ab0c297f81c
+- Raunak Daga 1/17/21
+"""
+
 import yagmail
-from googleapiclient import discovery
 import email
-from httplib2 import Http
-from oauth2client import file, client, tools
 import re
 import base64
 import os
 import sys
+from httplib2 import Http
+from oauth2client import file, client, tools
+from googleapiclient import discovery
+from typing import List
 
 # Change current working directory, only needed for Atom
 os.chdir(os.path.dirname(os.path.abspath(__file__)))

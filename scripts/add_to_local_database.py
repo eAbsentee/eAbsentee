@@ -1,3 +1,8 @@
+"""
+This script is similar to add_to_database.py - it adds voter information from a spreadsheet into your local MySQL database. I used it for populating my development database with user information I could base my design off of.
+- Raunak Daga 1/17/21
+"""
+
 import csv
 import os
 from datetime import datetime
@@ -45,6 +50,7 @@ class User(Base):
 
 def add_to_database_all_voters():
     from dateutil import parser
+    # Insert filename here
     filename = 'INSERT'
 
     with open(filename, 'r', encoding='cp1252') as csvfile:
