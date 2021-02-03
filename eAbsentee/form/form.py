@@ -13,7 +13,7 @@ form_bp = Blueprint(
     static_folder='static'
 )
 
-FORM_CLOSED = True
+FORM_CLOSED = False
 
 @form_bp.route('/error/')
 def error_page():
