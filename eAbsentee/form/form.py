@@ -1,5 +1,5 @@
 import os
-from flask import Blueprint
+from flask import Blueprint, current_app
 from flask import render_template, request, redirect
 from dotenv import load_dotenv
 from eAbsentee.form.utils import application_process
@@ -12,8 +12,6 @@ form_bp = Blueprint(
     template_folder='templates',
     static_folder='static'
 )
-
-FORM_CLOSED = False
 
 @form_bp.route('/error/')
 def error_page():
@@ -38,7 +36,7 @@ def add_to_database():
 
 @form_bp.route('/form/', methods=['POST', 'GET'])
 def form():
-    if FORM_CLOSED:
+    if current_app.config['FORM_CLOSED']:
         return redirect('/formclosed/')
     if request.method == 'POST':
         if os.environ["FLASK_DEBUG"]:
@@ -54,7 +52,7 @@ def form():
 
 @form_bp.route('/form/<group>/', methods=['POST', 'GET'])
 def form_group(group):
-    if FORM_CLOSED:
+    if current_app.config['FORM_CLOSED']:
         return redirect('/formclosed/')
     if request.method == 'POST':
         if os.environ["FLASK_DEBUG"]:
@@ -70,7 +68,7 @@ def form_group(group):
 
 @form_bp.route('/spanishform/', methods=['POST', 'GET'])
 def form_spanish():
-    if FORM_CLOSED:
+    if current_app.config['FORM_CLOSED']:
         return redirect('/formclosed/')
     if request.method == 'POST':
         if os.environ["FLASK_DEBUG"]:
@@ -86,7 +84,7 @@ def form_spanish():
 
 @form_bp.route('/spanishform/<group>/', methods=['POST', 'GET'])
 def form_spanish_group(group):
-    if FORM_CLOSED:
+    if current_app.config['FORM_CLOSED']:
         return redirect('/formclosed/')
     if request.method == 'POST':
         if os.environ["FLASK_DEBUG"]:
