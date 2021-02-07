@@ -1,4 +1,4 @@
-# eAbsentee: Absentee Ballot Request System
+# eAbsentee
 
 A web app built with Flask which allows users to submit applications for absentee ballots in the state of Virginia. Somebody who wants an absentee ballot can complete a web form, and eAbsentee will use their input to complete the state-sanctioned PDF and email it to the state registrar of their locality. eAbsentee is based off of and expands upon [Horatio](https://github.com/TrustTheVote-Project/horatio-client), the original online absentee ballot application.
 
