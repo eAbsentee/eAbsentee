@@ -55,15 +55,15 @@ def list():
     groups = get_groups(current_user)
     if request.method == 'POST':
         filename = None
-        if request.form['all_group'] == 'on':
-            filename = create_csv('all_group',
-            request.form['date_first'],
-            request.form['date_second'],
-            current_user)
-        else:
-            filename = create_csv(request.form['group'], request.form['date_first'],
-            request.form['date_second'],
-            current_user)
+        # if request.form['all_group'] == 'on':
+        #     filename = create_csv('all_group',
+        #     request.form['date_first'],
+        #     request.form['date_second'],
+        #     current_user)
+        # else:
+        filename = create_csv(request.form['group'], request.form['date_first'],
+        request.form['date_second'],
+        current_user)
         cwd = os.getcwd()
         return send_file(os.path.join(os.path.dirname(os.path.abspath(__file__)), filename), as_attachment=True)
     if request.method == 'GET':
