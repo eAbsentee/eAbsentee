@@ -46,7 +46,7 @@ def write_pdf(application_id, request, lang):
     can.drawString(212, 670, '03')  # Month of Election
     can.drawString(261, 670, '23')  # Day of Election
     can.drawString(310, 670, '21')  # Year of Election
-    can.drawString(428, 670, request.form['registered_county'])  # City/County
+    can.drawString(428, 670, request.form['registered_county'])  #City/County
     # can.drawString(409, 658, 'X') # Vote by Mail in All Elections Yes
     # can.drawString(442, 658, 'X') # Vote by Mail in All Elections No
     # can.drawString(126, 633, 'X') # Dem Primary Ballots
