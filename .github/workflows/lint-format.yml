@@ -15,11 +15,13 @@ jobs:
       - uses: actions/setup-node@v2
       - name: prettier
         run: npx prettier --check .
+        if: ${{ always() }}
 
       - uses: actions/setup-python@v2
       - uses: psf/black@stable
+        if: ${{ always() }}
       - name: pylint
         run: |
           python3 -m pip install --upgrade pylint
           pylint eAbsentee/ scripts/
-          
+        if: ${{ always() }}
