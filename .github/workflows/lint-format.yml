@@ -1,0 +1,25 @@
+name: Lint and format code
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  lint-format:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v2
+      - name: prettier
+        run: npx prettier
+
+      - uses: actions/setup-python@v2
+      - uses: psf/black@stable
+      - name: pylint
+        run: |
+          python3 -m pip install --upgrade pylint
+          pylint eAbsentee/ scripts/
+          
