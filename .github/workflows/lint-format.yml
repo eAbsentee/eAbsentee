@@ -22,6 +22,7 @@ jobs:
         if: ${{ always() }}
       - name: pylint
         run: |
+          python3 -m pip install --upgrade pip wheel setuptools
           python3 -m pip install --upgrade pylint
           pylint eAbsentee/ scripts/
         if: ${{ always() }}
