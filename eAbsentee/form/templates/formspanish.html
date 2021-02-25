@@ -139,6 +139,44 @@
           <hr style="border-top: dotted 1px;" />
         </div>
 
+        <!-- Vote in all elections in calendar year? -->
+        <div class="card-body border-dark rounded-0">
+          <div class="form-group row mx-auto">
+            <div class="form-check">
+              <input type="checkbox" id="all_elections" name="all_elections">
+              <label for="all_elections">
+                Me gustaría votar por correo para todas las elecciones de este año calendario.
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group mx-auto" id="all_elections_div">
+            <p class="text-center">¿Qué partido papeletas primaria le gustaría recibir?</p>
+            <div class="form-check mb-3">
+              <input type="radio" value="democratic" id="all_elections_democratic" name="all_elections_primary_party">
+              <label for="all_elections_democratic">
+                Partido Democrático
+              </label>
+            </div>
+
+            <div class="form-check mb-3">
+              <input type="radio" value="republican" id="all_elections_republican" name="all_elections_primary_party">
+              <label for="all_elections_republican">
+                Partido Republicano
+              </label>
+            </div>
+
+            <div class="form-check mb-3">
+              <input type="radio" value="no_primary" id="all_elections_no_primary" name="all_elections_primary_party">
+              <label for="all_elections_no_primary">
+                No deseo recibir una boleta para las elecciones primarias.
+              </label>
+            </div>
+          </div>
+
+          <hr style="border-top: dotted 1px;" />
+        </div>
+
 
         <!-- Where to Deliver? -->
         <div class="card-body border-dark rounded-0">
@@ -602,9 +640,11 @@
             <div class="form-check">
               <input class="form-check-input form-control" type="checkbox" value="" id="sig_check" name="sig_check" required>
               <label class="form-check-label" for="sig_check">
-                Juro / afirmo sujeto a sanciones por delitos graves por hacer declaraciones falsas de conformidad con el Código de VA § <a href="https://law.lis.virginia.gov/vacode/24.2-1016/">24.2-1016</a>, que (1) la información
-                provisto en este formulario es verdadero, (2) no estoy solicitando una boleta o voto en ninguna otra jurisdicción en los EE. UU., y (3) estoy registrado para votar
-                en la ciudad / condado donde estoy solicitando votar.
+                Lo juro / afirmo, sujeto a sanciones por delitos graves por realizar declaraciones falsas de conformidad con el Código de VA § <a href="https://law.lis.virginia.gov/vacode/24.2-1016/">24.2-1016</a>, ese
+                (1) la información proporcionada en este formulario es verdadera,
+                (2) No estoy solicitando una boleta ni voto en ninguna otra jurisdicción de los EE. UU.,
+                (3) Estoy registrado para votar en la ciudad / condado donde estoy solicitando votar, y
+                (4) si marqué la casilla para votar por correo para el año calendario, probablemente seguiré siendo elegible para votar durante todo el año calendario.
               </label>
             </div>
             <div class="form-group mx-auto col-lg-10 col-md-10 col-sm-12 col-xs-12 text-center">

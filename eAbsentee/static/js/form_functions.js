@@ -4,6 +4,16 @@
   /* trigger when page is ready */
   $(document).ready(function() {
 
+    $("#all_elections_div").hide();
+    $("input[name=\"all_elections\"]").change(function() {
+      if ($('input[name="all_elections"]:checked').length > 0) {
+        $("#all_elections_div").slideDown();
+      }
+      else {
+        $("#all_elections_div").slideUp();
+      }
+    });
+
     // Hide different delivery address by default
     // Show it if a change is found in where to deliver
     $("#different_address").hide();

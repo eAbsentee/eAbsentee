@@ -139,6 +139,44 @@
           <hr style="border-top: dotted 1px;" />
         </div>
 
+        <!-- Vote in all elections in calendar year? -->
+        <div class="card-body border-dark rounded-0">
+          <div class="form-group row mx-auto">
+            <div class="form-check">
+              <input type="checkbox" id="all_elections" name="all_elections">
+              <label for="all_elections">
+                I'd like to vote by mail for all elections this calendar year.
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group mx-auto" id="all_elections_div">
+            <p class="text-center">Which party primary ballots would you like to receive?</p>
+            <div class="form-check mb-3">
+              <input type="radio" value="democratic" id="all_elections_democratic" name="all_elections_primary_party">
+              <label for="all_elections_democratic">
+                Democratic Party
+              </label>
+            </div>
+
+            <div class="form-check mb-3">
+              <input type="radio" value="republican" id="all_elections_republican" name="all_elections_primary_party">
+              <label for="all_elections_republican">
+                Republican Party
+              </label>
+            </div>
+
+            <div class="form-check mb-3">
+              <input type="radio" value="no_primary" id="all_elections_no_primary" name="all_elections_primary_party">
+              <label for="all_elections_no_primary">
+                I do not wish to receive ballots for Primary Elections.
+              </label>
+            </div>
+          </div>
+
+          <hr style="border-top: dotted 1px;" />
+        </div>
+
 
         <!-- Where to Deliver? -->
         <div class="card-body border-dark rounded-0">
@@ -602,9 +640,11 @@
             <div class="form-check">
               <input class="form-check-input form-control" type="checkbox" value="" id="sig_check" name="sig_check" required>
               <label class="form-check-label" for="sig_check">
-                  I swear/affirm, subject to felony penalties for making false statements pursuant to VA Code § <a href="https://law.lis.virginia.gov/vacode/24.2-1016/">24.2-1016</a>, that (1) the information
-                  provided in this form is true, (2) I am not requesting a ballot or voting in any other jurisdictions in the US, and (3) I am registered to vote
-                  in the city/county where I am applying to vote.
+                I swear/affirm, subject to felony penalties for making false statements pursuant to VA Code § <a href="https://law.lis.virginia.gov/vacode/24.2-1016/">24.2-1016</a>, that
+                (1) the information provided in this form is true,
+                (2) I am not requesting a ballot or voting in any other jurisdictions in the US,
+                (3) I am registered to vote in the city/county where I am applying to vote, and
+                (4) if I checked the box to vote by mail for the calendar year, I will likely remain eligible to vote throughout the calendar year.
               </label>
             </div>
             <div class="form-group mx-auto col-lg-10 col-md-10 col-sm-12 col-xs-12 text-center">
