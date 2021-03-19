@@ -29,7 +29,7 @@ mysql-connector-python==8.0.21
 oauth2client==4.1.3
 openpyxl==2.6.3
 pdfrw==0.4
-Pillow==7.2.0
+Pillow==8.1.1
 protobuf==3.13.0
 pyasn1==0.4.7
 pyasn1-modules==0.2.6
