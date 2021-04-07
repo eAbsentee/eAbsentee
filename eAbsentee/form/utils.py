@@ -48,7 +48,7 @@ def write_pdf(application_id, request, lang):
     can.drawString(310, 670, '21')  # Year of Election
     can.drawString(428, 670, request.form['registered_county'])  #City/County
 
-    if request.form['all_elections'] == "on":
+    if request.form.get('all_elections', '') == "on":
         can.drawString(409, 658, 'X') # Vote by Mail in All Elections Yes
 
         if 'all_elections_primary_party' not in request.form:
