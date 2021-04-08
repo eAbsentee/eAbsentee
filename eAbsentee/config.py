@@ -1,6 +1,7 @@
 import os
 from os import environ, path
 from dotenv import load_dotenv
+from datetime import date
 
 basedir = path.abspath(path.dirname(__file__))
 load_dotenv(path.join(basedir, '.env'))
@@ -29,3 +30,8 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     FORM_CLOSED = False
+    # https://www.elections.virginia.gov/casting-a-ballot/calendars-schedules/upcoming-elections.html
+    UPCOMING_ELECTIONS = [
+        date(2021, 5, 4),  # May Town Elections
+        date(2021, 6, 8),  # Democratic primaries for Governor, Lieutenant Governor and Attorney General; Democratic and Republican primaries for Virginia House of Delegates and local offices
+    ]
