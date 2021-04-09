@@ -96,7 +96,7 @@
 
   });
 
-  $(window).load(function() {
+  $(window).on('load', function() {
     $("input:submit").attr("enabled", true);
   });
 
