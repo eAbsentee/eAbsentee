@@ -40,17 +40,19 @@ def write_pdf(application_id, request, lang):
     can.drawString(405, 715, request.form['name_suffix'])
     can.drawString(525, 698, '  '.join(request.form['ssn']))  # SSN
 
-    if request.form['election_type'] == "general_special":
-        can.drawString(282, 683, 'X')  # Gen/Spec
-    elif request.form['election_type'] == "democratic":
-        can.drawString(405, 683, 'X') # Dem Prim
-    elif request.form['election_type'] == "republican":
-        can.drawString(503, 683, 'X') # Republican Primary
-    election_date = date.fromisoformat(request.form['election_date']) # YYYY-MM-DD
-    # `election_date` should be in `config.UPCOMING_ELECTIONS`
-    can.drawString(212, 670, str(election_date.month))  # Month of Election
-    can.drawString(261, 670, str(election_date.day))  # Day of Election
-    can.drawString(310, 670, str(election_date.year))  # Year of Election
+    if 'election_type' in request.form:
+        if request.form['election_type'] == "general_special":
+            can.drawString(282, 683, 'X')  # Gen/Spec
+        elif request.form['election_type'] == "democratic":
+            can.drawString(405, 683, 'X') # Dem Prim
+        elif request.form['election_type'] == "republican":
+            can.drawString(503, 683, 'X') # Republican Primary
+    if request.form['election_date'] != "":
+        election_date = date.fromisoformat(request.form['election_date']) # YYYY-MM-DD
+        # `election_date` should be in `config.UPCOMING_ELECTIONS`
+        can.drawString(212, 670, str(election_date.month))  # Month of Election
+        can.drawString(261, 670, str(election_date.day))  # Day of Election
+        can.drawString(310, 670, str(election_date.year))  # Year of Election
     can.drawString(428, 670, request.form['registered_county'])  # City/County
 
     if request.form.get('all_elections', '') == "on":
