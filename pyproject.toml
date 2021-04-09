@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "eAbsentee"
+version = "0.1.0"
+description = "A system used to request absentee ballots in the state of Virginia."
+authors = ["Sumanth Ratna <sumanthratna@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+Flask = "^1.1.2"
+Flask-Bcrypt = "^0.7.1"
+Flask-Login = "^0.5.0"
+Flask-Migrate = "^2.7.0"
+Flask-SeaSurf = "^0.3.0"
+Flask-SQLAlchemy = "^2.4.4"
+python-dotenv = "^0.17.0"
+reportlab = "^3.5.65"
+yagmail = "^0.14.245"
+PyPDF2 = "^1.26.0"
+flask-talisman = "^0.7.0"
+mysqlclient = "^2.0.3"
+
+[tool.poetry.dev-dependencies]
+mysql-connector-python = "^8.0.23"
+sshtunnel = "^0.4.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
