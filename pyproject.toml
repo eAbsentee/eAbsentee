@@ -19,6 +19,7 @@ yagmail = "^0.14.245"
 PyPDF2 = "^1.26.0"
 flask-talisman = "^0.7.0"
 mysqlclient = "^2.0.3"
+Flask-Babel = "^2.0.0"
 
 [tool.poetry.dev-dependencies]
 mysql-connector-python = "^8.0.23"

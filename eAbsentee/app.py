@@ -10,13 +10,14 @@ We still haven't implemented flask_talisman and flask_seasurf for web attack pro
 """
 
 import os, sys
-from flask import Flask
+from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
 from flask_bcrypt import Bcrypt
 from flask_talisman import Talisman
 from flask_seasurf import SeaSurf
+from flask_babel import Babel
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -28,6 +29,7 @@ login_manager = LoginManager()
 migrate = Migrate()
 # csrf = SeaSurf()
 # talisman = Talisman()
+babel = Babel()
 
 def create_app():
     app = Flask(__name__)
@@ -52,6 +54,7 @@ def init_apps(app):
     migrate.init_app(app, db)
     # csrf.init_app(app)
     # talisman.init_app(app, content_security_policy=get_csp())
+    babel.init_app(app)
 
 # Gets content security policy for flask_talisman
 def get_csp():
@@ -90,3 +93,7 @@ def register_blueprints(app):
     app.register_blueprint(form.form_bp)
     app.register_blueprint(home.home_bp)
     app.register_blueprint(admin.admin_bp)
+
+    @babel.localeselector
+    def get_locale():
+        return request.args.get('lang', request.accept_languages.best_match(app.config['LANGUAGES']))

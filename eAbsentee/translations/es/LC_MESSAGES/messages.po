@@ -1,0 +1,413 @@
+# Spanish translations for eAbsentee.
+# Copyright (C) 2021 Vote Absentee Virginia
+# This file is distributed under the same license as the eAbsentee project.
+# Sumanth Ratna <sumanthratna@gmail.com>, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2021-04-09 14:24-0400\n"
+"PO-Revision-Date: 2021-04-14 14:32-0400\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: es\n"
+"Language-Team: es <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: form/templates/confirmation.html:23 form/templates/form.html:30
+msgid "Apply"
+msgstr "Aplicar"
+
+#: form/templates/confirmation.html:24 form/templates/form.html:31
+msgid "About Us"
+msgstr "Sobre Nosotros"
+
+#: form/templates/confirmation.html:25 form/templates/form.html:32
+msgid "Privacy Policy"
+msgstr ""
+
+#: form/templates/confirmation.html:32
+msgid "Application Confirmed"
+msgstr "Su aplicación ha sido confirmada."
+
+#: form/templates/confirmation.html:33
+msgid ""
+"Thank you for applying for an absentee ballot! No further action is "
+"required on your part. An absentee ballot will be sent via mail to your "
+"residence soon."
+msgstr ""
+"Gracias por solicitar una papeleta para votar en ausencia. No necesita hacer "
+"nada más. Una papeleta para votar en ausencia será pronto enviada por correo "
+"a su residencia."
+
+#: form/templates/confirmation.html:36
+msgid "To check on the status of your application, visit"
+msgstr "Para checar el estado de su aplicación, visite"
+
+#: form/templates/confirmation.html:36
+msgid "the state elections website"
+msgstr "la página de las elecciones del estado"
+
+#: form/templates/confirmation.html:44
+msgid "Share on Twitter"
+msgstr "Comparta en Twitter"
+
+#: form/templates/confirmation.html:48
+msgid "Share on Facebook"
+msgstr "Comparta en Facebook"
+
+#: form/templates/confirmation.html:59
+msgid ""
+"eAbsentee is sponsored by Vote Absentee Virginia, a not-for-profit, non-"
+"partisan 501(c)4 organization established to help broaden voter access "
+"across all parties in Virginia."
+msgstr ""
+
+#: form/templates/form.html:41
+msgid "Vote by Mail"
+msgstr "Votar por Correo"
+
+#: form/templates/form.html:42
+msgid "Apply for Your Absentee Ballot Today"
+msgstr "Solicite Hoy su Boleta para Votar en Ausencia"
+
+#: form/templates/form.html:46
+msgid ""
+"Effective July 1st, 2020, any registered Virginia voter can request an "
+"absentee mail-in ballot. No reason is required!"
+msgstr ""
+"Efectivo el 1 de julio del 2020, todo votante en Virginia puede "
+"solicitar su boleta por correo. ¡No se necesita una razón!"
+
+#: form/templates/form.html:47
+msgid ""
+"Now is the best time to apply for your absentee mail-in ballot, in order "
+"to avoid the rush. Ballots for the November 3rd Election will be mailed "
+"out to voters beginning September 18th."
+msgstr ""
+"Ahora es el momento para solicitar su boleta por correo para evitar la prisa. "
+"Las boletas para la elección del 3 de noviembre se enviarán empezando el 18 "
+"de septiembre."
+
+#: form/templates/form.html:48
+msgid ""
+"The mail-in ballot application deadline is 5pm Friday, October 23rd. With"
+" unprecedented demand, apply now to reduce any possible delays."
+msgstr ""
+"La fecha límite para enviar este formulario es el viernes, 23 de octubre, a "
+"las 5 pm. Con la demanda altísima, solicite ahora para evitar retrasos."
+
+#: form/templates/form.html:49
+msgid ""
+"Return your completed mail-in ballot to the registrar as soon as "
+"possible. The last day to send it in is November 3rd and it must be "
+"receieved by November 6th."
+msgstr ""
+"Devuelva su boleta completa por correo a la oficina de registro de votantes "
+"tan pronto como sea posible. La última fecha para enviarla es el 3 de "
+"noviembre y se necesita recibirla antes del 6 de noviembre."
+
+#: form/templates/form.html:50
+msgid ""
+"Does your voter record need to be updated for a change in your name or "
+"address? You can do so at the end of this absentee mail-in ballot "
+"application."
+msgstr ""
+"¿Necesita actualizar su registro de votante, cambio de nombre o dirección? "
+"Puede hacerlo al final de este formulario."
+
+#: form/templates/form.html:51
+msgid "If you are not registered to vote, register to vote"
+msgstr "Si no esté registrado para votar, primero regístrese"
+
+#: form/templates/form.html:51 form/templates/form.html:146
+msgid "here"
+msgstr "aquí"
+
+#: form/templates/form.html:51
+msgid "first, then return to eAbsentee to complete your application."
+msgstr ", luego vuelva a eAbsentee para acabar su solicitud."
+
+#: form/templates/form.html:63
+msgid "Your Information"
+msgstr "Su Información"
+
+#: form/templates/form.html:66
+msgid "First Name"
+msgstr "Nombre"
+
+#: form/templates/form.html:70
+msgid "Last Name"
+msgstr "Apellido"
+
+#: form/templates/form.html:74
+msgid "Middle Name"
+msgstr "Segundo nombre"
+
+#: form/templates/form.html:78
+msgid "Suffix"
+msgstr "Sufijo"
+
+#: form/templates/form.html:82
+msgid "SSN (Last 4 Digits)"
+msgstr "NSS (últimos 4 dígitos)"
+
+#: form/templates/form.html:84
+msgid "Why?"
+msgstr ""
+
+#: form/templates/form.html:95
+msgid "Where are you registered to vote?"
+msgstr "¿Dónde se está Registrado para Votar?"
+
+#: form/templates/form.html:96
+msgid "Your residence address is where you live and are registered to vote."
+msgstr "Su dirección domiciliaria es donde vive y está registrado para votar."
+
+#: form/templates/form.html:99
+msgid "Full Address"
+msgstr "Dirección Completa"
+
+#: form/templates/form.html:100
+msgid "Example: 123 Main St, Fairfax, VA 12345"
+msgstr "Ejemplo: 123 Main St, Fairfax, VA 12345"
+
+#: form/templates/form.html:104 form/templates/form.html:243
+msgid "Apartment"
+msgstr "Apartamento"
+
+#: form/templates/form.html:110 form/templates/form.html:239
+msgid "Street Address"
+msgstr "Dirección"
+
+#: form/templates/form.html:114 form/templates/form.html:247
+msgid "City"
+msgstr "Ciudad"
+
+#: form/templates/form.html:118 form/templates/form.html:251
+msgid "ZIP Code"
+msgstr "Código Postal"
+
+#: form/templates/form.html:123
+msgid "I am registered to vote in:"
+msgstr "Estoy registrado para votar en:"
+
+#: form/templates/form.html:128
+msgid "Latitude"
+msgstr "Latitud"
+
+#: form/templates/form.html:133
+msgid "Longitude"
+msgstr "Longitud"
+
+#: form/templates/form.html:145
+msgid "Which election would you like to request an absentee ballot for?"
+msgstr "¿Para qué elección le gustaría solicitar una boleta de voto ausente?"
+
+#: form/templates/form.html:146
+msgid "You can view an official list of upcoming elections"
+msgstr "Puede ver una lista oficial de las próximas elecciones"
+
+#: form/templates/form.html:149
+msgid "I am applying to vote by mail in the: "
+msgstr "Solicito votar por correo en: "
+
+#: form/templates/form.html:153
+msgid "General or Special Election"
+msgstr "Elección general o especial"
+
+#: form/templates/form.html:160
+msgid "Democratic Primary"
+msgstr "Primaria democrática"
+
+#: form/templates/form.html:167
+msgid "Republican Primary"
+msgstr "Primaria republicana"
+
+#: form/templates/form.html:172
+msgid "Election date:"
+msgstr "Fecha de elección:"
+
+#: form/templates/form.html:174
+msgid "Please select a date"
+msgstr "Por favor seleccione una fecha"
+
+#: form/templates/form.html:190
+msgid "I'd like to vote by mail for all elections this calendar year."
+msgstr "Me gustaría votar por correo para todas las elecciones de este año calendario."
+
+#: form/templates/form.html:196
+msgid "Which party primary ballots would you like to receive?"
+msgstr "¿Qué partido papeletas primaria le gustaría recibir?"
+
+#: form/templates/form.html:200
+msgid "Democratic Party"
+msgstr "Partido Democrático"
+
+#: form/templates/form.html:207
+msgid "Republican Party"
+msgstr "Partido Republicano"
+
+#: form/templates/form.html:214
+msgid "I do not wish to receive ballots for Primary Elections."
+msgstr "No deseo recibir una boleta para las elecciones primarias."
+
+#: form/templates/form.html:232
+msgid ""
+"I'd like for my absentee ballot to be delivered to a different address "
+"than the address where I'm registered to vote."
+msgstr ""
+"Quisiera que mi boleta por correo se entregara a una dirección "
+"diferente a la que estoy registrado para votar."
+
+#: form/templates/form.html:255
+msgid "State"
+msgstr "Estado"
+
+#: form/templates/form.html:257
+msgid "Choose state"
+msgstr ""
+
+#: form/templates/form.html:319
+msgid "Country"
+msgstr "País"
+
+#: form/templates/form.html:585
+msgid ""
+"I will need assistance in completing my ballot due to a disability, "
+"blindness, or inability to read or write. If checked, assistance form "
+"will be provided with ballot."
+msgstr ""
+"Necesito ayuda para completar mi boleta debido a una discapacidad, ceguera o "
+"incapacidad para leer o escribir. Si se marca, se enviará un formulario de "
+"asistencia con la boleta."
+
+#: form/templates/form.html:592
+msgid "Assistant Full Name"
+msgstr "Nombre Completo del Asistente"
+
+#: form/templates/form.html:596
+msgid "Assistant Street Address"
+msgstr "Dirección del Asistente"
+
+#: form/templates/form.html:600
+msgid "Assistant Apartment"
+msgstr "Apartamento del Asistente"
+
+#: form/templates/form.html:604
+msgid "Assistant City"
+msgstr "Ciudad del Asistente"
+
+#: form/templates/form.html:608
+msgid "Assistant State"
+msgstr "Estado del Asistente"
+
+#: form/templates/form.html:612
+msgid "Assistant ZIP Code"
+msgstr "Código Postal del Asistente"
+
+#: form/templates/form.html:618
+msgid ""
+"I swear/affirm, under felony penalty for making willfully false material "
+"statements, that the information I have provided on this form is true and"
+" I have written on the Applicant's signature line \"Applicant Unable to "
+"Sign.\""
+msgstr ""
+"Juro/afirmo, sujeto a sanciones por delitos graves por hacer declaraciones "
+"falsas, que la información proporcionada en este formulario es verdadera y "
+"he escrito \"Solicitante no puede firmar\" en la línea de firma del "
+"solicitante."
+
+#: form/templates/form.html:634
+msgid ""
+"I have changed my residence address or legal name since the last time I "
+"voted."
+msgstr ""
+"He cambiado mi dirección domiciliaria o mi nombre legal desde la vez más "
+"reciente que voté."
+
+#: form/templates/form.html:639
+msgid "Former Full Name"
+msgstr "Nombre Completo Anterior"
+
+#: form/templates/form.html:643
+msgid "Former Address"
+msgstr "Dirección Anterior"
+
+#: form/templates/form.html:647
+msgid "Date Moved"
+msgstr "Fecha de Mudanza"
+
+#: form/templates/form.html:661
+msgid "Contact Info"
+msgstr "Info de Contacto"
+
+#: form/templates/form.html:662
+msgid "Your email address is required to send you a copy of your application."
+msgstr "Se necesita su dirección de correo electrónico para enviarle una copia de su solicitud."
+
+#: form/templates/form.html:665
+msgid "Email Address"
+msgstr "Dirección de Correo Electrónico"
+
+#: form/templates/form.html:669
+msgid "Phone Number"
+msgstr "Número de Teléfono"
+
+#: form/templates/form.html:680
+msgid "Applicant Signature"
+msgstr "Firma de Solicitante"
+
+#: form/templates/form.html:685
+msgid ""
+"\n"
+"                I swear/affirm, subject to felony penalties for making "
+"false statements pursuant to VA Code § <a "
+"href=\"https://law.lis.virginia.gov/vacode/24.2-1016/\">24.2-1016</a>, "
+"that\n"
+"                (1) the information provided in this form is true,\n"
+"                (2) I am not requesting a ballot or voting in any other "
+"jurisdictions in the US,\n"
+"                (3) I am registered to vote in the city/county where I am"
+" applying to vote, and\n"
+"                (4) if I checked the box to vote by mail for the calendar"
+" year, I will likely remain eligible to vote throughout the calendar "
+"year.\n"
+"                "
+msgstr ""
+"\n"
+"                Lo juro / afirmo, sujeto a sanciones por delitos graves por "
+"realizar declaraciones falsas de conformidad con el Código de VA § "
+"<a href="https://law.lis.virginia.gov/vacode/24.2-1016/">24.2-1016</a>, "
+"ese\n"
+"                (1) la información proporcionada en este formulario es "
+"verdadera,\n"
+"                (2) No estoy solicitando una boleta ni voto en ninguna otra "
+"jurisdicción de los EE. UU.,\n"
+"                (3) Estoy registrado para votar en la ciudad / condado donde "
+"estoy solicitando votar, y\n"
+"                (4) si marqué la casilla para votar por correo para el año "
+"calendario, probablemente seguiré siendo elegible para votar durante todo el "
+"año calendario.\n"
+"                "
+
+#: form/templates/form.html:695
+msgid "Applicant Name"
+msgstr "Nombre de Solicitante"
+
+#: form/templates/form.html:716
+msgid ""
+"eAbsentee applications conform to Virginia Department of Elections "
+"standards and are accepted by all Virginia local registrars. eAbsentee is"
+" sponsored by Vote Absentee Virginia, a not-for-profit, non-partisan "
+"501(c)4 organization established to help broaden voter access across all "
+"parties in Virginia."
+msgstr ""
+"El Departamento de Elecciones de Virginia se acepta eAbsentee para enviar "
+"una solicitud de boleta en ausencia. eAbsentee es patrocinado por Vote "
+"Absentee Virginia, una organización 501(c)4 sin fines de lucro ni partido "
+"establecido para ampliar acceso de voto por todos partidos en Virginia."

@@ -1,8 +1,10 @@
 import os
 from flask import Blueprint, current_app
-from flask import render_template, request, redirect
+from flask import render_template, request, redirect, url_for
 from dotenv import load_dotenv
+from eAbsentee.app import babel
 from eAbsentee.form.utils import application_process
+from flask_babel import get_locale
 
 load_dotenv()
 
@@ -21,10 +23,6 @@ def error_page():
 def confirmation_page():
     return render_template('confirmation.html')
 
-@form_bp.route('/spanishconfirmation/')
-def spanish_confirmation_page():
-    return render_template('confirmationspanish.html')
-
 @form_bp.route('/formclosed/')
 def form_closed():
     return render_template('formclosed.html')
@@ -36,64 +34,37 @@ def add_to_database():
 
 @form_bp.route('/form/', methods=['POST', 'GET'])
 def form():
+    lang = get_locale().language
     if current_app.config['FORM_CLOSED']:
         return redirect('/formclosed/')
     if request.method == 'POST':
         if os.environ["FLASK_DEBUG"]:
-            application_process(request, lang='en')
+            application_process(request, lang=lang)
         else:
             try:
-                application_process(request, lang='en')
+                application_process(request, lang=lang)
             except(Exception):
                 return redirect('/error/')
-        return redirect('/confirmation/')
+        get_parameters = {'lang': lang} if 'lang' in request.args else {}
+        return redirect(url_for(f'form_bp.{confirmation_page.__name__}', **get_parameters))
     else:
         return render_template('form.html')
+
 
 @form_bp.route('/form/<group>/', methods=['POST', 'GET'])
 def form_group(group):
+    lang = get_locale().language
     if current_app.config['FORM_CLOSED']:
         return redirect('/formclosed/')
     if request.method == 'POST':
         if os.environ["FLASK_DEBUG"]:
-            application_process(request, group, lang='en')
+            application_process(request, group, lang=lang)
         else:
             try:
-                application_process(request, lang='en')
+                application_process(request, lang=lang)
             except(Exception):
                 return redirect('/error/')
-        return redirect('/confirmation/')
+        get_parameters = {'lang': lang} if 'lang' in request.args else {}
+        return redirect(url_for(f'form_bp.{confirmation_page.__name__}', **get_parameters))
     else:
         return render_template('form.html')
-
-@form_bp.route('/spanishform/', methods=['POST', 'GET'])
-def form_spanish():
-    if current_app.config['FORM_CLOSED']:
-        return redirect('/formclosed/')
-    if request.method == 'POST':
-        if os.environ["FLASK_DEBUG"]:
-            application_process(request, lang='es')
-        else:
-            try:
-                application_process(request, lang='es')
-            except(Exception):
-                return redirect('/error/')
-        return redirect('/spanishconfirmation/')
-    else:
-        return render_template('formspanish.html')
-
-@form_bp.route('/spanishform/<group>/', methods=['POST', 'GET'])
-def form_spanish_group(group):
-    if current_app.config['FORM_CLOSED']:
-        return redirect('/formclosed/')
-    if request.method == 'POST':
-        if os.environ["FLASK_DEBUG"]:
-            application_process(request, group, lang='es')
-        else:
-            try:
-                application_process(request, group, lang='es')
-            except(Exception):
-                return redirect('/error/')
-        return redirect('/spanishconfirmation/')
-    else:
-        return render_template('formspanish.html')
