@@ -131,3 +131,4 @@ activate/
 
 *.csv
 eAbsentee/admin/*.pdf
+db-backup.sql

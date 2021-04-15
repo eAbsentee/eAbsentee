@@ -11,6 +11,8 @@ from eAbsentee.admin.models import AdminUser, ACCESS
 from flask_bcrypt import Bcrypt
 from getpass import getpass
 
+
+# untested on prod DB (PythonAnywhere probably requires SSH tunneling)
 engine = create_engine(getenv("SQLALCHEMY_DATABASE_URI"))
 Session = sessionmaker(engine)
 
