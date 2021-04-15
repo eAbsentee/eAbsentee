@@ -41,7 +41,7 @@ def create_csv(group, date_first, date_second, current_user):
     # TODO: Standardize lower-casing of groups... tsktsk too much technical debt
     group = group.lower()
 
-    fields = ['Name', 'County', 'Submission Time', 'Email', 'Phone Number', 'Full Address', 'Group Code']
+    fields = ['Name', 'County', 'Submission Time', 'Email', 'Phone Number', 'Full Address', 'Group Code', 'Election Date']
     filename =  f'csv/{group}_{date_first}_{date_second}.csv'
     with open (filename, 'w', newline='\n') as csvfile:
         csvwriter = csv.writer(csvfile)
@@ -63,7 +63,8 @@ def create_csv(group, date_first, date_second, current_user):
                 user.email if user.email else '',
                 user.phonenumber if user.phonenumber else '',
                 user.full_address,
-                user.group_code if user.group_code else ''
+                user.group_code if user.group_code else '',
+                user.election_date,
             ])
 
         csvwriter.writerows(voters)
