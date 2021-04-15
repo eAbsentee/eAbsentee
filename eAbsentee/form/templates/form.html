@@ -171,7 +171,7 @@
             <div class="form-group mx-auto" id="election_date_div">
               <label class="text-center" for="election_date_select">{{ gettext("Election date:") }}</label>
               <select name="election_date" id="election_date_select">
-                  <option value="">--{{ gettext("Please select a date") }} (MM/DD/YYYY)--</option>
+                  <option value="">--{{ gettext("Please select a date") }} (YYYY-MM-DD)--</option>
                   {% for date in config.UPCOMING_ELECTIONS %}
                     <option value="{{ date }}">{{ date }}</option>
                   {% endfor %}

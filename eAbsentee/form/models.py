@@ -20,15 +20,7 @@ class User(db.Model):
     group_code = db.Column(db.String(128), index=False)
     lat = db.Column(db.String(32), index=False)
     long = db.Column(db.String(32), index=False)
+    election_date = db.Column(db.Date, nullable=True)
 
     def __repr__(self):
         return '<Voter {}>'.format(self.name)
-
-    def get_address(self):
-        return self.full_address
-
-    def get_lat(self):
-        return self.lat
-
-    def get_long(self):
-        return self.long
