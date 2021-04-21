@@ -18,7 +18,6 @@ from flask_bcrypt import Bcrypt
 from flask_talisman import Talisman
 from flask_seasurf import SeaSurf
 from flask_babel import Babel
-from flask_apscheduler import APScheduler
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -31,7 +30,6 @@ migrate = Migrate()
 # csrf = SeaSurf()
 # talisman = Talisman()
 babel = Babel()
-scheduler = APScheduler()
 
 def create_app():
     app = Flask(__name__)
@@ -57,8 +55,6 @@ def init_apps(app):
     # csrf.init_app(app)
     # talisman.init_app(app, content_security_policy=get_csp())
     babel.init_app(app)
-    scheduler.init_app(app)
-    scheduler.start()
 
 # Gets content security policy for flask_talisman
 def get_csp():
