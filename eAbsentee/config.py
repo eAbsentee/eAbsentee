@@ -33,6 +33,8 @@ class Config:
     LANGUAGES = ['en', 'es']
     BABEL_TRANSLATION_DIRECTORIES = str(ROOT_PATH / "translations")
 
+    SCHEDULER_API_ENABLED = False
+
     FORM_CLOSED = False
     # https://www.elections.virginia.gov/casting-a-ballot/calendars-schedules/upcoming-elections.html
     UPCOMING_ELECTIONS = [

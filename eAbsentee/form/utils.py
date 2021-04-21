@@ -5,11 +5,12 @@ import json
 import io
 import random
 import string
-from flask import request
-from datetime import date
+from flask import request, copy_current_request_context
+from datetime import date, datetime, timedelta
 from PyPDF2 import PdfFileWriter, PdfFileReader
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
+from eAbsentee.app import scheduler
 from dotenv import load_dotenv
 from .models import db, User
 
@@ -28,6 +29,7 @@ def application_process(request, group_code=None, lang=None):
     add_to_database(application_id, request, group_code=group_code)
     email_registrar(application_id, request)
     os.remove(f'{application_id}.pdf')
+    queue_followup(application_id, request)
 
 def write_pdf(application_id, request, lang):
     today_date = date.today().strftime('%m%d%y')
@@ -174,3 +176,21 @@ def email_registrar(application_id, request):
             """,
             attachments=(f'{application_id}.pdf')
         )
+
+def queue_followup(application_id, request):
+    @copy_current_request_context
+    def send_followup():
+        yagmail.SMTP(os.environ["GMAIL_SENDER_ADDRESS"], os.environ["GMAIL_SENDER_PASSWORD"]).send(
+            to=(request.form.get('email')),
+            subject=(
+                f'Absentee Ballot Request Follow-Up - Applicant-ID: {application_id}'),
+            contents="""
+            Dear voter, approximately 5 days ago you requested an absentee ballot through eAbsentee.org.
+            <br />
+            Please check on the status of your application by visiting the <a href="https://vote.elections.virginia.gov/VoterInformation/Lookup/status">Virginia elections website</a>.
+            <br />
+            Verifique el estado de su solicitud visitando el <a href="https://vote.elections.virginia.gov/VoterInformation/Lookup/status"> sitio web de elecciones de Virginia</a>.
+            """,
+        )
+    run_date = datetime.now() + timedelta(days=5)
+    scheduler.add_job(f'followup_{application_id}', send_followup, trigger='date', run_date=run_date)
