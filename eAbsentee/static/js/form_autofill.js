@@ -53,7 +53,7 @@ $(function() {
         }
         $("#registered_county").val(county_name);
         $("#registered_county").prop('readonly', 'true');
-        $("#us-autocomplete-pro-address-input").prop('readonly', 'true');
+        // $("#us-autocomplete-pro-address-input").prop('readonly', 'true');
       },
       error: function(error) {
         return error;

@@ -3,6 +3,13 @@
 {% block head %}
 {{ super() }}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/newform.css') }}" />
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/jquery-ui.min.css') }}">
+<!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery-ui.theme.min.css') }}"> -->
+<script src="{{ url_for('static', filename='js/jquery-ui.min.js') }}"></script>
+
+<script src="{{ url_for('static', filename='js/form_functions.js') }}"></script>
+<script src="{{ url_for('static', filename='js/form_autofill.js') }}"></script>
 {% endblock %}
 
 {% block content %}
