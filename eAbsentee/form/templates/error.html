@@ -1,64 +1,11 @@
-{% from "macros.html" import favicon %}
-<!DOCTYPE HTML>
-<html>
+{% extends "base.html" %}
 
-<head>
-      <title>eAbsentee Ballot Voting System</title>
-      <meta charset="utf-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-      <meta name="description" content="" />
-      <meta name="keywords" content="" />
-
-      {{ favicon() }}
-
-      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
-      <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
-</head>
-
-<body class="is-preload">
-
-      <!-- Header -->
-      <header id="header">
-            <a class="logo" href="/">eAbsentee Voting</a>
-            <nav>
-                  <a href="#menu">Menu</a>
-            </nav>
-      </header>
-
-      <!-- Nav -->
-      <nav id="menu">
-            <ul class="links">
-                  <li><a href="/">Home</a></li>
-                  <li><a href="/form">Register</a></li>
-                  <li><a href="/about">About</a></li>
-            </ul>
-      </nav>
-
-      <!-- Banner -->
-      <section id="banner">
-            <div class="inner">
-              <h1>We're Sorry</h1>
-              <p> We were unable to submit your application. Please resubmit the form later, and contact <a href="mailto:applications@eabsentee.org">applications@eabsentee.org</a>.
-              </p>
-            </div>
-      </section>
-
-      <!-- Footer -->
-      <footer id="footer">
-            <div class="copyright">
-                  <p style="color:white;"> Paid for and authorized by Vote Absentee Virginia </p>
-            </div>
-            </div>
-      </footer>
-      <!-- Scripts -->
-
-      <!-- Scripts -->
-      <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
-      <script src="{{ url_for('static', filename='js/browser.min.js') }}"></script>
-      <script src="{{ url_for('static', filename='js/breakpoints.min.js') }}"></script>
-      <script src="{{ url_for('static', filename='js/util.min.js') }}"></script>
-      <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-
-</body>
-
-</html>
+{% block content %}
+<section id="banner">
+  <div class="inner">
+    <h1>We're Sorry</h1>
+    <p> We were unable to submit your application. Please resubmit the form later, and contact <a href="mailto:applications@eabsentee.org">applications@eabsentee.org</a>.
+    </p>
+  </div>
+</section>
+{% endblock %}

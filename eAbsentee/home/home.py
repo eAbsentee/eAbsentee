@@ -22,20 +22,9 @@ def credits_page():
 def about():
     return(render_template('about.html'))
 
-@home_bp.route('/layout/')
-def layout():
-    return(render_template('layout.html'))
-
-# FIX LINK TO PRIVACY POLICY
 @home_bp.route('/privacy/')
 def privacy():
-    return send_file(
-        open('../static/pdf/privacy_policy.pdf', 'rb'), attachment_filename='privacy_policy.pdf'
-    )
-
-@home_bp.route('/mobileweb/')
-def mobileweb():
-    return 'Hi Mr. Kosek'
+    return send_file('./static/pdf/privacy_policy.pdf', attachment_filename='privacy_policy.pdf')
 
 @home_bp.route('/g/<group>/')
 def set_group(group: str):

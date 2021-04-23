@@ -1,203 +1,137 @@
-{% from "macros.html" import favicon %}
-<!DOCTYPE HTML>
-<html>
+{% extends "base.html" %}
 
-<head>
-	{{ favicon() }}
-	<title>eAbsentee</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<meta name="description" content="" />
-	<meta name="keywords" content="" />
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
-	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
-
-	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" integrity="sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd" crossorigin="anonymous"></script>
-</head>
-
-<body class="is-preload">
-
-	<header id="header">
-		<a class="logo" href="/"><img width="32" height="32" src="{{ url_for('static', filename='img/eAbsentee_transparent.svg/') }}"></img> eAbsentee</a>
-		<nav>
-			<a href="/form/">Apply</a>
-			<a href="/about/">About Us</a>
-			<a href="/form/?lang=es">Español</a>
-			<!-- <a href="/privacy/">Privacy Policy</a> -->
-		</nav>
-	</header>
-
-	</header>
-
-	<!-- Banner -->
-	<section id="banner">
-		<div class="inner">
-			<h1>Vote Absentee Virginia</h1>
-			{% if config['FORM_CLOSED'] == true %}
-				<p>The deadline to request an absentee ballot has passed.</p>
-			{% else %}
-				<ul class="actions fit">
-					<li><a href="/form/" class="button primary" style="font-size:24px;">Vote by Mail</a></li>
-					<!-- <li><a href="/form/?lang=es" class="button primary" style="font-size:24px;">Votar por Correo</a></li> -->
-				</ul>
-				<!-- <button type="button" class="btn btn-primary">Primary</button>
-				<button type="button" class="btn btn-secondary">Primary</button> -->
-			{% endif %}
-		</div>
-	</section>
+{% block content %}
+<section id="banner">
+	<div class="inner">
+		<h1>Vote Absentee Virginia</h1>
+		{% if config['FORM_CLOSED'] == true %}
+			<p>The deadline to request an absentee ballot has passed.</p>
+		{% else %}
+			<ul class="actions fit">
+				<li><a href="/form/" class="button primary" style="font-size:24px;">Vote by Mail</a></li>
+				<!-- <li><a href="/form/?lang=es" class="button primary" style="font-size:24px;">Votar por Correo</a></li> -->
+			</ul>
+			<!-- <button type="button" class="btn btn-primary">Primary</button>
+			<button type="button" class="btn btn-secondary">Primary</button> -->
+		{% endif %}
+	</div>
+</section>
 
 
-	<div class="accordion col-xl-12 col-l-12 col-m-12 col-s-12" id="accordionExample">
-		<br/>
-		<h2 class="text-center">Frequently Asked Questions</h2>
+<div class="accordion col-xl-12 col-l-12 col-m-12 col-s-12" id="accordionExample">
+	<br/>
+	<h2 class="text-center">Frequently Asked Questions</h2>
 
-		<div class="card mx-auto border-0">
-			<div class="card-header col-xl-6 col-l-6 col-m-12 col-s-12 col-xs-12 mx-auto bg-white" id="headingOne">
-				<h2 class="mb-0">
-					<button class="btn btn-block" type="button" data-toggle="collapse" data-target="#collapseOne" style="font-size:18px;">
-						How does COVID-19 affect elections?
-					</button>
-				</h2>
-			</div>
-
-			<div id="collapseOne" class="collapse " data-parent="#accordionExample">
-				<div class="card-body mx-auto col-xl-6 col-l-6 col-m-12 col-s-12 col-xs-12">
-					The Virginia Department of Elections encourages voters to protect their health during this COVID-19 outbreak. All voters qualify to vote absentee due to HB 1, effective July 1, 2020, and no excuse is necessary. Voters who choose to vote by mail should do so as soon as possible in order to allow ample time for request processing, ballot mailing, and counting by Election Day.
-				</div>
-			</div>
+	<div class="card mx-auto border-0">
+		<div class="card-header col-xl-6 col-l-6 col-m-12 col-s-12 col-xs-12 mx-auto bg-white" id="headingOne">
+			<h2 class="mb-0">
+				<button class="btn btn-block" type="button" data-toggle="collapse" data-target="#collapseOne" style="font-size:18px;">
+					How does COVID-19 affect elections?
+				</button>
+			</h2>
 		</div>
 
-		<div class="card mx-auto border-0">
-			<div class="card-header col-xl-6 col-l-6 col-m-12 col-s-12 col-xs-12 mx-auto bg-white" id="headingTwo">
-				<h2 class="mb-0">
-					<button class="btn btn-block" type="button" data-toggle="collapse" data-target="#collapseTwo" style="font-size:18px;">
-						How does this site work?
-					</button>
-				</h2>
-			</div>
-
-			<div id="collapseTwo" class="collapse " data-parent="#accordionExample">
-				<div class="card-body mx-auto col-xl-6 col-l-6 col-m-12 col-s-12 col-xs-12">
-					This easy-to-complete Absentee Ballot Application is accepted by the Virginia Board of Elections. Your completed application will be sent electronically to your county/city registrar. A copy of your application will be sent as validation to the email address you provide.
-				</div>
-			</div>
-		</div>
-
-		<div class="card mx-auto border-0">
-			<div class="card-header col-xl-6 col-l-6 col-m-12 col-s-12 col-xs-12 mx-auto bg-white" id="headingThree">
-				<h2 class="mb-0">
-					<button class="btn btn-block" type="button" data-toggle="collapse" data-target="#collapseThree" style="font-size:18px;">
-						What if I don’t receive my absentee ballot?
-					</button>
-				</h2>
-			</div>
-
-			<div id="collapseThree" class="collapse " data-parent="#accordionExample">
-				<div class="card-body mx-auto col-xl-6 col-l-6 col-m-12 col-s-12 col-xs-12">
-					You can view the status of your absentee ballot by viewing your voter record on <a href="https://vote.elections.virginia.gov/VoterInformation/Lookup/status"> the state elections website</a>. Due to a high volume of absentee ballot requests, ballot requests may take up to 72 hours to appear on the site.
-				</div>
-			</div>
-		</div>
-
-		<div class="card mx-auto border-0">
-			<div class="card-header col-xl-6 col-l-6 col-m-12 col-s-12 col-xs-12 mx-auto bg-white" id="headingFive">
-				<h2 class="mb-0">
-					<button class="btn btn-block" type="button" data-toggle="collapse" data-target="#collapseFive" style="font-size:18px;">
-						Where does my data go?
-					</button>
-				</h2>
-			</div>
-
-			<div id="collapseFive" class="collapse " data-parent="#accordionExample">
-				<div class="card-body mx-auto col-xl-6 col-l-6 col-m-12 col-s-12 col-xs-12">
-					It goes to two places: your local registrar and this website’s sponsor, Vote Absentee Virginia. Additionally, if you learned of this site from a link sent by another organization, then that organization receives your name, contact info, and application date (but not your last 4 SSN digits). Why is partial information provided to linking organizations? Campaigns and get-out-the-vote groups work hard to reach out to potential voters. They want to know which channels are making an impact, plus they want to encourage you afterwards to return your absentee ballot.
-				</div>
-			</div>
-		</div>
-
-		<div class="card mx-auto border-0">
-			<div class="card-header col-xl-6 col-l-6 col-m-12 col-s-12 col-xs-12 mx-auto bg-white" id="headingSix">
-				<h2 class="mb-0">
-					<button class="btn btn-block" type="button" data-toggle="collapse" data-target="#collapseSix" style="font-size:18px;">
-						What changes have been made to the absentee voting process?
-					</button>
-				</h2>
-			</div>
-
-			<div id="collapseSix" class="collapse " data-parent="#accordionExample">
-				<div class="card-body mx-auto col-xl-6 col-l-6 col-m-12 col-s-12 col-xs-12">
-					In 2020, the Virginia General Assembly passed several laws relating to voting, including <a href="https://lis.virginia.gov/cgi-bin/legp604.exe?ses=201&typ=bil&val=hb1">HB 1</a>, which allows all registered Virginia voters to vote absentee	without an excuse. Additionally, the registration deadlines have been extended and absentee ballots will be counted as long as they are postmarked by Election Day. As a result of these changes, our form design has changed a bit from prior implementations.
-				</div>
-			</div>
-		</div>
-
-		<div class="card mx-auto border-0">
-			<div class="card-header col-xl-6 col-l-6 col-m-12 col-s-12 col-xs-12 mx-auto bg-white" id="headingSeven">
-				<h2 class="mb-0">
-					<button class="btn btn-block" type="button" data-toggle="collapse" data-target="#collapseSeven" style="font-size:18px;">
-						Can anyone receive an absentee ballot?
-					</button>
-				</h2>
-			</div>
-
-			<div id="collapseSeven" class="collapse " data-parent="#accordionExample">
-				<div class="card-body mx-auto col-xl-6 col-l-6 col-m-12 col-s-12 col-xs-12">
-					By Virginia law, any registered voter can request a mail-in ballot. No excuse is required to receive a mail-in ballot. We recommend voting absentee to prevent the spread of COVID-19.
-				</div>
-			</div>
-		</div>
-
-		<div class="card mx-auto border-0">
-			<div class="card-header col-xl-6 col-l-6 col-m-12 col-s-12 col-xs-12 mx-auto bg-white" id="headingEight">
-				<h2 class="mb-0">
-					<button class="btn btn-block" type="button" data-toggle="collapse" data-target="#collapseEight" style="font-size:18px;">
-						Where can I find your privacy policy?
-					</button>
-				</h2>
-			</div>
-
-			<div id="collapseEight" class="collapse " data-parent="#accordionExample">
-				<div class="card-body mx-auto col-xl-6 col-l-6 col-m-12 col-s-12 col-xs-12">
-					Our privacy policy can be found <a href="/privacy"> here</a>.
-				</div>
+		<div id="collapseOne" class="collapse " data-parent="#accordionExample">
+			<div class="card-body mx-auto col-xl-6 col-l-6 col-m-12 col-s-12 col-xs-12">
+				The Virginia Department of Elections encourages voters to protect their health during this COVID-19 outbreak. All voters qualify to vote absentee due to HB 1, effective July 1, 2020, and no excuse is necessary. Voters who choose to vote by mail should do so as soon as possible in order to allow ample time for request processing, ballot mailing, and counting by Election Day.
 			</div>
 		</div>
 	</div>
 
-	<!-- Footer -->
-	<footer id="footer" class="bg-black">
-    <div class="container-fluid text-center">
-      <div class="row">
-        <div class="col-xl-4 col-l-4 col-m-12 col-s-12 col-xs-12 mx-auto">
-          <small style="color:white;">eAbsentee is accepted by the Virginia Department of Elections to submit an application for an absentee ballot and sponsored by Vote Absentee Virginia, a not-for-profit, non-partisan 501(c)4 organization established to help broaden voter access across all parties in Virginia.</small>
-        </br>
-          <a href="mailto:applications@eabsentee.org">
-            <i class="fa fa-envelope fa-2x"></i>
-          </a>
-          &emsp;
-          <a href="https://www.facebook.com/voteabsenteeva">
-            <i class="fab fa-facebook-square fa-2x"></i>
-          </a>
-          &emsp;
-          <a href="https://www.instagram.com/voteabsenteeva">
-            <i class="fab fa-instagram fa-2x"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </footer>
+	<div class="card mx-auto border-0">
+		<div class="card-header col-xl-6 col-l-6 col-m-12 col-s-12 col-xs-12 mx-auto bg-white" id="headingTwo">
+			<h2 class="mb-0">
+				<button class="btn btn-block" type="button" data-toggle="collapse" data-target="#collapseTwo" style="font-size:18px;">
+					How does this site work?
+				</button>
+			</h2>
+		</div>
 
+		<div id="collapseTwo" class="collapse " data-parent="#accordionExample">
+			<div class="card-body mx-auto col-xl-6 col-l-6 col-m-12 col-s-12 col-xs-12">
+				This easy-to-complete Absentee Ballot Application is accepted by the Virginia Board of Elections. Your completed application will be sent electronically to your county/city registrar. A copy of your application will be sent as validation to the email address you provide.
+			</div>
+		</div>
+	</div>
 
+	<div class="card mx-auto border-0">
+		<div class="card-header col-xl-6 col-l-6 col-m-12 col-s-12 col-xs-12 mx-auto bg-white" id="headingThree">
+			<h2 class="mb-0">
+				<button class="btn btn-block" type="button" data-toggle="collapse" data-target="#collapseThree" style="font-size:18px;">
+					What if I don’t receive my absentee ballot?
+				</button>
+			</h2>
+		</div>
 
-	<!-- Scripts -->
-	<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
-	<script src="{{ url_for('static', filename='js/browser.min.js') }}"></script>
-	<script src="{{ url_for('static', filename='js/breakpoints.min.js') }}"></script>
-	<script src="{{ url_for('static', filename='js/util.min.js') }}"></script>
-	<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+		<div id="collapseThree" class="collapse " data-parent="#accordionExample">
+			<div class="card-body mx-auto col-xl-6 col-l-6 col-m-12 col-s-12 col-xs-12">
+				You can view the status of your absentee ballot by viewing your voter record on <a href="https://vote.elections.virginia.gov/VoterInformation/Lookup/status"> the state elections website</a>. Due to a high volume of absentee ballot requests, ballot requests may take up to 72 hours to appear on the site.
+			</div>
+		</div>
+	</div>
 
-</body>
+	<div class="card mx-auto border-0">
+		<div class="card-header col-xl-6 col-l-6 col-m-12 col-s-12 col-xs-12 mx-auto bg-white" id="headingFive">
+			<h2 class="mb-0">
+				<button class="btn btn-block" type="button" data-toggle="collapse" data-target="#collapseFive" style="font-size:18px;">
+					Where does my data go?
+				</button>
+			</h2>
+		</div>
 
-</html>
+		<div id="collapseFive" class="collapse " data-parent="#accordionExample">
+			<div class="card-body mx-auto col-xl-6 col-l-6 col-m-12 col-s-12 col-xs-12">
+				It goes to two places: your local registrar and this website’s sponsor, Vote Absentee Virginia. Additionally, if you learned of this site from a link sent by another organization, then that organization receives your name, contact info, and application date (but not your last 4 SSN digits). Why is partial information provided to linking organizations? Campaigns and get-out-the-vote groups work hard to reach out to potential voters. They want to know which channels are making an impact, plus they want to encourage you afterwards to return your absentee ballot.
+			</div>
+		</div>
+	</div>
+
+	<div class="card mx-auto border-0">
+		<div class="card-header col-xl-6 col-l-6 col-m-12 col-s-12 col-xs-12 mx-auto bg-white" id="headingSix">
+			<h2 class="mb-0">
+				<button class="btn btn-block" type="button" data-toggle="collapse" data-target="#collapseSix" style="font-size:18px;">
+					What changes have been made to the absentee voting process?
+				</button>
+			</h2>
+		</div>
+
+		<div id="collapseSix" class="collapse " data-parent="#accordionExample">
+			<div class="card-body mx-auto col-xl-6 col-l-6 col-m-12 col-s-12 col-xs-12">
+				In 2020, the Virginia General Assembly passed several laws relating to voting, including <a href="https://lis.virginia.gov/cgi-bin/legp604.exe?ses=201&typ=bil&val=hb1">HB 1</a>, which allows all registered Virginia voters to vote absentee	without an excuse. Additionally, the registration deadlines have been extended and absentee ballots will be counted as long as they are postmarked by Election Day. As a result of these changes, our form design has changed a bit from prior implementations.
+			</div>
+		</div>
+	</div>
+
+	<div class="card mx-auto border-0">
+		<div class="card-header col-xl-6 col-l-6 col-m-12 col-s-12 col-xs-12 mx-auto bg-white" id="headingSeven">
+			<h2 class="mb-0">
+				<button class="btn btn-block" type="button" data-toggle="collapse" data-target="#collapseSeven" style="font-size:18px;">
+					Can anyone receive an absentee ballot?
+				</button>
+			</h2>
+		</div>
+
+		<div id="collapseSeven" class="collapse " data-parent="#accordionExample">
+			<div class="card-body mx-auto col-xl-6 col-l-6 col-m-12 col-s-12 col-xs-12">
+				By Virginia law, any registered voter can request a mail-in ballot. No excuse is required to receive a mail-in ballot. We recommend voting absentee to prevent the spread of COVID-19.
+			</div>
+		</div>
+	</div>
+
+	<div class="card mx-auto border-0">
+		<div class="card-header col-xl-6 col-l-6 col-m-12 col-s-12 col-xs-12 mx-auto bg-white" id="headingEight">
+			<h2 class="mb-0">
+				<button class="btn btn-block" type="button" data-toggle="collapse" data-target="#collapseEight" style="font-size:18px;">
+					Where can I find your privacy policy?
+				</button>
+			</h2>
+		</div>
+
+		<div id="collapseEight" class="collapse " data-parent="#accordionExample">
+			<div class="card-body mx-auto col-xl-6 col-l-6 col-m-12 col-s-12 col-xs-12">
+				Our privacy policy can be found <a href="/privacy"> here</a>.
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

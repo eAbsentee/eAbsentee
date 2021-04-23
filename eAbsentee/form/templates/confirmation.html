@@ -1,84 +1,28 @@
-{% from "macros.html" import favicon %}
-<!DOCTYPE HTML>
-<html>
+{% extends "base.html" %}
 
-<head>
-	{{ favicon() }}
-	<title>eAbsentee</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<meta name="description" content="" />
-	<meta name="keywords" content="" />
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
-	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-social.css') }}" />
-</head>
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-social.min.css') }}" />
+{% endblock %}
 
-<body class="is-preload">
+{% block content %}
+<section id="banner">
+	<div class="inner">
+		<h1>{{ gettext("Application Confirmed") }}</h1>
+		<p>{{ gettext("Thank you for applying for an absentee ballot! No further action is required on your part. An absentee ballot will be sent via mail to your residence soon.") }}
+		</p>
+		<p>
+			{{ gettext("To check on the status of your application, visit") }} <a href="https://vote.elections.virginia.gov/VoterInformation/Lookup/status"><u>{{ gettext("the state elections website") }}</u></a>.
+		</p>
+		<div style="max-width:250px; margin:auto">
+			<a class="btn btn-block btn-social btn-twitter" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.eabsentee.org&text=I&lsquo;m%20voting%20from%20home%20this%20November%3A%20I%20just%20applied%20online%20to%20receive%20a%20Virginia%20absentee%20ballot%20at">
+				<span class="fa fa-twitter"></span> {{ gettext("Share on Twitter") }}
+			</a>
 
-  <header id="header">
-		<a class="logo" href="/"><img width="32" height="32" src="{{ url_for('static', filename='img/eabsentee.svg/') }}"></img> eAbsentee</a>
-		<nav>
-      <a href="/form/">{{ gettext("Apply") }}</a>
-      <a href="/about/">{{ gettext("About Us") }}</a>
-      <!-- <a href="/privacy/">{{ gettext("Privacy Policy") }}</a> -->
-    </nav>
-	</header>
-
-  <!-- Banner -->
-  <section id="banner">
-    <div class="inner">
-      <h1>{{ gettext("Application Confirmed") }}</h1>
-      <p>{{ gettext("Thank you for applying for an absentee ballot! No further action is required on your part. An absentee ballot will be sent via mail to your residence soon.") }}
-      </p>
-      <p>
-        {{ gettext("To check on the status of your application, visit") }} <a href="https://vote.elections.virginia.gov/VoterInformation/Lookup/status"><u>{{ gettext("the state elections website") }}</u></a>.
-      </p>
-
-
-
-
-      <div style="max-width:250px; margin:auto">
-        <a class="btn btn-block btn-social btn-twitter" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.eabsentee.org&text=I&lsquo;m%20voting%20from%20home%20this%20November%3A%20I%20just%20applied%20online%20to%20receive%20to%20receive%20a%20Virginia%20absentee%20ballot%20at">
-          <span class="fa fa-twitter"></span> {{ gettext("Share on Twitter") }}
-        </a>
-
-        <a class="btn btn-block btn-social btn-facebook" href="https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&sdk=joey&u=https%3A%2F%2Fwww.eabsentee.org%2F&display=popup&ref=plugin&src=share_button">
-          <span class="fa fa-facebook"></span> {{ gettext("Share on Facebook") }}
-        </a>
-      </div>
-
-
-
-    </div>
-  </section>
-
-  <footer id="footer" style="background: black">
-    <div class="mx-auto text-center">
-      <small style="color:white;">{{ gettext("eAbsentee is sponsored by Vote Absentee Virginia, a not-for-profit, non-partisan 501(c)4 organization established to help broaden voter access across all parties in Virginia.") }}</small>
-      </br>
-      </br>
-      <a href="mailto:applications@eabsentee.org">
-        <i class="fa fa-envelope fa-2x"></i>
-      </a>
-      &nbsp;
-      <a href="https://www.facebook.com/voteabsenteeva">
-        <i class="fa fa-facebook-square fa-2x"></i>
-      </a>
-      &nbsp;
-      <a href="https://www.instagram.com/voteabsenteeva">
-        <i class="fa fa-instagram fa-2x"></i>
-      </a>
-      <br />
-    </div>
-  </footer>
-  <!-- Scripts -->
-  <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/browser.min.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/breakpoints.min.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/util.min.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-</body>
-
-</html>
+			<a class="btn btn-block btn-social btn-facebook" href="https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&sdk=joey&u=https%3A%2F%2Fwww.eabsentee.org%2F&display=popup&ref=plugin&src=share_button">
+				<span class="fa fa-facebook"></span> {{ gettext("Share on Facebook") }}
+			</a>
+		</div>
+	</div>
+</section>
+{% endblock %}

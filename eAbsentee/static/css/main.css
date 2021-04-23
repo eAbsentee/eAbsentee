@@ -129,13 +129,6 @@ body {
   color: #444444;
 }
 
-body, input, select, textarea {
-  font-family: "Raleway", Arial, Helvetica, sans-serif;
-  font-weight: 400;
-  font-size: 1rem;
-  line-height: 1.65;
-}
-
 a {
   -moz-transition: color 0.2s ease-in-out;
   -webkit-transition: color 0.2s ease-in-out;
@@ -2909,6 +2902,10 @@ ul.icons li .icon:before {
   position: relative;
   text-align: center;
   width: 100%;
+  font-family: "Raleway", var(--font-family-sans-serif);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.65;
 }
 
 #banner input, #banner select, #banner textarea {

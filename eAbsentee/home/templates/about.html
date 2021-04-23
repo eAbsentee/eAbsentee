@@ -1,169 +1,111 @@
-{% from "macros.html" import favicon %}
-<!DOCTYPE HTML>
-<html>
+{% extends "base.html" %}
 
-<head>
-  <title>About</title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-  <meta name="description" content="" />
-  <meta name="keywords" content="" />
+{% block content %}
+<div class="inner col-xl-6 col-l-6 col-m-6 col-s-12 col-xs-12">
+  <div class="bg-white py-5">
 
-  {{ favicon() }}
+    <div class="text-center">
+      <br />
+      <h1>About eAbsentee and Vote Absentee Virginia</h1>
+    </div>
+    <div class="container py-5">
 
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
-</head>
+      <p>
+        &emsp;eAbsentee was created to allow voters to apply for an absentee ballot with ease. eAbsentee is sponsored by Vote Absentee Virginia, a not-for-profit 501(c)4 organization based in Falls Church, VA. Vote Absentee Virginia was formed to
+        help
+        broaden voter access across all parties in Virginia. It does not generate revenue from this site; its only source of revenue is civic-minded donors who believe that mailed-out ballots help increase voter participation in our democracy.
+      </p>
 
-<body>
+      <br>
+      <div class="row text-center d-flex justify-content-around">
+        <div class="col-xl-5 col-l4 col-m12 col-sm12 col-xs12 mb-5">
+          <div class="bg-light rounded shadow-sm py-5 px-4"><img src="{{ url_for('static', filename='img/larry-headshot.jpg') }}" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+            <h5 class="mb-0">Larry Rouvelas</h5>
+            <span class="small">Chair and President</span>
+            </br>
+            <span class="small text-muted">Larry grew up in Virginia and lives in Falls Church, VA. He founded Vote Absentee Virginia to make it easier to vote at home. His past civic volunteer activities include serving as President of Tuckahoe Recreation Club and Board Member of the Arlington Long Term Care Residences Commission. He works in senior housing.
+            </span>
+            <ul class="social mb-0 list-inline mt-3">
+              <li class="list-inline-item"><a href="mailto:larry@eabsentee.org" class="social-link"><i class="fa fa-envelope"></i></a></li>
+              <li class="list-inline-item"><a href="https://www.linkedin.com/in/larry-rouvelas-99146460/" target="_blank" class="social-link"><i class="fab fa-linkedin"></i></a></li>
+            </ul>
+          </div>
+        </div>
 
-  <header id="header">
-    <a class="logo" href="/"><img width="32" height="32" src="{{ url_for('static', filename='img/eabsentee.svg/') }}"></img> eAbsentee</a>
-    <nav>
-      <a href="/form/">Apply</a>
-      <a href="/about/">About Us</a>
-      <a href="/form/?lang=es">Español</a>
-    </nav>
-  </header>
+        <div class="col-xl-5 col-l4 col-m12 col-sm12 col-xs12 mb-5">
+          <div class="bg-light rounded shadow-sm py-5 px-4"><img src="{{ url_for('static', filename='img/robert-headshot.jpg') }}" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+            <h5 class="mb-0">Robert Greene</h5>
+            <span class="small">Director of Outreach</span> <br />
+            <span class="small text-muted">Robert is a freshman at Harvard University. He previously worked on Sen. Amy Klobuchar's presidential campaign, and is passionate about improving voting accessibility. A lifelong Virginia resident, he enjoys politics and improving his community. In his free time, he plays piano, practices martial arts, and cooks.</span>
+            <ul class="social mb-0 list-inline mt-3">
+              <li class="list-inline-item"><a href="mailto:robert@eabsentee.org" class="social-link"><i class="fa fa-envelope"></i></a></li>
+              <li class="list-inline-item"><a href="https://www.linkedin.com/in/robert-greene-83690318a/" target="_blank" class="social-link"><i class="fab fa-linkedin"></i></a></li>
+            </ul>
+          </div>
+        </div>
 
-  <div class="inner col-xl-6 col-l-6 col-m-6 col-s-12 col-xs-12">
-    <div class="bg-white py-5">
+        <div class="col-xl-5 col-l4 col-m12 col-sm12 col-xs12 mb-5">
+          <div class="bg-light rounded shadow-sm py-5 px-4"><img src="{{ url_for('static', filename='img/sumanth-headshot.jpg') }}" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+            <h5 class="mb-0">Sumanth Ratna</h5>
+            <span class="small">Director of Technology</span> </br>
+            <span class="small text-justify text-muted">Sumanth is a junior at Thomas Jefferson High School for Science and Technology. He leads the technical development of eAbsentee, while also contributing to the team's outreach and policy efforts to increase voter turnout. Besides civic technology, he likes to work on machine learning and computational biology.</span>
+            <ul class="social mb-0 list-inline mt-3">
+              <li class="list-inline-item"><a href="mailto:sumanth@eabsentee.org" class="social-link"><i class="fa fa-envelope"></i></a></li>
+              <li class="list-inline-item"><a href="https://www.linkedin.com/in/sumanthratna/" target="_blank" class="social-link"><i class="fab fa-linkedin"></i></a></li>
+            </ul>
+          </div>
+        </div>
 
-      <div class="text-center">
-        <br />
-        <h1>About eAbsentee and Vote Absentee Virginia</h1>
+        <div class="col-xl-5 col-l4 col-m12 col-sm12 col-xs12 mb-5">
+          <div class="bg-light rounded shadow-sm py-5 px-4"><img src="{{ url_for('static', filename='img/raunak-headshot.jpg') }}" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+            <h5 class="mb-0">Raunak Daga</h5>
+            <span class="small">Former Director of Technology</span> </br>
+            <span class="small text-justify text-muted">Raunak is a senior at Thomas Jefferson High School for Science and Technology. He worked on the technical side of eAbsentee, helping groups understand voter trends and visualize data. In past summers, he's interned at George Mason University. He enjoys listening to Mac Miller, playing basketball, and reading in his free time.</span>
+            <ul class="social mb-0 list-inline mt-3">
+              <li class="list-inline-item"><a href="mailto:raunak@eabsentee.org" class="social-link"><i class="fa fa-envelope"></i></a></li>
+              <li class="list-inline-item"><a href="https://www.linkedin.com/in/raunakdaga/" target="_blank" class="social-link"><i class="fab fa-linkedin"></i></a></li>
+            </ul>
+          </div>
+        </div>
       </div>
-      <div class="container py-5">
 
-        <p>
-          &emsp;eAbsentee was created to allow voters to apply for an absentee ballot with ease. eAbsentee is sponsored by Vote Absentee Virginia, a not-for-profit 501(c)4 organization based in Falls Church, VA. Vote Absentee Virginia was formed to
-          help
-          broaden voter access across all parties in Virginia. It does not generate revenue from this site; its only source of revenue is civic-minded donors who believe that mailed-out ballots help increase voter participation in our democracy.
-        </p>
 
-        <br>
-        <div class="row text-center d-flex justify-content-around">
-          <div class="col-xl-5 col-l4 col-m12 col-sm12 col-xs12 mb-5">
-            <div class="bg-light rounded shadow-sm py-5 px-4"><img src="{{ url_for('static', filename='img/larry-headshot.jpg') }}" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-              <h5 class="mb-0">Larry Rouvelas</h5>
-              <span class="small">Chair and President</span>
-              </br>
-              <span class="small text-muted">Larry grew up in Virginia and lives in Falls Church, VA. He founded Vote Absentee Virginia to make it easier to vote at home. His past civic volunteer activities include serving as President of Tuckahoe Recreation Club and Board Member of the Arlington Long Term Care Residences Commission. He works in senior housing.
+      <p>
+        &emsp;On May 13, 2015, the Virginia State Board of Elections approved Republican Speaker Bill Howell's request to authorize the acceptance of electronically-signed absentee ballot applications. His primary challenger sued the State Board of Elections and was rejected by the Stafford County Circuit Court before the June primary date. On July 1, 2015, Innovate Virginia PAC made an electronic ballot application available to all Virginians. The Republican Party of Virginia posted their own portal later in the summer and later that Fall, the Virginia Department of Elections posted an official portal on the state website. Over the last four years, several different organizations created their own portals, including Vote Absentee Virginia.
+      </p>
+
+      <h2 class="text-center">Testimonials</h2>
+
+      <div class="row text-center justify-content-center">
+        <div class="col-xl-6 col-l-6 col-m-12 col-sm-12 col-xs-12 mb-5">
+          <div class="bg-light rounded shadow-sm py-5 px-4"><img src="{{ url_for('static', filename='img/aneeshchopra-headshot.png') }}" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+            <h5 class="mb-0">Aneesh Chopra</h5>
+            <span class="small font-weight-bold">Chief Technology Officer of the United States (2009-2012)</span> </br>
+            <span class="small font-weight-bold">Virginia Secretary of Technology (2006-2009)</span>
+            </br>
+            <div class="text-left">
+              <span class="small">&emsp;"We launched a proof of concept eAbsentee tool in 2015 to test a hypothesis that grassroots organizers can help traditionally disenfranchised communities to vote by lowering burdens. I’m proud of the great work my friends at Vote Absentee Virginia have done to turn our shared vision of enfranchising more voters across the Commonwealth into reality.”
               </span>
-              <ul class="social mb-0 list-inline mt-3">
-                <li class="list-inline-item"><a href="mailto:larry@eabsentee.org" class="social-link"><i class="fa fa-envelope"></i></a></li>
-                <li class="list-inline-item"><a href="https://www.linkedin.com/in/larry-rouvelas-99146460/" target="_blank" class="social-link"><i class="fa fa-linkedin"></i></a></li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="col-xl-5 col-l4 col-m12 col-sm12 col-xs12 mb-5">
-            <div class="bg-light rounded shadow-sm py-5 px-4"><img src="{{ url_for('static', filename='img/robert-headshot.jpg') }}" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-              <h5 class="mb-0">Robert Greene</h5>
-              <span class="small">Director of Outreach</span> <br />
-              <span class="small text-muted">Robert is a freshman at Harvard University. He previously worked on Sen. Amy Klobuchar's presidential campaign, and is passionate about improving voting accessibility. A lifelong Virginia resident, he enjoys politics and improving his community. In his free time, he plays piano, practices martial arts, and cooks.</span>
-              <ul class="social mb-0 list-inline mt-3">
-                <li class="list-inline-item"><a href="mailto:robert@eabsentee.org" class="social-link"><i class="fa fa-envelope"></i></a></li>
-                <li class="list-inline-item"><a href="https://www.linkedin.com/in/robert-greene-83690318a/" target="_blank" class="social-link"><i class="fa fa-linkedin"></i></a></li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="col-xl-5 col-l4 col-m12 col-sm12 col-xs12 mb-5">
-            <div class="bg-light rounded shadow-sm py-5 px-4"><img src="{{ url_for('static', filename='img/raunak-headshot.jpg') }}" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-              <h5 class="mb-0">Raunak Daga</h5>
-              <span class="small">Director of Technology</span> </br>
-              <span class="small text-justify text-muted">Raunak is a senior at Thomas Jefferson High School for Science and Technology. He works on the technical side of eAbsentee, helping groups understand voter trends and visualize data. In past summers, he's interned at George Mason University. He enjoys listening to Mac Miller, playing basketball, and reading in his free time.</span>
-              <ul class="social mb-0 list-inline mt-3">
-                <li class="list-inline-item"><a href="mailto:raunak@eabsentee.org" class="social-link"><i class="fa fa-envelope"></i></a></li>
-                <li class="list-inline-item"><a href="https://www.linkedin.com/in/raunakdaga/" target="_blank" class="social-link"><i class="fa fa-linkedin"></i></a></li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="col-xl-5 col-l4 col-m12 col-sm12 col-xs12 mb-5">
-            <div class="bg-light rounded shadow-sm py-5 px-4"><img src="{{ url_for('static', filename='img/sumanth-headshot.jpg') }}" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-              <h5 class="mb-0">Sumanth Ratna</h5>
-              <span class="small">Full-Stack Web Developer</span> </br>
-              <span class="small text-justify text-muted">Sumanth is a junior at Thomas Jefferson High School for Science and Technology. He also works on the technical side of eAbsentee, improving server-side performance, scalability, and stability so that eAbsentee can more reliably help canvassers improve voter turnout. Besides working on politics and technology, he likes to work on machine learning and computational biology.</span>
-              <ul class="social mb-0 list-inline mt-3">
-                <li class="list-inline-item"><a href="mailto:sumanthratna@gmail.com" class="social-link"><i class="fa fa-envelope"></i></a></li>
-                <li class="list-inline-item"><a href="https://www.linkedin.com/in/sumanthratna/" target="_blank" class="social-link"><i class="fa fa-linkedin"></i></a></li>
-              </ul>
             </div>
           </div>
         </div>
 
-
-        <p>
-          &emsp;On May 13, 2015, the Virginia State Board of Elections approved Republican Speaker Bill Howell's request to authorize the acceptance of electronically-signed absentee ballot applications. His primary challenger sued the State Board of Elections and was rejected by the Stafford County Circuit Court before the June primary date. On July 1, 2015, Innovate Virginia PAC made an electronic ballot application available to all Virginians. The Republican Party of Virginia posted their own portal later in the summer and later that Fall, the Virginia Department of Elections posted an official portal on the state website. Over the last four years, several different organizations created their own portals, including Vote Absentee Virginia.
-        </p>
-
-        <h2 class="text-center">Testimonials</h2>
-
-    		<div class="row text-center justify-content-center">
-    			<div class="col-xl-6 col-l-6 col-m-12 col-sm-12 col-xs-12 mb-5">
-    				<div class="bg-light rounded shadow-sm py-5 px-4"><img src="{{ url_for('static', filename='img/aneeshchopra-headshot.png') }}" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-    					<h5 class="mb-0">Aneesh Chopra</h5>
-    					<span class="small font-weight-bold">Chief Technology Officer of the United States (2009-2012)</span> </br>
-              <span class="small font-weight-bold">Virginia Secretary of Technology (2006-2009)</span>
-    					</br>
-    					<div class="text-left">
-    						<span class="small">&emsp;"We launched a proof of concept eAbsentee tool in 2015 to test a hypothesis that grassroots organizers can help traditionally disenfranchised communities to vote by lowering burdens. I’m proud of the great work my friends at Vote Absentee Virginia have done to turn our shared vision of enfranchising more voters across the Commonwealth into reality.”
-    						</span>
-    					</div>
-    				</div>
-    			</div>
-
-    			<div class="col-xl-6 col-l-6 col-m-12 col-sm-12 col-xs-12 mb-5">
-    				<div class="bg-light rounded shadow-sm py-5 px-4"><img src="{{ url_for('static', filename='img/surovell-headshot.jpg') }}" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-    					<h5 class="mb-0">Scott Surovell</h5>
-    					<span class="small font-weight-bold">Virginia State Senator (D-36)</span> <br />
-              <span class="small font-weight-bold">Attorney at Surovell Isaacs & Levy PLC</span>
-    					<div class="text-left">
-    						<span class="small">&emsp;"eAbsentee is part of the fight to put a ballot into every voter's hand. After my colleagues and I started eAbsentee in 2015, I asked my friends at the non-profit Vote Absentee Virginia to take eAbsentee to another level. They did. It has helped thousands of Virginia voters apply easily for absentee ballots and has helped dozens of get-out-the-vote organizations to mobilize voters."</span>
-    					</div>
-    				</div>
-    			</div>
-    		</div>
-
-        <p>&emsp;More information about eAbsentee can be found in an article in the <a href="https://www.washingtonpost.com/local/one-vote-can-change-everything-virginia/2019/11/04/86deb89e-ff26-11e9-9518-1e76abc088b6_story.html">Washington Post</a>.</p>
-
-
+        <div class="col-xl-6 col-l-6 col-m-12 col-sm-12 col-xs-12 mb-5">
+          <div class="bg-light rounded shadow-sm py-5 px-4"><img src="{{ url_for('static', filename='img/surovell-headshot.jpg') }}" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+            <h5 class="mb-0">Scott Surovell</h5>
+            <span class="small font-weight-bold">Virginia State Senator (D-36)</span> <br />
+            <span class="small font-weight-bold">Attorney at Surovell Isaacs & Levy PLC</span>
+            <div class="text-left">
+              <span class="small">&emsp;"eAbsentee is part of the fight to put a ballot into every voter's hand. After my colleagues and I started eAbsentee in 2015, I asked my friends at the non-profit Vote Absentee Virginia to take eAbsentee to another level. They did. It has helped thousands of Virginia voters apply easily for absentee ballots and has helped dozens of get-out-the-vote organizations to mobilize voters."</span>
+            </div>
+          </div>
+        </div>
       </div>
+
+      <p>&emsp;More information about eAbsentee can be found in an article in the <a href="https://www.washingtonpost.com/local/one-vote-can-change-everything-virginia/2019/11/04/86deb89e-ff26-11e9-9518-1e76abc088b6_story.html">Washington Post</a>.</p>
+
+
     </div>
   </div>
-
-  <footer id="footer" class="bg-black">
-    <div class="container-fluid text-center">
-      <div class="row">
-        <div class="col-xl-4 col-l-4 col-m-12 col-s-12 col-xs-12 mx-auto">
-          <small style="color:white;">eAbsentee is accepted by the Virginia Department of Elections to submit an application for an absentee ballot and sponsored by Vote Absentee Virginia, a not-for-profit, non-partisan 501(c)4 organization established to help broaden voter access across all parties in Virginia.</small>
-        </br>
-          <a href="mailto:applications@eabsentee.org">
-            <i class="fa fa-envelope fa-2x"></i>
-          </a>
-          &emsp;
-          <a href="https://www.facebook.com/voteabsenteeva">
-            <i class="fa fa-facebook-square fa-2x"></i>
-          </a>
-          &emsp;
-          <a href="https://www.instagram.com/voteabsenteeva">
-            <i class="fa fa-instagram fa-2x"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Scripts -->
-  <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/browser.min.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/breakpoints.min.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/util.min.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-
-</body>
-
-</html>
+</div>
+{% endblock %}

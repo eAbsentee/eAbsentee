@@ -1,0 +1,33 @@
+{% macro favicon() %}
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='favicons/apple-touch-icon.png') }}">
+  <link rel="mask-icon" href="{{ url_for('static', filename='favicons/safari-pinned-tab.svg') }}" color="black">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicons/favicon-32x32.png') }}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicons/favicon-16x16.png') }}">
+  <link rel="manifest" href="{{ url_for('static', filename='favicons/site.webmanifest') }}">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicons/favicon.ico') }}">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-config" content="{{ url_for('static', filename='favicons/browserconfig.xml') }}">
+  <meta name="theme-color" content="#ffffff">
+{% endmacro %}
+
+{% macro jquery() %}
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{% endmacro %}
+
+{% macro bootstrap() %}
+  {{ jquery() }}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{% endmacro %}
+
+{% macro fontawesome() %}
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/fontawesome.css" integrity="sha384-wESLQ85D6gbsF459vf1CiZ2+rr+CsxRY0RpiF1tLlQpDnAgg6rwdsUF1+Ics2bni" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/solid.css" integrity="sha384-LA8Ug4T/nhVkyhrSmSirsoAo9iDrBk8E7U80aSPeD+w3vO8PzOJIS6agGcbIwwX0" crossorigin="anonymous">  <!-- for envelope, user, and key icons -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/brands.css" integrity="sha384-V5Z1KgRRJyY878qCx7+zUeTDm0FgjoYrbmSortFqRPGz+Ue6XDe4uIiMqB3tB/wd" crossorigin="anonymous">  <!-- for facebook-square, instagram, linkedin, and twitter icons -->
+{% endmacro %}
+
+{% macro leaflet() %}
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+{% endmacro %}
