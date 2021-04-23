@@ -1,7 +1,6 @@
 {% from "macros.html" import favicon, bootstrap, fontawesome %}
 <!DOCTYPE html>
-<html lang="en">
-<!-- TODO: set lang to user's language -->
+<html lang="{{ get_locale() }}">
 
 <head>
   {% block head %}

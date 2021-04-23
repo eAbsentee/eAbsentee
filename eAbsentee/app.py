@@ -95,5 +95,8 @@ def register_blueprints(app):
     app.register_blueprint(admin.admin_bp)
 
     @babel.localeselector
+    @app.template_global()
     def get_locale():
-        return request.args.get('lang', request.accept_languages.best_match(app.config['LANGUAGES']))
+        if 'lang' in request.args and request.args['lang'] in app.config['LANGUAGES']:
+            return request.args['lang']
+        return request.accept_languages.best_match(app.config['LANGUAGES'])
