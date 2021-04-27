@@ -56,6 +56,13 @@ def init_apps(app):
     # talisman.init_app(app, content_security_policy=get_csp())
     babel.init_app(app)
 
+    @babel.localeselector
+    @app.template_global()
+    def get_locale():
+        if 'lang' in request.args and request.args['lang'] in app.config['LANGUAGES']:
+            return request.args['lang']
+        return request.accept_languages.best_match(app.config['LANGUAGES'])
+
 # Gets content security policy for flask_talisman
 def get_csp():
     return {
@@ -93,10 +100,3 @@ def register_blueprints(app):
     app.register_blueprint(form.form_bp)
     app.register_blueprint(home.home_bp)
     app.register_blueprint(admin.admin_bp)
-
-    @babel.localeselector
-    @app.template_global()
-    def get_locale():
-        if 'lang' in request.args and request.args['lang'] in app.config['LANGUAGES']:
-            return request.args['lang']
-        return request.accept_languages.best_match(app.config['LANGUAGES'])

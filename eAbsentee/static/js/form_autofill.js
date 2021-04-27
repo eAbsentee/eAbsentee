@@ -26,16 +26,16 @@ $(function() {
 
   function getSingleAddressData(address) {
     $.ajax({
-      url: "https://us-street.api.smartystreets.com/street-address?",
+      url: "https://us-street.api.smartystreets.com/street-address",
       data: {
         "key": myAuthId,
         "street": address[0],
         "city": address[1],
-        "state": address[2]
+        "state": address[2],
+        // "match": "invalid",
       },
       dataType: "jsonp",
       success: function(data) {
-        // console.log(data);
         $('input[name=address]').val(data[0].delivery_line_1);
         $('input[name=zip]').val(data[0].components.zipcode);
         $('input[name=city]').val(data[0].components.city_name);
