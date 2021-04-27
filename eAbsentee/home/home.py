@@ -62,6 +62,10 @@ def set_group_allvote2020():
 def web_app_manifest():
     return current_app.send_static_file('favicon/site.webmanifest')
 
+@home_bp.route('/browserconfig.xml')
+def browserconfig_xml():
+    return current_app.send_static_file('favicon/browserconfig.xml')
+
 @home_bp.app_errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
