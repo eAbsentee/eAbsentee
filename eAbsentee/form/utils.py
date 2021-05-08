@@ -58,15 +58,15 @@ def write_pdf(application_id, request, lang):
     if request.form.get('all_elections', '') == "on":
         can.drawString(409, 658, 'X') # Vote by Mail in All Elections Yes
 
-        if 'all_elections_primary_party' not in request.form:
+        if 'all_elections_primary_party' in request.form:
+            if request.form['all_elections_primary_party'] == "democratic":
+                can.drawString(126, 633, 'X') # Dem Primary Ballots
+            elif request.form['all_elections_primary_party'] == "republican":
+                can.drawString(234, 633, 'X') # Rep Primary Ballots
+            elif request.form['all_elections_primary_party'] == "no_primary":
+                can.drawString(331, 633, 'X') # No Primary Ballots
+        else:
             # default to no primary
-            request.form['all_elections_primary_party'] = "no_primary"
-
-        if request.form['all_elections_primary_party'] == "democratic":
-            can.drawString(126, 633, 'X') # Dem Primary Ballots
-        elif request.form['all_elections_primary_party'] == "republican":
-            can.drawString(234, 633, 'X') # Rep Primary Ballots
-        elif request.form['all_elections_primary_party'] == "no_primary":
             can.drawString(331, 633, 'X') # No Primary Ballots
     else:
         can.drawString(442, 658, 'X') # Vote by Mail in All Elections No
