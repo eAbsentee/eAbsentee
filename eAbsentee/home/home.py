@@ -2,7 +2,6 @@ import os
 from flask import Blueprint
 from flask import render_template, send_file, make_response
 from flask import current_app
-from pathlib import Path
 
 home_bp = Blueprint(
     'home_bp',
