@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Raleway:200,300,400,500,600");
 
+:root {
+  background-color: var(--bs-dark);
+}
+
 body {
   -ms-overflow-style: scrollbar;
 }
@@ -3478,13 +3482,6 @@ body.is-preload #banner:before {
   #cta {
     background-attachment: scroll;
   }
-}
-
-/* Footer */
-#footer {
-  background-color: #111111;
-  color: rgba(255, 255, 255, 0.5);
-  padding: 8rem 0 6rem 0;
 }
 
 #footer input, #footer select, #footer textarea {
