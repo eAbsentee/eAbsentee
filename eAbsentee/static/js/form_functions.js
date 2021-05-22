@@ -46,7 +46,6 @@
       }
     });
 
-    $("#address_div").hide();
     // $("input[name=\"change_check\"]").change(function() {
     //   if ($('input[name="change_check"]:checked').length > 0) {
     //     $("#change_div").slideDown();
@@ -84,8 +83,15 @@
       }
     });
 
-    $("form").submit(function(e) {
-      $("input:submit").attr("disabled", true);
+    $("form.needs-validation").each(function (index, form) {
+      form.addEventListener("submit", function(event) {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+
+        form.classList.add('was-validated');
+      });
     });
 
     $(function() {
@@ -94,10 +100,6 @@
          });
     });
 
-  });
-
-  $(window).on('load', function() {
-    $("input:submit").attr("enabled", true);
   });
 
 })(window.jQuery);

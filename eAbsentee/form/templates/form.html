@@ -12,7 +12,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="container col-xl-5 col-lg-5 col-md-8 col-sm-12 col-xs-12 mx-auto">
+<div class="container col-xl-5 col-lg-5 col-md-8 col-sm-12 col-xs-12 mx-auto mb-5">
   <div class="card border-dark mx-auto my-2">
     <div class="card-body rounded-top card-body col-lg-12" style="background: #0052A5">
       <h1 class="text-capitalize text-center text-light">{{ gettext("Vote by Mail") }}</h1>
@@ -32,7 +32,7 @@
 
     </div>
 
-    <form action="" method="POST">
+    <form method="POST" class="needs-validation" novalidate>
       <div class="card-body rounded-0 border-dark">
         <!-- Your Information -->
         <div class="row mx-auto">
@@ -40,23 +40,23 @@
             <h3 class="text-center text-capitalize">{{ gettext("Your Information") }}</h3>
           </div>
           <div class="mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center mb-3">
-            <label class="form-label">{{ gettext("First Name") }}</label>
+            <label for="name_first" class="form-label">{{ gettext("First Name") }}</label>
             <input type="text" class="form-control" id="name_first" name="name_first" required>
           </div>
           <div class="mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center mb-3">
-            <label class="form-label">{{ gettext("Last Name") }}</label>
+            <label for="name_last" class="form-label">{{ gettext("Last Name") }}</label>
             <input type="text" class="form-control" id="name_last" name="name_last" required>
           </div>
           <div class="mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center mb-3">
-            <label class="form-label">{{ gettext("Middle Name") }}</label>
+            <label for="name_middle" class="form-label">{{ gettext("Middle Name") }}</label>
             <input type="text" class="form-control" id="name_middle" name="name_middle">
           </div>
           <div class="mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center mb-3">
-            <label class="form-label">{{ gettext("Suffix") }}</label>
+            <label for="name_suffix" class="form-label">{{ gettext("Suffix") }}</label>
             <input type="text" class="form-control" id="name_suffix" name="name_suffix">
           </div>
           <div class="mx-auto col-lg-4 col-md-4 col-sm-6 col-xs-6 text-center mb-3">
-            <label class="form-label">{{ gettext("SSN (Last 4 Digits)") }}</label>
+            <label for="ssn" class="form-label">{{ gettext("SSN (Last 4 Digits)") }}</label>
             <input type="text" class="form-control" id="ssn" name="ssn" minlength="4" maxlength="4" pattern="^([0-9]{4})$" autocomplete="new-password" required digits>
             <small class="form-text text-muted"><a href="/#faq_ssn" target="_blank">{{ gettext("Why?") }}</a></small>
           </div>
@@ -73,41 +73,41 @@
             <p>{{ gettext("Your residence address is where you live and are registered to vote.") }}</p>
           </div>
           <div class="mx-auto col-lg-9 col-md-9 col-sm-12 col-xs-12 text-center">
-            <label class="form-label">{{ gettext("Full Address") }}</label>
+            <label for="us-autocomplete-pro-address-input" class="form-label">{{ gettext("Full Address") }}</label>
             <input type="text" class="form-control" id="us-autocomplete-pro-address-input" name="us-autocomplete-pro-address-input" autocomplete="new-password" placeholder="{{ gettext('Example: 123 Main St, Fairfax, VA 12345') }}">
             <ul class="us-autocomplete-pro-menu" style="display:none; position:absolute; z-index:2;"></ul>
           </div>
           <div class="mx-auto col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center">
-            <label class="form-label">{{ gettext("Apartment") }}</label>
+            <label for="apt" class="form-label">{{ gettext("Apartment") }}</label>
             <input type="text" class="form-control" id="apt" name="apt" autocomplete="new-password">
           </div>
 
-          <div class="address_div" style="display:none;">
+          <div class="d-none">
             <div class="mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
-              <label class="form-label">{{ gettext("Street Address") }}</label>
-              <input type="text" class="form-control" id="address" name="address" autocomplete="new-password" required>
+              <label for="address" class="form-label">{{ gettext("Street Address") }}</label>
+              <input type="hidden" class="form-control" id="address" name="address" autocomplete="new-password" required>
             </div>
             <div class="mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
-              <label class="form-label">{{ gettext("City") }}</label>
-              <input type="text" class="form-control" id="city" name="city" autocomplete="new-password" required>
+              <label for="city" class="form-label">{{ gettext("City") }}</label>
+              <input type="hidden" class="form-control" id="city" name="city" autocomplete="new-password" required>
             </div>
             <div class="mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
-              <label class="form-label">{{ gettext("ZIP Code") }}</label>
-              <input type="text" class="form-control" id="zip" name="zip" minlength="5" maxlength="5" pattern="^(\d{5})$" digits autocomplete="new-password" required>
+              <label for="zip" class="form-label">{{ gettext("ZIP Code") }}</label>
+              <input type="hidden" class="form-control" id="zip" name="zip" minlength="5" maxlength="5" pattern="^(\d{5})$" digits autocomplete="new-password" required>
             </div>
 
             <div class="mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
-              <label class="form-label">{{ gettext("I am registered to vote in:") }}</label>
-              <input type="text" class="form-control" id="registered_county" name="registered_county" autocomplete="new-password" required>
+              <label for="registered_county" class="form-label">{{ gettext("I am registered to vote in:") }}</label>
+              <input type="hidden" class="form-control" id="registered_county" name="registered_county" autocomplete="new-password" required>
             </div>
 
             <div class="mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
-              <label class="form-label">{{ gettext("Latitude") }}</label>
+              <label for="lat" class="form-label">{{ gettext("Latitude") }}</label>
               <input type="text" class="form-control" id="lat" name="lat" autocomplete="new-password">
             </div>
 
             <div class="mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
-              <label class="form-label">{{ gettext("Longitude") }}</label>
+              <label for="long" class="form-label">{{ gettext("Longitude") }}</label>
               <input type="text" class="form-control" id="long" name="long" autocomplete="new-password">
             </div>
           </div>
@@ -162,8 +162,8 @@
       <div class="card-body border-dark rounded-0">
         <div class="row mx-auto">
           <div class="form-check">
-            <input type="checkbox" id="all_elections" name="all_elections">
-            <label for="all_elections" class="form-label">
+            <input class="form-check-input" type="checkbox" id="all_elections" name="all_elections">
+            <label class="form-check-label" for="all_elections" class="form-label">
               {{ gettext("I'd like to vote by mail for all elections this calendar year.") }}
             </label>
           </div>
@@ -213,19 +213,19 @@
 
         <div class="row mx-auto" id="different_address">
           <div class="mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
-            <label class="form-label">{{ gettext("Street Address") }}</label>
+            <label for="different_address" class="form-label">{{ gettext("Street Address") }}</label>
             <input type="text" class="form-control" id="different_address" name="different_address" autocomplete="new-password">
           </div>
           <div class="mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
-            <label class="form-label">{{ gettext("Apartment") }}</label>
+            <label for="different_apt" class="form-label">{{ gettext("Apartment") }}</label>
             <input type="text" class="form-control" id="different_apt" name="different_apt" autocomplete="new-password">
           </div>
           <div class="mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
-            <label class="form-label">{{ gettext("City") }}</label>
+            <label for="different_city" class="form-label">{{ gettext("City") }}</label>
             <input type="text" class="form-control" id="different_city" name="different_city" autocomplete="new-password">
           </div>
           <div class="mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
-            <label class="form-label">{{ gettext("ZIP Code") }}</label>
+            <label for="different_zip" class="form-label">{{ gettext("ZIP Code") }}</label>
             <input type="text" class="form-control" id="different_zip" name="different_zip" autocomplete="new-password">
           </div>
           <div class="mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
@@ -566,27 +566,27 @@
 
         <div class="row mx-auto" id="assistance_div">
           <div class="mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
-            <label class="form-label">{{ gettext("Assistant Full Name") }}</label>
+            <label for="assistant_name" class="form-label">{{ gettext("Assistant Full Name") }}</label>
             <input type="text" class="form-control" id="assistant_name" name="assistant_name" autocomplete="new-password">
           </div>
           <div class="mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
-            <label class="form-label">{{ gettext("Assistant Street Address") }}</label>
+            <label for="assistant_address" class="form-label">{{ gettext("Assistant Street Address") }}</label>
             <input type="text" class="form-control" id="assistant_address" name="assistant_address" autocomplete="new-password">
           </div>
           <div class="mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
-            <label class="form-label">{{ gettext("Assistant Apartment") }}</label>
+            <label for="assistant_apt" class="form-label">{{ gettext("Assistant Apartment") }}</label>
             <input type="text" class="form-control" id="assistant_apt" name="assistant_apt" autocomplete="new-password">
           </div>
           <div class="mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
-            <label class="form-label">{{ gettext("Assistant City") }}</label>
+            <label for="assistant_city" class="form-label">{{ gettext("Assistant City") }}</label>
             <input type="text" class="form-control" id="assistant_city" name="assistant_city" autocomplete="new-password">
           </div>
           <div class="mx-auto col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center">
-            <label class="form-label">{{ gettext("Assistant State") }}</label>
+            <label for="assistant_state" class="form-label">{{ gettext("Assistant State") }}</label>
             <input type="text" class="form-control" id="assistant_state" name="assistant_state" autocomplete="new-password">
           </div>
           <div class="mx-auto col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center">
-            <label class="form-label">{{ gettext("Assistant ZIP Code") }}</label>
+            <label for="assistant_zip" class="form-label">{{ gettext("Assistant ZIP Code") }}</label>
             <input type="text" class="form-control" id="assistant_zip" name="assistant_zip" autocomplete="new-password minlength=" 5" maxlength="5" pattern="^(\d{5})$" digits">
           </div>
           <div class="form-check">
@@ -613,15 +613,15 @@
           </div>
           <div class="row mx-auto" id="change_div">
             <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-              <label class="form-label">{{ gettext("Former Full Name") }}</label>
+              <label for="former_name" class="form-label">{{ gettext("Former Full Name") }}</label>
               <input type="text" class="form-control" id="former_name" name="former_name" autocomplete="new-password">
             </div>
             <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-              <label class="form-label">{{ gettext("Former Address") }}</label>
+              <label for="former_address" class="form-label">{{ gettext("Former Address") }}</label>
               <input type="text" class="form-control" id="former_address" name="former_address" autocomplete="new-password">
             </div>
             <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-              <label class="form-label">{{ gettext("Date Moved") }}</label>
+              <label for="date_moved" class="form-label">{{ gettext("Date Moved") }}</label>
               <input type="date" class="form-control" id="date_moved" name="date_moved" autocomplete="new-password" placeholder="MM/DD/YY" autocomplete="new-password" />
             </div>
           </div>
@@ -639,11 +639,11 @@
             <p>{{ gettext("Your email address is required to send you a copy of your application.") }}</p>
           </div>
           <div class="mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
-            <label class="form-label">{{ gettext("Email Address") }}</label>
+            <label for="email" class="form-label">{{ gettext("Email Address") }}</label>
             <input type="text" class="form-control" id="email" name="email">
           </div>
           <div class="mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
-            <label class="form-label">{{ gettext("Phone Number") }}</label>
+            <label for="phonenumber" class="form-label">{{ gettext("Phone Number") }}</label>
             <input type="text" class="form-control" id="phonenumber" name="phonenumber" minlength="10" maxlength="10" pattern="^([0-9]{10})$" digits>
           </div>
         </div>
@@ -669,7 +669,7 @@
             </label>
           </div>
           <div class="mx-auto col-lg-10 col-md-10 col-sm-12 col-xs-12 text-center">
-            <label class="form-label">{{ gettext("Applicant Name") }}</label>
+            <label for="signature" class="form-label">{{ gettext("Applicant Name") }}</label>
             <input type="text" class="form-control" id="signature" name="signature" required>
           </div>
         </div>
@@ -678,7 +678,7 @@
 
       <!-- <hr style="border-top: dotted 1px;" /> -->
       <div class="card border-dark rounded-bottom w-50 mx-auto">
-        <input type="submit" value="Submit" class="btn btn-lg" />
+        <button type="submit">Submit</button>
       </div>
 
     </form>
