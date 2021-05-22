@@ -36,7 +36,6 @@ class Config:
     FORM_CLOSED = False
     # https://www.elections.virginia.gov/casting-a-ballot/calendars-schedules/upcoming-elections.html
     UPCOMING_ELECTIONS = [
-        date(2021, 5, 4),  # Town Elections
         date(2021, 6, 8),  # Democratic primaries for Governor, Lieutenant Governor and Attorney General; Democratic and Republican primaries for Virginia House of Delegates and local offices
         date(2021, 6, 15), # Tazewell County Member, Board of Supervisors, Northwestern District
     ]
