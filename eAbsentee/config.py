@@ -33,9 +33,8 @@ class Config:
     LANGUAGES = ['en', 'es']
     BABEL_TRANSLATION_DIRECTORIES = str(ROOT_PATH / "translations")
 
-    FORM_CLOSED = False
     # https://www.elections.virginia.gov/casting-a-ballot/calendars-schedules/upcoming-elections.html
     UPCOMING_ELECTIONS = [
-        date(2021, 6, 8),  # Democratic primaries for Governor, Lieutenant Governor and Attorney General; Democratic and Republican primaries for Virginia House of Delegates and local offices
         date(2021, 6, 15), # Tazewell County Member, Board of Supervisors, Northwestern District
     ]
+    FORM_CLOSED = len(UPCOMING_ELECTIONS) == 0
