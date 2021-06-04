@@ -34,7 +34,5 @@ class Config:
     BABEL_TRANSLATION_DIRECTORIES = str(ROOT_PATH / "translations")
 
     # https://www.elections.virginia.gov/casting-a-ballot/calendars-schedules/upcoming-elections.html
-    UPCOMING_ELECTIONS = [
-        date(2021, 6, 15), # Tazewell County Member, Board of Supervisors, Northwestern District
-    ]
+    UPCOMING_ELECTIONS = []
     FORM_CLOSED = len(UPCOMING_ELECTIONS) == 0
