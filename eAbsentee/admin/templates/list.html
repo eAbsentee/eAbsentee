@@ -47,19 +47,17 @@
         <span class="input-group-text">Group Name</span>
         <select class="form-control" id="group" name="group">
           <option>Select a group</option>
+
+          {% if current_user.is_admin() %}
+            <option value="all_voters">ALL VOTERS</option>
+          {% endif %}
+
           {% for group in groups %}
           <option>{{ group }}</option>
           {% endfor %}
         </select>
       </div>
 
-      {% if current_user.is_admin() %}
-        <input type="checkbox" id="all_group" name="all_group">
-        <label for="checkbox">Check this box to download information for all group codes, rather than one at a time.</label>
-
-      {% endif %}
-
-      </br>
       <label for="">Date Range</label>
       <div class="input-group mb-3">
         <span class="input-group-text">First Date</span>

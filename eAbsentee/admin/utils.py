@@ -48,11 +48,8 @@ def create_csv(group, date_first, date_second, current_user):
         csvwriter.writerow([f'Spreadsheet Generated for User {current_user.email}'])
         csvwriter.writerow(fields)
 
-        possible_users = None
-        if current_user.is_admin() and group == 'all_group':
-            possible_users = User.query.filter(User.submission_time >= date_first).filter(User.submission_time <= date_second).order_by(User.submission_time.asc()).all()
-        else:
-            possible_users = User.query.filter_by(group_code=group).filter(User.submission_time >= date_first).filter(User.submission_time <= date_second).order_by(User.submission_time.asc()).all()
+        possible_users = User.query if current_user.is_admin() and group == 'all_voters' else User.query.filter_by(group_code=group)
+        possible_users = possible_users.filter(User.submission_time >= date_first, User.submission_time <= date_second).order_by(User.submission_time.asc())
 
         voters = []
         for user in possible_users:
