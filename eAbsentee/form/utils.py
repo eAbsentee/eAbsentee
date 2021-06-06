@@ -5,7 +5,7 @@ import json
 import io
 import random
 import string
-from flask import request
+from flask import current_app
 from datetime import date
 from PyPDF2 import PdfFileWriter, PdfFileReader
 from reportlab.pdfgen import canvas
@@ -25,9 +25,10 @@ file_paths = {
 def application_process(request, group_code=None, lang=None):
     application_id = ''.join(random.choice(string.ascii_lowercase + string.digits) for _ in range(24))
     write_pdf(application_id, request, lang)
-    add_to_database(application_id, request, group_code=group_code)
     email_registrar(application_id, request)
-    os.remove(f'{application_id}.pdf')
+    add_to_database(application_id, request, group_code=group_code)
+    if not current_app.debug:
+        os.remove(f'{application_id}.pdf')
 
 def write_pdf(application_id, request, lang):
     today_date = date.today().strftime('%m%d%y')
