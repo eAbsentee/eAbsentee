@@ -39,27 +39,27 @@
           <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <h3 class="text-center text-capitalize">{{ gettext("Your Information") }}</h3>
           </div>
-          <div class="mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center mb-3">
+          <fieldset class="mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center mb-3">
             <label for="name_first" class="form-label">{{ gettext("First Name") }}</label>
             <input type="text" class="form-control" id="name_first" name="name_first" required>
-          </div>
-          <div class="mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center mb-3">
+          </fieldset>
+          <fieldset class="mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center mb-3">
             <label for="name_last" class="form-label">{{ gettext("Last Name") }}</label>
             <input type="text" class="form-control" id="name_last" name="name_last" required>
-          </div>
-          <div class="mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center mb-3">
+          </fieldset>
+          <fieldset class="mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center mb-3">
             <label for="name_middle" class="form-label">{{ gettext("Middle Name") }}</label>
             <input type="text" class="form-control" id="name_middle" name="name_middle">
-          </div>
-          <div class="mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center mb-3">
+          </fieldset>
+          <fieldset class="mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center mb-3">
             <label for="name_suffix" class="form-label">{{ gettext("Suffix") }}</label>
             <input type="text" class="form-control" id="name_suffix" name="name_suffix">
-          </div>
-          <div class="mx-auto col-lg-4 col-md-4 col-sm-6 col-xs-6 text-center mb-3">
+          </fieldset>
+          <fieldset class="mx-auto col-lg-4 col-md-4 col-sm-6 col-xs-6 text-center mb-3">
             <label for="ssn" class="form-label">{{ gettext("SSN (Last 4 Digits)") }}</label>
             <input type="text" class="form-control" id="ssn" name="ssn" minlength="4" maxlength="4" pattern="^([0-9]{4})$" autocomplete="new-password" required digits>
             <small class="form-text text-muted"><a href="/#faq_ssn" target="_blank">{{ gettext("Why?") }}</a></small>
-          </div>
+          </fieldset>
         </div>
         <hr style="border-top: dotted 1px;" />
       </div>
@@ -72,44 +72,44 @@
             <h3 class="text-capitalize">{{ gettext("Where are you registered to vote?") }}</h3>
             <p>{{ gettext("Your residence address is where you live and are registered to vote.") }}</p>
           </div>
-          <div class="mx-auto col-lg-9 col-md-9 col-sm-12 col-xs-12 text-center">
+          <fieldset class="mx-auto col-lg-9 col-md-9 col-sm-12 col-xs-12 text-center">
             <label for="us-autocomplete-pro-address-input" class="form-label">{{ gettext("Full Address") }}</label>
             <input type="text" class="form-control" id="us-autocomplete-pro-address-input" name="us-autocomplete-pro-address-input" autocomplete="new-password" placeholder="{{ gettext('Example: 123 Main St, Fairfax, VA 12345') }}">
             <ul class="us-autocomplete-pro-menu" style="display:none; position:absolute; z-index:2;"></ul>
-          </div>
-          <div class="mx-auto col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center">
+          </fieldset>
+          <fieldset class="mx-auto col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center">
             <label for="apt" class="form-label">{{ gettext("Apartment") }}</label>
             <input type="text" class="form-control" id="apt" name="apt" autocomplete="new-password">
-          </div>
+          </fieldset>
 
           <div class="d-none">
-            <div class="mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
+            <fieldset class="mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
               <label for="address" class="form-label">{{ gettext("Street Address") }}</label>
               <input type="hidden" class="form-control" id="address" name="address" autocomplete="new-password" required>
-            </div>
-            <div class="mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
+            </fieldset>
+            <fieldset class="mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
               <label for="city" class="form-label">{{ gettext("City") }}</label>
               <input type="hidden" class="form-control" id="city" name="city" autocomplete="new-password" required>
-            </div>
-            <div class="mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+            </fieldset>
+            <fieldset class="mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
               <label for="zip" class="form-label">{{ gettext("ZIP Code") }}</label>
               <input type="hidden" class="form-control" id="zip" name="zip" minlength="5" maxlength="5" pattern="^(\d{5})$" digits autocomplete="new-password" required>
-            </div>
+            </fieldset>
 
-            <div class="mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
+            <fieldset class="mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
               <label for="registered_county" class="form-label">{{ gettext("I am registered to vote in:") }}</label>
               <input type="hidden" class="form-control" id="registered_county" name="registered_county" autocomplete="new-password" required>
-            </div>
+            </fieldset>
 
-            <div class="mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
+            <fieldset class="mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
               <label for="lat" class="form-label">{{ gettext("Latitude") }}</label>
               <input type="text" class="form-control" id="lat" name="lat" autocomplete="new-password">
-            </div>
+            </fieldset>
 
-            <div class="mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
+            <fieldset class="mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
               <label for="long" class="form-label">{{ gettext("Longitude") }}</label>
               <input type="text" class="form-control" id="long" name="long" autocomplete="new-password">
-            </div>
+            </fieldset>
           </div>
         </div>
         <hr style="border-top: dotted 1px;" />
@@ -122,8 +122,8 @@
             <h3 class="text-capitalize">{{ gettext("Which election would you like to request an absentee ballot for?") }}</h3>
             <p>{{ gettext("You can view an official list of upcoming elections") }} <a target="_blank" rel="noopener" href="https://www.elections.virginia.gov/casting-a-ballot/calendars-schedules/upcoming-elections.html">{{ gettext("here") }}</a>.</p>
           </div>
-          <div class="mx-auto" id="election_type_div">
-            <p class="text-center">{{ gettext("I am applying to vote by mail in the: ") }}</p>
+          <fieldset class="mx-auto" id="election_type_div">
+            <legend class="text-center col-form-label">{{ gettext("I am applying to vote by mail in the: ") }}</legend>
             <div class="form-check mb-3">
               <input type="radio" value="general_special" id="election_type_general_special" name="election_type">
               <label for="election_type_general_special">
@@ -144,8 +144,8 @@
                 {{ gettext("Republican Primary") }}
               </label>
             </div>
-          </div>
-          <div class="mx-auto" id="election_date_div">
+          </fieldset>
+          <fieldset class="mx-auto" id="election_date_div">
             <label class="text-center form-label" for="election_date_select">{{ gettext("Election date:") }}</label>
             <select name="election_date" id="election_date_select">
                 <option value="">--{{ gettext("Please select a date") }} (YYYY-MM-DD)--</option>
@@ -153,7 +153,7 @@
                   <option value="{{ date }}">{{ date }}</option>
                 {% endfor %}
             </select>
-          </div>
+          </fieldset>
         </div>
         <hr style="border-top: dotted 1px;" />
       </div>
@@ -161,16 +161,16 @@
       <!-- Vote in all elections in calendar year? -->
       <div class="card-body border-dark rounded-0">
         <div class="row mx-auto">
-          <div class="form-check">
+          <fieldset class="form-check">
             <input class="form-check-input" type="checkbox" id="all_elections" name="all_elections">
             <label class="form-check-label" for="all_elections" class="form-label">
               {{ gettext("I'd like to vote by mail for all elections this calendar year.") }}
             </label>
-          </div>
+          </fieldset>
         </div>
 
-        <div class="mx-auto" id="all_elections_div">
-          <p class="text-center">{{ gettext("Which party primary ballots would you like to receive?") }}</p>
+        <fieldset class="mx-auto" id="all_elections_div">
+          <legend class="text-center col-form-label">{{ gettext("Which party primary ballots would you like to receive?") }}</legend>
           <div class="form-check mb-3">
             <input type="radio" value="democratic" id="all_elections_democratic" name="all_elections_primary_party">
             <label for="all_elections_democratic" class="form-label">
@@ -191,7 +191,7 @@
               {{ gettext("I do not wish to receive ballots for Primary Elections.") }}
             </label>
           </div>
-        </div>
+        </fieldset>
 
         <hr style="border-top: dotted 1px;" />
       </div>
@@ -203,32 +203,32 @@
           <!-- <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <h3 class="text-center text-capitalize">Different Delivery Address</h3>
           </div> -->
-          <div class="form-check">
+          <fieldset class="form-check">
             <input class="form-check-input" type="checkbox" value="" id="where_deliver" name="where_deliver">
             <label class="form-check-label" for="where_deliver">
               {{ gettext("I'd like for my absentee ballot to be delivered to a different address than the address where I'm registered to vote.") }}
             </label>
-          </div>
+          </fieldset>
         </div>
 
         <div class="row mx-auto" id="different_address">
-          <div class="mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
+          <fieldset class="mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
             <label for="different_address" class="form-label">{{ gettext("Street Address") }}</label>
             <input type="text" class="form-control" id="different_address" name="different_address" autocomplete="new-password">
-          </div>
-          <div class="mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+          </fieldset>
+          <fieldset class="mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
             <label for="different_apt" class="form-label">{{ gettext("Apartment") }}</label>
             <input type="text" class="form-control" id="different_apt" name="different_apt" autocomplete="new-password">
-          </div>
-          <div class="mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
+          </fieldset>
+          <fieldset class="mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
             <label for="different_city" class="form-label">{{ gettext("City") }}</label>
             <input type="text" class="form-control" id="different_city" name="different_city" autocomplete="new-password">
-          </div>
-          <div class="mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+          </fieldset>
+          <fieldset class="mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
             <label for="different_zip" class="form-label">{{ gettext("ZIP Code") }}</label>
             <input type="text" class="form-control" id="different_zip" name="different_zip" autocomplete="new-password">
-          </div>
-          <div class="mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+          </fieldset>
+          <fieldset class="mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
             <label for="different_state" class="control-label state">{{ gettext("State") }}</label>
             <select name="different_state" id="different_state" class="form-control state" autocomplete="new-password">
               <option value="">{{ gettext("Choose state") }}&hellip;</option>
@@ -291,8 +291,8 @@
               <option value="WI">Wisconsin</option>
               <option value="WY">Wyoming</option>
             </select>
-          </div>
-          <div class="mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+          </fieldset>
+          <fieldset class="mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
             <label for="different_country" class="form-label">{{ gettext("Country") }}</label>
             <select name="different_country" id="different_country" class="form-control" autocomplete="new-password">
               <option value="Afghanistan">Afghanistan</option>
@@ -545,7 +545,7 @@
               <option value="Zambia">Zambia</option>
               <option value="Zimbabwe">Zimbabwe</option>
             </select>
-          </div>
+          </fieldset>
         </div>
         <hr style="border-top: dotted 1px;" />
       </div>
@@ -556,45 +556,45 @@
           <!-- <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <h3 class="text-center text-capitalize">Assistance to Vote</h3>
           </div> -->
-          <div class="form-check">
+          <fieldset class="form-check">
             <input class="form-check-input" type="checkbox" value="" id="assistance_check" name="assistance_check">
             <label class="form-check-label" for="assistance_check">
               {{ gettext("I will need assistance in completing my ballot due to a disability, blindness, or inability to read or write. If checked, assistance form will be provided with ballot.") }}
             </label>
-          </div>
+          </fieldset>
         </div>
 
         <div class="row mx-auto" id="assistance_div">
-          <div class="mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
+          <fieldset class="mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
             <label for="assistant_name" class="form-label">{{ gettext("Assistant Full Name") }}</label>
             <input type="text" class="form-control" id="assistant_name" name="assistant_name" autocomplete="new-password">
-          </div>
-          <div class="mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
+          </fieldset>
+          <fieldset class="mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
             <label for="assistant_address" class="form-label">{{ gettext("Assistant Street Address") }}</label>
             <input type="text" class="form-control" id="assistant_address" name="assistant_address" autocomplete="new-password">
-          </div>
-          <div class="mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+          </fieldset>
+          <fieldset class="mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
             <label for="assistant_apt" class="form-label">{{ gettext("Assistant Apartment") }}</label>
             <input type="text" class="form-control" id="assistant_apt" name="assistant_apt" autocomplete="new-password">
-          </div>
-          <div class="mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
+          </fieldset>
+          <fieldset class="mx-auto col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
             <label for="assistant_city" class="form-label">{{ gettext("Assistant City") }}</label>
             <input type="text" class="form-control" id="assistant_city" name="assistant_city" autocomplete="new-password">
-          </div>
-          <div class="mx-auto col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center">
+          </fieldset>
+          <fieldset class="mx-auto col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center">
             <label for="assistant_state" class="form-label">{{ gettext("Assistant State") }}</label>
             <input type="text" class="form-control" id="assistant_state" name="assistant_state" autocomplete="new-password">
-          </div>
-          <div class="mx-auto col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center">
+          </fieldset>
+          <fieldset class="mx-auto col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center">
             <label for="assistant_zip" class="form-label">{{ gettext("Assistant ZIP Code") }}</label>
             <input type="text" class="form-control" id="assistant_zip" name="assistant_zip" autocomplete="new-password minlength=" 5" maxlength="5" pattern="^(\d{5})$" digits">
-          </div>
-          <div class="form-check">
+          </fieldset>
+          <fieldset class="form-check">
             <input class="form-check-input" type="checkbox" value="" id="assistance_signature_check" name="assistance_signature_check">
             <label class="form-check-label" for="assistance_signature_check">
               {{ gettext("I swear/affirm, under felony penalty for making willfully false material statements, that the information I have provided on this form is true and I have written on the Applicant's signature line \"Applicant Unable to Sign.\"") }}
             </label>
-          </div>
+          </fieldset>
         </div>
 
         <hr style="border-top: dotted 1px;" />
@@ -605,25 +605,25 @@
           <!-- <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <h3 class="text-center text-capitalize">Change to Address/Name</h3>
           </div> -->
-          <div class="form-check">
+          <fieldset class="form-check">
             <input class="form-check-input" type="checkbox" value="" id="change_check" name="change_check">
             <label class="form-check-label" for="change_check">
               {{ gettext("I have changed my residence address or legal name since the last time I voted.") }}
             </label>
-          </div>
+          </fieldset>
           <div class="row mx-auto" id="change_div">
-            <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+            <fieldset class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
               <label for="former_name" class="form-label">{{ gettext("Former Full Name") }}</label>
               <input type="text" class="form-control" id="former_name" name="former_name" autocomplete="new-password">
-            </div>
-            <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+            </fieldset>
+            <fieldset class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
               <label for="former_address" class="form-label">{{ gettext("Former Address") }}</label>
               <input type="text" class="form-control" id="former_address" name="former_address" autocomplete="new-password">
-            </div>
-            <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+            </fieldset>
+            <fieldset class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
               <label for="date_moved" class="form-label">{{ gettext("Date Moved") }}</label>
               <input type="date" class="form-control" id="date_moved" name="date_moved" autocomplete="new-password" placeholder="MM/DD/YY" autocomplete="new-password" />
-            </div>
+            </fieldset>
           </div>
         </div>
         <hr style="border-top: dotted 1px;" />
@@ -634,18 +634,18 @@
       <!-- Contact Info -->
       <div class="card-body border-dark rounded-0">
         <div class="row mx-auto">
-          <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+          <fieldset class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
             <h3 class="text-capitalize">{{ gettext("Contact Info") }}</h3>
             <p>{{ gettext("Your email address is required to send you a copy of your application.") }}</p>
-          </div>
-          <div class="mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
+          </fieldset>
+          <fieldset class="mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
             <label for="email" class="form-label">{{ gettext("Email Address") }}</label>
             <input type="text" class="form-control" id="email" name="email">
-          </div>
-          <div class="mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+          </fieldset>
+          <fieldset class="mx-auto col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
             <label for="phonenumber" class="form-label">{{ gettext("Phone Number") }}</label>
             <input type="text" class="form-control" id="phonenumber" name="phonenumber" minlength="10" maxlength="10" pattern="^([0-9]{10})$" digits>
-          </div>
+          </fieldset>
         </div>
         <hr style="border-top: dotted 1px;" />
       </div>
@@ -656,7 +656,7 @@
           <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <h3 class="text-center text-capitalize">{{ gettext("Applicant Signature") }}</h3>
           </div>
-          <div class="form-check">
+          <fieldset class="form-check">
             <input class="form-check-input form-control" type="checkbox" value="" id="sig_check" name="sig_check" required>
             <label class="form-check-label" for="sig_check">
               {% trans %}
@@ -667,11 +667,11 @@
               (4) if I checked the box to vote by mail for the calendar year, I will likely remain eligible to vote throughout the calendar year.
               {% endtrans %}
             </label>
-          </div>
-          <div class="mx-auto col-lg-10 col-md-10 col-sm-12 col-xs-12 text-center">
+          </fieldset>
+          <fieldset class="mx-auto col-lg-10 col-md-10 col-sm-12 col-xs-12 text-center">
             <label for="signature" class="form-label">{{ gettext("Applicant Name") }}</label>
             <input type="text" class="form-control" id="signature" name="signature" required>
-          </div>
+          </fieldset>
         </div>
       </div>
 
