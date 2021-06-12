@@ -1,10 +1,9 @@
 import os
-import sys
-import yagmail
-import json
-import io
-import random
-import string
+from yagmail import SMTP
+from json import load as json_load
+from io import BytesIO
+from random import choices as random_choices
+from string import ascii_lowercase, digits
 from flask import current_app
 from datetime import date
 from PyPDF2 import PdfFileWriter, PdfFileReader
@@ -22,18 +21,21 @@ file_paths = {
     'es': '../static/pdf/spanish_form.pdf'
 }
 
+application_id_chars = ascii_lowercase + digits
+
+
 def application_process(request, group_code=None, lang=None):
-    application_id = ''.join(random.choice(string.ascii_lowercase + string.digits) for _ in range(24))
+    application_id = ''.join(random_choices(application_id_chars, k=24))
     write_pdf(application_id, request, lang)
-    email_registrar(application_id, request)
+    email_pdf(application_id, request)
     add_to_database(application_id, request, group_code=group_code)
     if not current_app.debug:
         os.remove(f'{application_id}.pdf')
 
 def write_pdf(application_id, request, lang):
-    today_date = date.today().strftime('%m%d%y')
+    today_date = date.today()
 
-    packet = io.BytesIO()
+    packet = BytesIO()
     can = canvas.Canvas(packet, pagesize=letter)
     can.drawString(180, 732, request.form['name_last'].title())
     can.drawString(410, 732, request.form['name_first'].title())
@@ -51,9 +53,9 @@ def write_pdf(application_id, request, lang):
     if request.form['election_date'] != "":
         election_date = date.fromisoformat(request.form['election_date']) # YYYY-MM-DD
         # `election_date` should be in `config.UPCOMING_ELECTIONS`
-        can.drawString(212, 670, str(election_date.month))  # Month of Election
-        can.drawString(261, 670, str(election_date.day))  # Day of Election
-        can.drawString(310, 670, str(election_date.year))  # Year of Election
+        can.drawString(212, 670, election_date.strftime('%m'))  # Month of Election
+        can.drawString(261, 670, election_date.strftime('%d'))  # Day of Election
+        can.drawString(310, 670, election_date.strftime('%y'))  # Year of Election
     can.drawString(428, 670, request.form['registered_county'])  # City/County
 
     if request.form.get('all_elections', '') == "on":
@@ -95,7 +97,7 @@ def write_pdf(application_id, request, lang):
     can.drawString(482, 226, '     '.join(request.form['assistant_zip']))
     can.drawString(210, 176, request.form['assistant_name'])
     if request.form['assistant_name']:
-        can.drawString(460, 176, today_date)
+        can.drawString(460, 176, today_date.strftime('%m%d%y'))
 
     can.drawString(165, 565, request.form['different_address'])
     can.drawString(545, 565, request.form['different_apt'])
@@ -107,9 +109,9 @@ def write_pdf(application_id, request, lang):
     can.drawString(275, 115, f'/s/ {request.form["signature"].strip().title()}')
     can.setFont('Helvetica', 10)
     can.drawString(320, 135, 'This absentee ballot request contains an electronic signature.')
-    can.drawString(485, 115, today_date[0:2])
-    can.drawString(525, 115, today_date[2:4])
-    can.drawString(565, 115, today_date[4:6])
+    can.drawString(485, 115, today_date.strftime('%m'))
+    can.drawString(525, 115, today_date.strftime('%d'))
+    can.drawString(565, 115, today_date.strftime('%y'))
 
     can.save()
     packet.seek(0)
@@ -150,28 +152,27 @@ def add_to_database(application_id, request, group_code):
     db.session.add(new_voter)
     db.session.commit()
 
+with open('../static/localities_info.json') as file:
+    localities = json_load(file)
 
-def email_registrar(application_id, request):
-    emails_to_send = []
-    with open('../static/localities_info.json') as file:
-        localities = json.load(file)
-        if 'localhost' not in request.url_root:
-            emails_to_send.append(
-                localities[request.form['registered_county']]['email'])
-        if request.form.get('email'):
-            emails_to_send.append(request.form.get('email'))
+yag = SMTP(os.environ["GMAIL_SENDER_ADDRESS"], os.environ["GMAIL_SENDER_PASSWORD"])
 
-    if len(emails_to_send) > 0:
-        yagmail.SMTP(os.environ["GMAIL_SENDER_ADDRESS"], os.environ["GMAIL_SENDER_PASSWORD"]).send(
-            to=([email for email in emails_to_send]),
-            subject=(
-                f'Absentee Ballot Request - Applicant-ID: {application_id}'),
-            contents="""
-            Registrar, attached is a voter application for absentee ballot. The voter sent it through eAbsentee.org and the voter is CC'd here.
-            <br />
-            Voter, no further action is required on your part. An absentee ballot will be mailed soon to the address you designated. To check on the status of your application, visit the <a href="https://vote.elections.virginia.gov/VoterInformation/Lookup/status">Virginia elections website</a>. Please allow the registrar at least five days to process it.
-            <br />
-            Votante, no necesita hacer nada más. Una papeleta para votar en ausencia será pronto enviada por correo al lugar designado. Para checar el estado de su aplicación, visite la página de las <a href="https://vote.elections.virginia.gov/VoterInformation/Lookup/status">elecciones de Virginia</a>. Favor de permitir al registrador, al mínimo, cinco días para tratarla.
-            """,
-            attachments=(f'{application_id}.pdf')
-        )
+def email_pdf(application_id, request):
+    voter_email = request.form.get('email')
+    recipients = set({voter_email, })
+    # if not current_app.debug or 'localhost' not in request.url_root:
+    if 'localhost' not in request.url_root:
+        recipients.add(localities[request.form['registered_county']]['email'])
+
+    yag.send(
+        to=tuple(recipients),
+        subject=f'Absentee Ballot Request - Applicant-ID: {application_id}',
+        contents="""
+        Registrar, attached is a voter application for absentee ballot. The voter sent it through eAbsentee.org and the voter is CC'd here.
+        <br />
+        Voter, no further action is required on your part. An absentee ballot will be mailed soon to the address you designated. To check on the status of your application, visit the <a href="https://vote.elections.virginia.gov/VoterInformation/Lookup/status">Virginia elections website</a>. Please allow the registrar at least five days to process it.
+        <br />
+        Votante, no necesita hacer nada más. Una papeleta para votar en ausencia será pronto enviada por correo al lugar designado. Para checar el estado de su aplicación, visite la página de las <a href="https://vote.elections.virginia.gov/VoterInformation/Lookup/status">elecciones de Virginia</a>. Favor de permitir al registrador, al mínimo, cinco días para tratarla.
+        """,
+        attachments=f'{application_id}.pdf',
+    )

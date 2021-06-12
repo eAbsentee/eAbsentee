@@ -17,7 +17,7 @@ python-dotenv = "^0.17.0"
 reportlab = "^3.5.65"
 yagmail = "^0.14.245"
 PyPDF2 = "^1.26.0"
-flask-talisman = "^0.7.0"
+flask-talisman = "^0.8.0"
 mysqlclient = "^2.0.3"
 Flask-Babel = "^2.0.0"
 
