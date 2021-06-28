@@ -43,7 +43,7 @@ def create_csv(group, date_first, date_second, current_user):
 
     fields = ['Name', 'County', 'Submission Time', 'Email', 'Phone Number', 'Full Address', 'Group Code', 'Election Date']
     filename =  f'csv/{group}_{date_first}_{date_second}.csv'
-    with open (filename, 'w', newline='\n') as csvfile:
+    with open(filename, 'w', newline='') as csvfile:
         csvwriter = csv.writer(csvfile)
         csvwriter.writerow([f'Spreadsheet Generated for User {current_user.email}'])
         csvwriter.writerow(fields)
@@ -51,20 +51,16 @@ def create_csv(group, date_first, date_second, current_user):
         possible_users = User.query if current_user.is_admin() and group == 'all_voters' else User.query.filter_by(group_code=group)
         possible_users = possible_users.filter(User.submission_time >= date_first, User.submission_time <= date_second).order_by(User.submission_time.asc())
 
-        voters = []
-        for user in possible_users:
-            voters.append([
-                user.name,
-                user.county,
-                user.submission_time,
-                user.email if user.email else '',
-                user.phonenumber if user.phonenumber else '',
-                user.full_address,
-                user.group_code if user.group_code else '',
-                user.election_date,
-            ])
-
-        csvwriter.writerows(voters)
+        csvwriter.writerows([
+            user.name,
+            user.county,
+            user.submission_time,
+            user.email if user.email else '',
+            user.phonenumber if user.phonenumber else '',
+            user.full_address,
+            user.group_code if user.group_code else '',
+            user.election_date,
+        ] for user in possible_users)
     return filename
 
 def email_reminder(email):

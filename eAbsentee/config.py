@@ -34,5 +34,7 @@ class Config:
     BABEL_TRANSLATION_DIRECTORIES = str(ROOT_PATH / "translations")
 
     # https://www.elections.virginia.gov/casting-a-ballot/calendars-schedules/upcoming-elections.html
-    UPCOMING_ELECTIONS = []
+    UPCOMING_ELECTIONS = [
+        date(2021, 11, 2),
+    ]
     FORM_CLOSED = len(UPCOMING_ELECTIONS) == 0

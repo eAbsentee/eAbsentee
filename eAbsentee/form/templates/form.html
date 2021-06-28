@@ -16,7 +16,7 @@
   <div class="card border-dark mx-auto my-2">
     <div class="card-body rounded-top card-body col-lg-12" style="background: #0052A5">
       <h1 class="text-capitalize text-center text-light">{{ gettext("Vote by Mail") }}</h1>
-      <h3 class="text-center text-light">{{ gettext("Apply for Your Absentee Ballot Today") }}</h3>
+      <h2 class="text-center text-light">{{ gettext("Apply for Your Absentee Ballot Today") }}</h2>
       <div class="">
         <br>
         <ul>
@@ -25,7 +25,7 @@
           <!-- <li><p class="text-light font-weight-bold mb-1">{{ gettext("The mail-in ballot application deadline is 5pm Friday, October 23rd. With unprecedented demand, apply now to reduce any possible delays.") }}</p></li> -->
           <!-- <li><p class="text-light font-weight-bold mb-1">{{ gettext("Return your completed mail-in ballot to the registrar as soon as possible. The last day to send it in is November 3rd and it must be receieved by November 6th.") }}</p></li> -->
           <li><p class="text-light font-weight-bold mb-1">{{ gettext("Does your voter record need to be updated for a change in your name or address? You can do so at the end of this absentee mail-in ballot application.") }}</p></li>
-          <li><p class="text-light font-weight-bold mb-1">{{ gettext("If you are not registered to vote, register to vote") }} <u><a href="https://www.elections.virginia.gov/citizen-portal/" class="link-light" target="_blank" rel="noopener">{{ gettext("here") }}</a></u> {{ gettext("first, then return to eAbsentee to complete your application.") }}</p></li>
+          <li><p class="text-light font-weight-bold mb-1">{{ gettext("If you are not registered to vote, ") }} <u><a href="https://www.elections.virginia.gov/citizen-portal/" class="link-light" target="_blank" rel="noopener">{{ gettext("register to vote here") }}</a></u> {{ gettext("first, then return to eAbsentee to complete your application.") }}</p></li>
         </ul>
       </div>
 
@@ -134,7 +134,7 @@
         <div class="row mx-auto g-3">
           <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
             <h3 class="text-capitalize">{{ gettext("Which election would you like to request an absentee ballot for?") }}</h3>
-            <p>{{ gettext("You can view an official list of upcoming elections") }} <a target="_blank" rel="noopener" href="https://www.elections.virginia.gov/casting-a-ballot/calendars-schedules/upcoming-elections.html">{{ gettext("here") }}</a>.</p>
+            <p>{{ gettext("You can view the") }} <a target="_blank" rel="noopener" href="https://www.elections.virginia.gov/casting-a-ballot/calendars-schedules/upcoming-elections.html">{{ gettext("official list of upcoming elections here") }}</a>.</p>
           </div>
           <fieldset class="mx-auto" id="election_type_div">
             <legend class="text-center col-form-label">{{ gettext("I am applying to vote by mail in the: ") }}</legend>
@@ -227,7 +227,7 @@
           </fieldset>
         </div>
 
-        <div class="row mx-auto g-3" id="different_address">
+        <div class="row mx-auto g-3" id="different_address_div">
           <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
             <fieldset class="form-floating">
               <input type="text" class="form-control" id="different_address" name="different_address" placeholder="123 Main St">
