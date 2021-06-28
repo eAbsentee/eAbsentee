@@ -16,13 +16,13 @@
 
     // Hide different delivery address by default
     // Show it if a change is found in where to deliver
-    $("#different_address").hide();
+    $("#different_address_div").hide();
     $("input[name=\"where_deliver\"]").change(function() {
       if ($('input[name="where_deliver"]:checked').length > 0) {
-        $("#different_address").slideDown();
+        $("#different_address_div").slideDown();
       }
       else {
-        $("#different_address").slideUp();
+        $("#different_address_div").slideUp();
       }
     });
 
