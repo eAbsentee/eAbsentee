@@ -11,8 +11,7 @@ home_bp = Blueprint(
 )
 
 @home_bp.route('/')
-@home_bp.route('/home/')
-def home():
+def index():
     return render_template('index.html')
 
 @home_bp.route('/credits/', methods=['GET'])
