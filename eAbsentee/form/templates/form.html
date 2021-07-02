@@ -65,7 +65,7 @@
           </div>
           <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 mx-auto text-center">
             <fieldset class="form-floating">
-              <input type="text" class="form-control" id="ssn" name="ssn" minlength="4" maxlength="4" pattern="^([0-9]{4})$" placeholder="0000" required digits>
+              <input type="number" class="form-control" id="ssn" name="ssn" minlength="4" maxlength="4" pattern="^([0-9]{4})$" placeholder="0000" required digits>
               <label for="ssn" class="form-label">{{ gettext("SSN (Last 4 Digits)") }}</label>
               <small class="form-text text-muted"><a href="{{ url_for('home.index', _anchor='faq_ssn') }}" target="_blank" rel="noopener">{{ gettext("Why?") }}</a></small>
             </fieldset>
@@ -686,13 +686,13 @@
           </fieldset>
           <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
             <fieldset class="form-floating">
-              <input type="text" class="form-control" id="email" name="email" autocomplete="email" placeholder="john.doe@example.com">
+              <input type="email" class="form-control" id="email" name="email" autocomplete="email" placeholder="john.doe@example.com">
               <label for="email" class="form-label">{{ gettext("Email Address") }}</label>
             </fieldset>
           </div>
           <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
             <fieldset class="form-floating">
-              <input type="text" class="form-control" id="phonenumber" name="phonenumber" autocomplete="tel" minlength="10" maxlength="10" pattern="^([0-9]{10})$" digits placeholder="7035550100">
+              <input type="tel" class="form-control" id="phonenumber" name="phonenumber" autocomplete="tel" minlength="10" maxlength="10" pattern="^([0-9]{10})$" digits placeholder="7035550100">
               <label for="phonenumber" class="form-label">{{ gettext("Phone Number") }}</label>
             </fieldset>
           </div>
