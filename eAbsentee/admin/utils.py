@@ -4,6 +4,7 @@ import yagmail
 from dateutil import parser
 from datetime import datetime
 from dotenv import load_dotenv
+from flask_login import current_user
 from eAbsentee.form.models import User
 from eAbsentee.admin.models import GroupReference
 
@@ -11,19 +12,19 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 load_dotenv()
 
 def get_users(group, date_first, date_second):
-    markers = []
-    date_first = parser.parse(date_first)
-    date_second = parser.parse(date_second)
-    for user in User.query.filter_by(group_code=group).filter(User.submission_time >= date_first).filter(User.submission_time <= date_second).all():
-        markers.append({
-            'lat': user.lat,
-            'lng': user.long,
-            'name': user.name,
-            'submission_time': user.submission_time
-        })
+    group_users = User.query if current_user.is_admin() and group == 'all_voters' else User.query.filter_by(group_code=group)
+
+    start_date = parser.parse(date_first)
+    end_date = parser.parse(date_second)
+    markers = [{
+        'lat': user.lat,
+        'lng': user.long,
+        'name': user.name,
+        'submission_time': user.submission_time
+    } for user in group_users.filter(User.submission_time >= start_date, User.submission_time <= end_date)]
     return markers
 
-def get_groups(current_user):
+def get_groups():
     group_codes = []
     if current_user.is_admin():
         for group in User.query.with_entities(User.group_code).distinct().all():
@@ -34,7 +35,7 @@ def get_groups(current_user):
     group_codes = sorted(group_codes)
     return group_codes
 
-def create_csv(group, date_first, date_second, current_user):
+def create_csv(group, date_first, date_second):
     date_first = str(parser.parse(date_first).date()).replace(' ', '')
     date_second = str(parser.parse(date_second).date()).replace(' ', '')
 

@@ -41,7 +41,7 @@ def admin():
 @admin_bp.route('/maps/', methods=['GET', 'POST'])
 @login_required
 def maps():
-    groups = get_groups(current_user)
+    groups = get_groups()
     mapbox_key = os.environ["MAPBOX_KEY"]
     if request.method == 'POST':
         users = get_users(group=request.form["group"], date_first=request.form["date_first"], date_second=request.form["date_second"])
@@ -52,7 +52,7 @@ def maps():
 @admin_bp.route('/list/', methods=['GET', 'POST'])
 @login_required
 def list():
-    groups = get_groups(current_user)
+    groups = get_groups()
     if request.method == 'POST':
         filename = None
         # if request.form['all_group'] == 'on':
@@ -62,8 +62,7 @@ def list():
         #     current_user)
         # else:
         filename = create_csv(request.form['group'], request.form['date_first'],
-        request.form['date_second'],
-        current_user)
+        request.form['date_second'])
         cwd = os.getcwd()
         return send_file(os.path.join(os.path.dirname(os.path.abspath(__file__)), filename), as_attachment=True)
     if request.method == 'GET':

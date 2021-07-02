@@ -47,6 +47,11 @@
         <span class="input-group-text">Group Name</span>
         <select class="form-control" id="group" name="group">
           <option>Select a group</option>
+
+          {% if current_user.is_admin() %}
+            <option value="all_voters">ALL VOTERS</option>
+          {% endif %}
+
           {% for group in groups %}
           <option>{{ group }}</option>
           {% endfor %}
