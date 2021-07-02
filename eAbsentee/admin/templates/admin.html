@@ -15,7 +15,7 @@
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/list/">Superadmin Dashboard</a>
+    <a class="navbar-brand" href="{{ url_for('admin.list') }}">Superadmin Dashboard</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -23,13 +23,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="/maps/">Maps</a>
+          <a class="nav-link" href="{{ url_for('admin.maps') }}">Maps</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/list/">List of Voters</a>
+          <a class="nav-link" href="{{ url_for('admin.list') }}">List of Voters</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/admin/">Create a Register Link</a>
+          <a class="nav-link" href="{{ url_for('admin.admin') }}">Create a Register Link</a>
         </li>
       </ul>
     </div>

@@ -67,7 +67,7 @@
             <fieldset class="form-floating">
               <input type="text" class="form-control" id="ssn" name="ssn" minlength="4" maxlength="4" pattern="^([0-9]{4})$" placeholder="0000" required digits>
               <label for="ssn" class="form-label">{{ gettext("SSN (Last 4 Digits)") }}</label>
-              <small class="form-text text-muted"><a href="/#faq_ssn" target="_blank">{{ gettext("Why?") }}</a></small>
+              <small class="form-text text-muted"><a href="{{ url_for('home.index', _anchor='faq_ssn') }}" target="_blank" rel="noopener">{{ gettext("Why?") }}</a></small>
             </fieldset>
           </div>
         </div>

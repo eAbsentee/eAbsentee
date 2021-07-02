@@ -4,7 +4,7 @@ from flask import render_template, send_file, make_response
 from flask import current_app
 
 home_bp = Blueprint(
-    'home_bp',
+    'home',
     __name__,
     template_folder='templates',
     static_folder='static'

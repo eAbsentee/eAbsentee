@@ -14,7 +14,7 @@ load_dotenv()
 
 
 admin_bp = Blueprint(
-    'admin_bp',
+    'admin',
     __name__,
     template_folder='templates',
     static_folder='static'
@@ -36,7 +36,7 @@ def admin():
         if request.method == 'GET':
             return render_template('admin.html', links=link_keys)
     else:
-        return redirect(url_for('home_bp.home'))
+        return redirect(url_for('home.index'))
 
 @admin_bp.route('/maps/', methods=['GET', 'POST'])
 @login_required
@@ -73,16 +73,16 @@ def list():
 @login_manager.unauthorized_handler
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('admin_bp.list'))
+        return redirect(url_for('admin.list'))
 
     if request.method == 'POST':
         user = AdminUser.query.filter_by(email=request.form['email']).first()
         if user and bcrypt.check_password_hash(user.password, request.form['password']):
             login_user(user, remember=True)
-            return redirect(url_for('admin_bp.list'))
+            return redirect(url_for('admin.list'))
         else:
             flash('Invalid username/password combination')
-            return redirect(url_for('admin_bp.login'))
+            return redirect(url_for('admin.login'))
     elif request.method == 'GET':
         return render_template('login.html')
 
@@ -95,7 +95,7 @@ def logout():
 @admin_bp.route('/register/<key>', methods=['GET', 'POST'])
 def register(key):
     if current_user.is_authenticated:
-        return redirect(url_for('admin_bp.list'))
+        return redirect(url_for('admin.list'))
 
     if RegisterLink.query.filter_by(link=key).scalar() is not None:
         if request.method == 'POST':
@@ -112,7 +112,7 @@ def register(key):
                 register_link = RegisterLink.query.filter_by(link=key).first()
                 db.session.delete(register_link)
                 db.session.commit()
-                return redirect(url_for('admin_bp.list'))
+                return redirect(url_for('admin.list'))
             else:
                 flash('A user already exists with that email address.', 'danger')
                 return render_template('register.html')
@@ -120,9 +120,9 @@ def register(key):
             if RegisterLink.query.filter_by(link=key).scalar() is not None:
                 return render_template('register.html')
             else:
-                return redirect(url_for('home_bp.home'))
+                return redirect(url_for('home.index'))
     else:
-        return redirect(url_for('home_bp.home'))
+        return redirect(url_for('home.index'))
 
 @admin_bp.route('/api/remind/', methods=['POST'])
 def api_remind():

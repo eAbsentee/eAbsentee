@@ -8,11 +8,8 @@
 			<p>The deadline to request an absentee ballot has passed.</p>
 		{% else %}
 			<ul class="actions fit">
-				<li><a href="/form/" class="button primary" style="font-size:24px;">Vote by Mail</a></li>
-				<!-- <li><a href="/form/?lang=es" class="button primary" style="font-size:24px;">Votar por Correo</a></li> -->
+				<li><a href="{{ url_for('form.form') }}" class="button primary fs-3">Vote by Mail</a></li>
 			</ul>
-			<!-- <button type="button" class="btn btn-primary">Primary</button>
-			<button type="button" class="btn btn-secondary">Primary</button> -->
 		{% endif %}
 	</div>
 </section>
@@ -111,7 +108,7 @@
     </h3>
     <div id="privacyCollapse" class="accordion-collapse collapse" aria-labelledby="privacyHeading" data-bs-parent="#faqAccordion">
       <div class="accordion-body">
-        Our privacy policy can be found <a href="/privacy"> here</a>.
+        Our privacy policy can be found <a href="{{ url_for('home.privacy') }}"> here</a>.
       </div>
     </div>
   </div>
