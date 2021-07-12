@@ -5,6 +5,7 @@ from dateutil import parser
 from datetime import date, timedelta
 from flask import Blueprint, render_template, request, make_response, flash, redirect, session, url_for, send_file, send_from_directory, current_app, jsonify, Response
 from flask_login import login_required, logout_user, current_user, login_user, logout_user
+from sqlalchemy.orm import load_only
 from dotenv import load_dotenv
 from eAbsentee.app import db, bcrypt, login_manager
 from eAbsentee.form.models import User
@@ -24,17 +25,16 @@ admin_bp = Blueprint(
 @login_required
 def admin():
     if current_user.is_admin():
-        link_keys = [f'{request.url_root}register/{link.link}' for link in RegisterLink.query.all()]
+        link_keys = [f'{request.url_root}register/{link.link}' for link in RegisterLink.query.options(load_only('link'))]
         if request.method == 'POST':
             new_link = RegisterLink(
                 link=''.join(random.choices(string.ascii_lowercase + string.digits, k=32))
             )
             db.session.add(new_link)
             db.session.commit()
+            link_keys.append(f'{request.url_root}register/{new_link.link}')
 
-            return render_template('admin.html', links=link_keys)
-        if request.method == 'GET':
-            return render_template('admin.html', links=link_keys)
+        return render_template('admin.html', links=link_keys)
     else:
         return redirect(url_for('home.index'))
 
@@ -98,7 +98,7 @@ def register(key):
 
     if RegisterLink.query.filter_by(link=key).scalar() is not None:
         if request.method == 'POST':
-            existing_user = AdminUser.query.filter_by(id=request.form['email']).first()
+            existing_user = AdminUser.query.filter_by(email=request.form['email']).first()
             if existing_user is None:
                 new_admin = AdminUser(
                     email=request.form['email'],
@@ -108,12 +108,12 @@ def register(key):
 
                 db.session.add(new_admin)
                 login_user(new_admin, remember=True)
-                register_link = RegisterLink.query.filter_by(link=key).first()
+                register_link = RegisterLink.query.filter_by(link=key).delete()
                 db.session.delete(register_link)
                 db.session.commit()
                 return redirect(url_for('admin.list'))
             else:
-                flash('A user already exists with that email address.', 'danger')
+                flash('A user with that email address already exists.', 'danger')
                 return render_template('register.html')
         elif request.method == 'GET':
             if RegisterLink.query.filter_by(link=key).scalar() is not None:
@@ -121,18 +121,19 @@ def register(key):
             else:
                 return redirect(url_for('home.index'))
     else:
+        # TODO: `abort(403)`
+        # TODO: `return redirect(...), 403`
         return redirect(url_for('home.index'))
 
-@admin_bp.route('/api/remind/', methods=['POST'])
+@admin_bp.post('/api/remind/')
 def api_remind():
     if request.method == 'POST' and request.args.get('API_KEY') == os.environ['API_KEY']:
         today = parser.parse(str(date.today() + timedelta(days=2)))
         yesterday = parser.parse(str(date.today()))
-        users = User.query.filter(User.submission_time >= yesterday).filter(User.submission_time <= today).all()
-        group_codes = [x for x in set([user.group_code for user in users])]
+        users = User.query.filter(User.submission_time >= yesterday, User.submission_time <= today).all()
 
 
-        for group_code in group_codes:
+        for group_code in frozenset(user.group_code for user in users):
             for group_reference in GroupReference.query.filter_by(group_code=group_code).all():
                 if 'localhost' not in request.url_root:
                     email_reminder(group_reference.email)
@@ -143,7 +144,7 @@ def api_remind():
     else:
         return Response('', status=401, mimetype='application/json')
 
-@admin_bp.route('/api/addgroupreference/', methods=['POST'])
+@admin_bp.post('/api/addgroupreference/')
 def add_group_reference():
     if request.method == 'POST' and request.args.get('API_KEY') == os.environ['API_KEY']:
         new_group_reference = GroupReference(

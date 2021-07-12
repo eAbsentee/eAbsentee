@@ -1,6 +1,5 @@
 import os
 from yagmail import SMTP
-from json import load as json_load
 from io import BytesIO
 from random import choices as random_choices
 from string import ascii_lowercase, digits
@@ -37,81 +36,91 @@ def write_pdf(application_id, request, lang):
 
     packet = BytesIO()
     can = canvas.Canvas(packet, pagesize=letter)
-    can.drawString(180, 732, request.form['name_last'].title())
-    can.drawString(410, 732, request.form['name_first'].title())
-    can.drawString(190, 715, request.form['name_middle'].title())
-    can.drawString(405, 715, request.form['name_suffix'])
-    can.drawString(525, 698, '  '.join(request.form['ssn']))  # SSN
+    can.drawString(163, 732, request.form['name_last'].title())
+    can.drawString(405, 732, request.form['name_first'].title())
+    can.drawString(172, 716, request.form['name_middle'].title())
+    can.drawString(405, 716, request.form['name_suffix'])
+    can.drawString(513, 699, '   '.join(request.form['ssn']))  # SSN
 
-    if 'election_type' in request.form:
-        if request.form['election_type'] == "general_special":
-            can.drawString(282, 683, 'X')  # Gen/Spec
-        elif request.form['election_type'] == "democratic":
-            can.drawString(405, 683, 'X') # Dem Prim
-        elif request.form['election_type'] == "republican":
-            can.drawString(503, 683, 'X') # Republican Primary
-    if request.form['election_date'] != "":
-        election_date = date.fromisoformat(request.form['election_date']) # YYYY-MM-DD
-        # `election_date` should be in `config.UPCOMING_ELECTIONS`
-        can.drawString(212, 670, election_date.strftime('%m'))  # Month of Election
-        can.drawString(261, 670, election_date.strftime('%d'))  # Day of Election
-        can.drawString(310, 670, election_date.strftime('%y'))  # Year of Election
-    can.drawString(428, 670, request.form['registered_county'])  # City/County
+    if 'permanent_absentee' in request.form and request.form['permanent_absentee'] == 'on':
+        can.drawString(341, 685, 'X') # Vote by Mail in All Elections Yes
 
-    if request.form.get('all_elections', '') == "on":
-        can.drawString(409, 658, 'X') # Vote by Mail in All Elections Yes
-
-        if 'all_elections_primary_party' in request.form:
-            if request.form['all_elections_primary_party'] == "democratic":
-                can.drawString(126, 633, 'X') # Dem Primary Ballots
-            elif request.form['all_elections_primary_party'] == "republican":
-                can.drawString(234, 633, 'X') # Rep Primary Ballots
-            elif request.form['all_elections_primary_party'] == "no_primary":
-                can.drawString(331, 633, 'X') # No Primary Ballots
+        if 'permanent_absentee_primary_party' in request.form:
+            if request.form['permanent_absentee_primary_party'] == "democratic":
+                can.drawString(112, 653, 'X') # Dem Primary Ballots
+            elif request.form['permanent_absentee_primary_party'] == "republican":
+                can.drawString(220, 653, 'X') # Rep Primary Ballots
+            elif request.form['permanent_absentee_primary_party'] == "no_primary":
+                can.drawString(317, 653, 'X') # No Primary Ballots
         else:
             # default to no primary
-            can.drawString(331, 633, 'X') # No Primary Ballots
+            can.drawString(331, 633, 'B') # No Primary Ballots
     else:
-        can.drawString(442, 658, 'X') # Vote by Mail in All Elections No
+        can.drawString(452, 685, 'X') # Vote by Mail in All Elections No
 
-    can.drawString(165, 614, request.form['address'])
-    can.drawString(535, 614, request.form['apt'])
-    can.drawString(145, 596, request.form['city'])
-    can.drawString(408, 596, '   '.join(request.form['zip']))
+        if 'election_type' in request.form:
+            if request.form['election_type'] == "general_special":
+                can.drawString(286, 638, 'X')  # Gen/Spec
+            elif request.form['election_type'] == "democratic":
+                can.drawString(405, 638, 'X') # Dem Prim
+            elif request.form['election_type'] == "republican":
+                can.drawString(504, 638, 'X') # Republican Primary
 
-    can.drawString(198, 480, request.form['former_name'])
-    can.drawString(198, 464, request.form['former_address'])
+        if request.form['election_date'] != "":
+            election_date = date.fromisoformat(request.form['election_date']) # YYYY-MM-DD
+            # `election_date` should be in `config.UPCOMING_ELECTIONS`
+            can.drawString(196, 626, election_date.strftime('%m'))  # Month of Election
+            can.drawString(245, 626, election_date.strftime('%d'))  # Day of Election
+            can.drawString(289, 626, election_date.strftime('%Y'))  # Year of Election
+
+        can.drawString(422, 626, request.form['registered_county'])  # City/County
+
+        can.drawString(153, 536, request.form['ballot_address'])
+        can.drawString(532, 536, request.form['ballot_apt'])
+        can.drawString(133, 518, request.form['ballot_city'])
+        can.drawString(320, 518, request.form['ballot_state'])
+        can.drawString(405, 518, '    '.join(request.form['ballot_zip']))
+        can.drawString(546, 518, request.form['ballot_country'])
+
+    can.drawString(150, 597, request.form['address'])
+    can.drawString(527, 597, request.form['apt'])
+    can.drawString(136, 579, request.form['city'])
+    can.drawString(393, 579, '     '.join(request.form['zip']))
+
+    can.drawString(181, 440, request.form['former_name'])
+    can.drawString(181, 424, request.form['former_address'])
     # can.drawString(158, 448, 'City')
     # can.drawString(398, 448, 'State')
     # can.drawString(477, 448, '     '.join('20171'))
-    can.drawString(525, 464, request.form['date_moved'])
+    if request.form['date_moved'] != '':
+        date_moved = date.fromisoformat(request.form['date_moved']) # YYYY-MM-DD
+        can.drawString(479, 424, date_moved.strftime('%m'))
+        can.drawString(517, 424, date_moved.strftime('%d'))
+        # can.drawString(300, 670, date_moved.strftime('%Y'))
+
 
     can.drawString(128, 301, 'X' if request.form.get(
         'assistance_check') == 'true' else '',)
-    can.drawString(210, 258, request.form['assistant_name'])
+    can.drawString(200, 257, request.form['assistant_name'])
     # can.drawString(510, 258, 'Assistant Phone')
-    can.drawString(210, 240, request.form['assistant_address'])
-    can.drawString(560, 240, request.form['assistant_apt'])
-    can.drawString(150, 226, request.form['assistant_city'])
-    can.drawString(385, 226, request.form['assistant_state'])
-    can.drawString(482, 226, '     '.join(request.form['assistant_zip']))
+    can.drawString(200, 239, request.form['assistant_address'])
+    can.drawString(560, 239, request.form['assistant_apt'])
+    can.drawString(145, 225, request.form['assistant_city'])
+    can.drawString(378, 225, request.form['assistant_state'])
+    can.drawString(474, 225, '     '.join(request.form['assistant_zip']))
     can.drawString(210, 176, request.form['assistant_name'])
     if request.form['assistant_name']:
-        can.drawString(460, 176, today_date.strftime('%m%d%y'))
+        can.drawString(460, 176, today_date.strftime('%m/%d/%Y'))
 
-    can.drawString(165, 565, request.form['different_address'])
-    can.drawString(545, 565, request.form['different_apt'])
-    can.drawString(145, 548, request.form['different_city'])
-    can.drawString(322, 548, request.form['different_state'])
-    can.drawString(418, 548, '   '.join(request.form['different_zip']))
-    can.drawString(558, 548, request.form['different_country'] if request.form['different_city'] else '')
-    can.drawString(175, 509, request.form['email'])
-    can.drawString(275, 115, f'/s/ {request.form["signature"].strip().title()}')
+    can.drawString(175, 470, request.form['email'])
+    # TODO: phone
+
+    can.drawString(260, 110, f'/s/ {request.form["signature"].strip().title()}')
     can.setFont('Helvetica', 10)
     can.drawString(320, 135, 'This absentee ballot request contains an electronic signature.')
-    can.drawString(485, 115, today_date.strftime('%m'))
-    can.drawString(525, 115, today_date.strftime('%d'))
-    can.drawString(565, 115, today_date.strftime('%y'))
+    can.drawString(480, 110, today_date.strftime('%m'))
+    can.drawString(522, 110, today_date.strftime('%d'))
+    can.drawString(565, 110, today_date.strftime('%y'))
 
     can.save()
     packet.seek(0)
@@ -152,9 +161,6 @@ def add_to_database(application_id, request, group_code):
     db.session.add(new_voter)
     db.session.commit()
 
-with open('../static/localities_info.json') as file:
-    localities = json_load(file)
-
 yag = SMTP(os.environ["GMAIL_SENDER_ADDRESS"], os.environ["GMAIL_SENDER_PASSWORD"])
 
 def email_pdf(application_id, request):
@@ -162,7 +168,7 @@ def email_pdf(application_id, request):
     recipients = set({voter_email, })
     # if not current_app.debug or 'localhost' not in request.url_root:
     if 'localhost' not in request.url_root:
-        recipients.add(localities[request.form['registered_county']]['email'])
+        recipients.add(current_app.config.LOCALITIES[request.form['registered_county']]['email'])
 
     yag.send(
         to=tuple(recipients),

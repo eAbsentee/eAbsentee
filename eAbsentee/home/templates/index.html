@@ -2,21 +2,19 @@
 
 {% block content %}
 <section id="banner">
-	<div class="inner">
+	<div class="d-grid inner">
 		<h1>Vote Absentee Virginia</h1>
 		{% if config['FORM_CLOSED'] == true %}
 			<p>The deadline to request an absentee ballot has passed.</p>
 		{% else %}
-			<ul class="actions fit">
-				<li><a href="{{ url_for('form.form') }}" class="button primary fs-3">Vote by Mail</a></li>
-			</ul>
+			<a href="{{ url_for('form.form') }}" class="btn btn-primary btn-lg text-white">Vote by Mail</a>
 		{% endif %}
 	</div>
 </section>
 
 <div class="accordion mx-auto col-lg-6 px-2 py-3" id="faqAccordion">
 	<h2 class="text-center">Frequently Asked Questions</h2>
-  <div class="accordion-item my-3 border-0">
+  <div class="accordion-item my-3 border-top rounded-top rounded-bottom">
     <h3 class="accordion-header" id="covidHeading">
       <button class="accordion-button collapsed text-wrap rounded" type="button" data-bs-toggle="collapse" data-bs-target="#covidCollapse" aria-expanded="false" aria-controls="covidCollapse">
         How does COVID-19 affect elections?
@@ -28,7 +26,7 @@
       </div>
     </div>
   </div>
-  <div class="accordion-item my-3 border-0">
+  <div class="accordion-item my-3 border-top rounded-top rounded-bottom">
     <h3 class="accordion-header" id="howHeading">
       <button class="accordion-button collapsed text-wrap rounded" type="button" data-bs-toggle="collapse" data-bs-target="#howCollapse" aria-expanded="false" aria-controls="howCollapse">
         How does this site work?
@@ -40,7 +38,7 @@
       </div>
     </div>
   </div>
-  <div class="accordion-item my-3 border-0">
+  <div class="accordion-item my-3 border-top rounded-top rounded-bottom">
     <h3 class="accordion-header" id="receiveHeading">
       <button class="accordion-button collapsed text-wrap rounded" type="button" data-bs-toggle="collapse" data-bs-target="#receiveCollapse" aria-expanded="false" aria-controls="receiveCollapse">
         What if I don’t receive my absentee ballot?
@@ -52,7 +50,7 @@
       </div>
     </div>
   </div>
-	<div class="accordion-item my-3 border-0">
+	<div class="accordion-item my-3 border-top rounded-top rounded-bottom">
     <h3 class="accordion-header" id="dataHeading">
       <button class="accordion-button collapsed text-wrap rounded" type="button" data-bs-toggle="collapse" data-bs-target="#dataCollapse" aria-expanded="false" aria-controls="dataCollapse">
         Where does my data go?
@@ -64,7 +62,7 @@
       </div>
     </div>
   </div>
-	<div class="accordion-item my-3 border-0">
+	<div class="accordion-item my-3 border-top rounded-top rounded-bottom">
     <h3 class="accordion-header" id="changesHeading">
       <button class="accordion-button collapsed text-wrap rounded" type="button" data-bs-toggle="collapse" data-bs-target="#changesCollapse" aria-expanded="false" aria-controls="changesCollapse">
         What changes have been made to the absentee voting process?
@@ -76,7 +74,7 @@
       </div>
     </div>
   </div>
-	<div class="accordion-item my-3 border-0">
+	<div class="accordion-item my-3 border-top rounded-top rounded-bottom">
     <h3 class="accordion-header" id="anyoneHeading">
       <button class="accordion-button collapsed text-wrap rounded" type="button" data-bs-toggle="collapse" data-bs-target="#anyoneCollapse" aria-expanded="false" aria-controls="anyoneCollapse">
         Can anyone receive an absentee ballot?
@@ -88,7 +86,7 @@
       </div>
     </div>
   </div>
-	<div class="accordion-item my-3 border-0">
+	<div class="accordion-item my-3 border-top rounded-top rounded-bottom">
     <h3 class="accordion-header" id="whenReceiveHeading">
       <button class="accordion-button collapsed text-wrap rounded" type="button" data-bs-toggle="collapse" data-bs-target="#whenReceiveCollapse" aria-expanded="false" aria-controls="whenReceiveCollapse">
         When will I receive my absentee ballot?
@@ -100,7 +98,7 @@
       </div>
     </div>
   </div>
-	<div class="accordion-item my-3 border-0">
+	<div class="accordion-item my-3 border-top rounded-top rounded-bottom">
     <h3 class="accordion-header" id="privacyHeading">
       <button class="accordion-button collapsed text-wrap rounded" type="button" data-bs-toggle="collapse" data-bs-target="#privacyCollapse" aria-expanded="false" aria-controls="privacyCollapse">
         Where can I find your privacy policy?

@@ -3,6 +3,7 @@ from os import environ
 from pathlib import Path
 from dotenv import load_dotenv
 from datetime import date
+from json import load as json_load
 
 basedir = Path(__file__).resolve().parent
 load_dotenv(basedir / '.env')
@@ -38,3 +39,6 @@ class Config:
         date(2021, 11, 2),
     ]
     FORM_CLOSED = len(UPCOMING_ELECTIONS) == 0
+
+    with open(basedir / 'static' / 'localities_info.json') as file:
+        LOCALITIES = json_load(file)

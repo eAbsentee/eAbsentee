@@ -1,90 +1,46 @@
-{% from "macros.html" import favicon, bootstrap, leaflet %}
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
 
-<head>
-  {{ favicon() }}
-  {{ bootstrap() }}
-  {{ leaflet() }}
-  <style>
-    html,
-    body {
-      height: 100%;
-    }
-  </style>
-  <title>eAbsentee</title>
-</head>
+{% block content %}
 
-<body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="{{ url_for('admin.list') }}">Admin Dashboard</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<div class="col-xl-6 col-l-6 mx-auto pt-3 px-5">
+  <form action="" method="POST">
+    <div class="input-group mb-3">
+      <span class="input-group-text">Group Name</span>
+      <select class="form-control" id="group" name="group">
+        <option>Select a group</option>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('admin.maps') }}">Maps</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('admin.list') }}">List of Voters</a>
-        </li>
-      </ul>
+        {% if current_user.is_admin() %}
+          <option value="all_voters">ALL VOTERS</option>
+        {% endif %}
+
+        {% for group in groups %}
+        <option>{{ group }}</option>
+        {% endfor %}
+      </select>
     </div>
 
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="/logout/">Logout</a>
-      </li>
-    </ul>
-  </nav>
+    <label for="">Date Range</label>
+    <div class="input-group mb-3">
+      <span class="input-group-text">First Date</span>
+      <input class="form-control" type="date" value="2019-01-01" id="date_first" name="date_first">
+    </div>
 
+    <div class="input-group mb-3">
+      <span class="input-group-text">Second Date</span>
+      <input class="form-control" type="date" value="2020-08-31" id="date_second" name="date_second">
+    </div>
+    <small>Click on the calendar icons to select dates.</small>
 
-  <div class="col-xl-6 col-l-6 mx-auto pt-3 pb-0">
-    <form action="" method="POST">
-      <div class="input-group mb-3">
-        <span class="input-group-text">Group Name</span>
-        <select class="form-control" id="group" name="group">
-          <option>Select a group</option>
+    <!-- Set second date range to today. -->
+    <script type="text/javascript">
+      document.getElementById('date_second').valueAsDate = new Date();
+    </script>
 
-          {% if current_user.is_admin() %}
-            <option value="all_voters">ALL VOTERS</option>
-          {% endif %}
+    <div class="text-center">
+      <input type="submit" value="Submit" class="btn-default" />
+    </div>
 
-          {% for group in groups %}
-          <option>{{ group }}</option>
-          {% endfor %}
-        </select>
-      </div>
+    </form>
+</div>
 
-      <label for="">Date Range</label>
-      <div class="input-group mb-3">
-        <span class="input-group-text">First Date</span>
-        <input class="form-control" type="date" value="2019-01-01" id="date_first" name="date_first">
-      </div>
-
-      <div class="input-group mb-3">
-        <span class="input-group-text">Second Date</span>
-        <input class="form-control" type="date" value="2020-08-31" id="date_second" name="date_second">
-      </div>
-      <small>Click on the calendar icons to select dates.</small>
-
-      <!-- Set second date range to today. -->
-      <script type="text/javascript">
-        document.getElementById('date_second').valueAsDate = new Date();
-      </script>
-
-      <div class="text-center">
-        <input type="submit" value="Submit" class="btn-default" />
-      </div>
-
-      </form>
-  </div>
-
-
-  </div>
-
-</body>
-
-</html>
+{% endblock %}

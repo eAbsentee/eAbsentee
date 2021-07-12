@@ -1,60 +1,20 @@
-{% from "macros.html" import favicon, bootstrap %}
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
 
-<head>
-  {{ favicon() }}
-  {{ bootstrap() }}
-  <style>
-    html,
-    body {
-      height: 100%;
-    }
-  </style>
-</head>
+{% block content %}
 
-<body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="{{ url_for('admin.list') }}">Superadmin Dashboard</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<div class="mx-auto pt-3 pb-0 px-4">
+  <form action="" method="POST" class="text-center">
+    <button type="submit" class="btn btn-primary">Create a Link</button>
+  </form>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('admin.maps') }}">Maps</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('admin.list') }}">List of Voters</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('admin.admin') }}">Create a Register Link</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+  {% if links %}
+    Links:
+    <ul>
+      {% for link in links%}
+        <li><a href="{{ link }}">{{ link }}</a></li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>
 
-
-  <div class="col-xl-2 mx-auto pt-3 pb-0">
-    <form action="" method="POST">
-
-
-
-      <div class="text-center">
-        <input type="submit" value="Create a Link" class="btn-default" />
-      </div>
-
-      {% if links %}
-        {% for link in links%}
-          <p>Link: <a href="{{ link }}"> {{ link }}</a></p>
-        {% endfor %}
-      {% endif %}
-
-    </form>
-
-  </div>
-
-</body>
-
-</html>
+{% endblock %}

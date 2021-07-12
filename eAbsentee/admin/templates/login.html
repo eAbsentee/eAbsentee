@@ -1,47 +1,46 @@
-{% from "macros.html" import favicon, bootstrap, fontawesome %}
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
 
-<head>
-	{{ favicon() }}
-	<title>Login</title>
-	{{ bootstrap() }}
-	{{ fontawesome() }}
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css') }}" />
-</head>
-<body>
-	<div class="container h-100">
-		<div class="d-flex justify-content-center h-100">
-			<div class="user_card">
-				<div class="d-flex justify-content-center">
-					<h3>Login</h3>
-				</div>
-				<div class="d-flex justify-content-center form_container">
-					<form action="" method="POST">
-						<div class="input-group mb-3">
-							<span class="input-group-text"><i class="fas fa-user"></i></span>
-							<input type="text" name="email" id="email" class="form-control input_user" value="" placeholder="email">
-						</div>
-						<div class="input-group mb-2">
-							<span class="input-group-text"><i class="fas fa-key"></i></span>
-							<input type="password" name="password" id="password" class="form-control input_pass" value="" placeholder="password">
-						</div>
-							<div class="d-flex justify-content-center mt-3 login_container">
-				 	<input type="submit" name="button" class="btn login_btn"></input>
-				   </div>
-					</form>
-				</div>
-
-				<div class="mt-4">
-					<div class="d-flex justify-content-center links">
-						Don't have an account? <a href="{{ url_for('admin.register') }}" class="ml-2">Sign Up</a>
-					</div>
-					<div class="d-flex justify-content-center links">
-						<a href="#">Forgot your password?</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</body>
-</html>
+{% block content %}
+<div class="text-center px-5 mt-3">
+  <h3>Login</h3>
+  <div class="mx-auto col-lg-6">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul class="list-unstyled">
+        {% for category, message in messages %}
+          <li class="alert alert-{{ category }}" role="alert">{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    <form action="" method="POST" class="needs-validation" novalidate>
+      <div class="input-group mb-3">
+        <span class="input-group-text"><i class="fas fa-user"></i></span>
+        <input
+          type="email"
+					autocomplete="email"
+          name="email"
+          class="form-control"
+          value=""
+          placeholder="Email"
+					required
+        />
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text"><i class="fas fa-key"></i></span>
+        <input
+          type="password"
+					autocomplete="new-password"
+          name="password"
+          class="form-control"
+          value=""
+          placeholder="Password"
+					required
+        />
+      </div>
+      <!-- TODO: confirm password -->
+			<button class="btn btn-primary" type="submit">Login</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

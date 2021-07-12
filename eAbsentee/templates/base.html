@@ -1,6 +1,6 @@
 {% from "macros.html" import favicon, jquery, bootstrap, fontawesome %}
 <!DOCTYPE html>
-<html lang="{{ get_locale() }}">
+<html lang="{{ get_locale() }}" class="h-100">
 
 <head>
   {% block head %}
@@ -11,16 +11,17 @@
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
-
   {{ jquery() }}
   {{ bootstrap() }}
 
   {{ fontawesome() }}
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
   {% endblock %}
 </head>
 
-<body class="is-preload">
+<body class="is-preload d-flex flex-column h-100">
+  <header>
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="/">
@@ -937,23 +938,39 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex">
           <li class="nav-item">
-            <a class="nav-link" href="/form/">{{ gettext("Apply") }}</a>
+            <a class="nav-link" href="{{ url_for('form.form') }}">{{ gettext("Apply") }}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/about/">{{ gettext("About Us") }}</a>
+            <a class="nav-link" href="{{ url_for('home.about') }}">{{ gettext("About Us") }}</a>
           </li>
           <!-- <li class="nav-item">
             <a class="nav-link" href="/privacy/">{{ gettext("Privacy Policy") }}</a>
           </li> -->
+          {% if request.blueprint == 'admin' %}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="{{ url_for('admin.admin') }}" id="navbarAdminDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Admin
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarAdminDropdownMenuLink">
+                <li><a class="dropdown-item" href="{{ url_for('admin.maps') }}">Maps</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('admin.list') }}">List of Voters</a></li>
+                {% if current_user.is_authenticated and current_user.is_admin() %}
+                <li><a class="dropdown-item" href="{{ url_for('admin.admin') }}">Create a register link</a></li>
+                {% endif %}
+                <!-- TODO: logout if logged into admin -->
+              </ul>
+            </li>
+          {% endif %}
         </ul>
       </div>
       </div>
 		</nav>
+  </header>
 
-  {% block content %}{% endblock %}
+  <main class="flex-shrink-0">{% block content %}{% endblock %}</main>
 
-  <footer id="footer" class="bg-dark mx-auto p-5 text-center">
-    <p style="color:white;">{{ gettext("eAbsentee applications conform to Virginia Department of Elections standards and are accepted by all Virginia local registrars. eAbsentee is sponsored by Vote Absentee Virginia, a not-for-profit, non-partisan 501(c)4 organization established to help broaden voter access across all parties in Virginia.") }}</p>
+  <footer class="bg-dark mt-auto p-5 text-center">
+    <p class="text-white">{{ gettext("eAbsentee applications conform to Virginia Department of Elections standards and are accepted by all Virginia local registrars. eAbsentee is sponsored by Vote Absentee Virginia, a not-for-profit, non-partisan 501(c)4 organization established to help broaden voter access across all parties in Virginia.") }}</p>
     <a href="mailto:applications@eabsentee.org">
       <i class="fas fa-envelope fa-2x"></i>
     </a>

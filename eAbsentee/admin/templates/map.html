@@ -1,130 +1,95 @@
-{% from "macros.html" import favicon, bootstrap, leaflet %}
-<!DOCTYPE html>
-<html>
+{% from "macros.html" import leaflet %}
 
-<head>
-  {{ favicon() }}
-  {{ bootstrap() }}
-  {{ leaflet() }}
-  <style>
-    html, body {
-     height: 100%;
-    }
-  </style>
-  <title>eAbsentee</title>
-</head>
+{% extends "base.html" %}
 
-<body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="{{ url_for('admin.maps') }}">Admin Dashboard</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('admin.maps') }}">Maps</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('admin.list') }}">List of Voters</a>
-        </li>
-      </ul>
-    </div>
-
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="{{ url_for('admin.logout') }}">Logout</a>
-      </li>
-    </ul>
-
-  </nav>
-
-
-  <div class="col-xl-6 col-l-6 mx-auto pt-3 pb-0">
-    <form action="" method="POST">
-      <div class="input-group mb-3">
-        <span class="input-group-text">Group Name</span>
-        <select class="form-control" id="group" name="group">
-          <option>Select a group</option>
-
-          {% if current_user.is_admin() %}
-            <option value="all_voters">ALL VOTERS</option>
-          {% endif %}
-
-          {% for group in groups %}
-          <option>{{ group }}</option>
-          {% endfor %}
-        </select>
-      </div>
-
-      <!-- <input type="checkbox" id="all_group" name="all_group">
-      <label for="checkbox">Check this box to download information for all group codes, rather than one at a time.</label> -->
-      </br>
-      <label for="">Date Range</label>
-      <div class="input-group mb-3">
-        <span class="input-group-text">First Date</span>
-        <input class="form-control" type="date" value="2019-01-01" id="date_first" name="date_first">
-      </div>
-
-      <div class="input-group mb-3">
-        <span class="input-group-text">Second Date</span>
-        <input class="form-control" type="date" value="2020-08-31" id="date_second" name="date_second">
-      </div>
-      <small>Click on the calendar icons to select dates.</small>
-
-      <!-- Set second date range to today. -->
-      <script type="text/javascript">
-        document.getElementById('date_second').valueAsDate = new Date();
-      </script>
-
-      <div class="text-center">
-        <input type="submit" value="Submit" class="btn-default" />
-      </div>
-
-      </form>
-  </div>
-
-
+{% block head %}
+  {{ super() }}
 
   {% if users %}
-    <div class="col-xl-6 mx-auto pt-5">
-      <div id="map" style="height: 50vh;"> </div>
+    {{ leaflet() }}
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="col-xl-6 col-l-6 mx-auto pt-3 pb-0">
+  <form action="" method="POST">
+    <div class="input-group mb-3">
+      <span class="input-group-text">Group Name</span>
+      <select class="form-control" id="group" name="group">
+        <option>Select a group</option>
+
+        {% if current_user.is_admin() %}
+          <option value="all_voters">ALL VOTERS</option>
+        {% endif %}
+
+        {% for group in groups %}
+        <option>{{ group }}</option>
+        {% endfor %}
+      </select>
     </div>
 
+    <!-- <input type="checkbox" id="all_group" name="all_group">
+    <label for="checkbox">Check this box to download information for all group codes, rather than one at a time.</label> -->
+    </br>
+    <label for="">Date Range</label>
+    <div class="input-group mb-3">
+      <span class="input-group-text">First Date</span>
+      <input class="form-control" type="date" value="2019-01-01" id="date_first" name="date_first">
+    </div>
 
+    <div class="input-group mb-3">
+      <span class="input-group-text">Second Date</span>
+      <input class="form-control" type="date" value="2020-08-31" id="date_second" name="date_second">
+    </div>
+    <small>Click on the calendar icons to select dates.</small>
 
+    <!-- Set second date range to today. -->
     <script type="text/javascript">
-      var mymap = L.map('map').setView([38.4316, -77.6569], 8);
-
-      L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-        maxZoom: 18,
-        id: 'mapbox/streets-v11',
-        tileSize: 512,
-        zoomOffset: -1,
-        accessToken: '{{ mapbox_key }}'
-      }).addTo(mymap);
-
-      var googleIcon = L.icon({
-        iconUrl: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png',
-        shadowUrl: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png',
-
-        iconSize: [20, 20], // size of the icon
-        shadowSize: [0, 0], // size of the shadow
-        iconAnchor: [10, 20], // point of the icon which will correspond to marker's location
-        shadowAnchor: [0, 0], // the same for the shadow
-        popupAnchor: [0, -20] // point from which the popup should open relative to the iconAnchor
-      });
-
-      {% for user in users %}
-        var marker = L.marker(["{{ user['lat'] }}", "{{ user['lng'] }}"], {
-          icon: googleIcon
-        }).bindPopup("<b>{{ user['name'] }}</b>").addTo(mymap);
-      {% endfor %}
+      document.getElementById('date_second').valueAsDate = new Date();
     </script>
-  {% endif %}
 
-</body>
+    <div class="text-center">
+      <input type="submit" value="Submit" class="btn-default" />
+    </div>
 
-</html>
+    </form>
+</div>
+
+{% if users %}
+  <div class="col-xl-6 mx-auto pt-5">
+    <div id="map" style="height: 50vh;"></div>
+  </div>
+
+  <script type="text/javascript">
+    var mymap = L.map('map').setView([38.4316, -77.6569], 8);
+
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+      maxZoom: 18,
+      id: 'mapbox/streets-v11',
+      tileSize: 512,
+      zoomOffset: -1,
+      accessToken: '{{ mapbox_key }}'
+    }).addTo(mymap);
+
+    var googleIcon = L.icon({
+      iconUrl: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png',
+      shadowUrl: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png',
+
+      iconSize: [20, 20], // size of the icon
+      shadowSize: [0, 0], // size of the shadow
+      iconAnchor: [10, 20], // point of the icon which will correspond to marker's location
+      shadowAnchor: [0, 0], // the same for the shadow
+      popupAnchor: [0, -20] // point from which the popup should open relative to the iconAnchor
+    });
+
+    {% for user in users %}
+      var marker = L.marker(["{{ user['lat'] }}", "{{ user['lng'] }}"], {
+        icon: googleIcon
+      }).bindPopup("<b>{{ user['name'] }}</b>").addTo(mymap);
+    {% endfor %}
+  </script>
+{% endif %}
+
+{% endblock %}

@@ -9,11 +9,14 @@
 
 <script src="{{ url_for('static', filename='js/form_functions.js') }}"></script>
 <script src="{{ url_for('static', filename='js/form_autofill.js') }}"></script>
+
+<script src="https://www.unpkg.com/inputmask@5.0.6/dist/jquery.inputmask.min.js" integrity="sha384-mcrkfPXC1YDoY+zXOHvyNuhUVO2zdEb5+ebHe5SL8DW2BSHmZw4tfFMv8jT9i/+2" crossorigin="anonymous" defer></script>
+<script src="https://www.unpkg.com/inputmask@5.0.6/dist/bindings/inputmask.binding.js" integrity="sha384-5/QNW3hy8X5q6O99uGaZYeL9LVtNdXFnoRfE91OuDev2Z76uc4PM0JEyO/sPV9TH" crossorigin="anonymous" defer></script>
 {% endblock %}
 
 {% block content %}
-<div class="container col-xl-5 col-lg-5 col-md-8 col-sm-12 col-xs-12 mx-auto mb-5">
-  <div class="card border-dark mx-auto my-2">
+<div class="container col-12 col-md-8 mx-auto mt-2 pb-2">
+  <div class="card border-dark mx-auto">
     <div class="card-body rounded-top card-body col-lg-12" style="background: #0052A5">
       <h1 class="text-capitalize text-center text-light">{{ gettext("Vote by Mail") }}</h1>
       <h2 class="text-center text-light">{{ gettext("Apply for Your Absentee Ballot Today") }}</h2>
@@ -63,11 +66,11 @@
               <label for="name_suffix" class="form-label">{{ gettext("Suffix") }}</label>
             </fieldset>
           </div>
-          <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 mx-auto text-center">
+          <div class="col-8 mx-auto text-center">
             <fieldset class="form-floating">
               <input type="number" class="form-control" id="ssn" name="ssn" minlength="4" maxlength="4" pattern="^([0-9]{4})$" placeholder="0000" required digits>
               <label for="ssn" class="form-label">{{ gettext("SSN (Last 4 Digits)") }}</label>
-              <small class="form-text text-muted"><a href="{{ url_for('home.index', _anchor='faq_ssn') }}" target="_blank" rel="noopener">{{ gettext("Why?") }}</a></small>
+              <small class="form-text"><a href="{{ url_for('home.index', _anchor='faq_ssn') }}" target="_blank" rel="noopener">{{ gettext("Why?") }}</a></small>
             </fieldset>
           </div>
         </div>
@@ -82,14 +85,14 @@
             <h3 class="text-capitalize">{{ gettext("Where are you registered to vote?") }}</h3>
             <p>{{ gettext("Your residence address is where you live and are registered to vote.") }}</p>
           </div>
-          <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+          <div class="col-8">
             <fieldset class="form-floating">
               <input type="text" class="form-control" id="us-autocomplete-pro-address-input" name="us-autocomplete-pro-address-input" placeholder="{{ gettext('Example: 123 Main St, Fairfax, VA 12345') }}">
               <ul class="us-autocomplete-pro-menu" style="display:none; position:absolute; z-index:2;"></ul>
               <label for="us-autocomplete-pro-address-input" class="form-label">{{ gettext("Full Address") }}</label>
             </fieldset>
           </div>
-          <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+          <div class="col-4">
             <fieldset class="form-floating">
               <input type="text" class="form-control" id="apt" name="apt" placeholder="204">
               <label for="apt" class="form-label">{{ gettext("Apartment") }}</label>
@@ -129,11 +132,49 @@
         <hr style="border-top: dotted 1px;" />
       </div>
 
-      <!-- Which Election -->
+      <!-- Vote in all elections in calendar year? -->
       <div class="card-body border-dark rounded-0">
+        <div class="row mx-auto">
+          <fieldset class="form-check">
+            <input class="form-check-input" type="checkbox" id="permanent_absentee" name="permanent_absentee">
+            <label class="form-check-label" for="permanent_absentee" class="form-label">
+              {{ gettext("I'd like to vote by mail for all future elections until I instruct otherwise.") }}
+            </label>
+          </fieldset>
+        </div>
+
+        <fieldset class="mx-auto" id="permanent_absentee_div">
+          <legend class="text-center col-form-label">{{ gettext("Which party primary ballots would you like to receive?") }}</legend>
+          <div class="form-check mb-3">
+            <input type="radio" value="democratic" id="permanent_absentee_democratic" name="permanent_absentee_primary_party">
+            <label for="permanent_absentee_democratic" class="form-label">
+              {{ gettext("Democratic Party") }}
+            </label>
+          </div>
+
+          <div class="form-check mb-3">
+            <input type="radio" value="republican" id="permanent_absentee_republican" name="permanent_absentee_primary_party">
+            <label for="permanent_absentee_republican" class="form-label">
+              {{ gettext("Republican Party") }}
+            </label>
+          </div>
+
+          <div class="form-check mb-3">
+            <input type="radio" value="no_primary" id="permanent_absentee_no_primary" name="permanent_absentee_primary_party">
+            <label for="permanent_absentee_no_primary" class="form-label">
+              {{ gettext("I do not wish to receive ballots for Primary Elections.") }}
+            </label>
+          </div>
+
+          <hr style="border-top: dotted 1px;" />
+        </fieldset>
+      </div>
+
+      <!-- Which Election -->
+      <div class="card-body border-dark rounded-0" id="one_election_div">
         <div class="row mx-auto g-3">
           <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-            <h3 class="text-capitalize">{{ gettext("Which election would you like to request an absentee ballot for?") }}</h3>
+            <p>{{ gettext("Which election would you like to request an absentee ballot for?") }}</p>
             <p>{{ gettext("You can view the") }} <a target="_blank" rel="noopener" href="https://www.elections.virginia.gov/casting-a-ballot/calendars-schedules/upcoming-elections.html">{{ gettext("official list of upcoming elections here") }}</a>.</p>
           </div>
           <fieldset class="mx-auto" id="election_type_div">
@@ -160,101 +201,80 @@
             </div>
           </fieldset>
           <div class="col-lg">
-            <fieldset class="form-floating mx-auto" id="election_date_div">
+            <fieldset class="form-floating mx-auto">
               <select class="form-select" name="election_date" id="election_date_select">
-                  <option value="">--{{ gettext("Please select a date") }} (YYYY-MM-DD)--</option>
-                  {% for date in config.UPCOMING_ELECTIONS %}
-                    <option value="{{ date }}">{{ date }}</option>
-                  {% endfor %}
+                <!-- TODO: when `len(config.UPCOMING_ELECTIONS) == 1` default to only election -->
+                <option value="" selected disabled>--{{ gettext("Please select a date") }} (YYYY-MM-DD)--</option>
+                {% for date in config.UPCOMING_ELECTIONS %}
+                  <option value="{{ date }}">{{ date }}</option>
+                {% endfor %}
               </select>
               <label class="text-center form-label" for="election_date_select">{{ gettext("Election date:") }}</label>
             </fieldset>
           </div>
+          <!-- <div>
+            not needed? just use registered_county
+            <p class="text-center">{{ gettext("in the city/county of:") }}</p>
+            <fieldset class="form-floating mx-auto">
+              <select class="form-select" name="election_locality" id="election_locality_select">
+                TODO: default to `registered_county`?
+                <option value="" selected disabled>--{{ gettext("Please select a city/county") }}--</option>
+                {% for locality in config.LOCALITIES %}
+                  <option value="{{ locality }}">{{ locality }}</option>
+                {% endfor %}
+              </select>
+              <label class="text-center form-label" for="election_locality_select">{{ gettext("Election locality:") }}</label>
+            </fieldset>
+          </div> -->
         </div>
-        <hr style="border-top: dotted 1px;" />
-      </div>
-
-      <!-- Vote in all elections in calendar year? -->
-      <div class="card-body border-dark rounded-0">
-        <div class="row mx-auto">
-          <fieldset class="form-check">
-            <input class="form-check-input" type="checkbox" id="all_elections" name="all_elections">
-            <label class="form-check-label" for="all_elections" class="form-label">
-              {{ gettext("I'd like to vote by mail for all elections this calendar year.") }}
-            </label>
-          </fieldset>
-        </div>
-
-        <fieldset class="mx-auto" id="all_elections_div">
-          <legend class="text-center col-form-label">{{ gettext("Which party primary ballots would you like to receive?") }}</legend>
-          <div class="form-check mb-3">
-            <input type="radio" value="democratic" id="all_elections_democratic" name="all_elections_primary_party">
-            <label for="all_elections_democratic" class="form-label">
-              {{ gettext("Democratic Party") }}
-            </label>
-          </div>
-
-          <div class="form-check mb-3">
-            <input type="radio" value="republican" id="all_elections_republican" name="all_elections_primary_party">
-            <label for="all_elections_republican" class="form-label">
-              {{ gettext("Republican Party") }}
-            </label>
-          </div>
-
-          <div class="form-check mb-3">
-            <input type="radio" value="no_primary" id="all_elections_no_primary" name="all_elections_primary_party">
-            <label for="all_elections_no_primary" class="form-label">
-              {{ gettext("I do not wish to receive ballots for Primary Elections.") }}
-            </label>
-          </div>
-        </fieldset>
 
         <hr style="border-top: dotted 1px;" />
       </div>
 
 
+      <!-- TODO: hide when permanent_absentee is checked -->
       <!-- Where to Deliver? -->
-      <div class="card-body border-dark rounded-0">
+      <div class="card-body border-dark rounded-0" id="ballot_address">
         <div class="row mx-auto">
           <!-- <div class="mx-auto col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <h3 class="text-center text-capitalize">Different Delivery Address</h3>
           </div> -->
           <fieldset class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="where_deliver" name="where_deliver">
-            <label class="form-check-label" for="where_deliver">
+            <input class="form-check-input" type="checkbox" value="" id="ballot_address_check" name="ballot_address_check">
+            <label class="form-check-label" for="ballot_address_check">
               {{ gettext("I'd like for my absentee ballot to be delivered to a different address than the address where I'm registered to vote.") }}
             </label>
           </fieldset>
         </div>
 
-        <div class="row mx-auto g-3" id="different_address_div">
+        <div class="row mx-auto g-3" id="ballot_address_div">
           <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
             <fieldset class="form-floating">
-              <input type="text" class="form-control" id="different_address" name="different_address" placeholder="123 Main St">
-              <label for="different_address" class="form-label">{{ gettext("Street Address") }}</label>
+              <input type="text" class="form-control" id="ballot_address" name="ballot_address" placeholder="123 Main St">
+              <label for="ballot_address" class="form-label">{{ gettext("Street Address") }}</label>
             </fieldset>
           </div>
           <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
             <fieldset class="form-floating">
-              <input type="text" class="form-control" id="different_apt" name="different_apt" placeholder="204">
-              <label for="different_apt" class="form-label">{{ gettext("Apartment") }}</label>
+              <input type="text" class="form-control" id="ballot_apt" name="ballot_apt" placeholder="204">
+              <label for="ballot_apt" class="form-label">{{ gettext("Apartment") }}</label>
             </fieldset>
           </div>
           <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
             <fieldset class="form-floating">
-              <input type="text" class="form-control" id="different_city" name="different_city" placeholder="Alexandria">
-              <label for="different_city" class="form-label">{{ gettext("City") }}</label>
+              <input type="text" class="form-control" id="ballot_city" name="ballot_city" placeholder="Alexandria">
+              <label for="ballot_city" class="form-label">{{ gettext("City") }}</label>
             </fieldset>
           </div>
           <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
             <fieldset class="form-floating">
-              <input type="text" class="form-control" id="different_zip" name="different_zip" placeholder="22312">
-              <label for="different_zip" class="form-label">{{ gettext("ZIP Code") }}</label>
+              <input type="text" class="form-control" id="ballot_zip" name="ballot_zip" placeholder="22312">
+              <label for="ballot_zip" class="form-label">{{ gettext("ZIP Code") }}</label>
             </fieldset>
           </div>
           <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <fieldset class="form-floating">
-              <select name="different_state" id="different_state" class="form-control state" autocomplete="address-level1">
+              <select name="ballot_state" id="ballot_state" class="form-control state" autocomplete="address-level1">
                 <option value="">{{ gettext("Choose state") }}&hellip;</option>
                 <option value="AL">Alabama</option>
                 <option value="AK">Alaska</option>
@@ -315,12 +335,12 @@
                 <option value="WI">Wisconsin</option>
                 <option value="WY">Wyoming</option>
               </select>
-              <label for="different_state" class="control-label state">{{ gettext("State") }}</label>
+              <label for="ballot_state" class="control-label state">{{ gettext("State") }}</label>
             </fieldset>
           </div>
           <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <fieldset class="form-floating">
-              <select name="different_country" id="different_country" class="form-control" autocomplete="country">
+              <select name="ballot_country" id="ballot_country" class="form-control" autocomplete="country">
                 <option value="Afghanistan">Afghanistan</option>
                 <option value="Åland Islands">Åland Islands</option>
                 <option value="Albania">Albania</option>
@@ -571,7 +591,7 @@
                 <option value="Zambia">Zambia</option>
                 <option value="Zimbabwe">Zimbabwe</option>
               </select>
-              <label for="different_country" class="form-label">{{ gettext("Country") }}</label>
+              <label for="ballot_country" class="form-label">{{ gettext("Country") }}</label>
             </fieldset>
           </div>
         </div>
@@ -686,13 +706,13 @@
           </fieldset>
           <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
             <fieldset class="form-floating">
-              <input type="email" class="form-control" id="email" name="email" autocomplete="email" placeholder="john.doe@example.com">
+              <input type="email" class="form-control" id="email" name="email" autocomplete="email" placeholder="john.doe@example.com" required>
               <label for="email" class="form-label">{{ gettext("Email Address") }}</label>
             </fieldset>
           </div>
           <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
             <fieldset class="form-floating">
-              <input type="tel" class="form-control" id="phonenumber" name="phonenumber" autocomplete="tel" minlength="10" maxlength="10" pattern="^([0-9]{10})$" digits placeholder="7035550100">
+              <input type="tel" class="form-control" id="phonenumber" name="phonenumber" autocomplete="tel" minlength="10" maxlength="12" pattern="^\d{10}$" placeholder="7035550100" data-inputmask="'mask': '999-999-9999'">
               <label for="phonenumber" class="form-label">{{ gettext("Phone Number") }}</label>
             </fieldset>
           </div>
@@ -729,8 +749,8 @@
 
 
       <!-- <hr style="border-top: dotted 1px;" /> -->
-      <div class="card border-dark rounded-bottom w-50 mx-auto">
-        <button type="submit">Submit</button>
+      <div class="card border-dark rounded-bottom col-6 mx-auto">
+        <button class="bg-white" type="submit">Submit</button>
       </div>
 
     </form>

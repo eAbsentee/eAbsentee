@@ -4,31 +4,35 @@
   /* trigger when page is ready */
   $(document).ready(function() {
 
-    $("#all_elections_div").hide();
-    $("input[name=\"all_elections\"]").change(function() {
-      if ($('input[name="all_elections"]:checked').length > 0) {
-        $("#all_elections_div").slideDown();
+    $("#permanent_absentee_div").hide();
+    $("input[name=\"permanent_absentee\"]").change(function() {
+      if (this.checked) {
+        $("#permanent_absentee_div").slideDown();
+        $("#one_election_div").slideUp();
+        $("#ballot_address").slideUp();
       }
       else {
-        $("#all_elections_div").slideUp();
+        $("#permanent_absentee_div").slideUp();
+        $("#one_election_div").slideDown();
+        $("#ballot_address").slideDown();
       }
     });
 
     // Hide different delivery address by default
     // Show it if a change is found in where to deliver
-    $("#different_address_div").hide();
-    $("input[name=\"where_deliver\"]").change(function() {
-      if ($('input[name="where_deliver"]:checked').length > 0) {
-        $("#different_address_div").slideDown();
+    $("#ballot_address_div").hide();
+    $("input[name=\"ballot_address_check\"]").change(function() {
+      if (this.checked) {
+        $("#ballot_address_div").slideDown();
       }
       else {
-        $("#different_address_div").slideUp();
+        $("#ballot_address_div").slideUp();
       }
     });
 
     $("#assistance_div").hide();
     $("input[name=\"assistance_check\"]").change(function() {
-      if ($('input[name="assistance_check"]:checked').length > 0) {
+      if (this.checked) {
         $("#assistance_div").slideDown();
       }
       else {
@@ -38,7 +42,7 @@
 
     $("#change_div").hide();
     $("input[name=\"change_check\"]").change(function() {
-      if ($('input[name="change_check"]:checked').length > 0) {
+      if (this.checked) {
         $("#change_div").slideDown();
       }
       else {
@@ -47,7 +51,7 @@
     });
 
     // $("input[name=\"change_check\"]").change(function() {
-    //   if ($('input[name="change_check"]:checked').length > 0) {
+    //   if (this.checked) {
     //     $("#change_div").slideDown();
     //   }
     //   else {
@@ -83,23 +87,13 @@
       }
     });
 
-    $("form.needs-validation").each(function (index, form) {
-      form.addEventListener("submit", function(event) {
-        if (!form.checkValidity()) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-
-        form.classList.add('was-validated');
-      });
-    });
-
     $(function() {
          $('input[readonly]').on('focus', function(ev) {
                $(this).trigger('blur');
          });
     });
 
+    $(":input").inputmask();
   });
 
 })(window.jQuery);
