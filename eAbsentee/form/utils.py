@@ -113,7 +113,14 @@ def write_pdf(application_id, request, lang):
         can.drawString(460, 176, today_date.strftime('%m/%d/%Y'))
 
     can.drawString(175, 470, request.form['email'])
-    # TODO: phone
+    phonenumber = request.form['phonenumber']  # ddd-ddd-dddd
+    # faster than regex:
+    area_code = phonenumber[:3]
+    central_office_code = phonenumber[4:7]
+    line_number = phonenumber[8:]
+    can.drawString(169, 490, "      ".join(area_code))
+    can.drawString(255, 490, "      ".join(central_office_code))
+    can.drawString(337, 490, "      ".join(line_number))
 
     can.drawString(260, 110, f'/s/ {request.form["signature"].strip().title()}')
     can.setFont('Helvetica', 10)
