@@ -1,18 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Raleway:200,300,400,500,600");
 
-:root {
-  --footer-height: 200px;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  margin-bottom: var(--footer-height);
-}
-
 body.is-preload *, body.is-preload *:before, body.is-preload *:after {
   -moz-animation: none !important;
   -webkit-animation: none !important;
