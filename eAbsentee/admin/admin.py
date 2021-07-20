@@ -76,11 +76,15 @@ def login():
 
     if request.method == 'POST':
         user = AdminUser.query.filter_by(email=request.form['email']).first()
-        if user and bcrypt.check_password_hash(user.password, request.form['password']):
-            login_user(user, remember=True)
-            return redirect(url_for('admin.list'))
+        if user:
+            if bcrypt.check_password_hash(user.password, request.form['password']):
+                login_user(user, remember=True)
+                return redirect(url_for('admin.list'))
+            else:
+                flash('Invalid username/password combination.', 'danger')
+                return redirect(url_for('admin.login'))
         else:
-            flash('Invalid username/password combination')
+            flash('Invalid username.', 'danger')
             return redirect(url_for('admin.login'))
     elif request.method == 'GET':
         return render_template('login.html')
@@ -108,9 +112,9 @@ def register(key):
 
                 db.session.add(new_admin)
                 login_user(new_admin, remember=True)
-                register_link = RegisterLink.query.filter_by(link=key).delete()
-                db.session.delete(register_link)
+                RegisterLink.query.filter_by(link=key).delete()
                 db.session.commit()
+                flash('You have successfully created your account.', 'success')
                 return redirect(url_for('admin.list'))
             else:
                 flash('A user with that email address already exists.', 'danger')
