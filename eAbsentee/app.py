@@ -27,7 +27,7 @@ db = SQLAlchemy()
 bcrypt = Bcrypt()
 login_manager = LoginManager()
 migrate = Migrate()
-# csrf = SeaSurf()
+csrf = SeaSurf()
 # talisman = Talisman()
 babel = Babel()
 
@@ -53,8 +53,8 @@ def init_apps(app):
     login_manager.session_protection = "strong"
     bcrypt.init_app(app)
     migrate.init_app(app, db)
-    # csrf.init_app(app)
     # talisman.init_app(app, content_security_policy=get_csp())
+    csrf.init_app(app)
     babel.init_app(app)
 
     @babel.localeselector

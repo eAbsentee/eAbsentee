@@ -40,6 +40,9 @@
       </div>
       <!-- TODO: confirm password -->
 			<button class="btn btn-primary" type="submit">Register</button>
+
+      <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+
     </form>
   </div>
 </div>

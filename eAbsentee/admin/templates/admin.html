@@ -5,6 +5,8 @@
 <div class="mx-auto pt-3 pb-0 px-4">
   <form action="" method="POST" class="text-center">
     <button type="submit" class="btn btn-primary">Create a Link</button>
+
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
   </form>
 
   {% if links %}
