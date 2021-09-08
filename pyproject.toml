@@ -20,6 +20,7 @@ PyPDF2 = "^1.26.0"
 flask-talisman = "^0.8.0"
 mysqlclient = "^2.0.3"
 Flask-Babel = "^2.0.0"
+python-dateutil = "^2.8.2"
 
 [tool.poetry.dev-dependencies]
 mysql-connector-python = "^8.0.23"
