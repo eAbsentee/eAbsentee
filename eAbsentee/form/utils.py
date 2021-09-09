@@ -175,7 +175,9 @@ def email_pdf(application_id, request):
     recipients = set({voter_email, })
     # if not current_app.debug or 'localhost' not in request.url_root:
     if 'localhost' not in request.url_root:
-        recipients.add(current_app.config["LOCALITIES"].get(request.form['registered_county'])['email'])
+        registered_county = request.form['registered_county']
+        if registered_county in current_app.config["LOCALITIES"]:
+            recipients.add(current_app.config["LOCALITIES"][registered_county]['email'])
 
     yag.send(
         to=tuple(recipients),
