@@ -33,7 +33,7 @@ class Config:
 
     # CSRF_COOKIE_SAMESITE = None
     # CSRF_CHECK_REFERER = False
-    CSRF_DISABLE = False
+    CSRF_DISABLE = True
 
     LANGUAGES = ['en', 'es']
     BABEL_TRANSLATION_DIRECTORIES = str(ROOT_PATH / "translations")
