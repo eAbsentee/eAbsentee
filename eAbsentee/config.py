@@ -32,6 +32,7 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     CSRF_COOKIE_SAMESITE = None
+    CSRF_CHECK_REFERER = False
 
     LANGUAGES = ['en', 'es']
     BABEL_TRANSLATION_DIRECTORIES = str(ROOT_PATH / "translations")
