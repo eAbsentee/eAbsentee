@@ -31,6 +31,8 @@ class Config:
     SQLALCHEMY_POOL_RECYCLE = 299
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
+    CSRF_COOKIE_SAMESITE = "None"
+
     LANGUAGES = ['en', 'es']
     BABEL_TRANSLATION_DIRECTORIES = str(ROOT_PATH / "translations")
 
