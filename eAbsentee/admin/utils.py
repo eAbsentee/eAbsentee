@@ -1,3 +1,5 @@
+from flask import request
+from urllib.parse import urlparse, urljoin
 import os
 import csv
 import yagmail
@@ -10,6 +12,12 @@ from eAbsentee.admin.models import GroupReference
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 load_dotenv()
+
+def is_safe_url(target):
+    ref_url = urlparse(request.host_url)
+    test_url = urlparse(urljoin(request.host_url, target))
+    return test_url.scheme in ('http', 'https') and \
+           ref_url.netloc == test_url.netloc
 
 def get_users(group, date_first, date_second):
     group_users = User.query if current_user.is_admin() and group == 'all_voters' else User.query.filter_by(group_code=group)

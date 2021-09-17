@@ -3,14 +3,14 @@ import random
 import string
 from dateutil import parser
 from datetime import date, timedelta
-from flask import Blueprint, render_template, request, make_response, flash, redirect, session, url_for, send_file, send_from_directory, current_app, jsonify, Response
+from flask import Blueprint, render_template, request, make_response, flash, redirect, session, url_for, send_file, send_from_directory, current_app, jsonify, Response, abort
 from flask_login import login_required, logout_user, current_user, login_user, logout_user
 from sqlalchemy.orm import load_only
 from dotenv import load_dotenv
 from eAbsentee.app import db, bcrypt, login_manager
 from eAbsentee.form.models import User
 from eAbsentee.admin.models import AdminUser, RegisterLink, GroupReference
-from eAbsentee.admin.utils import get_users, get_groups, create_csv, email_reminder
+from eAbsentee.admin.utils import is_safe_url, get_users, get_groups, create_csv, email_reminder
 load_dotenv()
 
 
@@ -69,7 +69,6 @@ def list():
         return render_template('list.html', groups=groups)
 
 @admin_bp.route('/login/', methods=['GET', 'POST'])
-@login_manager.unauthorized_handler
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('admin.list'))
@@ -79,7 +78,12 @@ def login():
         if user:
             if bcrypt.check_password_hash(user.password, request.form['password']):
                 login_user(user, remember=True)
-                return redirect(url_for('admin.list'))
+
+                next_url = request.args.get('next')
+                if not is_safe_url(next_url):
+                    return abort(400)
+
+                return redirect(next_url or url_for('admin.list'))
             else:
                 flash('Invalid username/password combination.', 'danger')
                 return redirect(url_for('admin.login'))

@@ -49,7 +49,7 @@ def set_config(app):
 def init_apps(app):
     db.init_app(app)
     login_manager.init_app(app)
-    login_manager.login_view = 'login'
+    login_manager.login_view = 'admin.login'
     login_manager.session_protection = "strong"
     bcrypt.init_app(app)
     migrate.init_app(app, db)
