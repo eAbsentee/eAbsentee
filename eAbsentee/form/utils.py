@@ -23,10 +23,10 @@ file_paths = {
 application_id_chars = ascii_lowercase + digits
 
 
-def application_process(request, group_code=None, lang=None):
+def application_process(request, group_code=None, lang=None, email_registrar=True):
     application_id = ''.join(random_choices(application_id_chars, k=24))
     write_pdf(application_id, request, lang)
-    email_pdf(application_id, request)
+    email_pdf(application_id, request, email_registrar)
     add_to_database(application_id, request, group_code=group_code)
     if not current_app.debug:
         os.remove(f'{application_id}.pdf')
@@ -170,14 +170,15 @@ def add_to_database(application_id, request, group_code):
 
 yag = SMTP(os.environ["GMAIL_SENDER_ADDRESS"], os.environ["GMAIL_SENDER_PASSWORD"])
 
-def email_pdf(application_id, request):
+def email_pdf(application_id, request, email_registrar):
     voter_email = request.form.get('email')
     recipients = set({voter_email, })
-    # if not current_app.debug or 'localhost' not in request.url_root:
-    if 'localhost' not in request.url_root:
-        registered_county = request.form['registered_county']
-        if registered_county in current_app.config["LOCALITIES"]:
-            recipients.add(current_app.config["LOCALITIES"][registered_county]['email'])
+    if email_registrar:
+        # if not current_app.debug or 'localhost' not in request.url_root:
+        if 'localhost' not in request.url_root:
+            registered_county = request.form['registered_county']
+            if registered_county in current_app.config["LOCALITIES"]:
+                recipients.add(current_app.config["LOCALITIES"][registered_county]['email'])
 
     yag.send(
         to=tuple(recipients),
