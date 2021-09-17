@@ -35,6 +35,10 @@ class Config:
     # CSRF_CHECK_REFERER = False
     CSRF_DISABLE = True
 
+    SESSION_COOKIE_SAMESITE = None
+    # SESSION_COOKIE_SECURE = True
+    REMEMBER_COOKIE_SECURE = True
+
     LANGUAGES = ['en', 'es']
     BABEL_TRANSLATION_DIRECTORIES = str(ROOT_PATH / "translations")
 
