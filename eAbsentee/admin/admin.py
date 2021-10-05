@@ -1,7 +1,6 @@
 import os
 import random
 import string
-from dateutil import parser
 from datetime import date, timedelta
 from flask import Blueprint, render_template, request, make_response, flash, redirect, session, url_for, send_file, send_from_directory, current_app, jsonify, Response, abort
 from flask_login import login_required, logout_user, current_user, login_user, logout_user
@@ -136,8 +135,8 @@ def register(key):
 @admin_bp.post('/api/remind/')
 def api_remind():
     if request.method == 'POST' and request.args.get('API_KEY') == os.environ['API_KEY']:
-        today = parser.parse(str(date.today() + timedelta(days=2)))
-        yesterday = parser.parse(str(date.today()))
+        yesterday = date.today()
+        today = yesterday + timedelta(days=2)
         users = User.query.filter(User.submission_time >= yesterday, User.submission_time <= today).all()
 
 
