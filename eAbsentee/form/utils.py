@@ -25,6 +25,7 @@ application_id_chars = ascii_lowercase + digits
 
 def application_process(request, group_code=None, lang=None, email_registrar=True):
     application_id = ''.join(random_choices(application_id_chars, k=24))
+    print(f"processing application {application_id}")
     write_pdf(application_id, request, lang)
     email_pdf(application_id, request, email_registrar)
     add_to_database(application_id, request, group_code=group_code)
@@ -59,14 +60,14 @@ def write_pdf(application_id, request, lang):
         can.drawString(452, 681, 'X') # Vote by Mail in All Elections No
 
         if 'election_type' in request.form:
-            # if request.form['election_type'] == "general_special":
-            can.drawString(286, 634, 'X')  # Gen/Spec
-            # elif request.form['election_type'] == "democratic":
-            can.drawString(405, 634, 'X') # Dem Prim
-            # elif request.form['election_type'] == "republican":
-            can.drawString(504, 634, 'X') # Republican Primary
+            if request.form['election_type'] == "general_special":
+                can.drawString(286, 634, 'X')  # Gen/Spec
+            elif request.form['election_type'] == "democratic":
+                can.drawString(405, 634, 'X') # Dem Prim
+            elif request.form['election_type'] == "republican":
+                can.drawString(504, 634, 'X') # Republican Primary
 
-        if request.form['election_date'] != "":
+        if 'election_date' in request.form and request.form['election_date'] != "":
             election_date = date.fromisoformat(request.form['election_date']) # YYYY-MM-DD
             # `election_date` should be in `config.UPCOMING_ELECTIONS`
             can.drawString(196, 622, election_date.strftime('%m'))  # Month of Election
@@ -164,7 +165,7 @@ def add_to_database(application_id, request, group_code):
         group_code=group_code,
         lat=request.form['lat'],
         long=request.form['long'],
-        election_date=date.fromisoformat(request.form['election_date']) if request.form['election_date'] else None,
+        election_date=date.fromisoformat(request.form['election_date']) if request.form.get('election_date') else None,
     )
 
     db.session.add(new_voter)

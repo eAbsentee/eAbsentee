@@ -19,10 +19,6 @@ form_bp = Blueprint(
     static_folder='static'
 )
 
-@form_bp.route('/confirmation/')
-def confirmation_page():
-    return render_template('confirmation.html')
-
 @form_bp.route('/form/', methods=['POST', 'GET'], defaults={'group': None})
 @form_bp.route('/form/<group>/', methods=['POST', 'GET'])
 def form(group):
@@ -32,8 +28,7 @@ def form(group):
     if request.method == 'POST':
         lang = get_locale().language
         application_process(request, group_code=group, lang=lang, email_registrar=True)
-        get_parameters = {'lang': lang} if 'lang' in request.args else {}
-        return redirect(url_for(f'form.{confirmation_page.__name__}', **get_parameters))
+        return render_template('confirmation.html')
     else:
         # if group is not None:
         #     if db.session.query(exists().where(GroupReference.group_code==group)).scalar():
@@ -49,8 +44,7 @@ def form_test():
     if request.method == 'POST':
         lang = get_locale().language
         application_process(request, lang=lang, email_registrar=False)
-        get_parameters = {'lang': lang} if 'lang' in request.args else {}
-        return redirect(url_for(f'form.{confirmation_page.__name__}', **get_parameters))
+        return render_template('confirmation.html')
     else:
         return render_template('form.html')
 
