@@ -43,9 +43,7 @@ class Config:
     BABEL_TRANSLATION_DIRECTORIES = str(ROOT_PATH / "translations")
 
     # https://www.elections.virginia.gov/casting-a-ballot/calendars-schedules/upcoming-elections.html
-    UPCOMING_ELECTIONS = [
-        date(2021, 11, 2),
-    ]
+    UPCOMING_ELECTIONS = []
     FORM_CLOSED = len(UPCOMING_ELECTIONS) == 0
 
     with open(basedir / 'static' / 'localities_info.json') as file:
