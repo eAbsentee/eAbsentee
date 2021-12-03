@@ -4,8 +4,7 @@
   /* trigger when page is ready */
   $(document).ready(function() {
 
-    $("#permanent_absentee_div").hide();
-    $("input[name=\"permanent_absentee\"]").change(function() {
+    $("input[name=\"permanent_absentee\"]").on("load change", function() {
       if (this.checked) {
         $("#permanent_absentee_div").slideDown();
         $("#one_election_div").slideUp();

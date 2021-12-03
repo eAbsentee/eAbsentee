@@ -44,7 +44,7 @@ class Config:
 
     # https://www.elections.virginia.gov/casting-a-ballot/calendars-schedules/upcoming-elections.html
     UPCOMING_ELECTIONS = []
-    FORM_CLOSED = len(UPCOMING_ELECTIONS) == 0
+    FORM_CLOSED = False # len(UPCOMING_ELECTIONS) == 0
 
     with open(basedir / 'static' / 'localities_info.json') as file:
         LOCALITIES = json_load(file)
