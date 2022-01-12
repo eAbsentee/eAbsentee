@@ -50,7 +50,7 @@ class Config:
         date(2022, 3, 1),  # Commonwealth's Attorney
         date(2022, 11, 8),  # General Election
     ]
-    FORM_CLOSED = len(UPCOMING_ELECTIONS) == 0
+    FORM_OPEN = len(UPCOMING_ELECTIONS) > 0
 
     with open(basedir / 'static' / 'localities_info.json') as file:
         LOCALITIES = json_load(file)

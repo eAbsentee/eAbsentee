@@ -4,7 +4,7 @@
 <section id="banner">
 	<div class="d-grid inner">
 		<h1>Vote Absentee Virginia</h1>
-		{% if config['FORM_CLOSED'] == true %}
+		{% if config['FORM_OPEN'] == false %}
 			<p>The deadline to request an absentee ballot has passed.</p>
 		{% else %}
 			<a href="{{ url_for('form.form') }}" class="btn btn-primary btn-lg text-white">Vote by Mail</a>

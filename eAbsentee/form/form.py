@@ -22,7 +22,7 @@ form_bp = Blueprint(
 @form_bp.route('/form/', methods=['POST', 'GET'], defaults={'group': None})
 @form_bp.route('/form/<group>/', methods=['POST', 'GET'])
 def form(group):
-    if current_app.config['FORM_CLOSED']:
+    if not current_app.config['FORM_OPEN']:
         return render_template('formclosed.html')
 
     if request.method == 'POST':
