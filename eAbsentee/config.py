@@ -44,10 +44,7 @@ class Config:
 
     # https://www.elections.virginia.gov/casting-a-ballot/calendars-schedules/upcoming-elections.html
     UPCOMING_ELECTIONS = [
-        date(2022, 1, 11),  # House of Delegates, 89th District
-        date(2022, 2, 8),  # Sussex County Board of Supervisors, Waverly District
-        date(2022, 2, 15),  # Powhatan County School Board, 4th District & Spotsylvania County Board of Supervisors, Livingston District
-        date(2022, 3, 1),  # Commonwealth's Attorney
+        date(2022, 6, 21),  # Party Primary Election
         date(2022, 11, 8),  # General Election
     ]
     FORM_OPEN = len(UPCOMING_ELECTIONS) > 0
