@@ -136,7 +136,7 @@
       <div class="card-body border-dark rounded-0">
         <div class="row mx-auto">
           <fieldset class="form-check">
-            <input class="form-check-input" type="checkbox" id="permanent_absentee" name="permanent_absentee" {% if not config.UPCOMING_ELECTIONS %}checked{% endif %}>
+            <input class="form-check-input" type="checkbox" id="permanent_absentee" name="permanent_absentee" {% if config.UPCOMING_ELECTIONS %}checked{% endif %}>
             <label class="form-check-label" for="permanent_absentee" class="form-label">
               {{ gettext("I'd like to vote by mail for all future elections until I instruct otherwise.") }}
             </label>
