@@ -16,7 +16,7 @@
         "physical_address": "1600 5th St Charlottesville, VA 22902-6495"
     },
     "Alexandria City": {
-        "email": "voteabsentee@alexandriava.gov",
+        "email": "voters@alexandriava.gov",
         "fax": "703-838-6449",
         "id": "7315adb8-47f9-4d29-a2d2-81ec7466ba26",
         "locality": "Alexandria City",
@@ -56,7 +56,7 @@
         "physical_address": "367 Virginia Ave Appomattox, VA 24522-4016"
     },
     "Arlington County": {
-        "email": "absentee@arlingtonva.us",
+        "email": "voters@arlingtonva.us",
         "fax": "703-228-3659",
         "id": "42670945-0e91-4bd6-83ad-cc3acf4a9a9c",
         "locality": "Arlington County",
@@ -104,7 +104,7 @@
         "physical_address": "2 E Main St Fincastle, VA 24090-3014"
     },
     "Bristol City": {
-        "email": "vote@bristolva.org",
+        "email": "blakley.morris@bristolva.org",
         "fax": "276-645-7331",
         "id": "93d29757-38c4-4a88-8c8b-2dde66e6d1e8",
         "locality": "Bristol City",
@@ -128,7 +128,7 @@
         "physical_address": "23784 Riverside Dr Grundy, VA 24614-6190"
     },
     "Buckingham County": {
-        "email": "buckinghamelections@embarqmail.com",
+        "email": "elections@buckinghamcounty.virginia.gov",
         "fax": "434-969-2060",
         "id": "84e19b92-72f9-4d3d-93c2-d836d39a2292",
         "locality": "Buckingham County",
@@ -152,7 +152,7 @@
         "physical_address": "41 Court House Ln Rustburg, VA 24588-9701"
     },
     "Caroline County": {
-        "email": "kmcvay@co.caroline.va.us",
+        "email": "kmcvay@vote.carolinecountyva.gov",
         "fax": "804-633-0362",
         "id": "827e8f7f-be33-4bbf-ae12-25bd31e265d7",
         "locality": "Caroline County",
@@ -168,7 +168,7 @@
         "physical_address": "605 Pine St Ste 3 Hillsville, VA 24343-1463"
     },
     "Charles City County": {
-        "email": "cbarneycastle@co.charles-city.va.us",
+        "email": "dharris@charlescityva.us",
         "fax": "804-829-6823",
         "id": "f30e5c2f-34dc-4b94-8093-49571d2b0036",
         "locality": "Charles City County",
@@ -176,7 +176,7 @@
         "physical_address": "10900 Courthouse Rd Ste 220 Charles City, VA 23030-3426"
     },
     "Charlotte County": {
-        "email": "charlottecovotes037@gmail.com",
+        "email": "jboothregistrar@charlottecountyva.gov",
         "fax": "434-542-4168",
         "id": "4c0182d5-64ed-4978-8a8a-2c43da22f063",
         "locality": "Charlotte County",
@@ -216,7 +216,7 @@
         "physical_address": "101 Chalmers Ct Berryville, VA 22611-1387"
     },
     "Colonial Heights City": {
-        "email": "schottj@colonialheightsva.gov",
+        "email": "Registrar@colonialheightsva.gov",
         "fax": "804-520-9209",
         "id": "b32e1214-47fe-4776-aa21-d233ddcd7a2d",
         "locality": "Colonial Heights City",
@@ -264,7 +264,7 @@
         "physical_address": "530 Main St Ste 100 Danville, VA 24541-1329"
     },
     "Dickenson County": {
-        "email": "rchildress@dickensonva.org",
+        "email": "kdeel@dickensonva.org",
         "fax": "276-926-8287",
         "id": "3698573b-10e5-4de1-9cac-201048c5fb78",
         "locality": "Dickenson County",
@@ -296,7 +296,7 @@
         "physical_address": "205 S Cross St Suite B Tappahannock, VA 22560"
     },
     "Fairfax City": {
-        "email": "registrar@fairfaxva.gov",
+        "email": "voting@fairfaxcounty.gov",
         "fax": "703-591-8364",
         "id": "1e4cbba5-fe11-40da-a00b-81cd45890544",
         "locality": "Fairfax City",
@@ -368,7 +368,7 @@
         "physical_address": "107 N Kent St Ste 102 Winchester, VA 22601-5039"
     },
     "Fredericksburg City": {
-        "email": "mchoffman@fredericksburgva.gov",
+        "email": "vote@vote.fredricksburgva.gov",
         "fax": "540-373-8381",
         "id": "ef61e82b-f7c1-4d73-8464-c5ea3202cb44",
         "locality": "Fredericksburg City",
@@ -376,7 +376,7 @@
         "physical_address": "601 Caroline St Ste 500A Fredericksburg, VA 22401-5954"
     },
     "Galax City": {
-        "email": "sreavis@galaxva.com",
+        "email": "dphipps@galaxva.com",
         "fax": "276-236-2889",
         "id": "cc38922c-587e-472b-b554-0d66ec8654f9",
         "locality": "Galax City",
@@ -408,7 +408,7 @@
         "physical_address": "1800 Sandy Hook Rd # 220 Goochland, VA 23063-3105"
     },
     "Grayson County": {
-        "email": "cwingate@graysoncountyva.gov",
+        "email": "sreavis@graysoncountyva.gov",
         "fax": "276-773-8042",
         "id": "1ea60567-478e-4602-b72d-510de57c34e8",
         "locality": "Grayson County",
@@ -456,7 +456,7 @@
         "physical_address": "7497 County Complex Rd Rm 119 Hanover, VA 23069-1529"
     },
     "Harrisonburg City": {
-        "email": "deborah.logan@harrisonburgva.gov",
+        "email": "mark.finks@HarrisonburgVA.gov",
         "fax": "540-432-7784",
         "id": "611c3a3e-011a-423b-a8da-ba87fae813d7",
         "locality": "Harrisonburg City",
@@ -472,7 +472,7 @@
         "physical_address": "4301 E Parham Rd Henrico, VA 23228-2745"
     },
     "Henry County": {
-        "email": "estone@co.henry.va.us",
+        "email": "vote@co.henry.va.us",
         "fax": "276-638-8278",
         "id": "789f87d4-3b32-4173-815a-65f6f821e82f",
         "locality": "Henry County",
@@ -536,7 +536,7 @@
         "physical_address": "180 Horse Landing Rd # 1 King William, VA 23086-2705"
     },
     "Lancaster County": {
-        "email": "sjett@lancova.com",
+        "email": "vote@lancova.com",
         "fax": "804-462-5228",
         "id": "24c5ccf1-e36a-4f59-8234-04789a8a9da3",
         "locality": "Lancaster County",
@@ -552,7 +552,7 @@
         "physical_address": "133 School Board PL Jonesville, VA 24263"
     },
     "Lexington City": {
-        "email": "jyowell@lexingtonva.gov",
+        "email": "jharris@lexingtonva.gov",
         "fax": "540-463-5310",
         "id": "49a0b916-1f61-4942-ac3f-e015b55ea724",
         "locality": "Lexington City",
@@ -592,7 +592,7 @@
         "physical_address": "825 Kemper St Lynchburg, VA 24501-1303"
     },
     "Madison County": {
-        "email": "govote113@verizon.net",
+        "email": "registrar@madisonco.virginia.gov",
         "fax": "540-948-7825",
         "id": "f4b32946-8662-4311-acdc-3e709815c36e",
         "locality": "Madison County",
@@ -616,7 +616,7 @@
         "physical_address": "1 Park Center Ct Manassas Park, VA 20111-5270"
     },
     "Martinsville City": {
-        "email": "cbarbour@ci.martinsville.va.us",
+        "email": "sworkman@ci.martinsville.va.us",
         "fax": "276-403-5258",
         "id": "c5736928-4566-4957-aad2-2d3ba9e8c673",
         "locality": "Martinsville City",
@@ -656,7 +656,7 @@
         "physical_address": "755 Roanoke St Ste 1F Christiansburg, VA 24073-3169"
     },
     "Nelson County": {
-        "email": "jbritt@nelsoncounty.org",
+        "email": "registrar@nelsoncounty.org",
         "fax": "434-263-8601",
         "id": "015d2b82-2857-4cb5-bc75-e8ca26f20f83",
         "locality": "Nelson County",
@@ -664,7 +664,7 @@
         "physical_address": "571 Front ST Lovingston, VA 22949"
     },
     "New Kent County": {
-        "email": "kmbartlett@newkent-va.us",
+        "email": "psimonethornton@newkent-va.us",
         "fax": "804-966-8536",
         "id": "58a82c57-8834-472b-a080-3bdad8687c2a",
         "locality": "New Kent County",
@@ -704,7 +704,7 @@
         "physical_address": "Heathsville, VA 22473-3336"
     },
     "Norton City": {
-        "email": "govote720@yahoo.com",
+        "email": "gcarlton@nortonva.gov",
         "fax": "276-679-0754",
         "id": "b22ed879-6989-4d60-8ec8-0ecac6864ff9",
         "locality": "Norton City",
@@ -712,7 +712,7 @@
         "physical_address": "201 Park Ave NE Norton, VA 24273-1505"
     },
     "Nottoway County": {
-        "email": "govote135@gmail.com",
+        "email": "vote@nottoway.org",
         "fax": "434-645-1636",
         "id": "83119eb9-3a23-4645-a66a-29c25c92b36f",
         "locality": "Nottoway County",
@@ -752,7 +752,7 @@
         "physical_address": "229 N Market St Petersburg, VA 23803-3207"
     },
     "Pittsylvania County": {
-        "email": "kelly.bailess@pittgov.org",
+        "email": "kelly.keesee@pittgov.org",
         "fax": "434-432-7973",
         "id": "81d78070-8cc1-4fb5-b667-d853148a2e4c",
         "locality": "Pittsylvania County",
@@ -800,7 +800,7 @@
         "physical_address": "6602 Courts Dr Ste 243 Prince George, VA 23875-2503"
     },
     "Prince William County": {
-        "email": "absenteevoting@pwcgov.org",
+        "email": "pwcvote@pwcgov.org",
         "fax": "703-792-6461",
         "id": "0a929de5-ee6a-47c0-8dfc-7ed92ec49d9a",
         "locality": "Prince William County",
@@ -808,7 +808,7 @@
         "physical_address": "9250 Lee Ave Ste 1 Manassas, VA 20110-5554"
     },
     "Pulaski County": {
-        "email": "kwebb@pulaskicounty.org",
+        "email": "vote@pulaskicounty.org",
         "fax": "540-994-5883",
         "id": "1f4f0d44-bf0e-4d5e-a544-990799fa417b",
         "locality": "Pulaski County",
@@ -832,7 +832,7 @@
         "physical_address": "262 Gay STA Washington, VA 22747"
     },
     "Richmond City": {
-        "email": "voterregistration@richmondgov.com",
+        "email": "vote@rva.gov",
         "fax": "804-646-7848",
         "id": "186fd109-f099-43c0-bb26-ed067b5aa78b",
         "locality": "Richmond City",
@@ -856,7 +856,7 @@
         "physical_address": "317 Kimball Ave NE Roanoke, VA 24016-2005"
     },
     "Roanoke County": {
-        "email": "acloeter@roanokecountyva.gov",
+        "email": "elections@roanokecountyva.gov",
         "fax": "540-772-2115",
         "id": "c5ecf0fa-5db1-4de1-bd20-4fa50cb7490e",
         "locality": "Roanoke County",
@@ -912,7 +912,7 @@
         "physical_address": "600 N Main St Ste 103 Woodstock, VA 22664-1855"
     },
     "Smyth County": {
-        "email": "sandy.elswick@hotmail.com",
+        "email": "registrar@smythcounty.org",
         "fax": "276-783-9055",
         "id": "2055ca5c-ff4e-4172-963c-8b0ee2ee8ec3",
         "locality": "Smyth County",
@@ -920,7 +920,7 @@
         "physical_address": "121 Bagley Cir Ste 422 Marion, VA 24354-3140"
     },
     "Southampton County": {
-        "email": "lburgess@socogovote.com",
+        "email": "lburgess@southamptoncounty.org",
         "fax": "757-653-9401",
         "id": "a5821066-8969-4e63-b816-de261ee24937",
         "locality": "Southampton County",
@@ -944,7 +944,7 @@
         "physical_address": "1300 Courthouse Rd Stafford, VA 22554-7232"
     },
     "Staunton City": {
-        "email": "goldsmithmg@ci.staunton.va.us",
+        "email": "vote@ci.staunton.va.us",
         "fax": "540-332-3834",
         "id": "c9e8667b-2702-468b-a06a-8f654f6bf867",
         "locality": "Staunton City",
@@ -952,7 +952,7 @@
         "physical_address": "116 W Beverley St Fl 1 Staunton, VA 24401-4283"
     },
     "Suffolk City": {
-        "email": "ssaunders@suffolkva.us",
+        "email": "blawrence@suffolkva.us",
         "fax": "757-514-7759",
         "id": "b63ccbeb-c5e3-4b55-a8ac-6d37f518b928",
         "locality": "Suffolk City",
@@ -968,7 +968,7 @@
         "physical_address": "45 School ST Surry, VA 23883"
     },
     "Sussex County": {
-        "email": "right2voteSUSSEX@yahoo.com",
+        "email": "smessier@sussexcounty.gov",
         "fax": "434-246-4315",
         "id": "362f5060-7f64-4080-9323-92736658ca6c",
         "locality": "Sussex County",
@@ -1006,7 +1006,7 @@
         "physical_address": "465 W 15th St Ste 800 Front Royal, VA 22630-2835"
     },
     "Washington County": {
-        "email": "dlyall@washcova.com",
+        "email": "vote@washcova.com",
         "fax": "276-676-6200",
         "id": "c9b0be0d-d473-4123-9d76-e1714f50f1c6",
         "locality": "Washington County",
