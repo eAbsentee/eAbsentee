@@ -1,14 +1,18 @@
 $(function() {
-  let myAuthId = "13682609015195317";
+  let myStreetAuthId = "13682609015195317";
+  let myAuthId = "ba9116e4-3a4b-1d2b-0645-e49756ec50b9";
+  let myAuthToken = "gRUpS1e5lPwy3exuxjQb"
 
   function getSuggestions(search) {
     // console.log(search);
     $.ajax({
-      url: "https://us-autocomplete.api.smartystreets.com/suggest?",
+      url: "https://us-autocomplete-pro.api.smartystreets.com/lookup?",
       data: {
-        "key": myAuthId,
-        "prefix": search,
-        "state_filter": "VA"
+        "auth-id": myAuthId,
+        "auth-token": myAuthToken,
+        "search": search,
+        "include_only_states": "VA",
+        "license": "us-autocomplete-pro-cloud"
       },
       dataType: "jsonp",
       success: function(data) {
@@ -28,7 +32,7 @@ $(function() {
     $.ajax({
       url: "https://us-street.api.smartystreets.com/street-address",
       data: {
-        "key": myAuthId,
+        "key": myStreetAuthId,
         "street": address[0],
         "city": address[1],
         "state": address[2],
