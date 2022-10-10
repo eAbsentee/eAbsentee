@@ -1,7 +1,8 @@
 $(function() {
   let myStreetAuthId = "13682609015195317";
   let myAuthId = "ba9116e4-3a4b-1d2b-0645-e49756ec50b9";
-  let myAuthToken = "gRUpS1e5lPwy3exuxjQb"
+  //let myAuthId = "10";
+  let myAuthToken = "gRUpS1e5lPwy3exuxjQb";
 
   function getSuggestions(search) {
     // console.log(search);
