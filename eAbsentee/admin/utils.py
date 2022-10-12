@@ -78,5 +78,5 @@ def email_reminder(email):
         subject=f'Reminder to check eAbsentee data portal',
         contents=f'New absentee ballot applications were submitted ' +
         'recently using your eAbsentee.org group codes. ' +
-        'Please email raunak@eAbsentee.org with any questions.'
+        'Please email james@eAbsentee.org with any questions.'
     )
