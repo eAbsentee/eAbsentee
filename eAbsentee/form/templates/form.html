@@ -85,7 +85,7 @@
             <h3 class="text-capitalize">{{ gettext("Where are you registered to vote?") }}</h3>
             <p>{{ gettext("Your residence address is where you live and are registered to vote.") }}</p>
           </div>
-          <div class="col-8">
+          <!-- <div class="col-8">
             <fieldset class="form-floating">
               <input type="text" class="form-control" id="us-autocomplete-pro-address-input" name="us-autocomplete-pro-address-input" placeholder="{{ gettext('Example: 123 Main St, Fairfax, VA 12345') }}" required>
               <ul class="us-autocomplete-pro-menu" style="display:none; position:absolute; z-index:2;"></ul>
@@ -97,9 +97,9 @@
               <input type="text" class="form-control" id="apt" name="apt" placeholder="204">
               <label for="apt" class="form-label">{{ gettext("Apartment") }}</label>
             </fieldset>
-          </div>
+          </div> -->
 
-          <div class="d-none">
+          <!-- <div class="d-none">
             <fieldset class="mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12 text-center">
               <label for="address" class="form-label">{{ gettext("Street Address") }}</label>
               <input type="hidden" class="form-control" id="address" name="address" autocomplete="street-address" required>
@@ -127,7 +127,38 @@
               <label for="long" class="form-label">{{ gettext("Longitude") }}</label>
               <input type="text" class="form-control" id="long" name="long">
             </fieldset>
+          </div> -->
+          <div class="col-8">
+            <fieldset class="form-floating">
+              <input type="text" class="form-control" id="address" name="address" autocomplete="street-address" required>
+              <label for="address" class="form-label">{{ gettext("Street Address") }}</label>
+            </fieldset>
           </div>
+          <div class="col-4">
+            <fieldset class="form-floating">
+              <input type="text" class="form-control" id="apt" name="apt" placeholder="204">
+              <label for="apt" class="form-label">{{ gettext("Apartment") }}</label>
+            </fieldset>
+          </div>
+          <div class="col-4">
+            <fieldset class="form-floating">
+              <input type="text" class="form-control" id="city" name="city" autocomplete="address-level2" required>
+              <label for="city" class="form-label">{{ gettext("City") }}</label>
+            </fieldset>
+          </div>
+          <div class="col-4">
+            <fieldset class="form-floating">
+              <input type="text" class="form-control" id="zip" name="zip" minlength="5" maxlength="5" pattern="^\d{5}$" digits autocomplete="postal-code" required>
+              <label for="zip" class="form-label">{{ gettext("ZIP Code") }}</label>
+            </fieldset>
+          </div>
+          <div class="col-4">
+            <fieldset class="form-floating">
+              <input type="text" class="form-control" id="registered_county" name="registered_county" required>
+              <label for="registered_county" class="form-label">{{ gettext("County:") }}</label>
+            </fieldset>
+          </div>
+
         </div>
         <hr style="border-top: dotted 1px;" />
       </div>
