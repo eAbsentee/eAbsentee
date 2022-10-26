@@ -163,8 +163,8 @@ def add_to_database(application_id, request, group_code):
         full_address=(request.form['address'] + ((' ' + request.form['apt']) if request.form['apt'] else '') + ', ' + request.form['city'] + ', ' + 'VA' + ' ' + request.form['zip']),
         ip=request.environ.get('HTTP_X_REAL_IP', request.remote_addr),
         group_code=group_code,
-        lat=request.form['lat'],
-        long=request.form['long'],
+        lat=request.form['lat'] if 'lat' in request.form else None,
+        long=request.form['long'] if 'long' in request.form else None,
         election_date=date.fromisoformat(request.form['election_date']) if request.form.get('election_date') else None,
     )
 
