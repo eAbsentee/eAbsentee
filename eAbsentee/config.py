@@ -44,7 +44,7 @@ class Config:
 
     # https://www.elections.virginia.gov/casting-a-ballot/calendars-schedules/upcoming-elections.html
     UPCOMING_ELECTIONS = [
-        date(2022, 11, 8),  # General Election
+        #date(2022, 11, 8),  # General Election
     ]
     FORM_OPEN = len(UPCOMING_ELECTIONS) > 0
 
