@@ -36,10 +36,12 @@ def get_groups():
     group_codes = []
     if current_user.is_admin():
         for group in User.query.with_entities(User.group_code).distinct().all():
-            group_codes.append(group.group_code)
+            if group.group_code != None:
+                group_codes.append(group.group_code)
     else:
         for group_reference in GroupReference.query.filter_by(email=current_user.email).all():
-            group_codes.append(group_reference.group_code)
+            if group.group_code != None:
+                group_codes.append(group_reference.group_code)
     group_codes = sorted(group_codes)
     return group_codes
 
