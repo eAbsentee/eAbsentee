@@ -40,7 +40,7 @@ def get_groups():
                 group_codes.append(group.group_code)
     else:
         for group_reference in GroupReference.query.filter_by(email=current_user.email).all():
-            if group.group_code != None:
+            if group_reference.group_code != None:
                 group_codes.append(group_reference.group_code)
     group_codes = sorted(group_codes)
     return group_codes
