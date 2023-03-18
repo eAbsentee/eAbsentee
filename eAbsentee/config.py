@@ -44,7 +44,6 @@ class Config:
 
     # https://www.elections.virginia.gov/casting-a-ballot/calendars-schedules/upcoming-elections.html
     UPCOMING_ELECTIONS = [
-        date(2023, 3, 28), # Special Election
         date(2023, 4, 4), # Special Election
         date(2023, 4, 11) # Special Election
     ]
