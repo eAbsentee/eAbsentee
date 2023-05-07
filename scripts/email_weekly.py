@@ -4,6 +4,8 @@ This script is a scheduled call to the remind web endpoint. That endpoint emails
 This script should be scheduled daily.
 """
 
+# test for local commit
+
 import os
 import sys
 import requests
