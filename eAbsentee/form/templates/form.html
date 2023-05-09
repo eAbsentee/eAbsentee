@@ -35,7 +35,7 @@
 
     </div>
 
-    <form method="POST" class="needs-validation" novalidate>
+    <form method="POST" class="needs-validation" id="applicant-form" novalidate>
       <div class="card-body rounded-0 border-dark">
         <!-- Your Information -->
         <div class="row mx-auto g-3">
@@ -919,7 +919,7 @@
 
       <!-- <hr style="border-top: dotted 1px;" /> -->
       <div class="card border-dark rounded-bottom col-6 mx-auto">
-        <button class="bg-white" type="submit">Submit</button>
+        <button class="bg-white" id="submit_button" type="submit">Submit</button>
       </div>
 
       <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">

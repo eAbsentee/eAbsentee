@@ -93,6 +93,14 @@
     });
 
     $(":input").inputmask();
+
+    // disable submit button when pressed, so that multiple requests don't get submitted
+    $("#submit_button").click(function() {
+      if (document.querySelector('#applicant-form').checkValidity()){
+        $(this).prop("disabled", true);
+        $(this).html("Submitting...");
+      }
+    });
   });
 
 })(window.jQuery);
