@@ -82,3 +82,13 @@ def email_reminder(email):
         'recently using your eAbsentee.org group codes. ' +
         'Please email james@eAbsentee.org with any questions.'
     )
+    
+def email_testing(email):
+    yagmail.SMTP(os.environ['GMAIL_SENDER_ADDRESS'], os.environ['GMAIL_SENDER_PASSWORD']).send(
+        to=email,
+        subject=f'eAbsentee Daily Check Successful',
+        contents=f'If you are receiving this email, this means that' +
+        'eAbsentee is functional and adding to the mySQL database. ' +
+        'Please visit the website to manually check that it is still online' + 
+        'and email brian@eAbsentee.org with any questions.'
+    )
