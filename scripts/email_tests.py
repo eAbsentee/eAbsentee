@@ -69,30 +69,23 @@ with sshtunnel.SSHTunnelForwarder(
         def get_long(self):
             return self.long
 
-    # Insert your spreadsheet name here
-    filename = 'INSERT'
+    # Create a hardcoded User instance
+    new_user = User(
+        application_id='123',
+        name='TESTING USER',
+        submission_time=datetime.utcnow(),
+        county='TESTING COUNTY',
+        email='testing@testing.com',
+        phonenumber='1111111111',
+        full_address='TESTING ADDRESS',
+        ip='127.0.0.1',
+        group_code='testing',
+        lat='12.345',
+        long='67.890'
+    )
 
-    with open(filename, 'r') as csvfile:
-        csvreader = csv.reader(csvfile)
-
-        for row in csvreader:
-            from dateutil import parser
-            new_voter = User(
-                application_id=row[0],
-                name=row[1],
-                submission_time=parser.parse(row[3]),
-                county=row[2],
-                email=row[4],
-                phonenumber=row[5],
-                full_address=row[6],
-                ip=row[7],
-                group_code=row[8],
-                lat=row[9],
-                long=row[10]
-            )
-
-            session.add(new_voter)
-            session.commit()
+    session.add(new_user)
+    session.commit()
             
             
             
