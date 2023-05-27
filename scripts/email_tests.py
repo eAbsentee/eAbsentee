@@ -71,7 +71,7 @@ with sshtunnel.SSHTunnelForwarder(
 
     # Create a hardcoded User instance
     new_user = User(
-        application_id='123',
+        application_id='999999999',
         name='TESTING USER',
         submission_time=datetime.utcnow(),
         county='TESTING COUNTY',
