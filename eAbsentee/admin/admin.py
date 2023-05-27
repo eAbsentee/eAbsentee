@@ -154,16 +154,8 @@ def api_remind():
 @admin_bp.post('/api/testing/')
 def api_testing():
     if request.method == 'POST' and request.args.get('API_KEY') == os.environ['API_KEY']:
-        yesterday = date.today()
-        today = yesterday + timedelta(days=2)
-        users = User.query.filter(User.submission_time >= yesterday, User.submission_time <= today).all()
-
-        for group_code in frozenset(user.group_code for user in users):
-            for group_reference in GroupReference.query.filter_by(group_code=group_code).all():
-                if 'localhost' not in request.url_root:
-                    email_reminder(group_reference.email)
-                else:
-                    email_reminder(group_reference.email)
+        if 'localhost' not in request.url_root:
+            email_testing('brian@eabsentee.org')
 
         return Response('', status=200, mimetype='application/json')
     else:
