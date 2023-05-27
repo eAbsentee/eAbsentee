@@ -19,6 +19,6 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 params = {'API_KEY': os.environ['API_KEY']}
 if os.environ['FLASK_DEBUG'] == 'True':
-    requests.post('http://localhost:5000/api/remind/', params=params)
+    requests.post('http://localhost:5000/api/testing/', params=params)
 else:
-    requests.post('https://www.eabsentee.org/api/remind/', params=params)
+    requests.post('https://www.eabsentee.org/api/testing/', params=params)
