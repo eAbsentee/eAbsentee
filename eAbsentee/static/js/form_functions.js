@@ -95,10 +95,10 @@
     $(":input").inputmask();
 
     // disable submit button when pressed, so that multiple requests don't get submitted
-    $("#submit_button").click(function() {
+    $("#applicant-form").submit(function() {
       if (document.querySelector('#applicant-form').checkValidity()){
-        $(this).prop("disabled", true);
-        $(this).html("Submitting...");
+        $("#submit_button").prop('disabled', 'disabled');
+        $("#submit_button").text("Submitting...");
       }
     });
   });
