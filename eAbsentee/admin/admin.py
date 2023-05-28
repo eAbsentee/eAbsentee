@@ -154,8 +154,7 @@ def api_remind():
 @admin_bp.post('/api/testing/')
 def api_testing():
     if request.method == 'POST' and request.args.get('API_KEY') == os.environ['API_KEY']:
-        if 'localhost' not in request.url_root:
-            email_testing('brian@eabsentee.org')
+        email_testing('brian@eabsentee.org')
 
         return Response('', status=200, mimetype='application/json')
     else:
