@@ -112,12 +112,12 @@ python-versions = ">=3.6"
 cffi = ">=1.12"
 
 [package.extras]
-docs = ["sphinx (>=1.6.5,!=1.8.0,!=3.1.0,!=3.1.1)", "sphinx-rtd-theme"]
-docstest = ["pyenchant (>=1.6.11)", "twine (>=1.12.0)", "sphinxcontrib-spelling (>=4.0.1)"]
+docs = ["sphinx (>=1.6.5,!=1.8.0,!=3.1.0,!=3.1.1)", "sphinx_rtd_theme"]
+docstest = ["pyenchant (>=1.6.11)", "sphinxcontrib-spelling (>=4.0.1)", "twine (>=1.12.0)"]
 pep8test = ["black", "flake8", "flake8-import-order", "pep8-naming"]
 sdist = ["setuptools_rust (>=0.11.4)"]
 ssh = ["bcrypt (>=3.1.5)"]
-test = ["pytest (>=6.2.0)", "pytest-cov", "pytest-subtests", "pytest-xdist", "pretend", "iso8601", "pytz", "hypothesis (>=1.11.4,!=3.79.2)"]
+test = ["hypothesis (>=1.11.4,!=3.79.2)", "iso8601", "pretend", "pytest (>=6.2.0)", "pytest-cov", "pytest-subtests", "pytest-xdist", "pytz"]
 
 [[package]]
 name = "cssselect"
@@ -139,8 +139,8 @@ python-versions = ">=3.6"
 importlib-metadata = {version = "*", markers = "python_version < \"3.8\""}
 
 [package.extras]
-docs = ["sphinx", "jaraco.packaging (>=8.2)", "rst.linker (>=1.9)"]
-testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-cov", "pytest-enabler (>=1.0.1)", "mock", "lxml", "cssselect", "pytest-black (>=0.3.7)", "pytest-mypy", "importlib-resources"]
+docs = ["jaraco.packaging (>=8.2)", "rst.linker (>=1.9)", "sphinx"]
+testing = ["cssselect", "importlib-resources", "lxml", "mock", "pytest (>=4.6)", "pytest-black (>=0.3.7)", "pytest-checkdocs (>=2.4)", "pytest-cov", "pytest-enabler (>=1.0.1)", "pytest-flake8", "pytest-mypy"]
 
 [[package]]
 name = "flask"
@@ -175,7 +175,7 @@ Jinja2 = ">=2.5"
 pytz = "*"
 
 [package.extras]
-dev = ["pytest", "pytest-mock", "bumpversion", "ghp-import", "sphinx", "pallets-sphinx-themes"]
+dev = ["Pallets-Sphinx-Themes", "bumpversion", "ghp-import", "pytest", "pytest-mock", "sphinx"]
 
 [[package]]
 name = "flask-bcrypt"
@@ -256,7 +256,7 @@ optional = false
 python-versions = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*"
 
 [package.extras]
-docs = ["sphinx"]
+docs = ["Sphinx"]
 
 [[package]]
 name = "idna"
@@ -279,9 +279,9 @@ typing-extensions = {version = ">=3.6.4", markers = "python_version < \"3.8\""}
 zipp = ">=0.5"
 
 [package.extras]
-docs = ["sphinx", "jaraco.packaging (>=8.2)", "rst.linker (>=1.9)"]
+docs = ["jaraco.packaging (>=8.2)", "rst.linker (>=1.9)", "sphinx"]
 perf = ["ipython"]
-testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-cov", "pytest-enabler (>=1.0.1)", "packaging", "pyfakefs", "flufl.flake8", "pytest-perf (>=0.9.2)", "pytest-black (>=0.3.7)", "pytest-mypy", "importlib-resources (>=1.3)"]
+testing = ["flufl.flake8", "importlib-resources (>=1.3)", "packaging", "pyfakefs", "pytest (>=6)", "pytest-black (>=0.3.7)", "pytest-checkdocs (>=2.4)", "pytest-cov", "pytest-enabler (>=1.0.1)", "pytest-flake8", "pytest-mypy", "pytest-perf (>=0.9.2)"]
 
 [[package]]
 name = "importlib-resources"
@@ -295,8 +295,8 @@ python-versions = ">=3.6"
 zipp = {version = ">=3.1.0", markers = "python_version < \"3.10\""}
 
 [package.extras]
-docs = ["sphinx", "jaraco.packaging (>=8.2)", "rst.linker (>=1.9)"]
-testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-cov", "pytest-enabler (>=1.0.1)", "pytest-black (>=0.3.7)", "pytest-mypy"]
+docs = ["jaraco.packaging (>=8.2)", "rst.linker (>=1.9)", "sphinx"]
+testing = ["pytest (>=6)", "pytest-black (>=0.3.7)", "pytest-checkdocs (>=2.4)", "pytest-cov", "pytest-enabler (>=1.0.1)", "pytest-flake8", "pytest-mypy"]
 
 [[package]]
 name = "itsdangerous"
@@ -331,23 +331,25 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, != 3.4.*"
 [package.extras]
 cssselect = ["cssselect (>=0.7)"]
 html5 = ["html5lib"]
-htmlsoup = ["beautifulsoup4"]
+htmlsoup = ["BeautifulSoup4"]
 source = ["Cython (>=0.29.7)"]
 
 [[package]]
-name = "mako"
-version = "1.1.6"
-description = "A super-fast templating language that borrows the  best ideas from the existing templating languages."
+name = "Mako"
+version = "1.2.2"
+description = "A super-fast templating language that borrows the best ideas from the existing templating languages."
 category = "main"
 optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+python-versions = ">=3.7"
 
 [package.dependencies]
+importlib-metadata = {version = "*", markers = "python_version < \"3.8\""}
 MarkupSafe = ">=0.9.2"
 
 [package.extras]
-babel = ["babel"]
+babel = ["Babel"]
 lingua = ["lingua"]
+testing = ["pytest"]
 
 [[package]]
 name = "markupsafe"
@@ -395,9 +397,9 @@ cryptography = ">=2.5"
 pynacl = ">=1.0.1"
 
 [package.extras]
-all = ["pyasn1 (>=0.1.7)", "pynacl (>=1.0.1)", "bcrypt (>=3.1.3)", "invoke (>=1.3)", "gssapi (>=1.4.1)", "pywin32 (>=2.1.8)"]
-ed25519 = ["pynacl (>=1.0.1)", "bcrypt (>=3.1.3)"]
-gssapi = ["pyasn1 (>=0.1.7)", "gssapi (>=1.4.1)", "pywin32 (>=2.1.8)"]
+all = ["bcrypt (>=3.1.3)", "gssapi (>=1.4.1)", "invoke (>=1.3)", "pyasn1 (>=0.1.7)", "pynacl (>=1.0.1)", "pywin32 (>=2.1.8)"]
+ed25519 = ["bcrypt (>=3.1.3)", "pynacl (>=1.0.1)"]
+gssapi = ["gssapi (>=1.4.1)", "pyasn1 (>=0.1.7)", "pywin32 (>=2.1.8)"]
 invoke = ["invoke (>=1.3)"]
 
 [[package]]
@@ -424,8 +426,8 @@ lxml = "*"
 requests = "*"
 
 [package.extras]
-dev = ["tox", "twine", "therapist", "black", "flake8", "wheel"]
-test = ["nose", "mock"]
+dev = ["black", "flake8", "therapist", "tox", "twine", "wheel"]
+test = ["mock", "nose"]
 
 [[package]]
 name = "protobuf"
@@ -456,8 +458,8 @@ cffi = ">=1.4.1"
 six = "*"
 
 [package.extras]
-docs = ["sphinx (>=1.6.5)", "sphinx-rtd-theme"]
-tests = ["pytest (>=3.2.1,!=3.3.0)", "hypothesis (>=3.27.0)"]
+docs = ["sphinx (>=1.6.5)", "sphinx_rtd_theme"]
+tests = ["hypothesis (>=3.27.0)", "pytest (>=3.2.1,!=3.3.0)"]
 
 [[package]]
 name = "pypdf2"
@@ -550,25 +552,25 @@ greenlet = {version = "!=0.4.17", markers = "python_version >= \"3\" and (platfo
 importlib-metadata = {version = "*", markers = "python_version < \"3.8\""}
 
 [package.extras]
-aiomysql = ["greenlet (!=0.4.17)", "aiomysql"]
-aiosqlite = ["typing_extensions (!=3.10.0.1)", "greenlet (!=0.4.17)", "aiosqlite"]
+aiomysql = ["aiomysql", "greenlet (!=0.4.17)"]
+aiosqlite = ["aiosqlite", "greenlet (!=0.4.17)", "typing_extensions (!=3.10.0.1)"]
 asyncio = ["greenlet (!=0.4.17)"]
-asyncmy = ["greenlet (!=0.4.17)", "asyncmy (>=0.2.3)"]
+asyncmy = ["asyncmy (>=0.2.3)", "greenlet (!=0.4.17)"]
 mariadb_connector = ["mariadb (>=1.0.1)"]
 mssql = ["pyodbc"]
 mssql_pymssql = ["pymssql"]
 mssql_pyodbc = ["pyodbc"]
-mypy = ["sqlalchemy2-stubs", "mypy (>=0.910)"]
-mysql = ["mysqlclient (>=1.4.0,<2)", "mysqlclient (>=1.4.0)"]
+mypy = ["mypy (>=0.910)", "sqlalchemy2-stubs"]
+mysql = ["mysqlclient (>=1.4.0)", "mysqlclient (>=1.4.0,<2)"]
 mysql_connector = ["mysql-connector-python"]
-oracle = ["cx_oracle (>=7,<8)", "cx_oracle (>=7)"]
+oracle = ["cx_oracle (>=7)", "cx_oracle (>=7,<8)"]
 postgresql = ["psycopg2 (>=2.7)"]
-postgresql_asyncpg = ["greenlet (!=0.4.17)", "asyncpg"]
+postgresql_asyncpg = ["asyncpg", "greenlet (!=0.4.17)"]
 postgresql_pg8000 = ["pg8000 (>=1.16.6)"]
 postgresql_psycopg2binary = ["psycopg2-binary"]
 postgresql_psycopg2cffi = ["psycopg2cffi"]
-pymysql = ["pymysql (<1)", "pymysql"]
-sqlcipher = ["sqlcipher3-binary"]
+pymysql = ["pymysql", "pymysql (<1)"]
+sqlcipher = ["sqlcipher3_binary"]
 
 [[package]]
 name = "sshtunnel"
@@ -604,7 +606,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, <4"
 
 [package.extras]
 brotli = ["brotlipy (>=0.6.0)"]
-secure = ["pyOpenSSL (>=0.14)", "cryptography (>=1.3.4)", "idna (>=2.0.0)", "certifi", "ipaddress"]
+secure = ["certifi", "cryptography (>=1.3.4)", "idna (>=2.0.0)", "ipaddress", "pyOpenSSL (>=0.14)"]
 socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 
 [[package]]
@@ -641,8 +643,8 @@ optional = false
 python-versions = ">=3.6"
 
 [package.extras]
-docs = ["sphinx", "jaraco.packaging (>=8.2)", "rst.linker (>=1.9)"]
-testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-cov", "pytest-enabler (>=1.0.1)", "jaraco.itertools", "func-timeout", "pytest-black (>=0.3.7)", "pytest-mypy"]
+docs = ["jaraco.packaging (>=8.2)", "rst.linker (>=1.9)", "sphinx"]
+testing = ["func-timeout", "jaraco.itertools", "pytest (>=4.6)", "pytest-black (>=0.3.7)", "pytest-checkdocs (>=2.4)", "pytest-cov", "pytest-enabler (>=1.0.1)", "pytest-flake8", "pytest-mypy"]
 
 [metadata]
 lock-version = "1.1"
@@ -659,10 +661,13 @@ babel = [
     {file = "Babel-2.9.1.tar.gz", hash = "sha256:bc0c176f9f6a994582230df350aa6e05ba2ebe4b3ac317eab29d9be5d2768da0"},
 ]
 bcrypt = [
+    {file = "bcrypt-3.2.0-cp36-abi3-macosx_10_10_universal2.whl", hash = "sha256:b589229207630484aefe5899122fb938a5b017b0f4349f769b8c13e78d99a8fd"},
     {file = "bcrypt-3.2.0-cp36-abi3-macosx_10_9_x86_64.whl", hash = "sha256:c95d4cbebffafcdd28bd28bb4e25b31c50f6da605c81ffd9ad8a3d1b2ab7b1b6"},
     {file = "bcrypt-3.2.0-cp36-abi3-manylinux1_x86_64.whl", hash = "sha256:63d4e3ff96188e5898779b6057878fecf3f11cfe6ec3b313ea09955d587ec7a7"},
     {file = "bcrypt-3.2.0-cp36-abi3-manylinux2010_x86_64.whl", hash = "sha256:cd1ea2ff3038509ea95f687256c46b79f5fc382ad0aa3664d200047546d511d1"},
     {file = "bcrypt-3.2.0-cp36-abi3-manylinux2014_aarch64.whl", hash = "sha256:cdcdcb3972027f83fe24a48b1e90ea4b584d35f1cc279d76de6fc4b13376239d"},
+    {file = "bcrypt-3.2.0-cp36-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_24_x86_64.whl", hash = "sha256:a0584a92329210fcd75eb8a3250c5a941633f8bfaf2a18f81009b097732839b7"},
+    {file = "bcrypt-3.2.0-cp36-abi3-musllinux_1_1_x86_64.whl", hash = "sha256:56e5da069a76470679f312a7d3d23deb3ac4519991a0361abc11da837087b61d"},
     {file = "bcrypt-3.2.0-cp36-abi3-win32.whl", hash = "sha256:a67fb841b35c28a59cebed05fbd3e80eea26e6d75851f0574a9273c80f3e9b55"},
     {file = "bcrypt-3.2.0-cp36-abi3-win_amd64.whl", hash = "sha256:81fec756feff5b6818ea7ab031205e1d323d8943d237303baca2c5f9c7846f34"},
     {file = "bcrypt-3.2.0.tar.gz", hash = "sha256:5b93c1726e50a93a033c36e5ca7fdcd29a5c7395af50a6892f5d9e7c6cfbfb29"},
@@ -812,6 +817,7 @@ greenlet = [
     {file = "greenlet-1.1.2-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:97e5306482182170ade15c4b0d8386ded995a07d7cc2ca8f27958d34d6736497"},
     {file = "greenlet-1.1.2-cp310-cp310-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:e6a36bb9474218c7a5b27ae476035497a6990e21d04c279884eb10d9b290f1b1"},
     {file = "greenlet-1.1.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:abb7a75ed8b968f3061327c433a0fbd17b729947b400747c334a9c29a9af6c58"},
+    {file = "greenlet-1.1.2-cp310-cp310-musllinux_1_1_x86_64.whl", hash = "sha256:b336501a05e13b616ef81ce329c0e09ac5ed8c732d9ba7e3e983fcc1a9e86965"},
     {file = "greenlet-1.1.2-cp310-cp310-win_amd64.whl", hash = "sha256:14d4f3cd4e8b524ae9b8aa567858beed70c392fdec26dbdb0a8a418392e71708"},
     {file = "greenlet-1.1.2-cp35-cp35m-macosx_10_14_x86_64.whl", hash = "sha256:17ff94e7a83aa8671a25bf5b59326ec26da379ace2ebc4411d690d80a7fbcf23"},
     {file = "greenlet-1.1.2-cp35-cp35m-manylinux1_x86_64.whl", hash = "sha256:9f3cba480d3deb69f6ee2c1825060177a22c7826431458c697df88e6aeb3caee"},
@@ -824,6 +830,7 @@ greenlet = [
     {file = "greenlet-1.1.2-cp36-cp36m-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:f9d29ca8a77117315101425ec7ec2a47a22ccf59f5593378fc4077ac5b754fce"},
     {file = "greenlet-1.1.2-cp36-cp36m-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:21915eb821a6b3d9d8eefdaf57d6c345b970ad722f856cd71739493ce003ad08"},
     {file = "greenlet-1.1.2-cp36-cp36m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:eff9d20417ff9dcb0d25e2defc2574d10b491bf2e693b4e491914738b7908168"},
+    {file = "greenlet-1.1.2-cp36-cp36m-musllinux_1_1_x86_64.whl", hash = "sha256:b8c008de9d0daba7b6666aa5bbfdc23dcd78cafc33997c9b7741ff6353bafb7f"},
     {file = "greenlet-1.1.2-cp36-cp36m-win32.whl", hash = "sha256:32ca72bbc673adbcfecb935bb3fb1b74e663d10a4b241aaa2f5a75fe1d1f90aa"},
     {file = "greenlet-1.1.2-cp36-cp36m-win_amd64.whl", hash = "sha256:f0214eb2a23b85528310dad848ad2ac58e735612929c8072f6093f3585fd342d"},
     {file = "greenlet-1.1.2-cp37-cp37m-macosx_10_14_x86_64.whl", hash = "sha256:b92e29e58bef6d9cfd340c72b04d74c4b4e9f70c9fa7c78b674d1fec18896dc4"},
@@ -832,6 +839,7 @@ greenlet = [
     {file = "greenlet-1.1.2-cp37-cp37m-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:1e12bdc622676ce47ae9abbf455c189e442afdde8818d9da983085df6312e7a1"},
     {file = "greenlet-1.1.2-cp37-cp37m-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:8c790abda465726cfb8bb08bd4ca9a5d0a7bd77c7ac1ca1b839ad823b948ea28"},
     {file = "greenlet-1.1.2-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:f276df9830dba7a333544bd41070e8175762a7ac20350786b322b714b0e654f5"},
+    {file = "greenlet-1.1.2-cp37-cp37m-musllinux_1_1_x86_64.whl", hash = "sha256:8c5d5b35f789a030ebb95bff352f1d27a93d81069f2adb3182d99882e095cefe"},
     {file = "greenlet-1.1.2-cp37-cp37m-win32.whl", hash = "sha256:64e6175c2e53195278d7388c454e0b30997573f3f4bd63697f88d855f7a6a1fc"},
     {file = "greenlet-1.1.2-cp37-cp37m-win_amd64.whl", hash = "sha256:b11548073a2213d950c3f671aa88e6f83cda6e2fb97a8b6317b1b5b33d850e06"},
     {file = "greenlet-1.1.2-cp38-cp38-macosx_10_14_x86_64.whl", hash = "sha256:9633b3034d3d901f0a46b7939f8c4d64427dfba6bbc5a36b1a67364cf148a1b0"},
@@ -840,6 +848,7 @@ greenlet = [
     {file = "greenlet-1.1.2-cp38-cp38-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:e859fcb4cbe93504ea18008d1df98dee4f7766db66c435e4882ab35cf70cac43"},
     {file = "greenlet-1.1.2-cp38-cp38-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:00e44c8afdbe5467e4f7b5851be223be68adb4272f44696ee71fe46b7036a711"},
     {file = "greenlet-1.1.2-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:ec8c433b3ab0419100bd45b47c9c8551248a5aee30ca5e9d399a0b57ac04651b"},
+    {file = "greenlet-1.1.2-cp38-cp38-musllinux_1_1_x86_64.whl", hash = "sha256:2bde6792f313f4e918caabc46532aa64aa27a0db05d75b20edfc5c6f46479de2"},
     {file = "greenlet-1.1.2-cp38-cp38-win32.whl", hash = "sha256:288c6a76705dc54fba69fbcb59904ae4ad768b4c768839b8ca5fdadec6dd8cfd"},
     {file = "greenlet-1.1.2-cp38-cp38-win_amd64.whl", hash = "sha256:8d2f1fb53a421b410751887eb4ff21386d119ef9cde3797bf5e7ed49fb51a3b3"},
     {file = "greenlet-1.1.2-cp39-cp39-macosx_10_14_x86_64.whl", hash = "sha256:166eac03e48784a6a6e0e5f041cfebb1ab400b394db188c48b3a84737f505b67"},
@@ -848,6 +857,7 @@ greenlet = [
     {file = "greenlet-1.1.2-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:b1692f7d6bc45e3200844be0dba153612103db241691088626a33ff1f24a0d88"},
     {file = "greenlet-1.1.2-cp39-cp39-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:7227b47e73dedaa513cdebb98469705ef0d66eb5a1250144468e9c3097d6b59b"},
     {file = "greenlet-1.1.2-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:7ff61ff178250f9bb3cd89752df0f1dd0e27316a8bd1465351652b1b4a4cdfd3"},
+    {file = "greenlet-1.1.2-cp39-cp39-musllinux_1_1_x86_64.whl", hash = "sha256:0051c6f1f27cb756ffc0ffbac7d2cd48cb0362ac1736871399a739b2885134d3"},
     {file = "greenlet-1.1.2-cp39-cp39-win32.whl", hash = "sha256:f70a9e237bb792c7cc7e44c531fd48f5897961701cdaa06cf22fc14965c496cf"},
     {file = "greenlet-1.1.2-cp39-cp39-win_amd64.whl", hash = "sha256:013d61294b6cd8fe3242932c1c5e36e5d1db2c8afb58606c5a67efce62c1f5fd"},
     {file = "greenlet-1.1.2.tar.gz", hash = "sha256:e30f5ea4ae2346e62cedde8794a56858a67b878dd79f7df76a0767e356b1744a"},
@@ -934,9 +944,9 @@ lxml = [
     {file = "lxml-4.7.1-pp38-pypy38_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_24_x86_64.whl", hash = "sha256:447d5009d6b5447b2f237395d0018901dcc673f7d9f82ba26c1b9f9c3b444b60"},
     {file = "lxml-4.7.1.tar.gz", hash = "sha256:a1613838aa6b89af4ba10a0f3a972836128801ed008078f8c1244e65958f1b24"},
 ]
-mako = [
-    {file = "Mako-1.1.6-py2.py3-none-any.whl", hash = "sha256:afaf8e515d075b22fad7d7b8b30e4a1c90624ff2f3733a06ec125f5a5f043a57"},
-    {file = "Mako-1.1.6.tar.gz", hash = "sha256:4e9e345a41924a954251b95b4b28e14a301145b544901332e658907a7464b6b2"},
+Mako = [
+    {file = "Mako-1.2.2-py3-none-any.whl", hash = "sha256:8efcb8004681b5f71d09c983ad5a9e6f5c40601a6ec469148753292abc0da534"},
+    {file = "Mako-1.2.2.tar.gz", hash = "sha256:3724869b363ba630a272a5f89f68c070352137b8fd1757650017b7e06fda163f"},
 ]
 markupsafe = [
     {file = "MarkupSafe-2.0.1-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:d8446c54dc28c01e5a2dbac5a25f071f6653e6e40f3a8818e8b45d790fe6ef53"},
@@ -1011,22 +1021,6 @@ markupsafe = [
 ]
 mysql-connector-python = [
     {file = "mysql-connector-python-8.0.27.tar.gz", hash = "sha256:cf0c8e41edcd8a02f9ccbe925160ef12486111fcb2641d4551e3b2578afbe2c4"},
-    {file = "mysql_connector_python-8.0.27-1commercial-cp36-cp36m-manylinux1_i686.whl", hash = "sha256:dbfe5cd52386a46fd32b59ff7b03974e39ead0bdbb3d23639b8c2dede00ebcdb"},
-    {file = "mysql_connector_python-8.0.27-1commercial-cp36-cp36m-manylinux1_x86_64.whl", hash = "sha256:a836d47f54ee50065ac98917513f2da50957c9cb809daaa144c9f2ab50afbc6f"},
-    {file = "mysql_connector_python-8.0.27-1commercial-cp36-cp36m-win_amd64.whl", hash = "sha256:ae17753a4034a79d6ecc9163f8b5c3ea8a9c1ac2c7dac8c0a24b97102b253d26"},
-    {file = "mysql_connector_python-8.0.27-1commercial-cp37-cp37m-macosx_11_0_x86_64.whl", hash = "sha256:aa3d5e3656b3b418430b8c5e821f0a9329530a22fe717815c76dba524714d3ff"},
-    {file = "mysql_connector_python-8.0.27-1commercial-cp37-cp37m-manylinux1_i686.whl", hash = "sha256:bca758bf9e4d936cc745ae4f51472217c0ebcfd54d4aaa85974f0620ac4633cc"},
-    {file = "mysql_connector_python-8.0.27-1commercial-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:542d692b8284f8185a8f75f70c9d6c13eef80d2d530444b4f7f130868253e9f9"},
-    {file = "mysql_connector_python-8.0.27-1commercial-cp37-cp37m-win_amd64.whl", hash = "sha256:7892dca8fc03a6e6131bc7359650064085ca803ae1406a104f55470e1c700668"},
-    {file = "mysql_connector_python-8.0.27-1commercial-cp38-cp38-macosx_11_0_x86_64.whl", hash = "sha256:e12481264dc938178d8225dd06590a6d16dbb1f8af51a7748cffe521afb52546"},
-    {file = "mysql_connector_python-8.0.27-1commercial-cp38-cp38-manylinux1_i686.whl", hash = "sha256:d3469c512a5a48809feeffc34df4c53667ee7b8795ff6e56c90861e1f5386763"},
-    {file = "mysql_connector_python-8.0.27-1commercial-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:64078ca692aa7e403e1660d4f8cd50816fee52e28827a9dd10d1cc4fc7ca5339"},
-    {file = "mysql_connector_python-8.0.27-1commercial-cp38-cp38-win_amd64.whl", hash = "sha256:d7cccd804cafd2d15c731d06a38a88adf93ece684dd5f68b2bc77c04ed9f4131"},
-    {file = "mysql_connector_python-8.0.27-1commercial-cp39-cp39-macosx_11_0_x86_64.whl", hash = "sha256:1ebbec05a4279bb2068e270c92f50101cfddb1c551d8c588f34097cde89d8344"},
-    {file = "mysql_connector_python-8.0.27-1commercial-cp39-cp39-manylinux1_i686.whl", hash = "sha256:86dc8e57082ee8fd631edeed5299396bd7d842fe455f5347e1ad08ace38b22ea"},
-    {file = "mysql_connector_python-8.0.27-1commercial-cp39-cp39-manylinux1_x86_64.whl", hash = "sha256:fcfb722e748ec9219d5caee7c73855e93e67c7c57cd790e49d37c1c8571ba040"},
-    {file = "mysql_connector_python-8.0.27-1commercial-cp39-cp39-win_amd64.whl", hash = "sha256:a261552ef3a2e865a76b751ba7ac3d1d1c4cbc8f167f39436343ef56c8d46d5a"},
-    {file = "mysql_connector_python-8.0.27-1commercial-py2.py3-none-any.whl", hash = "sha256:a7b93c14ef59d035e4277a9d637309e8057256efb073cb3db78337ff62c6099b"},
     {file = "mysql_connector_python-8.0.27-cp36-cp36m-manylinux1_i686.whl", hash = "sha256:08e8bdb0b0cd247213764d115433972d0f5d103a00eb9cd0330294bdbb58cbca"},
     {file = "mysql_connector_python-8.0.27-cp36-cp36m-manylinux1_x86_64.whl", hash = "sha256:8a3a8605c5380870a898b4a52c5b0d138e7cb998b192f10552373782d003886d"},
     {file = "mysql_connector_python-8.0.27-cp36-cp36m-win_amd64.whl", hash = "sha256:94abfd76c6ad36f1bcf96f49d76dd55b9e09767eea972669baba9fc385fd9a46"},
