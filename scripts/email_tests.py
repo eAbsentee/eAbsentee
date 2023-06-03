@@ -5,37 +5,48 @@ This script should be scheduled daily.
 """
 
 import os
-import sys
 import requests
-import csv
-import sshtunnel
 from os import environ, path
 from datetime import datetime
-from sqlalchemy import create_engine, Column, String, DateTime, asc
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.ext.declarative import declarative_base
+from random import choices as random_choices
+from string import ascii_lowercase, digits
+
+from sys import path
+path.append("../eAbsentee")
+
 from dotenv import load_dotenv
-from ../eAbsentee/form/models import db, User
 load_dotenv()
+
+from sqlalchemy import create_engine, Column, String, DateTime, asc
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+from os import getenv
+from eAbsentee.form.models import db, User
+from flask_bcrypt import Bcrypt
+from getpass import getpass
 
 application_id_chars = ascii_lowercase + digits
 
-new_voter = User(
-    application_id = ''.join(random_choices(application_id_chars, k=24))
-    name='TEST NAME',
-    county='TEST COUNTY',
-    email='testing@eabsentee.org',
-    phonenumber='',
-    full_address='',
-    ip=request.environ.get('HTTP_X_REAL_IP', request.remote_addr),
-    group_code='TESTING,
-    lat="",
-    long="",
-    election_date=None,
-)
+engine = create_engine(getenv("SQLALCHEMY_DATABASE_URI"))
+Session = sessionmaker(engine)
 
-db.session.add(new_voter)
-db.session.commit()
+with Session() as session:
+    new_voter = User(
+        application_id = ''.join(random_choices(application_id_chars, k=24)),
+        name='TEST NAME',
+        county='TEST COUNTY',
+        email='testing@eabsentee.org',
+        phonenumber='',
+        full_address='',
+        ip=''
+        group_code='TESTING',
+        lat="",
+        long="",
+        election_date=None,
+    )
+
+    session.add(new_voter)
+    session.commit()
 
 # TODO:
 # 1) More secure storage of API key
