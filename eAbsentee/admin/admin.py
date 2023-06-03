@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 from eAbsentee.app import db, bcrypt, login_manager
 from eAbsentee.form.models import User
 from eAbsentee.admin.models import AdminUser, RegisterLink, GroupReference
-from eAbsentee.admin.utils import is_safe_url, get_users, get_groups, create_csv, email_reminder
+from eAbsentee.admin.utils import is_safe_url, get_users, get_groups, create_csv, email_reminder, email_testing
 load_dotenv()
 
 
