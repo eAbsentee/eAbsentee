@@ -34,11 +34,11 @@ with Session() as session:
     new_voter = User(
         application_id = ''.join(random_choices(application_id_chars, k=24)),
         name='TEST NAME',
-        county='TEST COUNTY',
+        county='Testing County',
         email='testing@eabsentee.org',
         phonenumber='',
         full_address='',
-        ip=''
+        ip='',
         group_code='TESTING',
         lat="",
         long="",
