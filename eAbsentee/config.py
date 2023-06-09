@@ -44,7 +44,7 @@ class Config:
 
     # https://www.elections.virginia.gov/casting-a-ballot/calendars-schedules/upcoming-elections.html
     UPCOMING_ELECTIONS = [
-        date(2023, 11, 7), # Primary election
+        date(2023, 11, 7), # General election
     ]
     FORM_OPEN = len(UPCOMING_ELECTIONS) > 0
 
