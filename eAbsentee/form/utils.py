@@ -16,7 +16,7 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 load_dotenv()
 
 file_paths = {
-    'en': '../static/pdf/form.pdf',
+    'en': '../static/pdf/form2022.pdf',
     'es': '../static/pdf/spanish_form.pdf'
 }
 
