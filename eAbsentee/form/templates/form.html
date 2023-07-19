@@ -67,11 +67,17 @@
               <label for="name_suffix" class="form-label">{{ gettext("Suffix") }}</label>
             </fieldset>
           </div>
-          <div class="col-8 mx-auto text-center">
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <fieldset class="form-floating">
               <input type="number" class="form-control" id="ssn" name="ssn" minlength="4" maxlength="4" pattern="^\d{4}$" placeholder="0000" required digits>
               <label for="ssn" class="form-label">{{ gettext("SSN (Last 4 Digits)") }}</label>
               <small class="form-text"><a href="{{ url_for('home.index', _anchor='faq_ssn') }}" target="_blank" rel="noopener">{{ gettext("Why?") }}</a></small>
+            </fieldset>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <fieldset class="form-floating">
+              <input type="number" class="form-control" id="birthyear" name="birthyear" minlength="4" maxlength="4" pattern="^\d{4}$" placeholder="2005" required digits>
+              <label for="birthyear" class="form-label">{{ gettext("Birth Year") }}</label>
             </fieldset>
           </div>
         </div>
@@ -280,7 +286,7 @@
                 <option value="Surry County">Surry County</option>
                 <option value="Sussex County">Sussex County</option>
                 <option value="Tazewell County">Tazewell County</option>
-                <!-- <option value="Testing County">Testing County</option> -->
+                <option value="Testing County">Testing County</option>
                 <option value="Virginia Beach City">Virginia Beach City</option>
                 <option value="Warren County">Warren County</option>
                 <option value="Washington County">Washington County</option>
@@ -791,6 +797,12 @@
           </div>
           <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
             <fieldset class="form-floating">
+              <input type="tel" class="form-control" id="assistant_phone" name="assistant_phone" autocomplete="tel" minlength="10" maxlength="12" placeholder="7035550100" data-inputmask="'mask': '999-999-9999'">
+              <label for="assistant_phone" class="form-label">{{ gettext("Assistant Phone Number") }}</label>
+            </fieldset>
+          </div>
+          <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+            <fieldset class="form-floating">
               <input type="text" class="form-control" id="assistant_address" name="assistant_address" placeholder="123 Main St">
               <label for="assistant_address" class="form-label">{{ gettext("Assistant Street Address") }}</label>
             </fieldset>
@@ -851,7 +863,25 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <fieldset class="form-floating">
                 <input type="text" class="form-control" id="former_address" name="former_address" placeholder="123 Main St # 204">
-                <label for="former_address" class="form-label">{{ gettext("Former Address") }}</label>
+                <label for="former_address" class="form-label">{{ gettext("Former Street Address") }}</label>
+              </fieldset>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+              <fieldset class="form-floating">
+                <input type="text" class="form-control" id="former_city" name="former_city" placeholder="Alexandria">
+                <label for="former_city" class="form-label">{{ gettext("Former City") }}</label>
+              </fieldset>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+              <fieldset class="form-floating">
+                <input type="text" class="form-control" id="former_state" name="former_state" placeholder="Virginia">
+                <label for="former_state" class="form-label">{{ gettext("Former State") }}</label>
+              </fieldset>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+              <fieldset class="form-floating">
+                <input type="text" class="form-control" id="former_zip" name="former_zip" minlength="5" maxlength="5" pattern="^\d{5}$" digits placeholder="22312">
+                <label for="former_zip" class="form-label">{{ gettext("Former ZIP Code") }}</label>
               </fieldset>
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
