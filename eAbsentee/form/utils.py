@@ -191,7 +191,7 @@ def email_pdf(application_id, request, email_registrar):
         to=tuple(recipients),
         subject=f'Absentee Ballot Request - Applicant-ID: {application_id}',
         contents="""
-        Registrar, attached is a voter application for absentee ballot. The voter sent it through eAbsentee.org and the voter is CC'd here. In compliance with the Virginia Dept. of Elections memo dated 9/19/2019 regarding electronically signed applications linked <a href="https://drive.google.com/file/d/11wO_XSy0xh5BVI9RWREF-jvpXP3ZlpwD/view?usp=sharing">here</a>, the signer was required to check a box affirming the Affirmation Statement of the Absentee Ballot Application. You can verify compliance with this requirement by inspecting eabsentee.org/form/ which was used by this voter to generate the attached application.
+        Registrar, attached is a voter application for absentee ballot. The voter sent it through eAbsentee.org and the voter is CC'd here. In compliance with the Virginia Dept. of Elections memo dated 9/19/2019 regarding electronically signed applications linked at https://www.eabsentee.org/guidance/, the signer was required to check a box affirming the Affirmation Statement of the Absentee Ballot Application. You can verify compliance with this requirement by inspecting eabsentee.org/form/ which was used by this voter to generate the attached application.
         <br />
         Voter, no further action is required on your part. An absentee ballot will be mailed soon to the address you designated. To check on the status of your application, visit the <a href="https://vote.elections.virginia.gov/VoterInformation/Lookup/status">Virginia elections website</a>. Please allow the registrar at least five days to process it.
         <br />
