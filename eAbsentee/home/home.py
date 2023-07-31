@@ -28,7 +28,7 @@ def privacy():
 
 @home_bp.route('/guidance/')
 def guidance():
-    return send_file('./static/pdf/privacy_policy.pdf', attachment_filename='election_guidance.pdf')
+    return send_file('./static/pdf/election_guidance.pdf', attachment_filename='election_guidance.pdf')
 
 @home_bp.route('/g/<group>/')
 def set_group(group: str):
