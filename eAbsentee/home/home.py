@@ -26,6 +26,10 @@ def about():
 def privacy():
     return send_file('./static/pdf/privacy_policy.pdf', attachment_filename='privacy_policy.pdf')
 
+@home_bp.route('/guidance/')
+def privacy():
+    return send_file('./static/pdf/election_guidance.pdf', attachment_filename='election_guidance.pdf')
+
 @home_bp.route('/g/<group>/')
 def set_group(group: str):
     response = make_response(render_template('index.html'))
