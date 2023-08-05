@@ -1,0 +1,30 @@
+version: "3.9"
+services:
+  eabsentee:
+    image: eabsentee
+    container_name: eabsentee
+    # restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mysql
+    # volumes:
+    #   - eabsentee:/var/www/html
+
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    # restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: eabsentee
+      MYSQL_USER: eabsentee
+      MYSQL_PASSWORD: password
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - mysql:/var/lib/mysql
+
+volumes:
+  eabsentee:
+  mysql:
