@@ -32,7 +32,7 @@
         "physical_address": "110 Rosedale Ave Ste D Covington, VA 24426-1294"
     },
     "Amelia County": {
-        "email": "govote007@tds.net",
+        "email": "voter.registrar@ameliacova.com",
         "fax": "804-561-3490",
         "id": "292c305b-876b-4bee-bab3-c29103069fe5",
         "locality": "Amelia County",
@@ -80,7 +80,7 @@
         "physical_address": "65 Courthouse Hill Rd Rm 103 Warm Springs, VA 24484-2277"
     },
     "Bedford County": {
-        "email": "b.gunter@bedfordcountyva.gov",
+        "email": "bgunter@bedfordcountyva.gov",
         "fax": "540-586-8358",
         "id": "520c6151-e44a-4252-86d6-e248a889a6fb",
         "locality": "Bedford County",
@@ -160,7 +160,7 @@
         "physical_address": "212 N Main St Bowling Green, VA 22427-9416"
     },
     "Carroll County": {
-        "email": "kimberly.cloud@carrollcountyva.gov",
+        "email": "stacey.reavis@carrollcountyva.gov",
         "fax": "276-730-3040",
         "id": "fe5fb01e-74c3-49be-8212-0f3a4a99c903",
         "locality": "Carroll County",
@@ -184,7 +184,7 @@
         "physical_address": "420 Thomas Jefferson HWY Charlotte Court House, VA 23923-3747"
     },
     "Charlottesville City": {
-        "email": "vote@charlottesville.org",
+        "email": "vote@charlottesville.gov",
         "fax": "434-970-3249",
         "id": "d4abd5f6-7488-4075-9098-c0a27dde28d6",
         "locality": "Charlottesville City",
@@ -296,7 +296,7 @@
         "physical_address": "205 S Cross St Suite B Tappahannock, VA 22560"
     },
     "Fairfax City": {
-        "email": "voting@fairfaxcounty.gov",
+        "email": "registrar@Fairfaxva.gov",
         "fax": "703-591-8364",
         "id": "1e4cbba5-fe11-40da-a00b-81cd45890544",
         "locality": "Fairfax City",
@@ -368,7 +368,7 @@
         "physical_address": "107 N Kent St Ste 102 Winchester, VA 22601-5039"
     },
     "Fredericksburg City": {
-        "email": "vote@vote.fredricksburgva.gov",
+        "email": "vote@vote.fredericksburgva.gov",
         "fax": "540-373-8381",
         "id": "ef61e82b-f7c1-4d73-8464-c5ea3202cb44",
         "locality": "Fredericksburg City",
@@ -408,7 +408,7 @@
         "physical_address": "1800 Sandy Hook Rd # 220 Goochland, VA 23063-3105"
     },
     "Grayson County": {
-        "email": "sreavis@graysoncountyva.gov",
+        "email": "zachary.hill@graysoncountyva.gov",
         "fax": "276-773-8042",
         "id": "1ea60567-478e-4602-b72d-510de57c34e8",
         "locality": "Grayson County",
@@ -528,7 +528,7 @@
         "physical_address": "10459 Courthouse Dr Ste 102 King George, VA 22485-3865"
     },
     "King William County": {
-        "email": "gregistrar@kingwilliamcounty.us",
+        "email": "gregistrar@kwc.gov",
         "fax": "804-769-4920",
         "id": "b42ffd80-6ba0-4357-8463-60033a888e7d",
         "locality": "King William County",
@@ -552,7 +552,7 @@
         "physical_address": "133 School Board PL Jonesville, VA 24263"
     },
     "Lexington City": {
-        "email": "jharris@lexingtonva.gov",
+        "email": "fjones@lexingtonva.gov",
         "fax": "540-463-5310",
         "id": "49a0b916-1f61-4942-ac3f-e015b55ea724",
         "locality": "Lexington City",
@@ -576,7 +576,7 @@
         "physical_address": "1 Woolfolk Ave Louisa, VA 23093-4267"
     },
     "Lunenburg County": {
-        "email": "cparsons@lunenburgva.net",
+        "email": "cparsons@lunenburgva.gov",
         "fax": "434-696-3952",
         "id": "f1510126-533b-4d45-90d6-a01f6bb30150",
         "locality": "Lunenburg County",
@@ -752,7 +752,7 @@
         "physical_address": "229 N Market St Petersburg, VA 23803-3207"
     },
     "Pittsylvania County": {
-        "email": "kelly.keesee@pittgov.org",
+        "email": "shani.shorter@pittgov.org",
         "fax": "434-432-7973",
         "id": "81d78070-8cc1-4fb5-b667-d853148a2e4c",
         "locality": "Pittsylvania County",
@@ -800,7 +800,7 @@
         "physical_address": "6602 Courts Dr Ste 243 Prince George, VA 23875-2503"
     },
     "Prince William County": {
-        "email": "pwcvote@pwcgov.org",
+        "email": "AbsenteeVoting@pwcgov.org",
         "fax": "703-792-6461",
         "id": "0a929de5-ee6a-47c0-8dfc-7ed92ec49d9a",
         "locality": "Prince William County",
@@ -816,7 +816,7 @@
         "physical_address": "87 Commerce St Pulaski, VA 24301-5619"
     },
     "Radford City": {
-        "email": "tracy.howard@radfordva.gov",
+        "email": "lindsey.williams@radfordva.gov",
         "fax": "540-633-0152",
         "id": "678df151-0ad1-4f55-a36d-62fb899e888d",
         "locality": "Radford City",
@@ -928,7 +928,7 @@
         "physical_address": "22305 Main St Courtland, VA 23837-1026"
     },
     "Spotsylvania County": {
-        "email": "voter@spotsylvania.va.us",
+        "email": "cjohnson@spotsylvania.va.us",
         "fax": "540-582-2604",
         "id": "a78e9abb-2f94-4a39-b077-bdfa22a54622",
         "locality": "Spotsylvania County",
@@ -968,7 +968,7 @@
         "physical_address": "45 School ST Surry, VA 23883"
     },
     "Sussex County": {
-        "email": "smessier@sussexcounty.gov",
+        "email": "smessier@sussexcountyva.gov",
         "fax": "434-246-4315",
         "id": "362f5060-7f64-4080-9323-92736658ca6c",
         "locality": "Sussex County",
@@ -984,7 +984,7 @@
         "physical_address": "2848 Riverside DR North Tazewell, VA 24630"
     },
     "Testing County": {
-        "email": "bzhou2024@gmail.com",
+        "email": "brian@eabsentee.org",
         "fax": "42",
         "locality": "Testing County",
         "phone": "703-909-0098"
@@ -998,7 +998,7 @@
         "physical_address": "2449 Princess Anne Rd Bldg 14 Virginia Beach, VA 23456-9116"
     },
     "Warren County": {
-        "email": "vote@warrencountyva.net",
+        "email": "vote@warrencountyva.gov",
         "fax": "540-635-5456",
         "id": "6b1bf8d5-9937-4280-aba4-696e7b21f2d0",
         "locality": "Warren County",
