@@ -4,7 +4,7 @@ from flask import render_template, request, redirect, url_for
 from flask_login import login_required, current_user
 from dotenv import load_dotenv
 from eAbsentee.app import babel
-from eAbsentee.form.utils import application_process
+from eAbsentee.form.utils import application_process, SystemOverloadError
 from flask_babel import get_locale
 # from eAbsentee.app import db
 # from eAbsentee.admin.models import GroupReference
@@ -48,6 +48,11 @@ def form_test():
     else:
         return render_template('form.html')
 
+@form_bp.errorhandler(SystemOverloadError)
+def handle_system_overload(e):
+    # Here, we can return an error page with JavaScript to automatically retry the form submission after 5 seconds
+    # This is a placeholder and can be replaced with the actual error page name.
+    return render_template('system_overload_error.html'), 500
 @form_bp.errorhandler(500)
 def handle_exception(e):
     return render_template('error.html'), 500

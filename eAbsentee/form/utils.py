@@ -22,15 +22,21 @@ file_paths = {
 
 application_id_chars = ascii_lowercase + digits
 
-
+class SystemOverloadError(Exception):
+    pass
 def application_process(request, group_code=None, lang=None, email_registrar=True):
-    application_id = ''.join(random_choices(application_id_chars, k=24))
-    print(f"processing application {application_id}")
-    write_pdf(application_id, request, lang)
-    email_pdf(application_id, request, email_registrar)
-    add_to_database(application_id, request, group_code=group_code)
-    if not current_app.debug:
-        os.remove(f'{application_id}.pdf')
+    try:
+        application_id = ''.join(random_choices(application_id_chars, k=24))
+        print(f"processing application {application_id}")
+        write_pdf(application_id, request, lang)
+        email_pdf(application_id, request, email_registrar)
+        add_to_database(application_id, request, group_code=group_code)
+        if not current_app.debug:
+            os.remove(f'{application_id}.pdf')
+    except Exception as e:
+        # Here, we assume any exception is due to system overload, this can be refined further
+        raise SystemOverloadError("System Overload. Please try again later.") from e
+
 
 def write_pdf(application_id, request, lang):
     today_date = date.today()
